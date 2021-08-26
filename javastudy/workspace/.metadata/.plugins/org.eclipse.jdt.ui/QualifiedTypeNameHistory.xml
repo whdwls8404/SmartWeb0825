@@ -7,7 +7,13 @@
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="ex1_user_type.Member"/>
+<fullyQualifiedTypeName name="ex2_private.Member"/>
+<fullyQualifiedTypeName name="ex3_method.Person"/>
+<fullyQualifiedTypeName name="ex4_method.VendingMachine"/>
+<fullyQualifiedTypeName name="ex5_public.Calculator"/>
+<fullyQualifiedTypeName name="ex6_setter.Member"/>
 </qualifiedTypeNameHistroy>
