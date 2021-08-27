@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
@@ -16,4 +15,10 @@
 <fullyQualifiedTypeName name="ex4_method.VendingMachine"/>
 <fullyQualifiedTypeName name="ex5_public.Calculator"/>
 <fullyQualifiedTypeName name="ex6_setter.Member"/>
+<fullyQualifiedTypeName name="ex10_overloading.Calculator"/>
+<fullyQualifiedTypeName name="ex11_recursive.Counter"/>
+<fullyQualifiedTypeName name="ex11_recursive.Calculater"/>
+<fullyQualifiedTypeName name="ex13_static.Calculator"/>
+<fullyQualifiedTypeName name="ex14_singleton.Calculator"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
 </qualifiedTypeNameHistroy>
