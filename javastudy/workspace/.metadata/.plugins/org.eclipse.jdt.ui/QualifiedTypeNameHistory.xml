@@ -21,4 +21,14 @@
 <fullyQualifiedTypeName name="ex13_static.Calculator"/>
 <fullyQualifiedTypeName name="ex14_singleton.Calculator"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="ex3_instance_array.Company"/>
+<fullyQualifiedTypeName name="ex3_instance_array.Staff"/>
+<fullyQualifiedTypeName name="ex5_instance_array.Producer"/>
+<fullyQualifiedTypeName name="ex5_instance_array.Singer"/>
+<fullyQualifiedTypeName name="ex5_instance_array.Song"/>
+<fullyQualifiedTypeName name="ex2_has_a.Soldier"/>
+<fullyQualifiedTypeName name="ex6_constructor.Square"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="ex9_override.SalaryMan"/>
+<fullyQualifiedTypeName name="ex9_override.Alba"/>
 </qualifiedTypeNameHistroy>
