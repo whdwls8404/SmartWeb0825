@@ -33,7 +33,6 @@
 <fullyQualifiedTypeName name="ex2_upcasting.Company"/>
 <fullyQualifiedTypeName name="ex2_upcasting.SalaryMan"/>
 <fullyQualifiedTypeName name="ex2_upcasting.Alba"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="ex3_abstract.SalaryMan"/>
 <fullyQualifiedTypeName name="ex3_abstract.Alba"/>
 <fullyQualifiedTypeName name="java.awt.Shape"/>
@@ -41,4 +40,12 @@
 <fullyQualifiedTypeName name="ex7_interface.Dog"/>
 <fullyQualifiedTypeName name="ex8_Object.Member"/>
 <fullyQualifiedTypeName name="ex8_Object.Board"/>
+<fullyQualifiedTypeName name="ex9_Object.Member"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+<fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+<fullyQualifiedTypeName name="lombok.Getter"/>
+<fullyQualifiedTypeName name="lombok.Setter"/>
+<fullyQualifiedTypeName name="lombok.ToString"/>
+<fullyQualifiedTypeName name="Member"/>
 </qualifiedTypeNameHistroy>

@@ -4,7 +4,7 @@ public class Member {
 
 	private String id;
 	private String password;
-	
+
 	public Member(String id, String password) {
 		super();
 		this.id = id;
@@ -51,15 +51,17 @@ public class Member {
 		} else if (!password.equals(other.password))
 			return false;
 		return true;
-	}	
+	}
+
+	/*
+	@Override
+	public String toString() {
+		return id + "(" + password + ")";
+	}
+	*/
+	@Override
+	public String toString() {
+		return "Member [id=" + id + ", password=" + password + "]";
+	}
 	
 }
-
-
-
-
-
-
-
-
-

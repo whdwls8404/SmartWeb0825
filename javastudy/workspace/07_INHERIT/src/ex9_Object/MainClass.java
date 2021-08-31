@@ -9,6 +9,8 @@ public class MainClass {
 		
 		System.out.println(m1 == m2);
 		System.out.println(m1.equals(m2));
+		
+		System.out.println(m1);  // m1.toString() 자동으로 호출된다.
 
 	}
 
