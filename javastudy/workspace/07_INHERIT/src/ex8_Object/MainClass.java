@@ -23,7 +23,6 @@ public class MainClass {
 		System.out.println("제목: " + board.getTitle());
 		System.out.println("내용: " + board.getContent());
 		
-		
 	}
 
 }

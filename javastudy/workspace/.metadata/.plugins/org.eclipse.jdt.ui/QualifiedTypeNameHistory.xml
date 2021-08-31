@@ -28,7 +28,17 @@
 <fullyQualifiedTypeName name="ex5_instance_array.Song"/>
 <fullyQualifiedTypeName name="ex2_has_a.Soldier"/>
 <fullyQualifiedTypeName name="ex6_constructor.Square"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="ex9_override.SalaryMan"/>
 <fullyQualifiedTypeName name="ex9_override.Alba"/>
+<fullyQualifiedTypeName name="ex2_upcasting.Company"/>
+<fullyQualifiedTypeName name="ex2_upcasting.SalaryMan"/>
+<fullyQualifiedTypeName name="ex2_upcasting.Alba"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="ex3_abstract.SalaryMan"/>
+<fullyQualifiedTypeName name="ex3_abstract.Alba"/>
+<fullyQualifiedTypeName name="java.awt.Shape"/>
+<fullyQualifiedTypeName name="ex6_interface.SmartPhone"/>
+<fullyQualifiedTypeName name="ex7_interface.Dog"/>
+<fullyQualifiedTypeName name="ex8_Object.Member"/>
+<fullyQualifiedTypeName name="ex8_Object.Board"/>
 </qualifiedTypeNameHistroy>
