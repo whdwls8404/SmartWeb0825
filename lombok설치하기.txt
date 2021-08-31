@@ -1,0 +1,11 @@
+Microsoft Windows [Version 10.0.19041.1110]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\ITSC>D:
+
+D:\>cd D:\SmartWeb0825\installer\jar\LOMBOK
+
+D:\SmartWeb0825\installer\jar\LOMBOK>java -jar lombok.jar
+
+D:\SmartWeb0825\installer\jar\LOMBOK>
+
