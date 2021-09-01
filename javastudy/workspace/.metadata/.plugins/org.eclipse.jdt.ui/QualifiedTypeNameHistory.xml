@@ -20,7 +20,6 @@
 <fullyQualifiedTypeName name="ex11_recursive.Calculater"/>
 <fullyQualifiedTypeName name="ex13_static.Calculator"/>
 <fullyQualifiedTypeName name="ex14_singleton.Calculator"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="ex3_instance_array.Company"/>
 <fullyQualifiedTypeName name="ex3_instance_array.Staff"/>
 <fullyQualifiedTypeName name="ex5_instance_array.Producer"/>
@@ -42,10 +41,21 @@
 <fullyQualifiedTypeName name="ex8_Object.Board"/>
 <fullyQualifiedTypeName name="ex9_Object.Member"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="Member"/>
+<fullyQualifiedTypeName name="practice1.Calculator"/>
 <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
 <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
 <fullyQualifiedTypeName name="lombok.Getter"/>
 <fullyQualifiedTypeName name="lombok.Setter"/>
 <fullyQualifiedTypeName name="lombok.ToString"/>
-<fullyQualifiedTypeName name="Member"/>
+<fullyQualifiedTypeName name="practice2.Company"/>
+<fullyQualifiedTypeName name="practice2.Staff"/>
+<fullyQualifiedTypeName name="java.util.InputMismatchException"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+<fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+<fullyQualifiedTypeName name="javax.management.RuntimeErrorException"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 </qualifiedTypeNameHistroy>
