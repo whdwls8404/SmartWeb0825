@@ -1,5 +1,6 @@
 package ex4_char_FileReader;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -64,6 +65,8 @@ public class MainClass {
 				
 			}
 			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
