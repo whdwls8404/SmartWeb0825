@@ -70,7 +70,6 @@ public class MainClass {
 		BufferedWriter bw = null;
 		
 		try {
-			
 			url = new URL("http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108");
 			con = (HttpURLConnection)url.openConnection();
 			br = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -86,6 +85,7 @@ public class MainClass {
 				}
 				bw.write(line + "\n");
 			}
+			bw.flush();
 			
 			System.out.println("weather.xml 파일 생성 완료");
 			
@@ -162,7 +162,7 @@ public class MainClass {
 	}
 	
 	public static void main(String[] args) {
-		method5();
+		method3();
 	}
 
 }

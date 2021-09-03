@@ -5869,4 +5869,291 @@
 				<data>
 					<mode>A02</mode>
 					<tmEf>2021-09-06 12:00</tmEf>
-					<wf>
+					<wf>흐림</wf>
+					<tmn>24</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-07 00:00</tmEf>
+					<wf>흐리고 비</wf>
+					<tmn>24</tmn>
+					<tmx>30</tmx>
+					<reliability></reliability>
+					<rnSt>60</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-07 12:00</tmEf>
+					<wf>구름많고 비</wf>
+					<tmn>24</tmn>
+					<tmx>30</tmx>
+					<reliability></reliability>
+					<rnSt>80</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-08 00:00</tmEf>
+					<wf>구름많음</wf>
+					<tmn>24</tmn>
+					<tmx>27</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-08 12:00</tmEf>
+					<wf>맑음</wf>
+					<tmn>24</tmn>
+					<tmx>27</tmx>
+					<reliability></reliability>
+					<rnSt>20</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-09 00:00</tmEf>
+					<wf>구름많음</wf>
+					<tmn>22</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>30</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-09 12:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>22</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-10 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-10 12:00</tmEf>
+					<wf>흐리고 비</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>70</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A01</mode>
+					<tmEf>2021-09-11 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A01</mode>
+					<tmEf>2021-09-12 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>27</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A01</mode>
+					<tmEf>2021-09-13 00:00</tmEf>
+					<wf>맑음</wf>
+					<tmn>22</tmn>
+					<tmx>27</tmx>
+					<reliability></reliability>
+					<rnSt>20</rnSt>
+				</data>
+
+
+		</location>
+
+		<location wl_ver="3">
+				<province>제주도</province>
+				<city>서귀포</city>
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-06 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>27</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-06 12:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>27</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-07 00:00</tmEf>
+					<wf>흐리고 비</wf>
+					<tmn>24</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>60</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-07 12:00</tmEf>
+					<wf>구름많고 비</wf>
+					<tmn>24</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>80</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-08 00:00</tmEf>
+					<wf>구름많음</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-08 12:00</tmEf>
+					<wf>맑음</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>20</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-09 00:00</tmEf>
+					<wf>구름많음</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>30</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-09 12:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-10 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A02</mode>
+					<tmEf>2021-09-10 12:00</tmEf>
+					<wf>흐리고 비</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>70</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A01</mode>
+					<tmEf>2021-09-11 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>24</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A01</mode>
+					<tmEf>2021-09-12 00:00</tmEf>
+					<wf>흐림</wf>
+					<tmn>23</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>40</rnSt>
+				</data>
+
+				
+				<data>
+					<mode>A01</mode>
+					<tmEf>2021-09-13 00:00</tmEf>
+					<wf>맑음</wf>
+					<tmn>22</tmn>
+					<tmx>28</tmx>
+					<reliability></reliability>
+					<rnSt>20</rnSt>
+				</data>
+
+
+		</location>
+
+
+	
+
+	</body>
+</description>
+</item>
+</channel>
+</rss>	
