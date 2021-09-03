@@ -1,4 +1,4 @@
-package ex2_char_PrintWriter;
+package ex02_char_PrintWriter;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package ex4_char_FileReader;
+package ex04_char_FileReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

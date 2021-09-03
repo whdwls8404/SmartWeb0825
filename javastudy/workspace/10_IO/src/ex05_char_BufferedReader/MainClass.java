@@ -1,6 +1,7 @@
-package ex5_char_BufferedReader;
+package ex05_char_BufferedReader;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -26,6 +27,8 @@ public class MainClass {
 			
 			System.out.println(sb.toString());
 			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

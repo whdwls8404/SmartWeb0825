@@ -1,4 +1,4 @@
-package ex3_char_BufferedWriter;
+package ex03_char_BufferedWriter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

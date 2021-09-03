@@ -1,4 +1,4 @@
-package ex9_byte_BufferedInputStream;
+package ex09_byte_BufferedInputStream;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

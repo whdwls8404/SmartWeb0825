@@ -1,4 +1,4 @@
-package ex1_char_FileWriter;
+package ex01_char_FileWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package ex6_byte_FileOutputStream;
+package ex06_byte_FileOutputStream;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

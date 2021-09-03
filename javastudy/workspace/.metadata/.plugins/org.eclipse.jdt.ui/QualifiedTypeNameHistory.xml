@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="ex10_overloading.Calculator"/>
-<fullyQualifiedTypeName name="ex11_recursive.Counter"/>
-<fullyQualifiedTypeName name="ex11_recursive.Calculater"/>
-<fullyQualifiedTypeName name="ex13_static.Calculator"/>
-<fullyQualifiedTypeName name="ex14_singleton.Calculator"/>
-<fullyQualifiedTypeName name="ex3_instance_array.Company"/>
-<fullyQualifiedTypeName name="ex3_instance_array.Staff"/>
-<fullyQualifiedTypeName name="ex5_instance_array.Producer"/>
-<fullyQualifiedTypeName name="ex5_instance_array.Singer"/>
-<fullyQualifiedTypeName name="ex5_instance_array.Song"/>
-<fullyQualifiedTypeName name="ex2_has_a.Soldier"/>
-<fullyQualifiedTypeName name="ex6_constructor.Square"/>
-<fullyQualifiedTypeName name="ex9_override.SalaryMan"/>
-<fullyQualifiedTypeName name="ex9_override.Alba"/>
-<fullyQualifiedTypeName name="ex2_upcasting.Company"/>
 <fullyQualifiedTypeName name="ex2_upcasting.SalaryMan"/>
 <fullyQualifiedTypeName name="ex2_upcasting.Alba"/>
 <fullyQualifiedTypeName name="ex3_abstract.SalaryMan"/>
@@ -33,7 +18,6 @@
 <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="javax.management.RuntimeErrorException"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 <fullyQualifiedTypeName name="lombok.Data"/>
 <fullyQualifiedTypeName name="lombok.Builder"/>
@@ -60,4 +44,20 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
+<fullyQualifiedTypeName name="java.io.BufferedOutputStream"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="java.io.DataOutputStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.DataInputStream"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
 </qualifiedTypeNameHistroy>

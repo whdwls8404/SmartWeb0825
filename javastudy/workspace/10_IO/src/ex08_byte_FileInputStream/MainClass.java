@@ -1,4 +1,4 @@
-package ex8_byte_FileInputStream;
+package ex08_byte_FileInputStream;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

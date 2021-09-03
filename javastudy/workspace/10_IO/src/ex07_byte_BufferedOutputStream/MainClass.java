@@ -1,4 +1,4 @@
-package ex7_byte_BufferedOutputStream;
+package ex07_byte_BufferedOutputStream;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
