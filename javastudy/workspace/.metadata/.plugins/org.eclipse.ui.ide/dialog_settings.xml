@@ -7,6 +7,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\ITSC\Downloads\Group"/>
 			<item value="D:\SmartWeb0825\javastudy\workspace\03_JAVA_API"/>
 			<item value="D:\SmartWeb0825\javastudy\workspace\02_STATEMENT"/>
 			<item value="D:\SmartWeb0825\javastudy\workspace\01_BASIC"/>

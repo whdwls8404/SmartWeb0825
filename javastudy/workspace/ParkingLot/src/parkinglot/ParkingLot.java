@@ -21,11 +21,8 @@ public class ParkingLot {
 		String carNo = sc.next();
 		System.out.print("모델 입력 >>> ");
 		String model = sc.next();
-		// Car car = new Car(carNo, model);
-		// cars.add(car);
 		cars.add( new Car(carNo, model) );
 	}
-	
 	public void deleteCar() {
 		System.out.print("제거할 차량번호 입력 >>> ");
 		String carNo = sc.next();
