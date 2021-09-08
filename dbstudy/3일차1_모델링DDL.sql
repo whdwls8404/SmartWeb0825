@@ -71,6 +71,7 @@ ALTER TABLE schedule ADD CONSTRAINT schedule_pk PRIMARY KEY(n_code, e_code);
 ALTER TABLE schedule
     ADD CONSTRAINT schedule_nation_fk FOREIGN KEY(n_code)
         REFERENCES nation(n_code);
+        
 ALTER TABLE schedule
     ADD CONSTRAINT schedule_event_fk FOREIGN KEY(e_code)
         REFERENCES event(e_code);

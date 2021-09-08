@@ -1,0 +1,1 @@
+ALTER TABLE department ADD CONSTRAINT department_pk PRIMARY KEY ( dept_no );
