@@ -1,1 +1,0 @@
--- predefined type, no DDL - XMLTYPE

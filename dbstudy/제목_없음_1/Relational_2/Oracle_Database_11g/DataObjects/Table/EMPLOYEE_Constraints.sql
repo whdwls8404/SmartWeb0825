@@ -1,1 +1,0 @@
-ALTER TABLE employee ADD CONSTRAINT employee_pk PRIMARY KEY ( emp_no );
