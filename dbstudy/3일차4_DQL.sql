@@ -39,4 +39,3 @@ SELECT name, depart FROM employee WHERE position IN('과장', '부장');
 -- 칼럼 AS 별명
 SELECT DISTINCT dept_name AS "부서 명" FROM department WHERE location = '대구';
 SELECT DISTINCT dept_name AS 부서명 FROM department WHERE location IN('대구');
-
