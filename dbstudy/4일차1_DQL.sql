@@ -120,8 +120,48 @@ SELECT *
 
 
 
+-- 조인 preview
+
+-- 1. 모든 사원들의 first_name, last_name, department_id, department_name 칼럼을 조회하시오.
+--    1) employees 테이블   : first_name, last_name
+--    2) departments 테이블 : department_name
+--    3) 관계 : departments(department_id) - employees(department_id)
+SELECT
+       employees.first_name
+     , employees.last_name
+     , employees.department_id
+     , departments.department_name
+  FROM
+       departments, employees
+ WHERE
+       departments.department_id = employees.department_id;  -- 조인 조건
+
+
+-- 2. salary가 10000 이상인 사원들의 first_name, last_name, department_id, department_name 칼럼을 조회하시오.
+SELECT emp.first_name
+     , emp.last_name
+     , emp.department_id
+     , dept.department_name
+  FROM departments dept, employees emp
+ WHERE dept.department_id = emp.department_id
+   AND emp.salary >= 10000;
+
+SELECT emp.first_name
+     , emp.last_name
+     , emp.department_id
+     , dept.department_name
+  FROM departments dept, employees emp
+ WHERE 1 = 1
+   AND dept.department_id = emp.department_id
+   AND emp.salary >= 10000;
 
 
 
+-- 서브쿼리 preview
+-- 하위쿼리 : 쿼리 내부에 포함된 쿼리(SELECT 안에 SELECT)
 
+-- 1. 평균 급여 이상 받는 사원들의 first_name, last_name, salary를 조회하시오.
 
+SELECT first_name, last_name, salary
+  FROM employees
+ WHERE salary >= (SELECT AVG(salary) FROM employees);

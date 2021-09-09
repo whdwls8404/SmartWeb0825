@@ -113,13 +113,3 @@ SELECT
      , COUNT(*)
   FROM
        student;
-
-
-
-
-
-
-
-
-
-
