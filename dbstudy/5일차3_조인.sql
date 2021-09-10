@@ -79,3 +79,28 @@ SELECT e.name, d.dept_name
 SELECT e.name, d.dept_name
   FROM department d RIGHT JOIN employee e
     ON d.dept_no = e.depart;
+
+
+-- 조인을 이용해서 아래 결과 테이블 만들기
+/*
+    부서번호  인원수
+    1         2
+    2         2
+    3         0
+    4         0
+*/
+SELECT d.dept_no AS 부서번호
+     , COUNT(e.depart) AS 인원수
+  FROM department d, employee e
+ WHERE d.dept_no = e.depart(+)
+ GROUP BY d.dept_no
+ ORDER BY d.dept_no;
+
+
+-- '서울'에서 근무하는 사원들의 사원번호와 이름을 조회하시오.
+SELECT e.emp_no
+     , e.name
+  FROM department d, employee e
+ WHERE d.dept_no = e.depart
+   AND d.location = '서울';
+
