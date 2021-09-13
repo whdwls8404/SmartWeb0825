@@ -136,7 +136,32 @@ SELECT me.department_id AS 부서명
 
 
 
+-- 외부 조인
+-- 한 테이블의 정보는 일치하면 조회, 다른 테이블의 정보는 일치하지 않아도 모두 조회하는 경우에 사용
+-- 모든 정보를 조회할 테이블이 왼쪽에 있으면 왼쪽 조인, 오른쪽에 있으면 오른쪽 조인
+
+-- 9. 모든 사원들의 employee_id, first_name, department_name을 조회하시오.
+--    employee_id순으로 오름차순 정렬하시오.
+--    모든 사원 : 부서가 없는 사원도 조회하시오.
+SELECT e.employee_id, e.first_name, NVL(d.department_name, '부서없음')
+  FROM departments d, employees e  -- 왼쪽 department, 오른쪽 employees
+ WHERE d.department_id(+) = e.department_id  -- employees 테이블의 모든 정보는 조회되도록 오른쪽 조인으로 설정
+ ORDER BY e.employee_id;
+
+SELECT e.employee_id, e.first_name, NVL(d.department_name, '부서없음')
+  FROM departments d RIGHT JOIN employees e  -- 왼쪽 department, 오른쪽 employees
+    ON d.department_id = e.department_id  -- employees 테이블의 모든 정보는 조회되도록 오른쪽 조인으로 설정
+ ORDER BY e.employee_id;
 
 
+-- 10. 부서별 근무하는 사원수를 조회하시오.
+--     단, 근무하는 사원이 없으면 0으로 조회하시오.
+SELECT d.department_name, COUNT(e.employee_id)
+  FROM departments d, employees e
+ WHERE d.department_id = e.department_id(+)  -- departments 테이블의 모든 정보를 조회하도록 왼쪽 조인으로 설정
+ GROUP BY d.department_name;
 
-
+SELECT d.department_name, COUNT(e.employee_id)
+  FROM departments d LEFT JOIN employees e
+    ON d.department_id = e.department_id  -- departments 테이블의 모든 정보를 조회하도록 왼쪽 조인으로 설정
+ GROUP BY d.department_name;

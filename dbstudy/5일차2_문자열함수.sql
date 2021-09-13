@@ -44,9 +44,3 @@ SELECT LPAD(first_name, 10, ' ') FROM employees;  -- '     Ellen'
 --    2) RPAD('문자열', 전체필드폭, '채울문자')
 SELECT RPAD(first_name, 10, '*') FROM employees;  -- 'Ellen*****'
 SELECT RPAD(first_name, 10, ' ') || last_name FROM employees;
-
-
-
-
-
-
