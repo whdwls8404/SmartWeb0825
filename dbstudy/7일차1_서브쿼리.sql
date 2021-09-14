@@ -88,6 +88,7 @@ SELECT e.emp_no, e.name
           FROM employee) e;  -- 서브쿼리에 별명을 붙여서 사용한다.
 
 
+
 -- 인라인 뷰 확인을 위한 테이블 추가
 
 DROP TABLE BOARD;
@@ -126,6 +127,134 @@ INSERT INTO BOARD (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_ID, CREATED_DATE
 INSERT INTO BOARD (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_ID, CREATED_DATE) VALUES (BOARD_SEQ.NEXTVAL, '협조', '매일 댓글 달 것', 'user3', SYSDATE);
 
 COMMIT;  -- INSERT에 적용
+
+
+
+-- 가상 칼럼
+-- 1. 존재한다.
+-- 2. 저장되어 있지 않다.
+-- 3. 존재하므로 사용할 수 있다.
+-- 4. 종류 : ROWID, ROWNUM
+
+
+
+-- ROWID  : 해당 행(ROW)의 물리적 저장 위치 정보
+
+SELECT ROWID
+     , board_title
+  FROM board;
+
+-- 오라클 최고의 조회 속도
+-- ROWID를 직접 이용하기
+SELECT board_title
+  FROM board
+ WHERE ROWID = 'AAAE+TAAEAAAAUcAAC';  -- 실제로 사용하지는 못한다.
+
+-- ROWID의 직접 사용은 어렵기 때문에
+-- 휴먼들은 인덱스(INDEX)를 사용.
+
+
+
+-- ROWNUM : 해당 행(ROW)의 번호
+
+SELECT ROWNUM    -- 페이징 처리에서 사용
+     , board_no  -- 항상 순서대로 존재한다고 볼 수 없기 때문에 페이징 처리에서 사용 불가
+     , board_title
+  FROM board;
+
+
+
+-- ROWNUM 칼럼의 사용 방법
+-- 1. 1을 포함하는 범위는 조회할 수 있다.
+-- 2. 특정 위치를 지정하는 검색은 할 수 없다. (ROWNUM = 2, ROWNUN = 3 등 모두 불가)
+-- 3. 1이 아닌 ROWNUM을 사용하려면 ROWNUM 칼럼에 별명(AS)을 주고 그 별명을 사용한다.
+
+SELECT ROWNUM
+     , board_title
+  FROM board
+ WHERE ROWNUM = 1;  -- 가능
+
+SELECT ROWNUM
+     , board_title
+  FROM board
+ WHERE ROWNUM BETWEEN 1 AND 3;  -- 가능
+
+SELECT ROWNUM
+     , board_title
+  FROM board
+ WHERE ROWNUM = 2;  -- 불가능
+
+SELECT ROWNUM
+     , board_title
+  FROM board
+ WHERE ROWNUM BETWEEN 2 AND 4;  -- 불가능
+
+
+-- ROWNUM 칼럼에 별명 주고 사용
+SELECT ROWNUM AS rn
+     , board_title
+  FROM board
+ WHERE rn = 2;  -- 불가. WHERE절에서는 SELECT절에서 만든 별명 rn을 사용할 수 없다.
+
+-- FROM절에서 rn을 만들기 위해서 인라인 뷰를 활용한다.
+SELECT inline_view.rn
+     , inline_view.board_title
+  FROM (SELECT ROWNUM AS rn
+             , board_title
+          FROM board) inline_view  -- 서브쿼리 별명 inline_view
+ WHERE inline_view.rn BETWEEN 2 AND 4;
+
+
+
+
+-- 1. BOARD 테이블의 정렬이 없는 상태에서,
+--    3번째 게시글을 조회한다.
+SELECT a.*
+  FROM (SELECT ROWNUM AS rn
+             , board_no
+             , board_title
+             , board_content
+             , created_date
+          FROM board) a
+ WHERE a.rn = 3;
+
+-- 2. BOARD 테이블의 정렬이 없는 상태에서,
+--    2~4번째 게시글을 조회한다.
+SELECT a.*
+  FROM (SELECT ROWNUM AS rn
+             , board_no
+             , board_title
+             , board_content
+             , created_date
+          FROM board) a
+ WHERE a.rn BETWEEN 2 AND 4;
+
+-- 3. 가장 먼저 작성한 BOARD 테이블의 게시글을 조회한다.
+--    작성일자순으로 오름차순 정렬(오래된 작성일자가 먼저 나옴) 후
+--    첫 번째 게시글을 조회한다.
+--    작업순서 : 정렬 -> ROWNUM
+--    정렬한 테이블의 별명 : a
+--    정렬한 테이블에 ROWNUM 추가한 테이블의 별명 : b
+SELECT b.*
+  FROM (SELECT ROWNUM AS rn
+             , a.board_no
+             , a.board_title
+             , a.created_date
+          FROM (SELECT board_no
+                     , board_title
+                     , created_date
+                  FROM board
+                 ORDER BY created_date) a) b
+ WHERE b.rn = 1;
+
+
+
+
+
+
+
+
+
 
 
 
