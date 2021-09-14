@@ -283,3 +283,28 @@ SELECT b.rn
                   FROM board
                  ORDER BY board_title) a) b
  WHERE b.rn BETWEEN 2 AND 4;
+
+
+
+-- 테이블 복사
+-- 1. CREATE TABLE + 서브쿼리(복사할 테이블 조회)
+-- 2. PK, FK와 같은 제약조건은 복사되지 않는다.
+-- 3. 구조만 복사하거나, 행을 포함한 전체를 복사할 수 있다.
+
+
+-- 행을 포함한 전체 복사
+CREATE TABLE board2
+    AS (SELECT *
+          FROM board);
+
+
+-- board2 테이블의 제약 조건 확인
+DESC user_constraints;
+SELECT constraint_name FROM user_constraints WHERE table_name = 'BOARD2';  -- PK, FK는 없음을 확인
+
+
+-- 구조만 복사 (행을 제외)
+CREATE TABLE board3
+    AS (SELECT *
+          FROM board
+         WHERE 1 = 2);
