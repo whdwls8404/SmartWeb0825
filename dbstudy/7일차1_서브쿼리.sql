@@ -235,7 +235,10 @@ SELECT a.*
 --    작업순서 : 정렬 -> ROWNUM
 --    정렬한 테이블의 별명 : a
 --    정렬한 테이블에 ROWNUM 추가한 테이블의 별명 : b
-SELECT b.*
+SELECT b.rn
+     , b.board_no
+     , b.board_title
+     , b.created_date
   FROM (SELECT ROWNUM AS rn
              , a.board_no
              , a.board_title
@@ -248,22 +251,35 @@ SELECT b.*
  WHERE b.rn = 1;
 
 
+-- 4. 3번째로 작성한 게시글을 조회하시오.
+SELECT b.rn
+     , b.board_no
+     , b.board_title
+     , b.created_date
+  FROM (SELECT ROWNUM AS rn
+             , a.board_no
+             , a.board_title
+             , a.created_date
+          FROM (SELECT board_no
+                     , board_title
+                     , created_date
+                  FROM board
+                 ORDER BY created_date) a) b
+ WHERE b.rn = 3;
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- 5. 게시글의 제목순으로 오름차순 정렬한 뒤 2~4번째 게시글을 조회하시오.
+SELECT b.rn
+     , b.board_no
+     , b.board_title
+     , b.created_date
+  FROM (SELECT ROWNUM AS rn
+             , a.board_no
+             , a.board_title
+             , a.created_date
+          FROM (SELECT board_no
+                     , board_title
+                     , created_date
+                  FROM board
+                 ORDER BY board_title) a) b
+ WHERE b.rn BETWEEN 2 AND 4;
