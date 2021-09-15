@@ -192,6 +192,24 @@ BEGIN
 END;
 
 
+-- 연습문제. 모든 사원들의 salary 합을 구하시오.
+-- employee_id : 100 ~ 206
+DECLARE
+    v_id     employees.employee_id%TYPE;
+    v_salary employees.salary%TYPE;
+    total    NUMBER;
+BEGIN
+    total := 0;
+    FOR v_id IN 100..206 LOOP
+        SELECT salary INTO v_salary
+          FROM employees
+         WHERE employee_id = v_id;
+        total := total + v_salary;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE('전체 사원의 급여 총액은 ' || total || '원입니다.');
+END;
+
+
 -- 9. EXIT문
 DECLARE
     i NUMBER;
@@ -223,13 +241,93 @@ BEGIN
 END;
 
 
+-- 11. 변수 선언 (레코드 타입)
+-- 특정 테이블의 레코드 전체 타입이 자동 세팅
+DECLARE
+
+    -- 레코드 타입의 변수 v_row 선언
+    v_row employees%ROWTYPE;
+
+BEGIN
+    SELECT * INTO v_row
+      FROM employees
+     WHERE employee_id = 100;
+    DBMS_OUTPUT.PUT_LINE('사원번호: ' || v_row.employee_id);
+    DBMS_OUTPUT.PUT_LINE('이름: ' || v_row.first_name);
+END;
 
 
+-- 연습문제. department_id가 50인 사원들의 정보를 이용하여 dept50 테이블을 생성하시오.
+CREATE TABLE dept50
+    AS (SELECT *
+          FROM employees
+         WHERE 1 = 2);
+
+DECLARE
+    v_row employees%ROWTYPE;
+BEGIN
+    FOR v_row IN (SELECT * FROM employees WHERE department_id = 50) LOOP
+        INSERT INTO dept50 VALUES v_row;
+    END LOOP;
+END;
 
 
+-- 12. 변수 선언 (테이블 타입)
+-- 특정 칼럼의 데이터들은 배열처럼 여러 데이터를 저장하는 구조를 사용
+DECLARE
+    
+    -- email 칼럼 값을 모두 저장할 수 있는 타입 type_email 선언
+    TYPE type_email IS TABLE OF employees.email%TYPE INDEX BY BINARY_INTEGER;
+    
+    -- email을 저장할 변수(배열) emails
+    emails type_email;
+    
+    -- 인덱스
+    i BINARY_INTEGER;
+    j BINARY_INTEGER;
+    
+    -- employees 테이블의 레코드 타입
+    v_row employees%ROWTYPE;
+    
+BEGIN
+
+    i := 0;
+
+    FOR v_row IN (SELECT * FROM employees) LOOP
+        emails(i) := v_row.email;
+        i := i + 1;
+    END LOOP;
+    
+    FOR j IN 0..106 LOOP
+        DBMS_OUTPUT.PUT_LINE(emails(j));
+    END LOOP;
+
+END;
 
 
+-- 13. 예외 처리
+DECLARE
+    
+    v_email employees.email%TYPE;
+    
+BEGIN
 
+    SELECT email
+      INTO v_email
+      FROM employees
+     WHERE employee_id = 100;
 
+    DBMS_OUTPUT.PUT_LINE('이메일: ' || v_email);
 
+EXCEPTION
+    
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('검색 결과가 없다.');
 
+    WHEN TOO_MANY_ROWS THEN
+        DBMS_OUTPUT.PUT_LINE('검색 결과가 너무 많다.');
+
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('문제가 있다.');
+
+END;
