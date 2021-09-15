@@ -89,3 +89,29 @@ SELECT e.employee_id, e.first_name, e.department_id
  ORDER BY (SELECT d.department_name
              FROM departments d
             WHERE d.department_id = e.department_id);
+
+
+-- 9. 최대 연봉 사원의 employee_id, first_name, salary를 조회하시오.
+--    ROWNUM 활용
+--    1) 높은 연봉이 가장 위로 오도록 정렬한다. (연봉 내림차순 정렬)
+--    2) 정렬 결과에서 ROWNUM이 1인 데이터를 조회한다.
+
+SELECT a.employee_id, a.first_name, a.salary
+  FROM (SELECT employee_id, first_name, salary
+          FROM employees
+         ORDER BY salary DESC) a
+ WHERE ROWNUM = 1;
+
+
+-- 10. 연봉 TOP 11 ~ 20 사원의 employee_id, first_name, salary를 조회하시오.
+--    ROWNUM 활용
+--    1) 높은 연봉이 가장 위로 오도록 정렬한다. (연봉 내림차순 정렬)
+--    2) 정렬 결과에 ROWNUM 칼럼을 추가한다. 반드시 ROWNUM 칼럼에 별명을 부여한다.
+--    3) 부여된 ROWNUM의 별명으로 11 ~ 20 사이를 조회한다.
+SELECT b.employee_id, b.first_name, b.salary
+  FROM (SELECT ROWNUM AS rn, a.employee_id, a.first_name, a.salary
+          FROM (SELECT employee_id, first_name, salary
+                  FROM employees
+                 ORDER BY salary DESC) a) b
+ WHERE b.rn BETWEEN 11 AND 20;
+
