@@ -95,33 +95,137 @@ SELECT o.order_id, c.customer_name, b.book_name, o.sales_price, o.order_date
 
 
 -- 2. '손흥민'의 총 구매액을 조회하시오.
+-- 1) 조인
+SELECT c.customer_name, SUM(o.sales_price) AS 총구매액
+  FROM customers c, orders o
+ WHERE c.customer_id = o.customer_id
+   AND c.customer_name = '손흥민'
+ GROUP BY c.customer_id, c.customer_name;
+
+-- 2) 서브쿼리 (인라인 뷰 : FROM절의 서브쿼리)
+SELECT a.customer_name, SUM(a.sales_price) AS 총구매액
+  FROM (SELECT c.customer_id, c.customer_name, o.sales_price
+          FROM customers c, orders o
+         WHERE c.customer_id = o.customer_id
+           AND c.customer_name = '손흥민') a
+ GROUP BY a.customer_id, a.customer_name;
+
+-- 3) 서브쿼리 (스칼라 서브쿼리 : SELECT절의 서브쿼리)
+SELECT c.customer_name
+     , (SELECT SUM(o.sales_price)
+          FROM orders o
+         WHERE c.customer_id = o.customer_id) AS 총구매액
+  FROM customers c
+ WHERE c.customer_name = '손흥민';
 
 
 -- 3. '김연아'가 구매한 도서의 개수를 조회하시오.
+SELECT c.customer_name, COUNT(o.order_id) AS 구매도서수
+  FROM customers c, orders o
+ WHERE c.customer_id = o.customer_id
+   AND c.customer_name = '김연아'
+ GROUP BY c.customer_id, c.customer_name;
 
 
 -- 4. '추신수'가 구매한 도서들의 출판사수를 조회하시오.
+SELECT c.customer_name, COUNT(DISTINCT b.publisher)
+  FROM customers c, orders o, books b
+ WHERE c.customer_id = o.customer_id
+   AND o.book_id = b.book_id
+   AND c.customer_name = '추신수'
+ GROUP BY c.customer_id, c.customer_name;
 
 
 -- 5. 고객별 총 구매액을 조회하시오.
 --    customer_id, customer_name, 총 구매액을 조회하시오.
---    구매한 이력이 있는 고객만 조회하시오.
-
-
+--    구매한 이력이 있는 고객만 조회하시오. (내부조인)
+SELECT c.customer_id, c.customer_name, SUM(o.sales_price) AS 총구매액
+  FROM customers c, orders o
+ WHERE c.customer_id = o.customer_id
+ GROUP BY c.customer_id, c.customer_name;
+ 
+ 
 -- 6. 주문한 이력이 없는 고객의 customer_name을 조회하시오.
+SELECT customer_name
+  FROM customers
+ WHERE customer_id NOT IN(SELECT customer_id
+                            FROM orders);
 
 
 -- 7. 고객별 총 구매횟수를 조회하시오.
 --    customer_id, customer_name, 총 구매횟수를 조회하시오.
---    구매한 적이 없으면 0으로 조회하시오.
+--    구매한 적이 없으면 0으로 조회하시오. (모든 고객은 포함하는 외부 조인)
+SELECT c.customer_id, c.customer_name, COUNT(o.order_id) AS 구매횟수
+  FROM customers c, orders o
+ WHERE c.customer_id = o.customer_id(+)
+ GROUP BY c.customer_id, c.customer_name;
+
+SELECT c.customer_id, c.customer_name, COUNT(o.order_id) AS 구매횟수
+  FROM customers c LEFT JOIN orders o
+    ON c.customer_id = o.customer_id
+ GROUP BY c.customer_id, c.customer_name;
+
+
+-- ALTER
+
+-- 1. BOOKS 테이블에 재고(STOCK) 칼럼을 추가하고 기존의 모든 책의 재고를 10개로 세팅하시오.
+ALTER TABLE BOOKS ADD STOCK NUMBER;
+UPDATE BOOKS SET STOCK = 10;
+
+-- 2. CUSTOMERS 테이블에 포인트(POINT) 칼럼을 추가하고 기존의 모든 고객의 포인트를 1000포인트로 세팅하시오.
+ALTER TABLE CUSTOMERS ADD POINT NUMBER;
+UPDATE CUSTOMERS SET POINT = 1000;
+
+-- 3. ORDERS 테이블에 구매수량(AMOUNT) 칼럼을 추가하고 기존의 모든 구매 내역의 구매수량을 1로 세팅하시오.
+ALTER TABLE ORDERS ADD AMOUNT NUMBER;
+UPDATE ORDERS SET AMOUNT = 1;
 
 
 
+-- 프로시저
+-- 실행할 쿼리문이 여러 개인 경우 작성
+
+-- 주문 프로시저
+-- 1. ORDER_PROC(10000000, 1000, 2) : CUSTOMER_ID = 10000000, BOOK_ID = 1000, AMOUNT = 2
+-- 2. ORDERS 테이블에 해당 정보를 INSERT 한다. 주문일자는 현재 날짜로 한다.
+-- 3. CUSTOMERS 테이블에 POINT를 UPDATE 한다. (총주문액(SALES_PRICE * AMOUNT)의 10% 적립)
+-- 4. BOOKS 테이블의 STOCK를 UPDATE 한다. (주문수량만큼 감소)
+-- 5. 모두 성공하면 COMMIT, 중간에 실패하면 ROLLBACK한다.
+
+CREATE OR REPLACE PROCEDURE ORDER_PROC(V_CUSTOMER_ID IN NUMBER, V_BOOK_ID IN NUMBER, V_AMOUNT IN NUMBER)
+IS
+
+BEGIN
+
+    INSERT INTO ORDERS (ORDER_ID, CUSTOMER_ID, BOOK_ID, SALES_PRICE, AMOUNT, ORDER_DATE)
+    VALUES (ORDERS_SEQ.NEXTVAL
+          , V_CUSTOMER_ID
+          , V_BOOK_ID
+          , (SELECT TRUNC(PRICE * 0.9) FROM BOOKS WHERE BOOK_ID = V_BOOK_ID)
+          , V_AMOUNT
+          , SYSDATE);
+
+    UPDATE CUSTOMERS 
+       SET POINT = POINT + (SELECT TRUNC(SALES_PRICE * AMOUNT * 0.1) 
+                              FROM orders 
+                             WHERE ORDER_ID = (SELECT MAX(ORDER_ID)
+                                                 FROM ORDERS))
+     WHERE CUSTOMER_ID = V_CUSTOMER_ID;
+
+    UPDATE BOOKS
+       SET STOCK = STOCK - V_AMOUNT
+
+     WHERE BOOK_ID = V_BOOK_ID;
+
+    COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('에러메시지: ' || SQLERRM);
+        ROLLBACK;
+    
+END ORDER_PROC;
 
 
-
-
-
-
-
-
+-- 프로시저 실행
+EXECUTE ORDER_PROC(10000000, 1000, 2);
