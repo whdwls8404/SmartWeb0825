@@ -83,3 +83,45 @@ INSERT INTO ORDERS(ORDER_ID, CUSTOMER_ID, BOOK_ID, SALES_PRICE, ORDER_DATE) VALU
 -- 커밋
 COMMIT;
 
+
+-- SELECT
+-- 1. '21/09/04'~'21/09/10' 사이에 주문한 도서들의
+--    order_id, customer_name, book_name, sales_price, order_date를 조회하시오.
+SELECT o.order_id, c.customer_name, b.book_name, o.sales_price, o.order_date
+  FROM customers c, orders o, books b
+ WHERE c.customer_id = o.customer_id
+   AND o.book_id = b.book_id
+   AND o.order_date BETWEEN TO_DATE('21/09/04', 'YY/MM/DD') AND TO_DATE('21/09/10', 'YY/MM/DD');
+
+
+-- 2. '손흥민'의 총 구매액을 조회하시오.
+
+
+-- 3. '김연아'가 구매한 도서의 개수를 조회하시오.
+
+
+-- 4. '추신수'가 구매한 도서들의 출판사수를 조회하시오.
+
+
+-- 5. 고객별 총 구매액을 조회하시오.
+--    customer_id, customer_name, 총 구매액을 조회하시오.
+--    구매한 이력이 있는 고객만 조회하시오.
+
+
+-- 6. 주문한 이력이 없는 고객의 customer_name을 조회하시오.
+
+
+-- 7. 고객별 총 구매횟수를 조회하시오.
+--    customer_id, customer_name, 총 구매횟수를 조회하시오.
+--    구매한 적이 없으면 0으로 조회하시오.
+
+
+
+
+
+
+
+
+
+
+
