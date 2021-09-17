@@ -4,7 +4,6 @@
 --   유형:      Oracle Database 11g
 
 
-
 -- predefined type, no DDL - MDSYS.SDO_GEOMETRY
 
 -- predefined type, no DDL - XMLTYPE
