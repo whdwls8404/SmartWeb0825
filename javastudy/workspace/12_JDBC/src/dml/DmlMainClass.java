@@ -10,6 +10,8 @@ public class DmlMainClass {
 
 	// DML은 COMMIT/ROLLBACK을 사용할 수 있다.
 	
+	// INSERT, UPDATE, DELETE는 코드가 같다.
+	
 	public static void insert1() {
 		
 		// 수동 커밋(COMMIT)
@@ -69,8 +71,150 @@ public class DmlMainClass {
 		
 	}
 	
+	public static void insert2() {
+		
+		// 자동 커밋(COMMIT)
+		// 디폴트로 setAutoCommit(true) 처리
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int resultCount = 0;
+		String sql = null;
+		
+		try {
+			con = MyConnection.getConnection();
+			sql = "INSERT INTO PRODUCT(PNO, PNAME, PRICE, PDATE) VALUES " +
+			      "(PRODUCT_SEQ.NEXTVAL, '맛동산', 2500, SYSDATE)";
+			ps = con.prepareStatement(sql);
+			resultCount = ps.executeUpdate();
+			if (resultCount > 0) {
+				System.out.println("PRODUCT이 추가되었습니다.");
+			} else {
+				System.out.println("PRODUCT이 추가되지 않았습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MyConnection.close(con, ps, null);
+		}
+		
+	}
+	
+	public static void insert3() {
+		
+		// PNO, PDATE   : PRODUCT_SEQ.NEXTVAL, SYSDATE로 고정 처리
+		// PNAME, PRICE : 변수로 처리하기
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int resultCount = 0;
+		String sql = null;
+		
+		String pName = "꼬북칩";
+		int price = 1500;
+		
+		try {
+			
+			// 1. DB접속
+			con = MyConnection.getConnection();
+			
+			// 2. 쿼리문
+			//    변수 처리하는 부분은 ?를 넣어둔다.
+			sql = "INSERT INTO PRODUCT(PNO, PNAME, PRICE, PDATE) VALUES " +
+			      "(PRODUCT_SEQ.NEXTVAL, ?, ?, SYSDATE)";
+			
+			// 3. PreparedStatement ps 생성
+			ps = con.prepareStatement(sql);
+			
+			// 4. ?에 값을 전달하기
+			//    1) int    : setInt()
+			//    2) long   : setLong()
+			//    3) double : setDouble()
+			//    4) String : setString()
+			//    5) Date   : setDate(), 이 때 Date는 java.sql.Date
+			ps.setString(1, pName);  // 1번째 ?에 String pName값을 전달하시오.
+			ps.setInt(2, price);     // 2번째 ?에 int price값을 전달하시오.
+			
+			// 5. 쿼리문 실행하기
+			resultCount = ps.executeUpdate();
+			
+			if (resultCount > 0) {
+				System.out.println("PRODUCT이 추가되었습니다.");
+			} else {
+				System.out.println("PRODUCT이 추가되지 않았습니다.");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MyConnection.close(con, ps, null);
+		}
+		
+	}
+
+	public static void update() {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int resultCount = 0;
+		String sql = null;
+		
+		long pNo = 1;
+		String pName = "빼빼로";
+		int price = 1000;
+		
+		try {
+			con = MyConnection.getConnection();
+			sql = "UPDATE PRODUCT SET PNAME = ?, PRICE = ? " +
+			      "WHERE PNO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pName);
+			ps.setInt(2, price);
+			ps.setLong(3, pNo);
+			resultCount = ps.executeUpdate();
+			if (resultCount > 0) {
+				System.out.println("PRODUCT이 수정되었습니다.");
+			} else {
+				System.out.println("PRODUCT이 수정되지 않았습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MyConnection.close(con, ps, null);
+		}
+		
+	}
+	
+	public static void delete() {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int resultCount = 0;
+		String sql = null;
+		
+		long pNo = 3;
+		
+		try {
+			con = MyConnection.getConnection();
+			sql = "DELETE FROM PRODUCT WHERE PNO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, pNo);
+			resultCount = ps.executeUpdate();
+			if (resultCount > 0) {
+				System.out.println("PRODUCT이 삭제되었습니다.");
+			} else {
+				System.out.println("PRODUCT이 삭제되지 않았습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MyConnection.close(con, ps, null);
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		insert1();
+		delete();
 	}
 
 }
