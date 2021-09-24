@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
-import connect.DBCPConnection;
+import connect.DBCPConnection_사용안함;
 import connect.DBCPDataSource;
 
 // DAO
@@ -30,33 +30,43 @@ public class ProductDAO {
 		dataSource = DBCPDataSource.getDataSource();
 	}
 	
+	// method (close)
+	public void close() {
+		try {
+			if (con != null) con.close();  // Connection 반납
+			if (ps != null) ps.close();
+			if (rs != null) rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// method (CRUD)
 	public int insertProduct(String pName, int price) {
 		try {
+			
 			// 1. DB접속 (Connection 대여)
 			con = dataSource.getConnection();
 			
 			// 2. 쿼리문
 			sql = "INSERT INTO PRODUCT(PNO, PNAME, PRICE, PDATE) " +
 			      "VALUES(PRODUCT_SEQ.NEXTVAL, ?, ?, SYSDATE)";
+			
 			// 3. PreparedStatement ps 객체 생성
 			ps = con.prepareStatement(sql);
+			
 			// 4. ?에 값(변수) 전달
 			ps.setString(1, pName);
 			ps.setInt(2, price);
+			
 			// 5. 쿼리문 실행
 			resultCount = ps.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			// Connection 반납
-			// DBCPConnection.getInstance().close(con, ps, null);
-			try {
-				con.close();
-				ps.close();
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+			close();
 		}
 		// 결과 반환
 		return resultCount;
@@ -64,7 +74,7 @@ public class ProductDAO {
 	
 	public int deleteProduct(long pNo) {
 		try {
-			con = DBCPConnection.getInstance().getConnection();
+			con = dataSource.getConnection();
 			sql = "DELETE FROM PRODUCT WHERE PNO = ?";
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, pNo);
@@ -72,7 +82,7 @@ public class ProductDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			
+			close();
 		}
 		return resultCount;
 	}
@@ -83,7 +93,7 @@ public class ProductDAO {
 			return 0;
 		}
 		try {
-			con = DBCPConnection.getInstance().getConnection();
+			con = dataSource.getConnection();
 			switch (choice) {
 			case 0:
 				sql = "UPDATE PRODUCT SET PNAME = ?, PRICE = ? WHERE PNO = ?";
@@ -109,7 +119,7 @@ public class ProductDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			
+			close();
 		}
 		return resultCount;
 	}

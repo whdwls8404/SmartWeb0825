@@ -43,6 +43,7 @@ public class ProductManagement {
 		System.out.println("=== 제품 수정 ===");
 		System.out.print("수정할 제품번호 입력 >>> ");
 		long pNo = sc.nextLong();
+		sc.nextLine();  // 제품번호 입력하고 엔터를 누르면 그 엔터를 먹는다.
 		System.out.print("수정할 제품명 입력(수정 안하려면 엔터) >>> ");
 		String pName = sc.nextLine();
 		System.out.print("수정할 제품가격 입력(수정 안하려면 엔터) >>> ");

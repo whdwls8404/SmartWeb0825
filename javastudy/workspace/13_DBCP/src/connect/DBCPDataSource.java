@@ -10,10 +10,13 @@ import oracle.jdbc.pool.OracleDataSource;
 
 public class DBCPDataSource {
 
+	// DataSource 타입의 객체 : Connection Pool 관리
+	
+	// DataSource 반환 메소드
 	public static DataSource getDataSource() {
 
-		Properties properties = new Properties();
-		OracleDataSource ds = null;
+		Properties properties = new Properties();  // properties (프로퍼티) 처리
+		OracleDataSource ds = null;  // 오라클 전용
 		InputStream fis = null;
 		
 		try {
