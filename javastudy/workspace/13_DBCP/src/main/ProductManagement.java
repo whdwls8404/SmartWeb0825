@@ -1,6 +1,5 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +10,6 @@ public class ProductManagement {
 
 	// field
 	private Scanner sc = new Scanner(System.in);
-	private List<ProductDTO> products = new ArrayList<ProductDTO>();
 	private ProductDAO dao = new ProductDAO();
 	
 	// method (ProductDAO의 적절한 메소드 호출)
@@ -58,10 +56,27 @@ public class ProductManagement {
 		}
 	}
 	public void findProduct() {
-		
+		System.out.println("=== 제품 조회 ===");
+		System.out.print("조회할 제품번호 입력 >>> ");
+		long pNo = sc.nextLong();
+		ProductDTO product = dao.selectByPno(pNo);
+		if (product == null) {
+			System.out.println("=== " + pNo + " 제품이 없습니다. ===");
+		} else {
+			System.out.println("조회된 제품 정보는 다음과 같습니다.");
+			System.out.println(product);
+		}
 	}
 	public void findAllProduct() {
-		
+		System.out.println("=== 전체 제품목록 ===");
+		List<ProductDTO> products = dao.selectProductList();
+		if (products.size() == 0) {
+			System.out.println("조회된 제품이 없습니다.");
+		} else {
+			for (ProductDTO product : products) {
+				System.out.println(product);
+			}
+		}
 	}
 	public void menu() {
 		System.out.println("================");

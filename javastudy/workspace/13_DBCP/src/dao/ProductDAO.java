@@ -3,11 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
-import connect.DBCPConnection_사용안함;
 import connect.DBCPDataSource;
+import dto.ProductDTO;
 
 // DAO
 // 1. DataBase Access Object
@@ -124,14 +126,50 @@ public class ProductDAO {
 		return resultCount;
 	}
 	
+	public ProductDTO selectByPno(long pNo) {
+		ProductDTO product = null;
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT * FROM PRODUCT WHERE PNO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, pNo);
+			rs = ps.executeQuery();
+			if (rs.next()) {  // 조회 결과가 있으면
+				product = new ProductDTO();  // product 생성
+				product.setpNo( rs.getLong(1) );  // product.setpNo( rs.getLong("PNO") );
+				product.setpName( rs.getString(2) );
+				product.setPrice( rs.getInt(3) );
+				product.setpDate( rs.getDate(4) );
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return product;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public List<ProductDTO> selectProductList() {
+		List<ProductDTO> products = new ArrayList<ProductDTO>();
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT * FROM PRODUCT ORDER BY PNO";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				ProductDTO product = new ProductDTO();
+				product.setpNo( rs.getLong(1) );  // product.setpNo( rs.getLong("PNO") );
+				product.setpName( rs.getString(2) );
+				product.setPrice( rs.getInt(3) );
+				product.setpDate( rs.getDate(4) );
+				products.add(product);  // ArrayList에 저장
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return products;
+	}
 	
 }
