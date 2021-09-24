@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.sql.DataSource;
+
 import connect.DBCPConnection;
 import connect.DBCPDataSource;
 
@@ -20,12 +22,19 @@ public class ProductDAO {
 	private ResultSet rs;
 	private int resultCount;
 	private String sql;
+
+	private DataSource dataSource;
+	
+	// constructor
+	public ProductDAO() {
+		dataSource = DBCPDataSource.getDataSource();
+	}
 	
 	// method (CRUD)
 	public int insertProduct(String pName, int price) {
 		try {
 			// 1. DB접속 (Connection 대여)
-			con = DBCPDataSource.getConnection();
+			con = dataSource.getConnection();
 			
 			// 2. 쿼리문
 			sql = "INSERT INTO PRODUCT(PNO, PNAME, PRICE, PDATE) " +
@@ -42,6 +51,12 @@ public class ProductDAO {
 		} finally {
 			// Connection 반납
 			// DBCPConnection.getInstance().close(con, ps, null);
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 		// 결과 반환
 		return resultCount;

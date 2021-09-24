@@ -1,37 +1,33 @@
 package connect;
 
-import java.sql.Connection;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 
-import oracle.jdbc.pool.OracleConnectionPoolDataSource;
+import javax.sql.DataSource;
+
 import oracle.jdbc.pool.OracleDataSource;
 
 public class DBCPDataSource {
 
-	// field
-	//   DBCP
-	private static OracleDataSource ds;
-	
-	// static field 초기화 : static 블록
-	static {
-		//ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+	public static DataSource getDataSource() {
+
+		Properties properties = new Properties();
+		OracleDataSource ds = null;
+		InputStream fis = null;
+		
 		try {
-			ds = new OracleConnectionPoolDataSource();
-			ds.setServerName("localhost");
-			ds.setPortNumber(1521);
-			ds.setUser("SCOTT");
-			ds.setPassword("TIGER");
+			fis = new FileInputStream("db.properties");
+			properties.load(fis);
+			ds = new OracleDataSource();
+			ds.setURL(properties.getProperty("url"));
+			ds.setUser(properties.getProperty("username"));
+			ds.setPassword(properties.getProperty("password"));
 		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-	
-	private DBCPDataSource() {
+			e.printStackTrace();
+		} 
+		
+		return ds;
 		
 	}
-	
-	public static Connection getConnection() throws Exception {
-		// Connection Pool 관리는 BasicDataSource ds 객체 담당
-		return ds.getConnection();
-	}
-	
 }
