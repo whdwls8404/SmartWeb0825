@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>제목</title>
+    </head>
+    <body>
+
+        <!--
+            1. 순서 없는 목록
+               1) unordered list
+               2) <ul></ul>
+               3) <ul> 태그 내부 태그로 반드시 <li></li> 태그를 사용
+               4) <ul> 태그의 type 속성으로 목록 기호(●) 변경
+                    1) <ul type="disc">   :  ● (디폴트)
+                    2) <ul type="circle"> :  ○
+                    3) <ul type="square"> :  ■
+        -->
+        <ul>
+            <li>닥터피엘</li>
+            <li>포켓도시락</li>
+            <li>슬렌더톤</li>
+        </ul>
+
+        <!-- ul>li*5 와 같은 방식으로 Emmet을 활용할 수 있음. -->
+        <ul type="circle">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <!--
+            2. 순서 있는 목록
+                1) ordered list
+                2) <ol></ol>
+                3) <ol> 태그의 하위 태그로 <li></li> 태그 사용
+        -->
+        <h1>다음 중 SELECT문은 어느 종류인가?</h1>
+        <ol>
+            <li>DDL</li>
+            <li>DML</li>
+            <li>DCL</li>
+            <li>DQL</li>
+        </ol>
+
+        <!--
+            3. 정의 목록
+                1) description list
+                2) <dl></dl>
+                3) <dl> 태그의 하위 태그 <dt></dt> 태그는 용어를 의미
+                4) <dl> 태그의 하위 태그 <dd></dd> 태그는 용어 설명을 의미
+                5) <dt> 태그와 <dl> 태그는 하나씩 배치하는 것이 권장
+        -->
+        <h1>오징어 게임</h1>
+        <dl>
+            <dt>오픈</dt>
+            <dd>2021.09.17.</dd>
+            <dt>채널</dt>
+            <dd>넷플릭스</dd>
+            <dt>소개</dt>
+            <dd>456억 원의 상금이 걸린 의문의 서바이벌에 참가한</dd>
+            <dt>등장인물</dt>
+            <dd>
+                <ul>
+                    <li>이정재</li>
+                    <li>박해수</li>
+                    <li>오영수</li>
+                    <li>이뿅뿅</li>
+                </ul>
+            </dd>
+        </dl>
+        
+    </body>
+</html>
