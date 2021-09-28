@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>제목</title>
+    </head>
+    <body>
+
+        <!--
+            테이블 만들기
+            1. <table></table>
+            2. border 속성 : 테두리 두께, 생략하면 테두리가 안 보임
+            3. <table> 태그의 하위 태그
+                1) <thead></thead> : 테이블의 제목 영역, 생략 가능
+                2) <tbody></tbody> : 테이블의 본문 영역, 반드시 사용됨
+                3) <tfoot></tfoot> : 테이블의 하단 영역, 생략 가능
+                4) 작성 순서에 상관 없이 <thead>, <tbody>, <tfoot> 순서로 나타남
+            4. <thead>, <tbody>, <tfoot> 태그의 하위 태그
+                1) <tr></tr>
+                2) 행 만듬
+            5. <tr> 태그의 하위 태그
+                1) <td></td> : 열 만듬, 일반 열
+                2) <th></th> : 열 만듬, 제목 열(굵게 표시, 가운데 정렬)
+        -->
+
+        <h1>제품 테이블</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>제품번호</th>
+                    <th>제품명</th>
+                    <th>제품가격</th>
+                    <th>제조일자</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1234567890</td>
+                    <td>홈런볼</td>
+                    <td>1500</td>
+                    <td>2021-09-28</td>
+                </tr>
+                <tr>
+                    <td>1234567890123</td>
+                    <td>맛동산</td>
+                    <td>2500</td>
+                    <td>2021-09-28</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h1>이미지 테이블</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td><img src="../images/fruit1.jpg" width="200px" height="200px"></td>
+                    <td><img src="../images/fruit2.jpg" width="200px" height="200px"></td>
+                    <td><img src="../images/fruit3.jpg" width="200px" height="200px"></td>
+                    <td><img src="../images/fruit4.jpg" width="200px" height="200px"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <br><br>
+                        <strong>슈퍼스타 뮬</strong><br>
+                        ORIGINALS<br>
+                        <strong>89,000<sub>원</sub></strong><br>
+                        2 <sub>colors</sub>
+                    </td>
+                    <td>
+                        <br><br>
+                        <strong>슈퍼스타 뮬</strong><br>
+                        ORIGINALS<br>
+                        <strong>89,000<sub>원</sub></strong><br>
+                        2 <sub>colors</sub>
+                    </td>
+                    <td>
+                        <br><br>
+                        <strong>슈퍼스타 뮬</strong><br>
+                        ORIGINALS<br>
+                        <strong>89,000<sub>원</sub></strong><br>
+                        2 <sub>colors</sub>
+                    </td>
+                    <td>
+                        <br><br>
+                        <strong>슈퍼스타 뮬</strong><br>
+                        ORIGINALS<br>
+                        <strong>89,000<sub>원</sub></strong><br>
+                        2 <sub>colors</sub>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </body>
+</html>
