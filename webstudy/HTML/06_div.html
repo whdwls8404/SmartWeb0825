@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>제목</title>
+        <style>
+            .box1 {
+                color: green;
+            }
+            .box2 {
+                color: purple;
+            }
+            #back1 {
+                background-color: yellow;
+            }
+            #back2 {
+                background-color: orange;
+            }
+            #back3 {
+                background-color: pink;
+            }
+            #back4 {
+                background-color: teal;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!--
+            전역 속성
+            1. global 속성
+            2. 모든 태그에 지정할 수 있는 속성
+            3. class 속성
+                1) 같은 종류의 요소들에 공통 class 속성을 지정
+                2) 한 태그가 여러 개의 class 속성을 가질 수 있음
+            4. id 속성
+                1) 중복되지 않는 고유의 id 속성을 지정
+                2) 한 태그는 한 id 속성을 가질 수 있음
+        -->
+
+        <!--
+            블록레벨 구역 나누기
+            1. <div></div>
+            2. 구역만 지정될 뿐 화면에 나타나는 특징 없음
+        -->
+        <div class="box1" id="back1">
+            제1구역
+        </div>
+        <div class="box1" id="back2">
+            제2구역
+        </div>
+
+        <!--
+            인라인레벨 구역 나누기
+            1. <span></span>
+            2. 구역만 지정될 뿐 화면에 나타나는 특징 없음
+        -->
+        <span class="box2" id="back3">제3구역</span>
+        <br>
+        <span class="box2" id="back4">제4구역</span>
+
+    </body>
+</html>

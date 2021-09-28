@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>제목</title>
+    </head>
+    <body>
+
+        <!--
+            이미지 맵
+            1. 이미지 일부에 링크를 생성
+            2. <img> + <map>
+            3. 방식
+                <img usemap="#맵이름" src="이미지경로">
+                <map name="맵이름">
+                    <area href="링크경로" shape="사각형(rect)/원형(circle)" coords="이미지 내 좌표">
+                </map>
+            4. coords 방식 (단위는 px)
+                1) shape="rect"   coords="시작x, 시작y, 종료x, 종료y"
+                2) shape="circle" coords="중심x, 중심y, 반지름"
+        -->
+
+        <img usemap="#my_map" src="../images/dominopizza.jpg">
+        <map name="my_map">
+            <area 
+                href="https://web.dominos.co.kr/goods/onePizzalist" 
+                shape="rect" 
+                coords="350, 2470, 850, 2600">
+            <area
+                href="https://web.dominos.co.kr/goods/onePizzaDetail?code_01=RPZ223NM&dough_gb=203"
+                shape="circle"
+                coords="580, 1890, 160">
+        </map>
+
+    </body>
+</html>
