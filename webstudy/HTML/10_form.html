@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>제목</title>
+    </head>
+    <body>
+
+        <!--
+            1. <form></form>
+                1) action 속성 : form에 입력된 모든 정보를 보내는 경로
+                                 action 경로로 정보를 보내기 위해서는 submit이 필요
+                2) method 속성 : form에 입력된 모든 정보를 보내는 방식
+                    (1) get 방식
+                        - 디폴트
+                        - 보내는 정보가 헤더(header)에 포함
+                        - 보내는 정보가 URL에 노출 (보안 취약)
+                        - 빠름
+                        - 용도 : 검색
+                    (2) post 방식
+                        - 보내는 정보가 바디(body)에 포함
+                        - 보내는 정보가 노출 되지 않음 (보안 유지 가능)
+                        - 느림
+                        - 용도 : 로그인, 회원가입 등
+                3) enctype 속성
+                    (1) 파일 첨부에서 사용
+                    (2) 파일 첨부하는 form
+                        <form enctype="multipart/form-data" method="post">
+            2. name 속성
+                1) <form> 태그나 <form> 태그의 하위 태그에서 사용
+                2) 보낸 정보를 받는 쪽(서버 측)에서 name 속성으로 식별
+            3. value 속성
+                1) 보내는 정보, 보내는 실제 데이터
+                2) value 속성 값을 작성해서 보내면 사용자 입력을 대체
+                3) 사용자가 입력한 값이 value 속성으로 등록
+        -->
+
+        <h1>&lt;input&gt; 태그</h1>
+        <form action="01_overview.html">
+            <input type="text" name="a" placeholder="일반 텍스트 용"><br>
+            <input type="password" name="b" placeholder="비밀번호 용"><br>
+            <input type="number" name="c" placeholder="숫자 용"><br>
+            <input type="hidden" name="d" value="숨겨서보내는값"><br>
+            <button type="submit">SUBMIT</button>
+        </form>
+
+    </body>
+</html>
