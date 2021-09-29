@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--
+        1. <link> 태그로 웹 폰트 사용하기
+            1) <link> 태그를 복사 붙여넣기 한다.
+            2) <style> 태그를 만들어서 font-family 속성을 복사 붙여넣기 한다.
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        div {
+            font-family: 'Hahmlet', serif;
+        }
+    </style>
+
+    <!--
+        2. @import로 웹 폰트 사용하기
+            1) 별도 CSS 파일을 만든다. (여기서는 webfont.css 파일)
+            2) CSS 파일에 @import를 복사 붙여넣기 한다.
+            3) <link> 태그로 CSS 파일을 불러온다.
+            4) <style> 태그를 만들어서 font-family 속성을 복사 붙여넣기 한다.
+    -->
+    <link rel="stylesheet" href="../styles/webfont.css">
+    <style>
+        h1 {
+            font-family: 'Nanum Pen Script', cursive;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <div>나는 햄릿이다</div>
+
+    <h1>나는 햄찌다</h1>
+
+</body>
+</html>
