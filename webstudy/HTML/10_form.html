@@ -36,11 +36,151 @@
 
         <h1>&lt;input&gt; 태그</h1>
         <form action="01_overview.html">
-            <input type="text" name="a" placeholder="일반 텍스트 용"><br>
-            <input type="password" name="b" placeholder="비밀번호 용"><br>
-            <input type="number" name="c" placeholder="숫자 용"><br>
-            <input type="hidden" name="d" value="숨겨서보내는값"><br>
+            <input type="text"      name="a" placeholder="일반 텍스트 용"><br>
+            <input type="password"  name="b" placeholder="비밀번호 용"><br>
+            <input type="number"    name="c" placeholder="숫자 용"><br>
+            <input type="hidden"    name="d" value="숨겨서보내는값"><br>
             <button type="submit">SUBMIT</button>
+        </form>
+
+        <h1>선택 태그</h1>
+        <form>
+            <input type="checkbox" name="a" value="game" id="id_game">
+            <label for="id_game">게임</label>
+            &nbsp;&nbsp;&nbsp;
+            <input type="checkbox" name="a" value="movie" id="id_movie">
+            <label for="id_movie">영화</label>
+            
+            <br>
+            
+            <label><input type="radio" name="b" value="male">남자</label>
+            &nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="b" value="female">여자</label>
+            &nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="b" value="none" checked="checked">선택 안 함</label>
+        </form>
+
+        <h1>목록 태그</h1>
+        <form>
+            <!-- 하나만 선택 -->
+            <select name="a">
+                <option value="02">02</option>
+                <option value="031">031</option>
+                <option value="032">032</option>
+            </select>
+            <br>
+
+            <!-- 여러 개 선택 -->
+            <select name="b" multiple>
+                <option value="1">서울</option>
+                <option value="2">경기</option>
+                <option value="3">인천</option>
+            </select>
+            <br>
+
+            <!-- 선택(datalist) + 입력(input) : 콤보 -->
+            <input  list="domains" type="text" name="domain" placeholder="도메인 입력 및 선택">
+            <datalist id="domains">
+                <option value="gmail.com"/>
+                <option value="kakao.com"/>
+                <option value="naver.com"/>
+            </datalist>
+        </form>
+
+        <h1>단추</h1>
+        <form action="01_overview.html">
+            <!-- 서브밋 -->
+            <button type="submit">전송</button>
+            <br>
+            <button>전송</button>
+            <br>
+            <input type="submit" value="전송">
+            <br>
+
+            <!-- 취소 -->
+            <input type="text">
+            <input type="reset" value="취소">
+            <br>
+
+            <!-- 그냥 버튼 : 자바스크립트 실행을 위해서 -->
+            <input type="button" value="일반" onclick="alert('눌렀어?')">
+        </form>
+
+        <h1>파일 첨부</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="filename">
+        </form>
+
+        <h1>기타</h1>
+        <form>
+            <fieldset>
+                <legend>성별</legend>
+                <label><input type="radio" name="gender" value="m">남자</label>
+                <label><input type="radio" name="gender" value="f">여자</label>
+            </fieldset>
+            <textarea rows="5" cols="40" name="a"></textarea>
+        </form>
+
+        <h3>연습문제-1</h3>
+        <form>
+            <input type="text" name="id" placeholder="example@naver.com">
+            <input type="password" name="password" placeholder="비밀번호">
+            <button>로그인</button>
+        </form>
+    
+        <hr/>
+        
+        <h3>연습문제-2</h3>
+        <form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="id" placeholder="아이디"></td>                        <td rowspan="2"><button style="height: 50px;">로그인</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="password" placeholder="비밀번호"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        
+        <hr/>
+        
+        <h3>연습문제-3</h3>
+        <form>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">개인 정보 작성</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>이름</td>
+                        <td><input type="text" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td>메일 주소</td>
+                        <td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>연락처</td>
+                        <td><input type="text" name="tel"></td>
+                    </tr>
+                    <tr>
+                        <td>블로그/홈페이지</td>
+                        <td><input type="text" name="homepage"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">
+                            <button>제출하기</button>
+                            <input type="reset" value="다시작성">
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
         </form>
 
     </body>
