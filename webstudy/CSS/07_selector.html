@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* class="a" */
+        .a {
+            color: blue;
+        }
+
+        /* id="c" */
+        #c {
+            color: pink;
+        }
+
+        /* <ul><li><a></a></li></ul> */
+        ul > li {
+            background-color: yellowgreen;
+        }
+        ul a, ul > li > a {
+            background-color: tomato;
+            text-decoration: none;  /* 밑줄 없애기 */
+        }
+
+        /* 잘못된 table 구조 */
+        table > tr > td {
+            color: aqua;
+        }
+        /* 정상적인 table 구조 */
+        table > tbody > tr > td {
+            color: purple;
+        }
+
+        /* 인접 형제 */
+        .d > h1 + h3 {
+            color: red;
+        }
+        /* 일반 형제 */
+        .d > h1 ~ h3 {
+            font-style: italic;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- 1. 클래스 선택자 : .클래스 -->
+    <h1 class="a">안녕하세요</h1>
+    <h1 class="a b">반갑습니다</h1>  <!-- 클래스가 a와 b 2개인 요소 -->
+
+    <!-- 2. 아이디 선택자 : #아이디 -->
+    <h1 id="c">HELLO</h1>
+
+    <!-- 3. 자식 선택자 : 부모>자식 -->
+    <!-- 4. 후손 선택자 : 부모 후손 -->
+    <ul>  <!-- 부모 -->
+        <li>  <!-- 자식 -->
+            <a href="https://www.google.com/">구글</a>  <!-- 후손 -->
+        </li>
+        <li>  <!-- 자식 -->
+            <a href="https://www.naver.com/">네이버</a>  <!-- 후손 -->
+        </li>
+    </ul>
+
+    <!-- 주의. <tbody> 태그는 생략해도 자동으로 추가된다. 따라서, 아래 구조는 틀렸다. -->
+    <table border="1">      <!-- 부모 table -->
+        <tr>                <!-- 자식 tr -->
+            <td>AAAAA</td>  <!-- 후손 td -->
+            <td>BBBBB</td>
+            <td>CCCCC</td>
+        </tr>
+    </table>
+
+    <!-- 올바른 구조 -->
+    <table border="1">          <!-- 부모 table -->
+        <tbody>                 <!-- 자식 tbody -->
+            <tr>                <!-- 후손 tr -->
+                <td>AAAAA</td>  <!-- 후손 td -->
+                <td>BBBBB</td>
+                <td>CCCCC</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 5. 모든 형제 : 형제 ~ 형제 -->
+    <!-- 6. 인접 형제 : 형제 + 형제 -->
+    <div class="d">         <!-- .d -->
+        <h1>한국</h1>       <!-- .d > h1 : 한국 -->
+        <h3>일본</h3>       <!-- .d > h1 + h3 : 오직 일본만 선택 -->
+        <h3>중국</h3>       <!-- .d > h1 ~ h3 : 일본, 중국, 러시아, 필리핀 모두 선택 -->
+        <h3>러시아</h3>
+        <h3>필리핀</h3>
+    </div>
+
+    <!-- 7. 구조 선택자 -->
+    <!-- first-of-type  : 첫 번째 요소 -->
+    <!-- first-child    : 첫 번째 자식 -->
+    <!-- last-of-type   : 마지막 요소 -->
+    <!-- last-child     : 마지막 자식 -->
+    <!-- nth-of-type(n) : n번째 요소 -->
+    <!-- nth-child(n)   : n번째 자식 -->
+
+
+</body>
+</html>
