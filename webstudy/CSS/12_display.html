@@ -35,6 +35,46 @@
             background-color: orange;
         }
 
+        /* 인라인레벨 a를 블록레벨 요소로 만들기 */
+        a.e {
+            display: inline-block;
+            border: 1px solid black;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle; /* 세로 정렬 적용 안 됨. table에서만 사용 가능 */
+            line-height: 50px;      /* line-height == height 방식으로 세로 가운데 정렬 효과 발생 */
+        }
+
+        /* flex */
+        /*
+            1. container에 flex를 주면 box들이 flexable한 배치가 된다. (부모가 flex 값을 가진다.)
+               (좌우 배치 또는 상하 배치)
+            2. flex-direction: row    => 좌우 배치 (디폴트)
+               flex-direction: column => 상하 배치
+            3. flex-wrap: nowrap => 자식 box들이 부모 container에 한 줄로 배치된다. (디폴트)
+                                    자식 box들의 크기가 줄어들 수 있다.
+               flex-wrap: wrap   => 자식 box들이 부모 container에 두 줄 이상으로 배치된다.
+                                    자식 box들의 크기가 원래 크기를 유지한다.
+            4. justify-content: space-between  => 자식 Box 사이에 공백을 배치한다.
+               justify-content: center         => 자식 Box들을 부모 container 가운데 배치한다.
+        */
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            padding: 10px;
+            border: 3px solid orangered;
+            width: 600px;
+        }
+        .container > .box {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid black;
+        }
 
     </style>
 </head>
@@ -70,7 +110,19 @@
         여기는 D클래스입니다.
     </div>
 
+    <br>
 
+    <a class="e" href="javascipt:void(0)">링크1</a>
+    <a class="e" href="javascipt:void(0)">링크2</a>
+    <a class="e" href="javascipt:void(0)">링크3</a>
+
+    <div class="container">
+        <div class="box">A</div>
+        <div class="box">B</div>
+        <div class="box">C</div>
+        <div class="box">D</div>
+        <div class="box">E</div>
+    </div>
 
 </body>
 </html>

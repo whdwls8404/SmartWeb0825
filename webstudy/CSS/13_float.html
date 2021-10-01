@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a > img {
+            width: 100px;
+            height: 100px;
+        }
+        .a > img:first-of-type {
+            float: left;
+        }
+        .a > img:last-of-type {
+            float: right;
+        }
+
+        /*
+            one true layout
+            1. 박스를 좌우로 배치하는 방식
+            2. 부모 container => overflow: hidden;
+               자식 box       => float: left;
+        */
+        .b {
+            width: 500px;
+            height: 120px;
+            border: 3px solid red;
+            padding: 10px;
+            overflow: hidden;  /* 박스를 벗어난 모든 내용은 숨긴다. */
+        }
+        .b > div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 5px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="a">
+        <img src="../images/lion.jpg">
+        <img src="../images/tiger.jpg">
+        문서의 기본적인 흐름(배치)은 왼쪽에서 오른쪽으로, 위에서 아래 방향이다. 
+        이 기본 흐름을 바꿀 때 float을 사용할 수 있다. 
+        float을 사용한 요소는 문서의 기본 흐름에서 벗어나서(기본 배치에서 뜯어내었다.)
+        왼쪽이나 오른쪽에 배치할 수 있다.
+        문서의 기본적인 흐름(배치)은 왼쪽에서 오른쪽으로, 위에서 아래 방향이다. 
+        이 기본 흐름을 바꿀 때 float을 사용할 수 있다. 
+        float을 사용한 요소는 문서의 기본 흐름에서 벗어나서(기본 배치에서 뜯어내었다.)
+        왼쪽이나 오른쪽에 배치할 수 있다.
+        문서의 기본적인 흐름(배치)은 왼쪽에서 오른쪽으로, 위에서 아래 방향이다. 
+        이 기본 흐름을 바꿀 때 float을 사용할 수 있다. 
+        float을 사용한 요소는 문서의 기본 흐름에서 벗어나서(기본 배치에서 뜯어내었다.)
+        왼쪽이나 오른쪽에 배치할 수 있다.
+    </div>
+
+    <br><br>
+
+    <div class="b">
+        <div>봄</div>
+        <div>여름</div>
+        <div>가을</div>
+        <div>겨울</div>
+    </div>
+
+</body>
+</html>
