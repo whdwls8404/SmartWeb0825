@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* width, height 속성은 블록레벨에만 적용된다. */
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        /* width, height 속성은 인라인레벨에는 적용되지 않는다. */
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: teal;
+        }
+        .box3 {
+            width: 200px;
+            height: 100px;
+        }
+        /* %단위는 부모의 크기(width, height)가 기준이다. */
+        .box3 > .a {
+            width: 50%;     /* 부모(.box3) width의 50% = 100px; */
+            height: 100%;   /* 부모(.box3) height의 100% = 100px; */
+            background-color: violet;
+        }
+        .box3 > .b {
+            width: 10%;
+            height: 50%;
+            background-color: wheat;
+        }
+        .box4 {
+            border-style: solid;
+            border-color: tomato;
+            border-width: 1px;
+
+            /* 테두리 둥글게 */
+            border-radius: 3px;  /* 전체 모서리 */
+        }
+        .box5 {
+            /* 단축 속성 border: width style color 순으로 작성 */
+            border: 1px solid black;
+            border-radius: 3px 6px;  /* topLeft+bottomRight topRight+bottomLeft */
+        }
+        .box6 {
+            border: 1px solid black;
+            border-radius: 3px 1px 6px;  /* topLeft topRight+bottomLeft bottomRight */
+        }
+        .box7 {
+            border: 1px solid black;
+            border-radius: 3px 6px 9px 12px;  /* topLeft topRight bottomRight bottomLeft */
+        }
+        .box8 {
+            border-top: 1px solid black;
+            border-bottom: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- width, height -->
+    <div class="box1">
+        블록레벨 구역
+    </div>
+    <span class="box2">
+        인라인레벨 구역
+    </span>
+    <div class="box3">
+        <div class="a">
+            3구역 A
+        </div>
+        <div class="b">
+            3구역 B
+        </div>
+    </div>
+    <hr><br><br><br>
+
+    <!-- border -->
+    <div class="box4">
+        보더 박스
+    </div>
+    <br>
+    <div class="box5">
+        보더 박스
+    </div>
+    <br>
+    <div class="box6">
+        보더 박스
+    </div>
+    <br>
+    <div class="box7">
+        보더 박스
+    </div>
+    <br>
+    <div class="box8">
+        보더 박스
+    </div>
+</body>
+</html>

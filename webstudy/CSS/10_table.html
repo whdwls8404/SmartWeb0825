@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            table 전체 크기 : width, height
+            td 너비 : width
+            td 텍스트 정렬 : text-align(left, center, right), vertical-align(top, middle, bottom)
+            td 테두리 : border
+            table : border-collapse(separate, collapse)
+        */
+        .a > table {
+            width: 1000px;
+            height: 400px;
+            border: 3px solid red;  /* table border는 외곽선 */
+            border-collapse: collapse;
+        }
+        .a > table td:nth-of-type(1) { width: 200px; }
+        .a > table td:nth-of-type(2) { width: 300px; }
+        .a > table td:nth-of-type(3) { width: 200px; }
+        .a > table td:nth-of-type(4) { width: 300px; }
+        .a > table > thead > tr > td, .a > table > thead td {
+            text-align: center;
+            height: 100px;
+            background-color: coral;
+        }
+        .a > table td {
+            border: 1px solid black;  /* td의 border는 안쪽선 */
+        }
+        .a > table > tbody > tr > td, .a > table > tbody td {
+            padding: 2px 5px;
+        }
+
+        /* 달력 */
+        .calendar > table {
+            width: 560px;
+            height: 450px;
+            border-collapse: collapse;
+        }
+        .calendar > table td {
+            border: 1px solid silver;
+            padding: 5px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .calendar > table td:hover {
+            background-color: wheat;
+            cursor: pointer;
+        }
+        .calendar > table > thead td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .holiday {
+            color: red;
+        }
+        .prev, .next {
+            color: silver;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="a">
+        <table>
+            <thead>
+                <tr>
+                    <td>제품번호</td>
+                    <td>제품명</td>
+                    <td>가격</td>
+                    <td>제조일자</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1234567890</td>
+                    <td>홈런볼</td>
+                    <td>1500</td>
+                    <td>2021-10-01</td>
+                </tr>
+                <tr>
+                    <td>2345678901</td>
+                    <td>빅파이</td>
+                    <td>2000</td>
+                    <td>2021-10-02</td>
+                </tr>
+                <tr>
+                    <td>3456789012</td>
+                    <td>콘칩</td>
+                    <td>1500</td>
+                    <td>2021-10-03</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1>달력</h1>
+    <div class="calendar">
+        <table>
+            <thead>
+                <tr>
+                    <td class="holiday">일</td>
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="prev">26</td>
+                    <td class="prev">27</td>
+                    <td class="prev">28</td>
+                    <td class="prev">29</td>
+                    <td class="prev">30</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td class="holiday">3</td>
+                    <td class="holiday">4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td class="holiday">9</td>
+                </tr>
+                <tr>
+                    <td class="holiday">10</td>
+                    <td class="holiday">11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                </tr>
+                <tr>
+                    <td class="holiday">17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td class="holiday">24</td>
+                    <td>25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    <td>29</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td class="holiday">31</td>
+                    <td class="next">1</td>
+                    <td class="next">2</td>
+                    <td class="next">3</td>
+                    <td class="next">4</td>
+                    <td class="next">5</td>
+                    <td class="next">6</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>

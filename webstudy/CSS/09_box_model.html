@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box_primary {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .box1 {
+            padding: 10px;              /* top+bottom+left+right */
+            padding: 10px 5px;          /* top+bottom left+right */
+            padding: 10px 5px 20px;     /* top left+right bottom */
+            padding: 5px 5px 5px 5px;   /* top right bottom left */
+        }
+        .box2 {
+            padding-top: 10px;
+            padding-left: 20px;
+        }
+
+        .box3 {
+            /* padding처럼 4가지 방식으로 작성 */
+            margin: 0 auto;  /* 박스를 가운데로 배치 */
+        }
+        .box4 {
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        .box5, .box6 {
+            width: 100px;
+            padding: 10px;
+            border: 5px solid black;
+        }
+        .box5 {
+            box-sizing: content-box;  /* 디폴트 */
+        }
+        .box6 {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 내부여백 -->
+    <!-- padding : content와 border 사이 여백 -->
+    <div class="box_primary box1">
+        box1
+    </div>
+    <br>
+    <div class="box_primary box2">
+        box2
+    </div>
+
+    <!-- 외부여백 -->
+    <!-- margin : border의 바깥쪽 여백-->
+    <div class="box_primary box3">
+        box3
+    </div>
+    박스 사이 텍스트
+    <div class="box_primary box4">
+        box4
+    </div>
+
+    <!-- box 크기 -->
+    <!--
+        width: 100px;
+        padding: 10px;
+        border: 5px;
+
+        1. content-box : width + padding       + border
+            실제크기     100px + (10px + 10px) + (5px + 5px) = 130px (content 영역이 100px)
+
+        2. border-box  : width
+            실제크기     100px  (padding 10px 유지, border 5px 유지, content 영역이 70px)
+    -->
+    <div class="box5">
+        content-box
+    </div>
+    <div class="box6">
+        border-box
+    </div>
+
+</body>
+</html>

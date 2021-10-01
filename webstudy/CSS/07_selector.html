@@ -90,6 +90,29 @@
             width: 50px;
         }
 
+        /* 마우스 선택자 */
+        .h > a {
+            text-decoration: none;
+            color: black;
+        }
+        .h > a:hover {
+            color: red;
+        }
+        .h > a:active {
+            color: orange;
+        }
+
+        /* 상태 선택자 */
+        form > label + input:focus {
+            background-color: peachpuff;
+        }
+        form > fieldset > input[type=radio]:checked {
+            width: 30px;
+        }
+        form > fieldset > input[type=radio]:checked + label {
+            color: red;
+        }
+
     </style>
 </head>
 <body>
@@ -196,8 +219,33 @@
         <img src="../images/daum.png">
     </div>
 
+    <!-- 9. 마우스 관련 선택자 -->
+    <!--
+        1) active : 마우스를 누르고 있는 상태
+        2) hover  : 마우스를 가져다 댄 상태
+    -->
+    <div class="h">
+        <a href="https://www.kakao.com/">카카오</a>
+    </div>
 
+    <!-- 10. 상태 선택자 -->
+    <!--
+        1) focus   : 선택한 요소
+        2) checked : 체크한 요소
+    -->
+    <form>
+        <label for="q">검색</label>
+        <input id="q" type="text" name="query" placeholder="검색어를 입력하세요">
+        <br>
 
+        <fieldset>
+            <legend>성별</legend>
+            <input id="male" type="radio" name="gender" value="m">
+            <label for="male">남자</label>
+            <input id="female" type="radio" name="gender" value="f">
+            <label for="female">여자</label>
+        </fieldset>
+    </form>
 
 </body>
 </html>

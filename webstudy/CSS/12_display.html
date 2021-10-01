@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .a > img {
+            width: 200px;
+        }
+        /* 완전히 안 보이게 처리하기(영역도 사라짐) */
+        .a > img:nth-of-type(3) {
+            display: none;
+        }
+
+        .b .blind {
+            display: none;
+        }
+
+        /* 블록레벨 div를 인라인레벨 요소로 만들기 */
+        div.c {
+            display: inline;
+            width: 1000px;  /* 안 먹음 */
+            height: 500px;  /* 안 먹음 */
+            background-color: red;
+        }
+
+        /* 블록레벨 div를 인라인블록레벨 요소로 만들기 */
+        div.d {
+            display: inline-block;
+            width: 500px;  /* 인라인블록은 크기 지정이 됨 */
+            height: 50px;  /* 인라인블록은 크기 지정이 됨 */
+            background-color: orange;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="a">
+        <img src="../images/fruit1.jpg">
+        <img src="../images/fruit2.jpg">
+        <img src="../images/fruit3.jpg">
+        <img src="../images/fruit4.jpg">
+        <img src="../images/fruit5.jpg">
+    </div>
+
+    <div class="b">
+        <form>
+            <fieldset>
+                <legend class="blind">게임</legend>
+                <label><input type="checkbox" name="games" value="1">무궁화꽃</label>
+                <label><input type="checkbox" name="games" value="2">달고나</label>
+                <label><input type="checkbox" name="games" value="3">줄다리기</label>
+                <label><input type="checkbox" name="games" value="4">구슬치기</label>
+                <label><input type="checkbox" name="games" value="5">징검다리</label>
+                <label><input type="checkbox" name="games" value="6">오징어게임</label>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="c">
+        여기는 C클래스입니다.
+    </div>
+
+    <div class="d">
+        여기는 D클래스입니다.
+    </div>
+
+
+
+</body>
+</html>

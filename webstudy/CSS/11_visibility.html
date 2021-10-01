@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a > img {
+            width: 200px;
+        }
+        .a > img:nth-of-type(2), .a > img[src$="frog.jpg"] {
+            visibility: hidden;
+            /* visible, hidden(투명인간처럼 존재하지만 보이지만 않도록 처리한다.) */
+        }
+
+        /* 보이는 이미지 선택하면 숨김 처리 */
+        .b > img {
+            width: 200px;
+        }
+        .b > img:hover {
+            visibility: hidden;
+        }
+
+        /* 안 보이는 이미지 선택하면 보이기 */
+        /*
+            안 보이는 img는 hover가 불가능하기 때문에
+            img의 부모 span을 hover하도록 구성
+        */
+        .c > span > img {
+            width: 200px;
+            visibility: hidden;
+        }
+        .c > span:hover > img {
+            visibility: visible;
+        }
+
+        .answer {
+            visibility: hidden;
+        }
+        .view_answer:hover + .answer {
+            visibility : visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <img src="../images/eagle.jpg">
+        <img src="../images/frog.jpg">
+        <img src="../images/hedgehog.jpg">
+    </div>
+    <div class="b">
+        <img src="../images/eagle.jpg">
+        <img src="../images/frog.jpg">
+        <img src="../images/hedgehog.jpg">
+    </div>
+    <div class="c">
+        <span><img src="../images/eagle.jpg"></span>
+        <span><img src="../images/frog.jpg"></span>
+        <span><img src="../images/hedgehog.jpg"></span>
+    </div>
+    <hr>
+
+    <h3>다음 중 블록레벨이 아닌 것은?</h3>
+    <ol>
+        <li>&lt;div&gt;</li>
+        <li>&lt;span&gt;</li>
+        <li>&lt;ul&gt;</li>
+        <li>&lt;p&gt;</li>
+    </ol>
+    <span class="view_answer">정답보기</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    정답 : [ <span class="answer">2</span> ]
+</body>
+</html>
