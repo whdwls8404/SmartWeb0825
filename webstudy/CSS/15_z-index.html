@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            z-index 속성
+            1. 요소들의 앞 뒤 배치 순서 속성이다.
+            2. 정수 값을 가진다. (단위는 없다.)
+            3. 상대적으로 높은 값이 앞으로 나오고, 낮은 값이 뒤로 간다.
+            4. 같은 depth에서만 동작한다. (형제끼리만 가능하고, 부모-자식 비교는 안 된다.)
+            5. position이 static에서는 동작하지 않는다.(relative, absolute, fixed에서 동작한다.)
+        */
+        .container {
+            position: relative;
+        }
+        .container > div {
+            width: 200px;
+            height: 200px;
+        }
+        .container > .box1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: orange;
+            z-index: 3;  /* 큰 값이 앞으로! */
+        }
+        .container > .box2 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: orangered;
+            z-index: 2;
+        }
+        .container > .box3 {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background-color: olive;
+            z-index: 1;  /* 작은 값이 뒤로! */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+        <div class="box3">BOX3</div>
+    </div>
+</body>
+</html>

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+        /* menu1 */
         .menu1 > ul {
             list-style-type: none;
             padding: 0;
@@ -30,11 +32,48 @@
         .menu1 > ul > li > a:hover {
             background-color: yellowgreen;
         }
+
+        /* menu2 */
+        .menu2 {
+            border-bottom: 1px solid gray;
+        }
+        .menu2 > ul {
+            overflow: hidden;
+            list-style-type: none;
+            padding-left: 0;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .menu2 > ul > li {
+            float: left;
+        }
+        .menu2 > ul > li > a {
+            display: block;
+            padding: 10px 30px;
+            color: black;
+            text-decoration: none;
+        }
+        .menu2 > ul > li > a:hover {
+            color: red;
+            border-bottom: 3px solid red;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="menu1">
+        <ul>
+            <li><a href="#">메일</a></li>
+            <li><a href="#">카페</a></li>
+            <li><a href="#">블로그</a></li>
+            <li><a href="#">지식iN</a></li>
+            <li><a href="#">쇼핑</a></li>
+            <li><a href="#">Pay</a></li>
+        </ul>
+    </div>
+
+    <div class="menu2">
         <ul>
             <li><a href="#">메일</a></li>
             <li><a href="#">카페</a></li>

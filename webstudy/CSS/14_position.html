@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS 초기화 */
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body, div, ul, li, ol, dl, dt, dd, header, footer, aside, section, article {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+    <style>
+        /*
+            position 속성
+            1. static
+                1) 디폴트이다.
+                2) 문서 흐름대로 배치한다.
+                3) 옵셋(상대적으로 떨어지는 위치: top, bottom, left, right)이 동작하지 않는다.
+            2. relative
+                1) 문서 흐름대로 배치한다.
+                2) 옵셋(상대적으로 떨어지는 위치: top, bottom, left, right)이 동작한다.
+                3) 옵셋의 기준은 기본적으로 배치되는 자신의 위치가 기준이다.
+            3. absolute
+                1) 문서 흐름을 깨고 배치하고 싶은 곳에 배치한다.
+                2) 옵셋(상대적으로 떨어지는 위치: top, bottom, left, right)이 동작한다.
+                3) 옵셋의 기준은 부모 요소이다.
+                4) 부모 요소가 static이면 자식 요소의 absolute가 동작하지 않는다.(주로 부모를 relative로 둔다.)
+            4. fixed
+                1) 문서 흐름을 깨고 배치하고 싶은 곳에 배치한다.
+                2) 옵셋(상대적으로 떨어지는 위치: top, bottom, left, right)이 동작한다.
+                3) 옵셋의 기준은 브라우저 화면이다.
+                4) 항상 고정되어 화면에 나타난다.
+        */
+        .a {
+            height: 300px;
+            border: 1px solid black;
+        }
+        .a > div {
+            width: 100px;
+            height: 100px;
+        }
+        .a > .box1 {
+            background-color: coral;
+            /* position이 생략되면 static 처리되고, 옵셋이 동작하지 않는다. */
+            top: 10px;  /* top에서 10px 떨어뜨리기 */
+            left: 10px; /* left에서 10px 떨어뜨리기 */
+        }
+        .a > .box2 {
+            background-color: cornsilk;
+            position: relative;
+            top: 10px;  /* 본래 자신의 위치를 기준으로 top에서 10px 떨어뜨리기 */
+            left: 10px; /* 본래 자신의 위치를 기준으로 left에서 10px 떨어뜨리기 */
+        }
+
+        .b {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            position: relative;  /* 자식 요소에 position: absolute;를 주기 위해서 설정 */
+        }
+        .b > div {
+            width: 180px;
+            height: 180px;
+        }
+        .b > .box1 {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background-color: yellowgreen;
+        }
+        .b > .box2 {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: darkgreen;
+        }
+        .b > .box3 {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: burlywood;
+        }
+        .b > .box4 {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            background-color: skyblue;
+        }
+
+        .c {
+            width: 500px;
+            height: 80px;
+            position: relative;
+        }
+        .c > .box1 {
+            position: absolute;
+            left: 5px;
+            background-color: skyblue;
+            width: 350px;
+            height: 80px;
+        }
+        .c > .box2 {
+            position: absolute;
+            left: 360px;
+            background-color: springgreen;
+            width: 50px;
+            height: 80px;
+        }
+
+        .d {
+            position: fixed;
+            bottom: 0;
+            background-color: wheat;
+            width: 100%;
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- position: static, relative -->
+    <div class="a">
+        <div class="box1">
+            BOX1
+        </div>
+        <div class="box2">
+            BOX2
+        </div>
+    </div>
+
+    <!-- position: absolute -->
+    <div class="b">
+        <div class="box1">봄</div>
+        <div class="box2">여름</div>
+        <div class="box3">가을</div>
+        <div class="box4">겨울</div>
+    </div>
+
+    <div class="c">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+
+    <!-- position: fixed -->
+    <div class="d">
+        footer
+    </div>
+
+</body>
+</html>

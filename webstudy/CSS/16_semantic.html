@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css" integrity="sha512-4wfcoXlib1Aq0mUtsLLM74SZtmB73VHTafZAvxIp/Wk9u1PpIsrfmTvK0+yKetghCL8SHlZbMyEcV8Z21v42UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        header > .logo_area {
+            display: flex;
+        }
+        header > .logo_area > .search_box {
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- 전체 화면 -->
+    <div class="container">
+
+        <!-- 상단 구역 -->
+        <header>
+
+            <!-- 로고 및 검색 -->
+            <div class="logo_area">
+
+                <!-- 로고 이미지 -->
+                <div class="logo_box">
+                    <img src="../images/naver.png" width="200px">
+                </div>
+
+                <!-- 검색 -->
+                <div class="search_box">
+                    <label for="q">검색</label>
+                    <input id="q" type="text" name="query" >
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+
+            </div>
+
+            <!-- 네비게이션 메뉴 -->
+            <nav>
+                <ul>
+                    <li><a href="#">메뉴1</a></li>
+                    <li><a href="#">메뉴2</a></li>
+                    <li><a href="#">메뉴3</a></li>
+                    <li><a href="#">메뉴4</a></li>
+                    <li><a href="#">메뉴5</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <!-- 본문 구역 -->
+        <section>
+
+            <!-- 세부 구역 -->
+            <article>
+                세부구역1
+            </article>
+
+            <article>
+                세부구역2
+            </article>
+
+        </section>
+
+        <!-- 사이드 구역 -->
+        <aside>
+
+            <div>
+                쇼핑
+            </div>
+
+            <div>
+                품절주의
+            </div>
+
+        </aside>
+
+        <!-- 하단 구역 -->
+        <footer>
+
+            <p>회사소개</p>
+            <address>서울시 마포구 서교동</address>
+            <p>개인정보 처리방침</p>
+            <p>저작권</p>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>
