@@ -58,6 +58,81 @@
             border-top: 1px solid black;
             border-bottom: 2px solid black;
         }
+
+        /* box == image (original size) */
+        .image_box1 {
+            width: 1920px;
+            height: 1280px;
+            background-image: url(../images/apple.jpg);
+            background-size: 1920px 1280px;  /* 너비 높이 */
+        }
+        /* box == image (small size : 1920x1280 크기(apple.jpg)의 1/4크기 480x320) */
+        .image_box2 {
+            width: 480px;
+            height: 320px;
+            background-image: url(../images/apple.jpg);
+            background-size: 480px 320px;  /* 너비 높이 */
+        }
+        /* box == image */
+        .image_box3 {
+
+            /* 텍스트 */
+            font-size: 80px;
+            color: white;
+            text-align: center;  /* 가로 정렬 */
+            padding-top: 400px;  /* 세로 정렬을 위해서 */
+
+            box-sizing: border-box;
+            width: 1280px;
+            height: 972px;
+            background-image: url(../images/hooray.jpg);
+            background-size: 1280px 972px;
+
+            border: 10px solid gray;
+        }
+        /* box > image (박스가 이미지보다 큰 경우) */
+        .image_box4 {
+            width: 1920px;
+            height: 1200px;
+            background-image: url(../images/naver.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid black;
+        }
+        /* box < image (박스가 이미지보다 작은 경우) */
+        .image_box5 {
+            width: 400px;
+            height: 300px;
+            background-image: url(../images/naver.png);
+            background-size: cover;   /* 너비, 높이 중 작은 값에 맞춰 이미지를 넣어 줌 */
+            border: 1px solid black;
+        }
+        .image_box6 {
+            width: 400px;
+            height: 300px;
+            background-image: url(../images/naver.png);
+            background-size: contain; /* 너비, 높이 중 큰 값에 맞춰 이미지를 넣어 줌 */
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid black;
+        }
+        /* image 일부 사용 */
+        .image_box7 {
+            width: 100px;
+            height: 100px;
+            background-image: url(../images/logos.png);
+            background-position: left -600px top -190px;
+        }
+        /* background-image + background-color */
+        .image_box8 {
+            width: 960px;
+            height: 640px;
+            background-image: url(../images/wall.jpg);
+            background-size: 100% 100%;
+            background-blend-mode: multiply;  /* 셀로판지 */
+            background-color: green;
+        }
+
     </style>
 </head>
 <body>
@@ -99,5 +174,19 @@
     <div class="box8">
         보더 박스
     </div>
+
+    <!-- background-image -->
+    <div class="image_box1"></div>
+    <div class="image_box2"></div>
+    <div class="image_box3">
+        가라는 회사는 안 가고<br>
+        이래도 되나 싶다.
+    </div>
+    <div class="image_box4"></div>
+    <div class="image_box5"></div>
+    <div class="image_box6"></div>
+    <div class="image_box7"></div>
+    <div class="image_box8"></div>
+
 </body>
 </html>
