@@ -24,6 +24,14 @@
             color: black;
             text-decoration: none;
         }
+        ul, ol {
+            list-style-type: none;
+        }
+        input, button {
+            border: 0 none;
+            outline: 0 none;
+            cursor: pointer;
+        }
         .wrap {
             height: 100%;
         }
@@ -45,7 +53,7 @@
             background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_c860f0da.png);
             background-size: 244px 94px;
         }
-        .header .blind {
+        .blind {
             width: 1px;
             height: 1px;
             overflow: hidden;
@@ -60,7 +68,6 @@
             margin: 0 auto;
         }
         .menu_wrap {
-            list-style-type: none;
             display: table;
             table-layout: fixed;
             border-collapse: collapse;
@@ -125,6 +132,73 @@
             top: 18px;
             left: 35px;
         }
+        .panel_wrap {
+            margin-top: -8px;
+            position: relative;
+        }
+        .panel_item {
+            border: 1px solid #c6c6c6;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .panel_inner {
+            padding: 24px;
+        }
+        .input_row {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #dadada;
+            padding: 17px 18px 17px 19px;
+        }
+        .icon_cell {
+            display: table-cell;
+            width: 26px;
+            vertical-align: middle;
+        }
+        .icon_id {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_2d02c3e8.png);
+            background-size: 229px 196px;
+            background-position: -206px -141px;
+        }
+        .input_text {
+            display: table-cell;
+            width: 100%;
+            font-size: 18px;
+            color: #c6c6c6;
+        }
+        .icon_pw {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_2d02c3e8.png);
+            background-size: 229px 196px;
+            background-position: -206px -97px;
+        }
+        .login_keep_wrap {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn_login_wrap {
+            margin-top: 30px;
+        }
+        .btn_login {
+            width: 100%;
+            padding: 17px 0 15px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            background-color: #03c75a;
+        }
+        .btn_text {
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -166,6 +240,54 @@
                     </a>
                 </li>
             </ul>
+            <form action="#" method="POST">
+                <ul class="panel_wrap">
+                    <li class="panel_item">
+                        <div class="panel_inner">
+                            <div class="id_pw_wrap">
+                                <div class="input_row">
+                                    <div class="icon_cell">
+                                        <span class="icon_id">
+                                            <span style="display: none;">아이디</span>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="id" placeholder="아이디" class="input_text">
+                                </div>
+                                <div class="input_row">
+                                    <div class="icon_cell">
+                                        <span class="icon_pw">
+                                            <span style="display: none;">비밀번호</span>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="pw" placeholder="비밀번호" class="input_text">
+                                </div>
+                            </div>
+                            <div class="login_keep_wrap">
+                                <div class="keep_check">
+                                    <input id="keep" type="checkbox" name="nvlong">
+                                    <label for="keep">로그인 상태 유지</label>
+                                </div>
+                                <div class="ip_check">
+                                    <a href="#" target="_blank">
+                                        <span class="ip_text">IP보안</span>
+                                    </a>
+                                    <span class="switch">
+                                        <input id="switch" type="checkbox">
+                                        <label for="switch">
+                                            <span class="blind">on</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="btn_login_wrap">
+                                <button type="submit" class="btn_login">
+                                    <span class="btn_text">로그인</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
         </div>
     </div>
 </body>
