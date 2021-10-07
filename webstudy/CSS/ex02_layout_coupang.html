@@ -71,9 +71,37 @@
         .input_box:hover > .overlap_label {
             display: none;
         }
-
+        aside {
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid silver;
+        }
+        #check_all + label {
+            font-weight: 900;
+        }
+        .check_items {
+            list-style-type: none;
+            padding: 10px 10px 0 10px;
+            margin-top: 10px;
+            border: 1px solid lightgray;
+            color: gray;
+        }
+        .check_wrap {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .checkbox_box {
+            width: 400px;
+            height: 20px;
+        }
+        .arrow_box {
+            width: 20px;
+            height: 20px;
+            background-color: aqua;
+        }
         footer {
-            padding: 100px 0;
+            padding: 30px 0;
         }
         .join_btn {
             width: 100%;
@@ -89,7 +117,7 @@
         }
         .footer_text {
             width: 100%;
-            padding: 50px 0;
+            padding: 20px 0;
             font-size: 10px;
             color: lightgray;
             text-align: center;
@@ -154,9 +182,49 @@
                 </div>
             </div>
         </section>
-
-
-
+        <aside>
+            <div class="section_title">쿠팡 서비스약관에 동의해주세요</div>
+            <div>
+                <input id="check_all" type="checkbox" name="checkall">
+                <label for="check_all">모두 동의합니다.</label>
+            </div>
+            <ul class="check_items">
+                <li class="check_wrap">
+                    <div class="checkbox_box">
+                        <input id="agree1" type="checkbox">
+                        <label for="agree1">[필수] 만 14세 이상입니다</label>
+                    </div>
+                </li>
+                <li class="check_wrap">
+                    <div class="checkbox_box">
+                        <input id="agree2" type="checkbox">
+                        <label for="agree2">[필수] 쿠팡 이용약관 동의</label>
+                    </div>
+                    <div class="arrow_box"></div>
+                </li>
+                <li class="check_wrap">
+                    <div class="checkbox_box">
+                        <input id="agree3" type="checkbox">
+                        <label for="agree3">[필수] 전자금융거래 이용약관 동의</label>
+                    </div>
+                    <div class="arrow_box"></div>
+                </li>
+                <li class="check_wrap">
+                    <div class="checkbox_box">
+                        <input id="agree4" type="checkbox">
+                        <label for="agree4">[필수] 개인정보 수집 및 이용 동의</label>
+                    </div>
+                    <div class="arrow_box"></div>
+                </li>
+                <li class="check_wrap">
+                    <div class="checkbox_box">
+                        <input id="agree5" type="checkbox">
+                        <label for="agree5">[필수] 개인정보 제공 동의</label>
+                    </div>
+                    <div class="arrow_box"></div>
+                </li>
+            </ul>
+        </aside>
         <footer>
             <button class="join_btn">동의하고 가입하기</button>
             <div class="footer_text">
