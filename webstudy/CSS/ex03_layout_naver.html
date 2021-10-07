@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <style>
+        html {
+            height: 100%;
+            font-size: 14px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        .wrap {
+            height: 100%;
+        }
+        .header {
+            padding-bottom: 69px;
+        }
+        .header > .header_inner {
+            width: 743px;
+            height: 163px;
+            margin: 0 auto;
+            padding-top: 111px;
+            position: relative;
+        }
+        .header .logo {
+            display: block;
+            margin: 0 auto;
+            width: 244px;
+            height: 49px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_c860f0da.png);
+            background-size: 244px 94px;
+        }
+        .header .blind {
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .header .lang {
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+        .login_wrap {
+            width: 553px;
+            margin: 0 auto;
+        }
+        .menu_wrap {
+            list-style-type: none;
+            display: table;
+            table-layout: fixed;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .menu_item {
+            display: table-cell;
+            vertical-align: top;
+        }
+        .menu_id, .menu_ones, .menu_qr {
+            display: block;
+            width: 100%;
+            height: 69px;
+            padding-top: 20px;
+            text-align: center;
+            border: 1px solid #e3e3e3;
+            border-bottom: 0 none;
+            position: relative;
+        }
+        .menu_ones, .menu_qr {
+            background-color: #f8f9fa;
+        }
+        .menu_id {
+            border-radius: 5px 0 0 0;
+        }
+        .menu_qr {
+            border-radius: 0 5px 0 0;
+        }
+        .menu_id > .menu_text::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_2d02c3e8.png);
+            background-size: 229px 196px;
+            background-position: -26px -172px;
+            position: absolute;
+            top: 18px;
+            left: 35px;
+        }
+        .menu_ones > .menu_text::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_2d02c3e8.png);
+            background-size: 229px 196px;
+            background-position: -78px -172px;
+            position: absolute;
+            top: 18px;
+            left: 30px;
+        }
+        .menu_qr > .menu_text::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_2d02c3e8.png);
+            background-size: 229px 196px;
+            background-position: -180px -78px;
+            position: absolute;
+            top: 18px;
+            left: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <div class="header_inner">
+                <a href="https://www.naver.com" class="logo">
+                    <h1 class="blind">NAVER</h1>
+                </a>
+                <div class="lang">
+                    <select name="locale_switch">
+                        <option value="ko_KR">한국어</option>
+                        <option value="en_US">English</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        <div class="login_wrap">
+            <ul class="menu_wrap">
+                <li class="menu_item">
+                    <a href="#" class="menu_id">
+                        <span class="menu_text">
+                            <span class="text">ID 로그인</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_ones">
+                        <span class="menu_text">
+                            <span class="text">일회용 번호</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_qr">
+                        <span class="menu_text">
+                            <span class="text">QR코드</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
