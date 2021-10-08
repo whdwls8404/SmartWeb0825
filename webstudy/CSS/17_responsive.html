@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!--
+        viewport 설정
+        width=device-width : 화면 너비를 장치 너비로 맞춘다.
+        initial-scale=1.0  : 기본 크기는 100%(1.0배)이다.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <style>
+        /*
+            반응형 웹
+            
+            1. 기기에 따라서(너비 or 높이) 페이지 레이아웃(구성)이 즉각 반응하는 웹 기능을 의미한다.
+            2. 반응형 웹 제작을 위해서 viewport 설정이 필요하다.
+            3. 상대 크기 단위(%, vw, vh 등)를 사용한다.
+            4. 미디어쿼리(mediaquery)
+                1) 화면의 크기 변화를 감지하는 CSS 모듈이다.
+                2) 선언 : @media
+                3) 종류 : screen(화면), all(모든 미디어), speech(낭독기), print(출력물)
+                4) 조건 : 대부분 너비(width) 활용
+                    (1) width: 640px;      딱 640px
+                    (2) min-width: 640px;  최소 640px(640px 이상)
+                    (3) max-width: 640px;  최대 640px(640px 이하)
+                    (4) portrait           너비가 높이보다 좁은 화면
+                    (5) landscape          너비가 높이보다 넓은 화면
+        */
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        /*  
+        
+        너비에 따른 화면 배경색 변경 
+        
+        body {
+            background-color: yellowgreen;
+        }
+        @media screen and (min-width: 960px) {
+            body {
+                background-color: pink;
+            }
+        }
+        */
+
+        /*
+
+        너비에 따른 박스 레이아웃 변경
+
+        @media screen and (max-width: 640px) {
+            body {
+                display: flex;
+            }
+            .box1, .box2 {
+                width: 200px;
+                height: 100px;
+                border: 1px solid black;
+            }
+        }
+        @media screen and (min-width: 641px) and (max-width: 1920px) {
+            .box1, .box2 {
+                width: 500px;
+                height: 100px;
+                border: 1px solid black;
+            }
+        }
+        */
+
+        /* 너비 < 높이 */
+        @media screen and (orientation: portrait) {
+            .box1, .box2 {
+                width: 80%;
+                height: 50px;
+                border: 1px solid black;
+            }
+        }
+        /* 너비 > 높이 */
+        @media screen and (orientation: landscape) {
+            body {
+                display: flex;
+            }
+            .box1, .box2 {
+                width: 40%;
+                height: 50px;
+                border: 1px solid black;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

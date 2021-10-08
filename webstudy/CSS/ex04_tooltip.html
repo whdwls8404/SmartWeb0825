@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tooltip {
+            color: blue;
+            cursor: help;
+            position: relative;
+        }
+        .tooltip:hover::after {
+            content: attr(data-description);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 300px;
+            padding: 2px;
+            border: 1px solid #c6c6c6;
+            border-radius: 3px;
+            background-color: cornsilk;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        풍선 도움말이 나타나는 문장입니다. <span class="tooltip" data-description="이걸 풍선 도움말(툴팁)이라고 합니다">여기</span>를 선택해 보세요.
+    </div>
+</body>
+</html>
