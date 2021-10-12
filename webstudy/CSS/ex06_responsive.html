@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css" integrity="sha512-4wfcoXlib1Aq0mUtsLLM74SZtmB73VHTafZAvxIp/Wk9u1PpIsrfmTvK0+yKetghCL8SHlZbMyEcV8Z21v42UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        ul, ol {
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .header {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(109, 109, 148);
+            border-bottom: 3px solid navy;
+            position: relative;
+        }
+        @media screen and (max-width: 600px) {
+            .gnb, .left_gnb {
+                display: none;
+            }
+            .hamburger {
+                margin-left: 30px;
+            }
+            .left_gnb {
+                width: 100px;
+                height: 100vh;  /* 화면의 높이와 같은 높이 */
+                background-color: royalblue;
+            }
+            .left_gnb > ul > li {
+                padding: 5px 0;
+            }
+            .left_gnb > ul > li > a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                color: white;
+            }
+            .hamburger:hover {
+                margin-left: 130px;
+            }
+            .hamburger:hover + .left_gnb {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+        }
+        @media screen and (min-width: 601px) {
+            .gnb > ul {
+                display: flex;
+            }
+            .gnb > ul > li {
+                width: 100px;
+            }
+            .gnb > ul > li > a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                color: white;
+            }
+            .hamburger, .left_gnb {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="gnb">
+            <ul>
+                <li><a href="#">Start</a></li>
+                <li><a href="#">Icons</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Plans</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="left_gnb">
+            <ul>
+                <li><a href="#">Start</a></li>
+                <li><a href="#">Icons</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Plans</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+</body>
+</html>
