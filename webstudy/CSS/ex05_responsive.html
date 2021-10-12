@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /* width: 768px 이하 */
+        @media screen and (max-width: 768px) {
+            .wrap {
+                display: flex;
+            }
+            .header {
+                width: 60px;
+            }
+            .content {
+                width: 708px;
+            }
+            .gnb {
+                list-style-type: none;
+            }
+            .gnb > li {
+                padding: 5px;
+            }
+            .gnb > li:hover {
+                color: crimson;
+                cursor: pointer;
+            }
+        }
+        /* width: 769px 이상 */
+        @media screen and (min-width: 769px) {
+            .gnb {
+                list-style-type: none;
+                width: 800px;
+                margin: 0 auto;
+                border-bottom: 1px solid gray;
+                display: flex;
+                justify-content: center;
+            }
+            .gnb > li {
+                padding: 5px;
+                text-align: center;
+            }
+            .gnb > li:hover {
+                color: crimson;
+                cursor: pointer;
+            }
+            .content {
+                width: 800px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <nav>
+                <ul class="gnb">
+                    <li>카페</li>
+                    <li>메일</li>
+                    <li>지도</li>
+                    <li>연예</li>
+                    <li>금융</li>
+                </ul>
+            </nav>
+        </header>
+        <section class="content">
+            <h1>반응형 웹 연습</h1>
+            <p>반응형 웹은 사용자의 기기에 따라서 웹 페이지의 레이아웃을 곧바로 수정하는 기술입니다. 미디어쿼리를 통해서 구현할 수 있습니다.</p>
+        </section>
+    </div>
+</body>
+</html>
