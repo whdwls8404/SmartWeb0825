@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a {
+            width: 100px;
+            height: 100px;
+            animation-name: my_animation;           /* 애니메이션 이름(개발자가 정함) */
+            animation-duration: 3s;                 /* 애니메이션 동작시간(초) */
+            animation-timing-function: ease-in;     /* 애니메이션 전환 시간 배분 */
+            animation-iteration-count: infinite;    /* 애니메이션 반복 횟수 */
+        }
+        /* keyframes 모듈을 활용한 애니메이션 지정 */
+        @keyframes my_animation {
+            /* from : 애니메이션의 시작 */
+            from {
+                background-color: pink;
+                border: 1px solid red;
+            }
+            /* to : 애니메이션의 종료 */
+            to {
+                background-color: skyblue;
+                border: 1px solid navy;
+            }
+        }
+
+        .b {
+            /*
+            animation-name: my_animation2;
+            animation-duration: 3s;
+            animation-timing-function: ease-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            */
+            animation: my_animation2 3s ease-out infinite alternate;
+        }
+        @keyframes my_animation2 {
+            /* 0% : from */
+            0% {
+                margin-left: 50%;
+            }
+            /* 100% : to */
+            100% {
+                margin-left: 0%;
+            }
+        }
+
+        .c {
+            width: 50px;
+            height: 50px;
+
+            animation: rainbow 1s infinite;
+        }
+        @keyframes rainbow {
+            0% { background-color: red; }
+            15% { background-color: orange; }
+            30% { background-color: yellow; }
+            45% { background-color: green; }
+            60% { background-color: blue; }
+            75% { background-color: navy; }
+            100% { background-color: purple; }
+        }
+
+        .d {
+            width: 50px;
+            height: 50px;
+            border: 1px solid gray;
+            /* 
+                10도 회전하기
+                transform: rotate(10deg);
+            
+                가로 2배, 세로 0.5배 크기 변환하기
+                transform: scale(2, 0.5);
+            
+                10도 기울이기
+                transform: skew(10deg);
+            
+                x방향 100px, y방향 50px 이동하기
+                transform: translate(100px, 50px);
+            */
+        }
+
+        .e {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+
+            /*
+                transition-property로 가능한 속성
+                
+                all(디폴트), width, height, padding, margin, border, background-color
+                font-size, font-weight, color
+                opacity, transform, visibility 등
+            */
+
+            /* width, height 속성을 이행 : width, height 속성이 변하는 걸 볼 수 있음 */
+            transition-property: width, height;
+            
+            /* 필수 속성 : 2초간 width, height 변화를 볼 수 있음 */
+            transition-duration: 2s;
+
+            /* 이행 시간의 조정 */
+            transition-timing-function: ease-in;
+
+            /* transition이 동작하기 전 딜레이 타임 */
+            transition-delay: 1s;
+        }
+        .e:hover {
+            width: 200px;
+            height: 200px;
+        }
+        .e:active {
+            width: 50px;
+            height: 50px;
+        }
+
+        .f > input {
+            padding: 3px 6px;
+            border: 1px solid gray;
+            outline: 0;
+            /*
+                transition-property: border, background-color;
+                transition-duration: 1s, 0.5s;
+            */
+            transition: border 1s, background-color 0.5s;
+        }
+        .f > input:focus {
+            border: 1px solid lime;
+            background-color: orange;
+        }
+
+        .g {
+            margin: 50px 0 0 50px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+
+            transition-property: transform;
+            transition-duration: 1s;
+        }
+        .g:active {
+            /* transform: rotate(720deg); */
+            /* transform: scale(2, 1); */
+            /* transform: skew(-45deg); */
+            transform: translate(100px, 0);
+        }
+
+        .wrap {
+            position: relative;
+        }
+        .content, .cover {
+            width: 640px;
+            height: 480px;
+        }
+        .content {
+            background-image: url(../images/frog.jpg);
+            background-size: 640px 480px;
+        }
+        .cover {
+            background-color: orangered;
+            position: absolute;
+            top: 0;
+
+            transition: transform 2s, opacity 2s;
+        }
+        .cover:active {
+            transform: translateY(480px);
+            opacity: 0;  /* 투명: 안 보임 */
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- animation 속성 -->
+    <div class="a">
+        BOX1
+    </div>
+    <div class="b">
+        BOX2
+    </div>
+    <div class="c">
+        rainbow
+    </div>
+
+    <!-- transform 속성 -->
+    <div class="d">
+        BOX4
+    </div>
+
+    <!-- transition 속성 -->
+    <div class="e">
+        BOX5
+    </div>
+    <div class="f">
+        <input type="text">
+    </div>
+    <div class="g">
+        BOX7
+    </div>
+
+    <!-- 연습 -->
+    <div class="wrap">
+        <div class="content">
+            <!-- 이미지 -->
+        </div>
+        <div class="cover">
+            <!-- 배경색 -->
+        </div>
+    </div>
+
+</body>
+</html>
