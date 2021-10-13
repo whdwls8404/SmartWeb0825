@@ -23,6 +23,21 @@
                 4) 속성 작업
                     (1) getAttribute('속성') : 속성 값 알아내기
                     (2) setAttribute('속성', '값') : 속성 값 저장하기
+            5. 구성요소 알아내기(추가)
+                1) head 태그 : document.head
+                2) body 태그 : document.body
+                3) 부모요소   : parentNode - 변수
+                4) 자식요소들 : childNodes - 배열, firstChild, lastChild 등
+        */
+        /*
+            DOM 생성
+            1. DOM 생성 : document.createElement('요소')
+            2. DOM 삽입 : 부모요소.appendChild(요소)
+        */
+        /*
+            DOM 변경 및 삭제
+            1. DOM 변경 : 부모요소.replaceChild(신요소, 구요소)
+            2. DOM 삭제 : 부모요소.removeChild(요소)
         */
     </style>
 </head>
@@ -30,17 +45,105 @@
     
     <!-- 반드시 태그 요소가 스크립트보다 먼저 나와야 한다. -->
 
+    <!-- 태그 먼저. -->
     <a href="#" id="link"></a>
-    
+
+    <!-- 스크립트 나중. -->
     <script>
         let link = document.getElementById('link');
         link.textContent = '네이버';
         link.style.textDecoration = 'none';
-        link.setAttribute('href', 'https://www.naver.com'); 
+        link.setAttribute('href', 'https://www.naver.com');
+        // link.href = 'https://www.naver.com';
     </script>
 
+    <!-- 구성요소(문서객체)를 알아내기 -->
+    <h1 id="title" class="h1_style">Hello World</h1>
+    <script>
+        let a = document.getElementById('title');  // a = <h1 id="title" class="h1_style">Hello World</h1>
+        console.log(a.textContent);
+        let b = document.getElementsByClassName('h1_style')[0];
+        console.log(b.textContent);
+        let c = document.getElementsByTagName('h1')[0];
+        console.log(c.textContent);
+        let d = document.querySelector('#title');
+        console.log(d.textContent);
+        let e = document.querySelectorAll('.h1_style')[0];
+        console.log(e.textContent);
+        let f = document.querySelectorAll('h1')[0];
+        console.log(f.textContent);
+    </script>
 
+    <hr>
 
+    <!-- 연습1. 다음(Daum) 로고를 클릭하면 다음 홈페이지로 이동할 수 있는 링크를 만드시오. -->
+    <a id="daum_link"></a>
+    <script>
+        let daumLink = document.getElementById('daum_link');
+        daumLink.setAttribute('href', 'https://www.daum.net');
+        daumLink.innerHTML = '<img src="../images/daum.png" width="50px">';
+    </script>
+
+    <hr>
+
+    <!-- DOM 생성 및 삽입 -->
+    <div id="box1">
+
+    </div>
+    <script>
+        // box1에 '안녕하세요' 제목 태그 넣기
+        let title = document.createElement('h1');  // title : <h1></h1>
+        title.textContent = '안녕하세요';          // title : <h1>안녕하세요</h1>
+        document.getElementById('box1').appendChild(title);  // <div id="box1"><h1>안녕하세요</h1></div>
+    </script>
+
+    <!-- 연습2. 네이버(NAVER) 로고를 클릭하면 네이버 홈페이지로 이동할 수 있는 링크를 만드시오. -->
+    <div id="box2">
+
+    </div>
+    <script>
+        // 만들기
+        let image = document.createElement('img');        // image = <img>
+        image.setAttribute('src', '../images/naver.png'); // image = <img src="../images/naver.png">
+        let naverLink = document.createElement('a');              // naverLink = <a></a>
+        naverLink.setAttribute('href', 'https://www.naver.com');  // naverLink = <a href="https://www.naver.com"></a>
+        // 만든거 넣기
+        naverLink.appendChild(image);  // naverLink = <a href="https://www.naver.com"><img src="../images/naver.png"></a>
+        document.getElementById('box2').appendChild(naverLink);
+    </script>
+
+    <hr>
+
+    <!-- DOM 변경 -->
+    <p>안녕하세요. 자바스크립트입니다.</p>
+    <script>
+        // 구요소
+        let p = document.getElementsByTagName('p')[0];
+        // 신요소
+        let strong = document.createElement('strong');
+        strong.textContent = '안녕. 난 스트롱이야.';
+        // 변경
+        document.body.replaceChild(strong, p);  // replaceChild(신요소, 구요소)
+    </script>
+
+    <hr>
+
+    <!-- DOM 삭제 -->
+    <ul id="list">
+        <li id="subject1">JAVA</li>
+        <li id="subject2">DB</li>
+        <li id="subject3">HTML</li>
+        <li id="subject4">CSS</li>
+        <li id="subject5">JAVASCRIPT</li>
+    </ul>
+    <script>
+        // 부모를 알면,
+        let target1 = document.getElementById('subject1');
+        document.getElementById('list').removeChild(target1);
+        // 부모를 몰라도,
+        let target2 = document.getElementById('subject4');
+        target2.parentNode.removeChild(target2);
+    </script>
 
 </body>
 </html>

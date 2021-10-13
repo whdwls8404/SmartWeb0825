@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            DOM을 통한 CSS 처리
+
+            1. style 속성을 이용한다.
+            2. inline 스타일로 반영되기 때문에 무조건 적용된다.
+               <h1 style="color: red;">안녕하세요</h1>
+            3. 작성방법
+                1) 선택요소.style.backgroundColor     : 하이픈(-) 제거, camelCase 작성
+                2) 선택요소.style['background-color'] : CSS 속성명 그대로 사용
+        */
+    </script>
+</head>
+<body>
+    
+    <div id="box">
+        BOX
+    </div>
+
+    <script>
+
+        let box = document.getElementById('box');
+
+        box.style.width = '300px';
+        box.style.height = '200px';
+        box.style.margin = '0 auto';
+        box.style.backgroundColor = 'skyblue';
+        box.style.border = '3px solid gray';
+
+        box.style['text-align'] = 'center';
+        box.style['line-height'] = '200px';
+
+    </script>
+
+</body>
+</html>
