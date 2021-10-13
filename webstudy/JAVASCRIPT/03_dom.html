@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            DOM
+            1. Document Object Model (문서 객체 모델)
+            2. 문서(HTML)의 구성요소(태그)를 획득, 추가, 수정, 삭제 등의 작업을 수행한다.
+            3. 구성요소(문서객체)를 알아내는 방법
+                1) document.getElementById('아이디') - 변수
+                2) document.getElementsByClassName('클래스') - 배열
+                3) document.getElementsByTagName('태그') - 배열
+                4) document.querySelector('선택자') - 변수
+                5) document.querySelectorAll('선택자') - 배열
+            4. 구성요소의 주요 속성
+                1) textContent : 태그 내부 텍스트
+                2) innerHTML : 태그 내부 태그
+                3) style : CSS
+                4) 속성 작업
+                    (1) getAttribute('속성') : 속성 값 알아내기
+                    (2) setAttribute('속성', '값') : 속성 값 저장하기
+        */
+    </style>
+</head>
+<body>
+    
+    <!-- 반드시 태그 요소가 스크립트보다 먼저 나와야 한다. -->
+
+    <a href="#" id="link"></a>
+    
+    <script>
+        let link = document.getElementById('link');
+        link.textContent = '네이버';
+        link.style.textDecoration = 'none';
+        link.setAttribute('href', 'https://www.naver.com'); 
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            1. 산술 연산자
+                1) +, -, *
+                2) ** : 제곱
+                3) /  : 나누기 (7 / 2 == 3.5)
+                4) %  : 나머지 (7 % 2 == 1)
+                5) 몫
+                    (1) parseInt(7 / 2) == 3
+                    (2) Math.floor(7 / 2) == 3
+                6) 증감 : ++, --
+        */
+        /*
+            2. 문자열 연산자
+                1) + : 문자열이 하나라도 포함되면 연결
+                2) 연산 예시
+                    (1) 1 + '1'   == '11'
+                    (2) '1' + '1' == '11'
+                    (3) '7' - 2   == 5    (산술 연산으로 처리)
+                    (4) '7' * 2   == 14   (산술 연산으로 처리)
+                    (5) '7' / 2   == 3.5  (산술 연산으로 처리)
+        */
+        /*
+            3. 크기 비교 연산자
+                1) >, >=, <, <=
+                2) ==   : 값만 비교       ('1' == 1   결과는 true)
+                3) ===  : 값과 타입을 비교('1' === 1  결과는 false)
+                4) !=   : 값만 비교       ('1' != 1   결과는 false)
+                5) !==  : 값과 타입을 비교('1' !== 1  결과는 true)
+                6) false는 0과 같은 값이다.
+                7) true는 1과 같은 값이다.
+        */
+        /*
+            4. 논리 연산자
+                1) && : and
+                2) || : or
+                3) !  : not
+        */
+        /*
+            5. 조건 연산자 (삼항 연산자)
+                (조건식) ? 결과가 true일 때 반환 : 결과가 false일 때 반환
+        */
+    </script>
+</head>
+<body>
+    
+    <script>
+
+        console.log('7 ** 2 = ' + (7 ** 2));
+
+        console.log('7 / 2 = ' + (7 / 2));
+        console.log('7 % 2 = ' + (7 % 2));
+        console.log('7 몫 2 = ' + (parseInt(7 / 2)));
+        console.log('7 몫 2 = ' + (Math.floor(7 / 2)));
+
+        console.log('"1" + 1 = ' + ("1" + 1));
+        console.log('"1" - 1 = ' + ("1" - 1));
+        console.log('"1" * 1 = ' + ("1" * 1));
+        console.log('"1" / 1 = ' + ("1" / 1));
+
+        console.log('1 == true = ' + (1 == true));
+        console.log('"1" == 1 = ' + ("1" == 1));
+        console.log('1 === true = ' + (1 === true));
+        console.log('"1" === 1 = ' + ("1" === 1));
+
+        let age = 25;
+        let result = (age >= 20) ? '성인' : '미성년자';
+        console.log('나이가 ' + age + '살이면 ' + result + '입니다.');
+
+        // 문제.
+        // 시급 9160원
+        // 8시간 근무까지는 시급 그대로,
+        // 8시간 초과 근무시간은 시급 * 1.5
+        // 10시간 근무하면 일급은?
+        const pay = 9160;
+        let hour = 10;
+        let regular = hour * pay;  // 기본 급여
+        let extra = (hour <= 8) ? 0 : pay * 0.5 * (hour - 8);  // 초과 급여
+        console.log(regular + extra);
+
+    </script>
+
+</body>
+</html>
