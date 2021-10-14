@@ -23,7 +23,7 @@
 </head>
 <body>
     
-    <!-- 1 2 3 4 5 6 7 8 9 10 -->
+    <!-- 연습1. 1 2 3 4 5 6 7 8 9 10 -->
     <div id="box1">
 
     </div>
@@ -39,7 +39,7 @@
         }
     </script>
 
-    <!-- 연습1. 목록 태그로 1 ~ 5 출력하기 -->
+    <!-- 연습2. 목록 태그로 1 ~ 5 출력하기 -->
     <!--
         <ul>
             <li>1</li>
@@ -49,20 +49,17 @@
             <li>5</li>
         </ul>
     -->
-    <div id="box2">
-
-    </div>
+    <div id="box2"></div>
     <script>
-        /* 
-            DOM 메소드 이용
-            let ul = document.createElement('ul');
-            document.getElementById('box2').appendChild(ul);
-            for (let n = 1; n <= 5; n++) {
-                let li = document.createElement('li');
-                li.textContent = n;
-                ul.appendChild(li);
-            }
-        */
+        /* DOM 메소드 이용 */
+        let ul = document.createElement('ul');
+        document.getElementById('box2').appendChild(ul);
+        for (let n = 1; n <= 5; n++) {
+            let li = document.createElement('li');
+            li.textContent = n;
+            ul.appendChild(li);
+        }
+        /* 태그를 텍스트로 생성하기 */
         /* '<ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>' */
         let result = '<ul>';
         for (let n = 1; n <= 5; n++) {
@@ -72,7 +69,7 @@
         document.getElementById('box2').innerHTML = result;
     </script>
 
-    <!-- 연습2. select 태그 만들기 -->
+    <!-- 연습3. select 태그 만들기 -->
     <!--
         <select name="month">
             <option value="">월 선택</option>
@@ -98,7 +95,6 @@
             option.textContent = month + '월';
             select.appendChild(option);
         }
-
         /* 태그를 텍스트로 생성하기 */
         let selectList = '<select name="month"><option value="">월 선택</option>';
         for (let month = 1; month <= 12; month++) {
@@ -108,7 +104,7 @@
         document.getElementById('box3').innerHTML = selectList;
     </script>
 
-    <!-- 연습3. table 태그 만들기 -->
+    <!-- 연습4. table 태그 만들기 -->
     <!--
         1   2   3
         4   5   6
@@ -160,7 +156,7 @@
         document.getElementById('box4').innerHTML = strTable;
     </script>
 
-    <!-- 연습4. table 태그 만들기 -->
+    <!-- 연습5. table 태그 만들기 -->
     <!--
         전체 구구단 출력하기
         짝수단과 홀수단의 배경색 다르게 지정하기
