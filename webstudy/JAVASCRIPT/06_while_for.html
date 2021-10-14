@@ -5,6 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #box5 > table {
+            border-collapse: collapse;
+        }
+        #box5 td {
+            border: 1px solid gray;
+            padding: 3px 6px;
+        }
+        #box5 .even {
+            background-color: burlywood;
+        }
+        #box5 .odd {
+            background-color: cornsilk;
+        }
+    </style>
 </head>
 <body>
     
@@ -103,11 +118,89 @@
     <div id="box4"></div>
     <script>
         /* DOM 메소드 */
-
+        let table = document.createElement('table');
+        table.setAttribute('border', 1);
+        document.getElementById('box4').appendChild(table);
+        let tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+        let num = 1;
+        for (let row = 1; row <= 4; row++) {
+            let tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for (let col = 1; col <= 3; col++) {
+                let td = document.createElement('td');
+                td.style.border = '1px solid red';
+                switch (num) {
+                    case 10: td.textContent = '*'; break;
+                    case 11: td.textContent = '0'; break;
+                    case 12: td.textContent = '#'; break;
+                    default: td.textContent = num;
+                }
+                tr.appendChild(td);
+                num++;
+            }
+        }
         /* 태그를 텍스트로 생성하기 */
-        
+        let strTable = '<table border="1"><tbody>';
+        let num2 = 1;
+        for (let row = 1; row <= 4; row++) {
+            strTable += '<tr>';
+            for (let col = 1; col <= 3; col++) {
+                switch (true) {
+                    case num2 <= 9:  strTable += '<td>' + num2 + '</td>'; break;
+                    case num2 == 10: strTable += '<td>*</td>'; break;
+                    case num2 == 11: strTable += '<td>0</td>'; break;
+                    case num2 == 12: strTable += '<td>#</td>';
+                }
+                num2++;
+            }
+            strTable += '</tr>';
+        }
+        strTable += '</tbody></table>';
+        document.getElementById('box4').innerHTML = strTable;
     </script>
 
+    <!-- 연습4. table 태그 만들기 -->
+    <!--
+        전체 구구단 출력하기
+        짝수단과 홀수단의 배경색 다르게 지정하기
+        짝수단은 <td class="even">
+        홀수단은 <td class="odd">
+    -->
+    <div id="box5"></div>
+    <script>
+        /* DOM 메소드 */
+        let guguTable = document.createElement('table');
+        document.getElementById('box5').appendChild(guguTable);
+        let guguBody = document.createElement('tbody');
+        guguTable.appendChild(guguBody);
+        for (let n = 1; n <= 9; n++) {
+            let tr = document.createElement('tr');
+            guguBody.appendChild(tr);
+            for (let dan = 2; dan <= 9; dan++) {
+                let td = document.createElement('td');
+                if (dan % 2 == 0) {
+                    td.setAttribute('class', 'even');
+                } else {
+                    td.setAttribute('class', 'odd');
+                }
+                td.textContent = dan + 'x' + n + '=' + (dan * n);
+                tr.appendChild(td);
+            }
+        }
+        /* 태그를 텍스트로 생성하기 */
+        let strGugu = '<table><tbody>';
+        for (let n = 1; n <= 9; n++) {
+            strGugu += '<tr>';
+            for (let dan = 2; dan <= 9; dan++) {
+                let expr = dan + 'x' + n + '=' + (dan * n);
+                strGugu += '<td class="' + (dan % 2 == 0 ? 'even' : 'odd') + '">' + expr + '</td>';
+            }
+            strGugu += '</tr>';
+        }
+        strGugu += '</tbody></table>';
+        document.getElementById('box5').innerHTML = strGugu;
+    </script>
 
 </body>
 </html>
