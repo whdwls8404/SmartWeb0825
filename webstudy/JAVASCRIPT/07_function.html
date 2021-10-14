@@ -157,10 +157,13 @@
             //    a = 100;
             // }
             // 방법3.
-            // true || (a = 100);  // short circuit evaluation (OR 연산자는 하나라도 true가 나오면 전체 결과가 true이므로 더 이상 연산을 진행하지 않는다.)
+            // true || (a = 100);  // short circuit evaluation
+                                   // OR 연산자는 하나라도 true가 나오면 전체 결과가 true이므로
+                                   // 더 이상 연산을 진행하지 않는다.
             // false || (a = 100);
             // 인수가 전달 안 된 매개변수는 undefined이므로 false와 같다.
-            a || (a = 100);
+            a || (a = 100);  // a로 인수가 전달되지 않으면 false || (a = 100); 으로 처리되므로
+                             // a = 100이 동작한다.
             console.log(a + ', ' + b);
         }
         func10();
@@ -168,7 +171,12 @@
         func10(50, 60);
         func10(70, 80, 90);
 
+        // 3. arguments 객체
+        // 내일 해야 함
+
     </script>
+
+
 
 </body>
 </html>
