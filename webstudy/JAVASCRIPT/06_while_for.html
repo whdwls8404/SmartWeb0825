@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 1 2 3 4 5 6 7 8 9 10 -->
+    <div id="box1">
+
+    </div>
+    <script>
+        let a = 1;
+        while (a <= 10) {
+            document.getElementById('box1').innerHTML += a + '&nbsp;';
+            a++;
+        }
+        document.getElementById('box1').innerHTML = '';
+        for (let b = 1; b <= 10; b++) {
+            document.getElementById('box1').innerHTML += b + '<br>';
+        }
+    </script>
+
+    <!-- 연습1. 목록 태그로 1 ~ 5 출력하기 -->
+    <!--
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    -->
+    <div id="box2">
+
+    </div>
+    <script>
+        /* 
+            DOM 메소드 이용
+            let ul = document.createElement('ul');
+            document.getElementById('box2').appendChild(ul);
+            for (let n = 1; n <= 5; n++) {
+                let li = document.createElement('li');
+                li.textContent = n;
+                ul.appendChild(li);
+            }
+        */
+        /* '<ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>' */
+        let result = '<ul>';
+        for (let n = 1; n <= 5; n++) {
+            result += '<li>' + n + '</li>';
+        }
+        result += '</ul>';
+        document.getElementById('box2').innerHTML = result;
+    </script>
+
+    <!-- 연습2. select 태그 만들기 -->
+    <!--
+        <select name="month">
+            <option value="">월 선택</option>
+            <option value="1">1월</option>
+            <option value="2">2월</option>
+            ...
+            <option value="12">12월</option>
+        </select>    
+    -->
+    <div id="box3"></div>
+    <script>
+        /* DOM 메소드 */
+        let select = document.createElement('select');  // <select></select>
+        select.setAttribute('name', 'month');           // <select name="month"></select>
+        document.getElementById('box3').appendChild(select);  // <div id="box3"><select name="month"></select></div>
+        let option1 = document.createElement('option');  // <option></option>
+        option1.setAttribute('value', '');               // <option value=""></option>
+        option1.textContent = '월 선택';                 // <option value="">월 선택</option>
+        select.appendChild(option1);                     // <select name="month"><option value="">월 선택</option></select>
+        for (let month = 1; month <= 12; month++) {
+            let option = document.createElement('option');
+            option.setAttribute('value', month);
+            option.textContent = month + '월';
+            select.appendChild(option);
+        }
+
+        /* 태그를 텍스트로 생성하기 */
+        let selectList = '<select name="month"><option value="">월 선택</option>';
+        for (let month = 1; month <= 12; month++) {
+            selectList += '<option value="' + month + '">' + month + '월</option>';
+        }
+        selectList += '</select>';
+        document.getElementById('box3').innerHTML = selectList;
+    </script>
+
+    <!-- 연습3. table 태그 만들기 -->
+    <!--
+        1   2   3
+        4   5   6
+        7   8   9
+        *   0   #
+    -->
+    <div id="box4"></div>
+    <script>
+        /* DOM 메소드 */
+
+        /* 태그를 텍스트로 생성하기 */
+        
+    </script>
+
+
+</body>
+</html>
