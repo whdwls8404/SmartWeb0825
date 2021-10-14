@@ -198,5 +198,22 @@
         document.getElementById('box5').innerHTML = strGugu;
     </script>
 
+    <!-- 연습6. 5개 정수를 입력 받아서 평균을 출력. 양수 이외 입력은 '다시 입력하세요' -->
+    <div id="box6"></div>
+    <script>
+        let count = 0;
+        let total = 0;
+        while (count < 5) {
+            let n = Number(prompt((count + 1) + '번째 양수를 입력하세요'));
+            if (n <= 0 || isNaN(n)) {
+                alert(n + '은(는) 양수가 아닙니다. 다시 입력하세요.');
+            } else {
+                total += n;
+                count++;
+            }
+        }
+        document.getElementById('box6').textContent = '평균 = ' + (total / 5);
+    </script>
+
 </body>
 </html>
