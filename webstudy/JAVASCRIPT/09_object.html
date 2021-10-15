@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            1. 객체
+                1) 여러 개의 값으로 구성된 하나의 데이터이다.
+                2) 데이터는 '속성(property)'과 '값(value)'으로 구성된다.
+                3) 생성자 함수를 통해서 객체를 생성할 수 있다. (new)
+                4) 중괄호({})를 이용해서 직접 객체를 생성할 수 있다.
+            2. 객체 생성
+                (1) 생성자 함수를 이용해서 생성
+                    function 함수명(매개변수1, 매개변수2, ...) {
+                        this.속성1 = 매개변수1;
+                        this.속성2 = 매개변수2;
+                        ...
+                    }
+                    var 객체명 = new 함수명(인수1, 인수2);
+                (2) 중괄호({})를 이용해서 직접 생성
+                    var 객체명 = {
+                        '속성': '값',
+                        '속성': '값'
+                    };
+            3. 객체의 속성(property)
+                1) 객체.속성
+                2) 객체['속성']
+                3) 속성의 추가가 동적으로 진행된다. (없던 속성을 새로 만들어 넣을 수 있다.)
+        */
+    </script>
+</head>
+<body>
+    
+    <script>
+        // 1. 객체 생성
+        let person = {
+            'name': '민경태',
+            'age': 44
+        };
+        // 2. 객체의 속성(property) 사용
+        console.log(person.name, person.age);
+        console.log(person['name'], person['age']);
+        // 연습. 아래 객체를 생성하고 각 속성(property)을 확인하시오.
+        // 객체명 : bread
+        // name : 브레드
+        // age : 50
+        // birthday : 2021-10-15
+        // friend : name이 초코이고, age가 30인 객체
+        // bag : 우유, 쥬스
+        // hobby : 'I like running!' 메시지를 출력하는 함수
+        let bread = {
+            'name': '브레드',
+            'age': 50,
+            'birthday': '2021-10-15',
+            'friend': {
+                'name': '초코',
+                'age': 30
+            },
+            'bag': [
+                '우유',
+                '쥬스'
+            ],
+            'hobby': function(){
+                console.log('I like running!');
+            }
+        };
+        console.log(bread.name);
+        console.log(bread.age);
+        console.log(bread.birthday);
+        console.log(bread.friend.name, bread.friend.age);
+        console.log(bread.bag[0], bread.bag[1]);
+        bread.hobby();
+    </script>
+
+</body>
+</html>

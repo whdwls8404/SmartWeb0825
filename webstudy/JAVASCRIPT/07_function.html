@@ -45,6 +45,13 @@
                 2) 인수와 매개변수의 갯수가 서로 다를 수 있다.
                    인수가 전달되지 않는 매개변수를 처리하기 위한 디폴트 개념이 존재한다.
                 3) 전달된 모든 인수를 저장하는 arguments 객체(유사 배열)가 있다.
+            6. 타이머 함수
+                1) 한 번만 동작하는 함수
+                    (1) var id = setTimeout(동작시킬함수, 시간(밀리초));
+                    (2) clearTimeout(id);  // 해당 id를 가진 타이머 취소
+                2) 반복 동작하는 함수
+                    (1) var id = setInterval(동작시킬함수, 시간(밀리초));
+                    (2) clearInteval(id);
         */
     </script>
 </head>
@@ -170,13 +177,50 @@
         func10(40);
         func10(50, 60);
         func10(70, 80, 90);
-
         // 3. arguments 객체
-        // 내일 해야 함
-
+        //    1) 모든 함수는 매개변수를 선언하지 않아도 인수를 사용할 수 있다.
+        //    2) 모든 인수는 자동으로 arguments 객체에 저장된다.
+        //    3) arguments 객체는 배열처럼 사용할 수 있다.
+        function func11() {
+            console.log(arguments);
+            console.log(arguments[0]);
+        }
+        func11('민경태');
     </script>
 
-
+    <!-- 6. 타이머 함수 -->
+    <div id="boom"></div>
+    <script>
+        // 1. 5초 후에 폭탄을 터트리기.
+        /*
+        setTimeout(function(){
+            document.getElementById('boom').innerHTML = '<h1>펑</h1>';
+        }, 5000);
+        */
+        // 연습. 카운트 다운 폭탄.
+        // 5 -> 4 -> 3 -> 2 -> 1 -> 펑
+        /*
+        var countDown = 5;
+        (function countDownBoom(){
+            setTimeout(function(){
+                if (countDown == 0) {
+                    document.getElementById('boom').innerHTML = '<h1>펑</h1>';
+                    return;
+                }
+                document.getElementById('boom').innerHTML = '<h1>' + countDown-- + '</h1>';
+                countDownBoom();  // 자신이 자신을 부르는 호출 = 재귀호출
+            }, 1000);
+        })();
+        */
+        // 2. 카운트 다운
+        var countDown = 5;
+        setInterval(function(){
+            if (countDown < 0) {
+                return;
+            }
+            document.getElementById('boom').innerHTML = '<h1>' + countDown-- + '</h1>';
+        }, 1000);
+    </script>
 
 </body>
 </html>
