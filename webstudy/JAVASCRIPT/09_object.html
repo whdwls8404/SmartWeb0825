@@ -29,6 +29,12 @@
                 1) 객체.속성
                 2) 객체['속성']
                 3) 속성의 추가가 동적으로 진행된다. (없던 속성을 새로 만들어 넣을 수 있다.)
+            4. 객체의 속성(property) 순회
+                1) for-in문 (일반 for문 불가)
+                2) for (var 속성 in 객체) {  // 속성의 타입은 string이다.
+                        객체.속성     // 불가
+                        객체['속성']  // 가능
+                   }
         */
     </script>
 </head>
@@ -73,6 +79,75 @@
         console.log(bread.friend.name, bread.friend.age);
         console.log(bread.bag[0], bread.bag[1]);
         bread.hobby();
+        // 3. 객체의 속성 순회
+        let book = {
+            'bookNo': 1001,
+            'title': '어린왕자',
+            'author': '생텍쥐베리'
+        };
+        for (let p in book) {
+            console.log(book[p]);
+        }
+    </script>
+
+    <!-- 연습1. 다음 데이터를 테이블로 생성하시오. -->
+    <div id="box1">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>lastBuildDate</td>
+                    <td colspan="2" id="lastBuildDate"></td>
+                </tr>
+                <tr>
+                    <td>total</td>
+                    <td colspan="2" id="total"></td>
+                </tr>
+                <tr>
+                    <td>title</td>
+                    <td>link</td>
+                    <td>description</td>
+                </tr>
+            </thead>
+            <tbody id="items">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let result = {
+            'lastBuildDate': '2021-10-15',
+            'total': 3,
+            'items': [
+                {
+                    'title': '오징어게임',
+                    'link': 'https://www.naver.com',
+                    'description': '이제 모두 오징어가 될 시간이다.'
+                },
+                {
+                    'title': '갯마을 차차차',
+                    'link': 'https://www.google.com',
+                    'description': '다함께 차차차~'
+                },
+                {
+                    'title': '더길티',
+                    'link': 'https://www.kakao.com',
+                    'description': '장난 전화 하지 마세욤'
+                }
+            ]
+        };
+        
+        document.getElementById('lastBuildDate').textContent = result.lastBuildDate;
+        document.getElementById('total').textContent = result.total;
+        let strItems = '';
+        let items = result.items;
+        for (let i = 0; i < items.length; i++) {
+            strItems += '<tr>';
+            strItems += '<td>' + items[i].title + '</td>';
+            strItems += '<td>' + items[i].link + '</td>';
+            strItems += '<td>' + items[i].description + '</td>';
+            strItems += '</tr>';
+        }
+        document.getElementById('items').innerHTML = strItems;
     </script>
 
 </body>
