@@ -147,6 +147,13 @@
             strItems += '<td>' + items[i].description + '</td>';
             strItems += '</tr>';
         }
+        for (let i = 0; i < items.length; i++) {
+            strItems += '<tr>';
+            for (let property in items[i]) {  // property : 'title', 'link', 'description'
+                strItems += '<td>' + items[i][property] + '</td>';
+            }
+            strItems += '</tr>';
+        }
         document.getElementById('items').innerHTML = strItems;
     </script>
 
