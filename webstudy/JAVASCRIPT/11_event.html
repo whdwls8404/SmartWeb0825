@@ -93,6 +93,18 @@
                     이벤트 리스너에서 event.preventDefault()를 호출한다.
         */
     </script>
+    <style>
+        /* 연습5. */
+        .items {
+            padding-left: 20px;
+            background-size: 18px 18px;
+            background-repeat: no-repeat;
+            background-image: url(../images/uncheck.png);
+        }
+        .checked {
+            background-image: url(../images/check.png);
+        }
+    </style>
 </head>
 <body>
 
@@ -308,7 +320,10 @@
         let items = document.getElementsByClassName('items');
         for (let i = 0; i < items.length; i++) {
             items[i].onclick = function(){
-                
+                // toggle
+                // <li class="items">이면 <li class="items checked">
+                // <li class="items checked">이면 <li class="items">
+                this.classList.toggle('checked');
             }
         }
     </script>
