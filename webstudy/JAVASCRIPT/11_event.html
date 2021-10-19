@@ -248,18 +248,70 @@
     </div>
     <script>
         let thumbnails = document.getElementsByClassName('thumbnails');
-        
+        for (let i = 0; i < thumbnails.length; i++) {
+            thumbnails[i].onclick = function(){
+                // 클릭한 썸네일(이벤트 대상)의 src 속성값을 id="large_image"에 적용하면 됨.
+                // 클릭한 썸네일(이벤트 대상)
+                // 1. this
+                // 2. event.target
+                document.getElementById('large_image').src = this.src;
+            }
+        }
+    </script> 
+
+    <hr>
+
+    <!-- 연습4. 정답 보이기/숨기기 -->
+    <div id="box6">
+        <h1>프론트엔드 과목이 아닌 것은?</h1>
+        <ol>
+            <li>JavaScript</li>
+            <li>Java</li>
+            <li>CSS</li>
+            <li>HTML</li>
+        </ol>
+        <input type="button" value="정답보기" id="answer_btn">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="answer">2</span>
+    </div>
+    <script>
+        // 평소에는 안 보임
+        document.getElementById('answer').style.display = 'none';
+
+        // 버튼을 클릭하면
+        // 정답보기 - 정답숨기기 변환
+        // 안보임   - 보임       변환
+        document.getElementById('answer_btn').onclick = function(){
+            if (this.value == '정답보기') {
+                this.value = '정답숨기기';
+                document.getElementById('answer').style.display = 'inline';
+            } else {
+                this.value = '정답보기';
+                document.getElementById('answer').style.display = 'none';
+            }
+        }
     </script>
 
+    <hr>
 
-
-
-
-
-
-
-
-
+    <!-- 연습5. 클릭한 요소 강조하기 -->
+    <div>
+        <ul style="list-style-type: none;">
+            <li class="items">나는 수업에 충실한다.</li>
+            <li class="items">나는 수업에 집중한다.</li>
+            <li class="items">나는 수업시간에 졸지 않는다.</li>
+            <li class="items">나는 수업시간에 질문한다.</li>
+            <li class="items">나는 수업이 재미있다.</li>
+        </ul>
+    </div>
+    <script>
+        let items = document.getElementsByClassName('items');
+        for (let i = 0; i < items.length; i++) {
+            items[i].onclick = function(){
+                
+            }
+        }
+    </script>
 
 </body>
 </html>
