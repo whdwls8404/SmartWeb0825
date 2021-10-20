@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 1. submit 하는 방법 -->
+    <form id="form1" action="https://search.naver.com/search.naver">
+        <input type="text" name="query" id="query1">
+        <button>검색</button>  <!-- button 태그는 submit을 수행한다.(기본 이벤트) -->
+    </form>
+    <script>
+        let form1 = document.getElementById('form1');
+        let query1 = document.getElementById('query1');
+        form1.onsubmit = function(event){
+            if (query1.value == '') {
+                alert('검색어를 입력하세요');
+                query1.focus();  // 검색창으로 커서를 보내 줌.
+                event.preventDefault();  // 기본 이벤트 방지(submit 방지)
+                return false;
+            }
+        }
+    </script>
+
+    <hr>
+
+    <!-- 2. submit 하는 방법 -->
+    <form id="form2" action="https://search.naver.com/search.naver" onsubmit="return searchFunc()">
+        <input type="text" name="query" id="query2">
+        <button>검색</button>
+    </form>
+    <script>
+        function searchFunc() {
+            let form2 = document.getElementById('form2');
+            let query2 = document.getElementById('query2');
+            if (query2.value == '') {
+                alert('검색어는 필수입니다');
+                query2.focus();
+                return false;  // submit을 하지 않겠다.
+            }
+            return true;  // submit을 하겠다.
+        }
+    </script>
+
+    <hr>
+
+    <!-- 3. submit 하는 방법 -->
+    <form id="form3">
+        <input type="text" name="query" id="query3">
+        <input type="button" value="검색" id="search_btn">  <!-- 기본 이벤트가 없는 일반 버튼 -->
+    </form>
+    <script>
+        let form3 = document.getElementById('form3');
+        let query3 = document.getElementById('query3');
+        let search_btn = document.getElementById('search_btn');
+        search_btn.onclick = function(){
+            if (query3.value == '') {
+                alert('검색어를 꼭 입력해 주세요');
+                query3.focus();
+                return;  // 이벤트 리스너 종료
+            }
+            form3.action = 'https://search.naver.com/search.naver';
+            form3.submit();
+        }
+    </script>
+
+    <hr>
+
+    <!-- 4. name 속성으로 스크립트 작업하기 -->
+    <form>
+        <input type="text" name="query">
+        <input type="button" value="검색" onclick="naverSearch(this.form)">
+    </form>
+    <script>
+        function naverSearch(f) {
+            if (f.query.value == '') {
+                alert('검색어를 입력해 주세요');
+                f.query.focus();
+                return;
+            }
+            f.action = 'https://search.naver.com/search.naver';
+            f.submit();
+        }
+    </script>
+
+    <hr>
+
+    <!-- 연습1. 검색 결과를 구글 검색으로 나타내시오. -->
+    <form id="google_form" action="https://www.google.com/search">
+        <input type="text" name="q" id="q">
+        <button>검색</button>
+    </form>
+    <script>
+        let googleForm = document.getElementById('google_form');
+        let q = document.getElementById('q');
+        googleForm.onsubmit = function(event) {
+            if (q.value == '') {
+                alert('검색어를 입력하세요');
+                q.focus();
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+
+</body>
+</html>
