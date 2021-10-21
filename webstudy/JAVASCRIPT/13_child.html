@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h1>자식창</h1>
+        <input type="text" id="child_input" placeholder="부모창에 전달할 값 입력">
+        <input type="button" id="send_btn" value="전달 후 닫기">
+    </form>
+    <script>
+        // 부모창을 opener라고 부른다.
+        function openParent() {
+            let childInput = document.getElementById('child_input');
+            opener.document.getElementById('parent_input').value = childInput.value;  // 자식창의 입력을 부모창으로 보냄
+            close();  // 현재 창 닫기
+        }
+        let sendBtn = document.getElementById('send_btn');
+        sendBtn.addEventListener('click', openParent);
+    </script>
+</body>
+</html>

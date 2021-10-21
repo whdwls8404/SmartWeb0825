@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h1>부모창</h1>
+        <input type="text" id="parent_input" placeholder="자식창에 전달할 값 입력">
+        <input type="button" id="send_btn" value="전달하기">
+    </form>
+    <script>
+        var winChild;
+        function openChild() {
+            winChild = open('13_child.html', '', 'width=640, height=480');
+        }
+        function sendChild() {
+            let parentInput = document.getElementById('parent_input');
+            winChild.onload = function(){
+                winChild.document.getElementById('child_input').value = parentInput.value;  // 부모창의 입력을 자식창으로 보냄
+            }
+        }
+        let sendBtn = document.getElementById('send_btn');
+        sendBtn.addEventListener('click', function(){
+            openChild();
+            sendChild();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 12px;
+    color: black;
+}
+ul, ol {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+.join_header {
+    height: 89px;
+    border-bottom: 1px solid #dfe2e6;
+    text-align: center;
+}
+.logo a {
+    display: inline-block;
+    width: 140px;
+    height: 36px;
+    margin-top: 28px;
+    background-image: url('https://img2.tmon.kr/resources/shared/p/im/membership/sp-membership.png?v=20210831164155');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 0;
+}
+.join_form {
+    width: 500px;
+    margin: 0 auto;
+}
+.join_title {
+    margin: 50px 0 0 0;
+    font-size: 28px;
+    text-align: center;
+}
+.join_form > form > label {
+    display: block;
+    margin: 30px 0 10px 0;
+    font-size: 16px;
+}
+.input {
+    width: 100%;
+    height: 50px;
+    padding: 0 40px 0 15px;
+    border: 1px solid #ccd2d8;
+}
+.input input[type=text], .input input[type=password] {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+}
+.msg {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: #777;
+}
+.checked + .msg {
+    display: none;
+}
+.dont {
+    color: #ff1515;
+}
+.no_required {
+    font-size: 12px;
+    color: #888;
+}
+.date {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+}
+.select_box {
+    width: 161px;
+    height: 100%;
+    border: 1px solid #ccd2d8;
+    position: relative;
+}
+.lst {
+    display: none;
+    position: absolute;
+    top: 48px;
+    left: -1px;
+    overflow-y: auto;
+    width: 161px;
+    max-height: 240px;
+    background-color: white;
+    border: 1px solid #ccd2d8;
+}
+.show {
+    display: block;
+}
+.lst > li > a {
+    display: block;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 15px;
+}
+.lst > li > a:hover {
+    background-color: lightgray;
+}
+#year_value {
+    width: 100%;
+    height: 100%;
+    line-height: 45px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+#year_select {
+    display: none;
+}
+.two_selector {
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+.selector {
+    display: block;
+    width: 249px;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+.selector > span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccd2d8;
+    font-size: 16px;
+}
+.selector:first-of-type > span {
+    border-right: 0;
+}
+.selector > input[type=radio] {
+    display: none;
+}
+.selector > input[type=radio]:checked + span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid orange;
+    color: orange;
+    font-weight: 900;
+}
+.btn_send_mail {
+    display: none;
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+    border: 1px solid orange;
+    background-color: white;
+    color: orange;
+    font-size: 12px;
+    font-weight: 900;
+}
+.btn_area {
+    width: 100%;
+    height: 64px;
+    margin-top: 20px;
+}
+.btn_submit {
+    width: 100%;
+    height: 100%;
+    background-color: orange;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    font-weight: 900;
+    color: white;
+}

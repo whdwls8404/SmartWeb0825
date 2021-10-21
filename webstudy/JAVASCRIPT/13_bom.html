@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            BOM
+            1. Browser Object Model (브라우저 객체 모델)
+            2. 브라우저의 구성요소를 객체로 처리할 수 있다.
+            3. 주요 객체
+                1) window : 최상위 객체. 생략함.
+                2) screen : 화면 객체. 너비나 높이를 알 수 있음.
+                3) history : 방문 경로 저장 객체. 뒤로 앞으로.
+                4) location : 경로 이동 객체. 경로를 이동함.
+        */
+    </script>
+</head>
+<body>
+    
+    <!-- 1. screen 객체 -->
+    <script>
+        console.log('화면 너비: ' + screen.width + 'px');
+        console.log('화면 높이: ' + screen.height + 'px');
+        console.log('화면 사용가능 너비: ' + screen.availWidth + 'px');
+        console.log('화면 사용가능 높이: ' + screen.availHeight + 'px');
+    </script>
+
+    <!-- 2. history 객체 -->
+    <!--
+        1) 뒤로 가기   : history.back()
+        2) 앞으로 가기 : history.forward()
+        3) 뒤로 2번    : history.go(-2)
+        4) 앞으로 2번  : history.go(2)
+    -->
+    <input type="button" value="뒤로 가기" id="back_btn">
+    <script>
+        let backBtn = document.getElementById('back_btn');
+        backBtn.addEventListener('click', function(){
+            alert('뒤로 갑니다.');
+            history.back();
+        })
+    </script>
+
+    <hr>
+
+    <!-- 3. location 객체 -->
+    <input type="button" value="그냥 가기" id="go_btn1">
+    <input type="button" value="가지고 가기" id="go_btn2">
+    <script>
+        let goBtn1 = document.getElementById('go_btn1');
+        let goBtn2 = document.getElementById('go_btn2');
+        goBtn1.addEventListener('click', function(){
+            location.assign('tmon.html');
+            location.href = 'tmon.html';
+        });
+        goBtn2.addEventListener('click', function(){
+            // 이동경로 = URL?파라미터=값&파라미터=값...
+            location.assign('https://search.daum.net/search?q=날씨');
+            location.href = 'https://search.daum.net/search?q=날씨';
+        });
+    </script>
+
+    <hr>
+
+    <!-- 연습1. form 태그 없이 네이버 검색 구현 -->
+    <input type="text" id="query" placeholder="검색어를 입력해 주세요">
+    <input type="button" value="검색" id="naver_search_btn">
+    <script>
+        let query = document.getElementById('query');
+        let naverSearchBtn = document.getElementById('naver_search_btn');
+        naverSearchBtn.addEventListener('click', function(){
+            location.href = 'https://search.naver.com/search.naver?query=' + query.value;
+        });
+    </script>
+
+    <hr>
+
+    <!-- 4. window 객체 -->
+    <input type="button" value="새창열기" id="open_window_btn">
+    <script>
+        let openWindowBtn = document.getElementById('open_window_btn');
+        openWindowBtn.addEventListener('click', function(){
+            /*
+                open() 함수
+                open(URL, name, feature)
+                1) URL : 열어 줄 창(파일명), 생략하면 새 창
+                2) name : 열어 줄 창의 name
+                3) feature : width, height, top, bottom, left, right, resizable
+            */
+            open('', '', 'width=300px, height=200px, top=100px, resizable=yes');
+        });
+    </script>
+
+    <hr>
+
+    <!-- 연습2. 너비 640px, 높이 480px 크기의 새 창을 화면의 정중앙에 오픈하시오. -->
+    <input type="button" value="정중앙에 열기" id="open_center_btn">
+    <script>
+        let winWidth = 640;
+        let winHeight = 480;
+        let offLeft = (screen.width - winWidth) / 2;
+        let offTop = (screen.height - winHeight) / 2;
+        let openCenterBtn = document.getElementById('open_center_btn');
+        openCenterBtn.addEventListener('click', function(){
+            open('', '', 'width=' + winWidth + ', height=' + winHeight + ', left=' + offLeft + ', top=' + offTop);
+        });
+    </script>
+
+    <hr>
+
+    <input type="button" value="부모창열기" onclick="openParent()">
+    <script>
+        function openParent() {
+            open('13_parent.html', '', 'width=640, height=480');
+        }
+    </script>
+
+</body>
+</html>
