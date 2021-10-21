@@ -47,7 +47,7 @@
             font-size: 28px;
             text-align: center;
         }
-        .join_form label {
+        .join_form > label {
             display: block;
             margin: 30px 0 10px 0;
             font-size: 16px;
@@ -124,6 +124,40 @@
             padding-left: 15px;
             font-size: 16px;
         }
+        .two_selector {
+            display: flex;
+            width: 100%;
+            height: 50px;
+        }
+        .selector {
+            display: block;
+            width: 249px;
+            height: 100%;
+            text-align: center;
+            line-height: 50px;
+        }
+        .selector > span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccd2d8;
+            font-size: 16px;
+        }
+        .selector:first-of-type > span {
+            border-right: 0;
+        }
+        .selector > input[type=radio] {
+            display: none;
+        }
+        .selector > input[type=radio]:checked + span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 1px solid orange;
+            color: orange;
+            font-weight: 900;
+        }
+        
     </style>
     <script>
         // 페이지 로드 이벤트를 활용하면,
@@ -256,6 +290,26 @@
                     year_value.textContent = this.textContent;  // this == yearLink[i]
                 });
             }
+
+            // 6. 이메일
+            let userEmail = document.getElementById('userEmail');
+            let regEmail = /^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+([.][a-zA-Z]{2,}){1,2}$/;
+            function fn_vaildEmail(){
+                if (userEmail.value == '') {
+                    msg[4].textContent = '이메일을 입력해 주세요.';
+                    msg[4].className = 'msg dont';
+                    userEmail.parentNode.className = 'input';
+                } else if (regEmail.test(userEmail.value)) {
+                    userEmail.parentNode.className = 'input checked';
+                } else {
+                    msg[4].textContent = '올바른 이메일 형식을 입력해주세요.';
+                    msg[4].className = 'msg dont';
+                    userEmail.parentNode.className = 'input';
+                }
+            }
+            userEmail.addEventListener('keyup', fn_vaildEmail);
+            userEmail.addEventListener('blur', fn_vaildEmail);
+
         }
     </script>
 </head>
@@ -295,7 +349,7 @@
         </div>
         <p class="msg"></p>
 
-        <label for="">생년월일<span class="no_required">(선택)</span></label>
+        <label for="year">생년월일<span class="no_required">(선택)</span></label>
         <div class="date">
             <div class="select_box" id="year">
                 <div id="year_value">년도</div>
@@ -304,6 +358,24 @@
             <div class="select_box" id="month"></div>
             <div class="select_box" id="day"></div>
         </div>
+
+        <label>성별<span class="no_required">(선택)</span></label>
+        <div class="two_selector">
+            <label class="selector">
+                <input type="radio" name="gender" value="M">
+                <span>남자</span>
+            </label>
+            <label class="selector">
+                <input type="radio" name="gender" value="F">
+                <span>여자</span>
+            </label>
+        </div>
+
+        <label for="userEmail">이메일</label>
+        <div class="input">
+            <input id="userEmail" type="text" placeholder="이메일을 입력해 주세요">
+        </div>
+        <p class="msg">이메일을 입력해 주세요.</p>
 
     </section>
 
@@ -314,28 +386,7 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
+    
 </body>
 </html>
