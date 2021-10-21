@@ -77,6 +77,53 @@
         .dont {
             color: #ff1515;
         }
+        .no_required {
+            font-size: 12px;
+            color: #888;
+        }
+        .date {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 50px;
+        }
+        .select_box {
+            width: 161px;
+            height: 100%;
+            border: 1px solid #ccd2d8;
+            position: relative;
+        }
+        .lst {
+            display: none;
+            position: absolute;
+            top: 48px;
+            left: -1px;
+            overflow-y: auto;
+            width: 161px;
+            max-height: 240px;
+            background-color: white;
+            border: 1px solid #ccd2d8;
+        }
+        .show {
+            display: block;
+        }
+        .lst > li > a {
+            display: block;
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            padding-left: 15px;
+        }
+        .lst > li > a:hover {
+            background-color: lightgray;
+        }
+        #year_value {
+            width: 100%;
+            height: 100%;
+            line-height: 45px;
+            padding-left: 15px;
+            font-size: 16px;
+        }
     </style>
     <script>
         // 페이지 로드 이벤트를 활용하면,
@@ -160,6 +207,55 @@
                 fn_userPwConfirm(userPw, userPwConfirm);
             });
 
+            // 4. 이름
+            let userName = document.getElementById('userName');
+            let regName = /^[a-zA-Z가-힣]{1,30}$/;
+            function fn_validName(){
+                if (userName.value == '') {
+                    userName.parentNode.className = 'input';
+                    msg[3].textContent = '이름을 입력해주세요.';
+                    msg[3].className = 'msg dont';
+                } else if (regName.test(userName.value)) {
+                    userName.parentNode.className = 'input checked';
+                } else {
+                    userName.parentNode.className = 'input';
+                    msg[3].textContent = '이름은 한글, 영문 대소문자만 사용해주세요.';
+                    msg[3].className = 'msg dont';
+                }
+            }
+            userName.addEventListener('keyup', fn_validName);
+            userName.addEventListener('blur', function(){
+                fn_validName();
+            });
+
+            // 5. 생년월일
+            // 1) 년도 만들기
+            let yearList = document.querySelector('#year > ul');
+            let strYearList = '<li><a href="#" data-uri="년도">년도</a></li>';
+            for (let y = 2007; y >= 1911; y--) {
+                strYearList += '<li><a href="#" data-uri="' + y + '">' + y + '</a></li>';
+            }
+            yearList.innerHTML = strYearList;
+            // 2) 년도 클릭하면 ul(yearList) 보여주기
+            let year = document.getElementById('year');
+            year.addEventListener('click', function(){
+                yearList.className = 'lst show';
+            });
+            year.addEventListener('mouseout', function(){
+                yearList.className = 'lst';
+            });
+            // 3) ul(yearList) 선택
+            yearList.addEventListener('mouseover', function(){
+                yearList.className = 'lst show';
+            });
+            // 4) 선택한 년도(a 태그)를 year_value에 표시
+            let yearLink = document.querySelectorAll('#year > ul > li > a');
+            let yearValue = document.getElementById('year_value');
+            for (let i = 0; i < yearLink.length; i++) {
+                yearLink[i].addEventListener('click', function(){
+                    year_value.textContent = this.textContent;  // this == yearLink[i]
+                });
+            }
         }
     </script>
 </head>
@@ -193,7 +289,53 @@
         </div>
         <p class="msg"></p>
 
+        <label for="userName">이름</label>
+        <div class="input">
+            <input id="userName" type="text" placeholder="이름을 입력해 주세요">
+        </div>
+        <p class="msg"></p>
+
+        <label for="">생년월일<span class="no_required">(선택)</span></label>
+        <div class="date">
+            <div class="select_box" id="year">
+                <div id="year_value">년도</div>
+                <ul class="lst"></ul>
+            </div>
+            <div class="select_box" id="month"></div>
+            <div class="select_box" id="day"></div>
+        </div>
+
     </section>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </body>
 </html>
