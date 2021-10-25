@@ -30,6 +30,11 @@
                    $('div')
         */
     </script>
+    <style>
+        .red   { color: red; }
+        .green { color: green; }
+        .blue  { color: blue; }
+    </style>
 
 </head>
 <body>
@@ -220,5 +225,181 @@
 
     </script>
 
+    <input  type="checkbox"
+            id="check"
+            class="check" 
+            name="info"
+            value="A"
+            checked="checked">
+    <script>
+
+        // 속성     : attribute, HTML태그에 작성된 구성 요소
+        // 프로퍼티 : property,  DOM으로 저장하면 객체가 되는데 그 객체의 구성 요소
+
+        // attr() : 태그에 작성된대로 항상 사용됨.
+        // prop() : 태그의 상태 변화에 따라 값이 변경됨.
+        
+        let check = $('#check');  // DOM으로 저장
+        check.change(function(){  // check.on('change', function(){});
+            console.log(check.attr('name'),    check.prop('name'));
+            console.log(check.attr('value'),   check.prop('value'));    // 실제로는 check.val() 사용해야 함. 
+            console.log(check.attr('checked'), check.prop('checked'));  // attr: checked, prop: true
+        });
+
+        // 속성 변경
+        check.attr('value', 'B');  // 기존 value 속성을 'B'로 변경
+        check.prop('value', 'C')
+
+        // 속성 추가
+        // 기존에 없는 속성을 사용하면 추가됨.
+        check.attr('data1', '1000');  // 태그에 data1="1000" 속성이 추가
+        check.prop('data2', '2000');  // 객체에 data2="2000" 속성이 추가
+        console.log( check.prop('data2') );
+
+        // 속성 제거
+        check.removeAttr('data1');  // 태그에 추가된 data1 속성 제거
+        check.removeProp('data2');  // 객체에 추가된 data2 속성 제거
+        console.log( check.prop('data2') );
+
+    </script>
+
+    <h1 id="title">jQuery</h1>
+    <script>
+
+        // CSS 알아내기 : $().css('color');
+        // CSS 적용하기 : $().css('color', 'green');
+        //                $().css({
+        //                    'color': 'green',
+        //                    'font-size': '14px'
+        //                });
+        //                $().css('color', 'green').css('font-size', '14px');
+
+        $('#title').css({
+            'backgroundColor': 'limegreen',  // camelCase로 바꿔도 되고,
+            'text-align': 'center'           // 하이픈(-) 그대로 사용해도 됨.
+        });
+
+    </script>
+
+    <ul id="colors">
+        <li>RED</li>
+        <li>GREEN</li>
+        <li>BLUE</li>
+    </ul>
+    <script>
+        
+        let colors = $('#colors li');
+
+        // 클래스 부여하기
+        $(colors[0]).addClass('red');
+        $(colors[1]).addClass('green');
+        $(colors[2]).addClass('blue');
+
+        // 클래스 제거하기
+        $(colors[0]).removeClass('red');
+
+        // 클래스 토글(줬다 뺐었다)하기
+        $(colors[0]).click(function() {
+            $(this).toggleClass('red');  // $(this) == $(colors[0]) : 이벤트 대상
+        });
+
+    </script>
+
+    <div id="container">
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>jQuery</li>
+            <li>react</li>
+        </ul>
+    </div>
+    <script>
+        /*
+            jQuery 이벤트
+            1. 많은 이벤트 바인딩(event binding) 방법이 있다.
+               .bind(), .live(), .delegate() 등과 현재 사용되는 .on() 이 있다.
+            2. .on() 메소드 특징
+                1) 여러 이벤트를 등록할 수 있다.
+                2) 모든 이벤트를 등록할 수 있다.
+                3) 동적 생성된 요소에 이벤트를 등록할 수 있다.
+                4) click()와 같은 메소드를 사용하면 내부적으로 .on() 메소드가 사용된다.
+            3. 페이지 로드 이벤트
+                1)
+                $(document).ready(function(){
+
+                });
+                2)
+                $(function(){
+
+                });
+            4. 기타 이벤트
+                1) .one('click', function(){}) : 한 번만 동작하는 이벤트
+                2) .off('click')               : 이벤트 제거
+        */
+
+        // 1. 이벤트 적용
+        // 1) #container의 자식 중 li를 클릭하면
+        /*
+        $('#container').find('li').on('click', function(){
+            alert($(this).text());
+        });
+        */
+        // 2) #container의 자식 중 li를 클릭하면
+        $('#container').on('click', 'li', function(){
+            alert($(this).text());
+        });
+
+
+        // 2. 여러 이벤트 설정
+        
+        // 1) 다른 이벤트 + 같은 이벤트 리스너
+        /*
+        $('#container').on('mouseover mouseout', function(){
+            console.log('마우스가 돌아다니는군');
+        });
+        */
+        // 2) 다른 이벤트 + 다른 이벤트 리스너
+        /*
+        $('#container').on({
+            mouseover: function(){
+                console.log('마우스가 들어왔군');
+            },
+            mouseout: function(){
+                console.log('마우스가 나갔군');
+            },
+            click: function() {
+                console.log('클릭했군');
+            }
+        });
+        */
+
+    </script>
+
+    <!-- 연습1. 아이디/비번으로 로그인하기 -->
+    <!-- 아이디와 비밀번호가 모두 입력되어 있으면 login.html로 submit하시오. -->
+    <script>
+        // 페이지 로드 이벤트
+        $(document).ready(function(){
+            $('#login_form').on('submit', function(event){
+                // $(this).children().eq(0)
+                // $($(this).children()[0])
+                // console.log('1 자식 : ' + $(this).children().eq(0).val());
+                // console.log('2 자식 : ' + $(this).children().eq(1).val());
+                if ($(this).children().eq(0).val() == '' || $(this).children().eq(1).val() == '') {
+                    event.preventDefault();
+                    return false;
+                }
+                alert('로그인을 시도합니다.');
+                return true;
+            });
+        });
+    </script>
+    <form id="login_form" action="login.html" method="post">
+        아이디  <input type="text">
+        비밀번호<input type="password">
+        <button>로그인하기</button>
+    </form>
+  
 </body>
 </html>
