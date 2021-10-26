@@ -181,7 +181,7 @@
         }
     </script>
 
-    <!-- 연습. 기상청 XML 가져오기 -->
+    <!-- 연습1. 기상청 XML 가져오기 -->
     <div id="box6">
         <h1>
             <span id="year"></span>년 
@@ -228,6 +228,75 @@
             }
         }
     </script>
+
+    <!-- 연습2. CCTV 분석하기 -->
+    <div id="box7">
+        <h1>마포구 전체 CCTV는 <span id="total_cctv"></span>대 입니다.</h1>
+        <!-- console.log로 작업 -->
+        <!-- 전체 위도 : lat 배열에 저장 및 출력 -->
+        <!-- 전체 경도 : lon 배열에 저장 및 출력 -->
+    </div>
+    <script>
+        var request = new XMLHttpRequest();
+        request.open('get', '15_cctv.json', true);
+        request.send();
+        request.onreadystatechange = function(){
+            if (request.readyState == 4 && request.status == 200) {
+                // 전체 위도
+                let lat = [];
+                // 전체 경도
+                let lon = [];
+                // 전체 cctv 대수 total
+                let total = 0;
+                // resJSON = [{}, {}, {}, ...]
+                let resJSON = JSON.parse(request.responseText);
+                for (let i = 0; i < resJSON.length; i++) {
+                    // resJSON[i] : {}
+                    total += Number(resJSON[i]['카메라대수']);
+                    lat.push(Number(resJSON[i]['위도']));
+                    lon.push(Number(resJSON[i]['경도']));
+                }
+                document.getElementById('total_cctv').textContent = total;
+                console.log(lat);
+                console.log(lon);
+            }
+        }
+    </script>
+
+    <!-- jquery 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <div id="box8"></div>
+    <script>
+        // jQuery.ajax({});
+        $.ajax({
+            'url': '15_data.txt',       // url : 데이터를 보내고 받아 오는 서버 경로
+            'dataType': 'text',         // dataType : 받아 오는 데이터의 타입 (xml, json 등)
+            'data': 'query=1',          // data : 서버로 보내는 데이터    
+            'type': 'get',              // type : 요청 방식 (서버로 데이터를 보내는 방식)
+            'contentType': 'text/plain',// contentType : 서버로 보내는 데이터의 타입
+            'async': true,              // async : 비동기(true), 동기(false), 비동기만 사용할 것. 생략하면 비동기.
+            'success': function(data){  // success : ajax 성공 시 처리할 함수, data : 받아 온 실제 데이터 (responseText, responseXML 등)
+                fn_ajax1(data);
+            },
+            // error : ajax 실패 시 처리할 함수
+            'error': function(xhr, textStatus, errorThrown){  // jqXHR -> xhr
+                console.log('xhr.status: ' + xhr.status);
+                console.log('xhr.statusText: ' + xhr.statusText);
+                console.log('xhr.statusCode: ' + xhr.statusCode);
+                console.log('xhr.responseText: ' + xhr.responseText);
+                console.log('textStatus: ' + textStatus);
+                console.log('errorThrown: ' + errorThrown);
+            }
+        });
+        function fn_ajax1(data) {
+            $('#box8').text(data);
+        }
+    </script>
+
+
+
+
 
 </body>
 </html>
