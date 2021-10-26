@@ -294,9 +294,94 @@
         }
     </script>
 
+    <!-- 연습3. 네이버 API 책 검색 결과 화면에 나타내기 -->
+    <div id="box9">
+        <ul>
+            <li>전체 검색 결과: <span id="total"></span></li>
+            <li>검색일시: <span id="lastBuildDate"></span></li>
+        </ul>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>제목</td>
+                    <td>링크</td>
+                    <td>썸네일</td>
+                    <td>저자</td>
+                    <td>정상가격</td>
+                    <td>할인가격</td>
+                    <td>출판사</td>
+                    <td>출판일</td>
+                    <td>ISBN</td>
+                    <td>미리보기(최대200자)</td>
+                </tr>
+            </thead>
+            <tbody id="search_result"></tbody>
+        </table>
+    </div>
+    <script>
+        $.ajax({
+            'url': '15_search.xml',
+            'dataType': 'xml',
+            'success': function(data){
+                fn_ajax2(data);
+            },
+            'error': function(){
+                alert('오류 발생');
+            }
+        });
+        function fn_ajax2(data){
+            // data   : 전체 XML
+            // $(data): jquery wrapper로 묶어야 각종 메소드 사용 가능
+            $('#total').text($(data).find('total').text());
+            $('#lastBuildDate').text($(data).find('lastBuildDate').text());
+            let result = '';
+            $.each($(data).find('item'), function(i, item){
+                result += '<tr>';
+                result += '<td>' + $(item).find('title').html() + '</td>';
+                result += '<td><a href="' + $(item).find('link').text() + '">클릭</a></td>';
+                result += '<td><img src="' + $(item).find('image').text() + '" width="100px" height="120px"></td>';
+                result += '<td>' + $(item).find('author').text() + '</td>';
+                result += '<td>' + $(item).find('price').text() + '</td>';
+                result += '<td>' + $(item).find('discount').text() + '</td>';
+                result += '<td>' + $(item).find('publisher').text() + '</td>';
+                result += '<td>' + $(item).find('pubdate').text() + '</td>';
+                result += '<td>' + $(item).find('isbn').text() + '</td>';
+                result += '<td>' + $(item).find('description').html() + '</td>';
+                result += '</tr>';
+            });
+            $('#search_result').html(result);
+        }
+    </script>
 
-
-
+    <!-- 연습4. 자동차 정보 가져오기 -->
+    <div id="box10"></div>
+    <script>
+        $.ajax({
+            'url': '15_data2.json',
+            'dataType': 'json',
+            'success': function(data) {
+                fn_ajax3(data);
+            },
+            'error': function(xhr) {
+                alert(xhr.statusCode);
+            }
+        });
+        function fn_ajax3(car) {
+            let result = '<ul>';
+            result += '<li>모델: ' + car.model + '</li>';
+            result += '<li>제조사: ' + car.maker + '</li>';
+            result += '<li>가격: ' + car.price + '</li>';
+            result += '<li>옵션: ';
+            $.each(car.option, function(i, item){
+                result += item + '&nbsp;';
+            });
+            result += '</li>';
+            result += '<li>년식: ' + car.info.year + '</li>';
+            result += '<li>할인: ' + car.info.discount + '</li>';
+            result += '</ul>';
+            $('#box10').html(result);
+        }
+    </script>
 
 </body>
 </html>
