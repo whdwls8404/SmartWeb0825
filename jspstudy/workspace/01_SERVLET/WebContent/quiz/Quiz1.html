@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 각 버튼의 요구사항을 경고창으로 출력하는 Quiz1 서블릿을 작업하시오. -->
+
+	<input type="button" value="몇시?" id="time" data-cmd="now">
+	<input type="button" value="며칠?" id="date" data-cmd="today">
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script>
+	
+		$('input[type=button]').click(function(){
+			// $(this) : 클릭한 버튼을 의미함.
+			location.href = '/01_SERVLET/Quiz1?cmd=' + $(this).data('cmd');
+		});
+		
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+

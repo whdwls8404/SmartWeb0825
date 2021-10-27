@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script>
+		// 페이지 로드
+		$(document).ready(function(){
+			$('#btn1').on('click', function(){
+				alert("동작 확인 용");
+				if ($('#name').val() == '') {
+					alert('이름을 입력하세요!');
+					$('#name').focus();
+					return;
+				}
+				location.href = '/01_SERVLET/Servlet5?name=' + $('#name').val();
+			});
+			$('#btn2').click(function(){
+				let regName = /^[a-zA-Z0-9가-힣]{1,}$/;
+				if (regName.test($('#userName').val()) == false) {
+					alert("잘못된 이름입니다.");
+					$('#userName').val('');  // 입력된 이름을 지움.
+					$('#userName').focus();
+					return;
+				}
+				$('#form').attr('action', '/01_SERVLET/Servlet6');
+				$('#form').submit();
+			});
+		});
+	</script>
+	
+	<form>
+		<h1>redirect</h1>
+		<input type="text" name="name" id="name">
+		<input type="button" value="전송" id="btn1">
+	</form>
+	
+	<hr>
+	
+	<form id="form">
+		<h1>forward</h1>
+		<input type="text" name="name" id="userName">
+		<input type="button" value="전송" id="btn2">
+	</form>
+
+</body>
+</html>

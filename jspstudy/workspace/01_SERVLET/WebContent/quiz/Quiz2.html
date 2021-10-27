@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<!-- 편지 쓰기 -->
+	<!-- 작성일은 현재 날짜가 YYYY-MM-DD 형식으로 자동 입력된다. -->
+	<!-- 편지작성하기 버튼을 클릭하면 "YYYY-MM-DD_보내는사람.txt" 파일이 생성된다. -->
+	<!-- 
+		작성일 : 2021-10-27
+		보내는사람 : 민경태
+		받는사람 : 배수지
+		사랑해요 배수지 아이러브유 배수지
+		배수지 짱!
+	-->
+	<form>
+		<input type="text" name="date" id="date">
+		<br>
+		<input type="text" name="from" id="from" placeholder="보내는사람">
+		<br>
+		<input type="text" name="to" id="to" placeholder="받는사람">
+		<br>
+		<textarea name="content" placeholder="내용"></textarea>
+		<input type="button" value="편지작성하기" id="btn">
+	</form>
+	
+</body>
+</html>
