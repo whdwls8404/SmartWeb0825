@@ -21,6 +21,67 @@
 	<br>
 	<a href="/01_SERVLET/Servlet3?age=44">age 보내기</a>
 	
+	<hr>
+	
+	<!-- 2. 자바스크립트 location 객체 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script>
+		// 페이지 로드 이벤트 처리
+		$(document).ready(function(){
+			
+			$('#btn1').on('click', function(){
+				location.href = '/01_SERVLET/Servlet3';
+			});
+			
+			$('#btn2').on('click', function(){
+				
+				// 1. 태그 내부의 텍스트를 보내기.
+				/*
+				let name = $('#name').text();
+				let age = $('#age').text();
+				location.href = '/01_SERVLET/Servlet3?name=' + name + '&age=' + age;
+				*/
+				
+				// 2. data 속성 값 보내기.
+				let name = $('#name').data('name');  // data-name
+				let age = $('#age').data('age');     // data-age
+				location.href = '/01_SERVLET/Servlet3?name=' + name + '&age=' + age;
+				
+			});
+			
+		});
+	</script>
+	<input type="button" value="이동" id="btn1">
+	<br>
+	<span id="name" data-name="민혁-data">민혁</span>
+	<span id="age" data-age="34">34</span>
+	<input type="button" value="데이터전송" id="btn2">
+	
+	<hr>
+	
+	<!-- 3. <form> 태그 요소 submit -->
+	<form action="/01_SERVLET/Servlet3" method="post">
+		<div>
+			<label for="userName">이름</label>
+			<input type="text" id="userName" name="name">
+		</div>
+		<div>
+			<label for="userAge">나이</label>
+			<input type="text" id="userAge" name="age">
+		</div>
+		<button>서브밋</button>
+	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
