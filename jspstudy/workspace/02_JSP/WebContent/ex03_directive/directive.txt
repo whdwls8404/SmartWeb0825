@@ -1,0 +1,22 @@
+지시어
+
+1. page : 톰캣이 해당 페이지를 해석할 때 처리함.
+	1) <%@ page language="java" %>
+	2) <%@ page contentType="text/html; charset=UTF-8" %>
+	3) <%@ page pageEncoding="UTF-8" %>
+	4) <%@ page import="java.util.Calendar" %>
+	5) <%@ page session="true" %>
+	6) <%@ page buffer="8KB" %>
+	7) <%@ page autoFlush="true" %>
+	8) <%@ page errorPage="error.html" %>
+	9) <%@ page isErrorPage="false" %>
+
+2. taglib : 톰캣의 확장태그를 사용할 때 사용함.
+	1) 태그 라이브러리를 포함할 때 사용한다. (*.jar)
+	2) tomcat.apache.org에서 다운로드 받을 수 있다.
+	3) 예시
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+3. include
+	1) 정적 페이지를 포함할 때 사용한다.
+	2) <%@ include file="포함할파일" %>

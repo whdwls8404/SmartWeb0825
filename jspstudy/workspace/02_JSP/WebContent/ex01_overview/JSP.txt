@@ -1,0 +1,13 @@
+1. JSP 기본 객체
+	1) JSP가 미리 생성해 놓은 객체이다.
+	2) 내장 객체이다.
+	3) 종류
+		(1) request      요청, 요청 저장소
+		(2) response     응답
+		(3) out          출력 스트림
+		(4) page         페이지
+		(5) config       환경 설정
+		(6) exception    예외
+		(7) pageContext  페이지 저장소
+		(8) session      세션 저장소
+		(9) application  애플리케이션 저장소

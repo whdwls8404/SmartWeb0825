@@ -1,0 +1,29 @@
+1. JDBC 폴더 (DB 접속 JDBC 드라이버)
+    1) ojdbc6.jar    - ORACLE DB
+    2) mysql-connector-java-5.1.42.jar    - MYSQL 5.7 DB
+    3) mysql-connector-java-8.0.14.jar    - MYSQL 8.0 DB
+
+2. JSTL 폴더 (JSTL 태그 라이브러리)
+    1) taglibs-standard-impl-1.2.5.jar
+    2) taglibs-standard-jstlel-1.2.5.jar
+    3) taglibs-standard-spec-1.2.5.jar
+
+3. DBCP 폴더 (DB CONNECTION POOL(커넥션 풀) 설정 라이브러리)
+    1) commons-collections4-4.2.jar
+    2) commons-dbcp2-2.5.0.jar
+    3) commons-pool2-2.6.0.jar
+
+4. MYBATIS 폴더
+    1) mybatis-3.5.2.jar    - mybatis 프레임워크 라이브러리
+    2) mapper.xml    - SQL 문 작성
+    3) mybatis-config.xml    - DataSource, mapper 종류 및 경로 설정
+
+5. FILEUPLOAD 폴더 (첨부파일 업로드 라이브러리)
+    1) cos.jar
+
+6. JSON 폴더 (JSON 처리)
+    1) json-20180813.jar
+    2) json-simple-1.1.1.jar
+
+7. LOMBOK 폴더 (constructor, getter, setter 등 자동생성)
+    1) lombok.jar
