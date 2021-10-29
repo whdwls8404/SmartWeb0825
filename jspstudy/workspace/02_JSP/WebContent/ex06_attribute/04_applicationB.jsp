@@ -52,6 +52,14 @@
 	if (bw != null) {
 		bw.close();
 	}
+	
+	// 파일 생성 확인
+	if (file.exists()) {
+		application.setAttribute("success", true);
+	} else {
+		application.setAttribute("success", false);
+	}
+	
 %>
 
 <script>
@@ -63,9 +71,3 @@
 	}
 	history.back();
 </script>
-
-
-
-
-
-
