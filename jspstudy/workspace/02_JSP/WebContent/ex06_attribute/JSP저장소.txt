@@ -1,0 +1,34 @@
+1. JSP 저장 영역
+	1) 데이터를 속성(attribute)으로 저장할 수 있다.
+	2) 데이터를 저장하는 4개의 내장 객체를 의미한다.
+	3) pageContext, request, session, application
+	4) 4개 저장 영역에 저장된 데이터는 EL(Expression Language)로 사용할 수 있다.
+
+2. pageContext
+	1) 해당 페이지에서만 사용
+	2) 페이지를 벗어나면 소멸
+
+3. request
+	1) 요청에서만 사용
+	2) 응답되면 소멸
+
+4. session
+	1) 웹 브라우저에서 사용
+	2) 웹 브라우저를 닫으면 소멸
+
+5. application
+	1) 애플리케이션에서 사용
+	2) 애플리케이션을 닫으면 소멸
+
+6. 데이터 저장 메소드
+	1) pageContext.setAttribute("속성명", 값);
+	2) request.setAttribute("속성명", 값);
+	3) session.setAttribute("속성명", 값);
+	4) application.setAttribute("속성명", 값);
+	5) 모든 값은 Object 타입으로 저장된다. (모든 값을 저장할 수 있다. 꺼낼 때는 캐스팅이 필요하다.)
+
+7. 데이터 반환 메소드
+	1) (타입)pageContext.getAttribute("속성명");
+	2) (타입)request.getAttribute("속성명");
+	3) (타입)session.getAttribute("속성명");
+	4) (타입)application.getAttribute("속성명");
