@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,6 +10,5 @@
 	String name = request.getParameter("name");
 	String age = request.getParameter("age");
 	
-	response.setCharacterEncoding("UTF-8");
-	response.sendRedirect("04_sendRedirectC.jsp?name=" + name + "&age=" + age);
+	response.sendRedirect("04_sendRedirectC.jsp?name=" + URLEncoder.encode(name, "UTF-8") + "&age=" + age);
 %>
