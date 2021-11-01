@@ -17,6 +17,34 @@
 </head>
 <body>
 
+	<%
+		// 쿠키 이름이 userId인 쿠키를 찾는다.
+		// userId 쿠키가 있으면 id="userId"인 요소에 쿠키 값을 넣는다.
+		
+		String userId = null;
+		Cookie[] cookies = request.getCookies();
+		
+		// cookie 점검
+		if (cookies != null && cookies.length != 0) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("userId")) {
+					userId = cookie.getValue();
+					break;
+				}
+			}
+		}
+	%>
+	
+	<script>
+		$(document).ready(function(){
+			if ('<%=userId%>' != 'null') {
+				$('#userId').val('<%=userId%>');
+				$('#checkSaveId').attr('checked', 'checked');
+				// $('#checkSaveId').prop('checked', true);
+			}
+		});
+	</script>
+
 	<form action="06_saveIdB.jsp" method="post">
 		<div>
 			<label for="userId">아이디</label>
