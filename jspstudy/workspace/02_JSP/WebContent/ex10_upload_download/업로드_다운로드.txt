@@ -1,0 +1,14 @@
+1. 파일 업로드
+
+	1) cos.jar 라이브러리를 프로젝트에 추가한다.
+		(1) servlets.com에서 COS Library를 다운로드 받는다.
+		(2) cos.jar 파일을 WEB-INF/lib 디렉터리에 추가한다.(복사 붙이기)
+	2) 업로드 될 파일이 보관될 디렉터리를 추가한다.
+		(1) WebContent 하위에 추가한다.
+		(2) storage, archive, upload, repository 등 이름은 알아서 정한다.
+	3) 반드시 다음 형식의 <form> 태그를 사용한다.
+		<form method="post" enctype="multipart/form-data">
+			<input type="file">
+		</form>
+	4) multipart/form-data 형식의 form은 MultipartRequest 클래스로 처리할 수 있다.
+	   일반 HttpServletRequest request로 처리할 수 없다.
