@@ -54,7 +54,7 @@
 <body>
 
 	<form action="01_uploadB.jsp" method="post" enctype="multipart/form-data">
-		<div>		
+		<div>
 			<label for="uploader">작성자</label>
 			<input type="text" name="uploader" id="uploader">
 		</div>

@@ -12,3 +12,13 @@
 		</form>
 	4) multipart/form-data 형식의 form은 MultipartRequest 클래스로 처리할 수 있다.
 	   일반 HttpServletRequest request로 처리할 수 없다.
+	   
+
+2. 파일 다운로드
+	1) 다운로드는 응답(response)이다.
+	2) 다운로드용 응답 헤더(response header)를 작성한다.
+		(1) Content-Disposition
+		(2) Content-Length
+		(3) Content-Type
+	3) 업로드된 파일을 입력 스트림으로 읽은 뒤,
+	   응답(response) 출력 스트림으로 파일 내용을 복사한다.
