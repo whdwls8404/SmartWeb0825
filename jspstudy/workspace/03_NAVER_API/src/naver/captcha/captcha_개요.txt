@@ -1,0 +1,11 @@
+Ex01_ApiCaptchaKey
+1. 아이디/시크릿 전송 및 키 요청
+2. 네이버가 키 발급해 줌 (JSON 형식의 키) : JSON 형식 처리 라이브러리
+
+Ex02_ApiCaptchaImage
+3. 아이디/시크릿/키 전송 및 이미지 요청
+4. 네이버가 이미지 발급해 줌
+
+Ex03_ApiCaptchaNKeyResult
+5. 아이디/시크릿/키/그림문자 전송
+6. 네이버는 성공/실패 여부 반환 (JSON 형식)
