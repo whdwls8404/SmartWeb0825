@@ -8,9 +8,11 @@
 </head>
 <body>
 
-	<a href="/MVC/today.do?name=민경태">현재날짜출력</a>
+	<a href="/MVC/today.do">현재 날짜 출력</a>
 	<br>
-	<a href="/MVC/now.do">현재시간출력</a>
+	<a href="/MVC/now.do">현재 시간 출력</a>
+	<br>
+	<a href="/MVC/lotto.do">로또 번호 6개 출력</a>
 	
 </body>
 </html>

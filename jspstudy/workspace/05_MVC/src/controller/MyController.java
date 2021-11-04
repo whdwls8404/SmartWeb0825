@@ -25,6 +25,7 @@ public class MyController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		/* 요청 확인 */
 		// request.getRequestURI() : 요청을 확인하는 용도로 사용함.
 		
 		// String[] arr = request.getRequestURI().split("/");
@@ -33,32 +34,22 @@ public class MyController extends HttpServlet {
 		int begin = request.getRequestURI().lastIndexOf("/");
 		String command = request.getRequestURI().substring(begin + 1);
 		
-		
-		// 요청에 따른 Model의 선택
-		
-		/*
-		if (command.equals("today.do")) {
-			Today today = new Today();
-			today.execute();
-		} else if (command.equals("now.do")) {
-			
-		}
-		*/
-		
+		/* 요청에 따른 Model의 선택 */
 		switch (command) {
 		case "today.do":
 			Today today = new Today();
-			today.execute(request);
+			today.execute(request, response);
 			break;
 		case "now.do":
 			Now now = new Now();
-			now.execute();
+			now.execute(request, response);
 			break;
 		}
 		
-		
+		/* 응답 View로 이동 */
+		// request를 전달하는 forward
+		// 각 Model이 request에 결과를 저장해 두었음.
 		request.getRequestDispatcher("views/output.jsp").forward(request, response);
-		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
