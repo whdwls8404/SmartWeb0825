@@ -13,10 +13,10 @@
 	<c:set var="average" value="${(param.kor + param.eng + param.mat) div 3}" />
 	
 	<!-- 2. 합격여부 구하기 -->
-	<c:if test="${average ge 60}">
+	<c:if test="${average - 60 ge 0}">
 		<c:set var="pass" value="합격" />
 	</c:if>
-	<c:if test="${average lt 60}">
+	<c:if test="${average  - 60 lt 0}">
 		<c:set var="pass" value="불합격" />
 	</c:if>
 	
