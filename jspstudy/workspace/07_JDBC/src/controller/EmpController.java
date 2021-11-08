@@ -8,16 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
-import model.Circle;
-import model.Rectangle;
-import model.Shape;
+import model.EmpAddService;
+import model.EmpFindEmpListService;
+import model.EmpFindEmpService;
+import model.EmpModifyService;
+import model.EmpRemoveService;
+import model.EmpService;
 
-// URLMapping의 suffix가 .do인 모든 요청을 처리하는 컨트롤러
-@WebServlet("*.do")
 
-public class MyController extends HttpServlet {
+@WebServlet("*.emp")
+
+
+public class EmpController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public MyController() {
+    public EmpController() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,43 +29,38 @@ public class MyController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// URLMapping 확인
-		String requestURI = request.getRequestURI();
-		String command = requestURI.substring(requestURI.lastIndexOf("/") + 1);
+		String[] arr = request.getRequestURI().split("/");
+		String command = arr[arr.length - 1];
 		
-		// 모든 model은 Shape 인터페이스를 구현한다.
-		Shape shape = null;
-		
-		// ModelAndView 선언
 		ModelAndView modelAndView = null;
 		
-		// command에 따른 model 선택
+		EmpService empService = null;
 		switch (command) {
-		case "rectangle.do":
-			shape = new Rectangle();
+		case "insert.emp":
+			empService = new EmpAddService();
 			break;
-		case "circle.do":
-			shape = new Circle();
+		case "delete.emp":
+			empService = new EmpRemoveService();
 			break;
-		case "input.do":
-			modelAndView = new ModelAndView();
-			modelAndView.setView("views/input.jsp");
-			modelAndView.setRedirect(false);
+		case "update.emp":
+			empService = new EmpModifyService();
+			break;
+		case "selectDto.emp":
+			empService = new EmpFindEmpService();
+			break;
+		case "selectList.emp":
+			empService = new EmpFindEmpListService();
 			break;
 		}
 		
-		// model 실행
-		if (shape != null) {
-			modelAndView = shape.execute(request, response);
+		if ( empService != null ) {
+			modelAndView = empService.execute(request, response);
 		}
 		
-		// modelAndView가 없는 경우 (ajax 처리)
-		// Model이 직접 결과를 반환하는 경우 => response를 직접 작업하는 경우
 		if ( modelAndView == null ) {
 			return;
 		}
 		
-		// modelAndView가 있는 경우 (ajax 처리가 아닌 모든 경우)
 		if ( modelAndView.isRedirect() ) {
 			response.sendRedirect( modelAndView.getView() );
 		} else {

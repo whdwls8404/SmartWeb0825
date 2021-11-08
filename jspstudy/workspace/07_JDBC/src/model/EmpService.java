@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
 
-public interface Shape {
+public interface EmpService {
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response);
 }
