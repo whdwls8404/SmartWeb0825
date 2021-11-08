@@ -12,19 +12,12 @@
 <body>
 
 	<div>
-		<h1>사원 관리하기</h1>
-		<ol>
-			<li><a href="/JDBC/selectList.emp">전체 사원 목록 보기</a></li>
-			<li><a href="/JDBC/insertForm.emp">사원 등록 하러 가기</a></li>
-		</ol>
+		<form method="post" action="/JDBC/insert.emp">
+			<input type="text" name="name" placeholder="사원이름">
+			<br>
+			<button>신규사원등록하기</button>
+		</form>
 	</div>
 
 </body>
 </html>
-
-
-
-
-
-
-

@@ -51,6 +51,9 @@ public class EmpController extends HttpServlet {
 		case "selectList.emp":
 			empService = new EmpFindEmpListService();
 			break;
+		case "insertForm.emp":
+			modelAndView = new ModelAndView("views/insertEmp.jsp", false);
+			break;
 		}
 		
 		if ( empService != null ) {
