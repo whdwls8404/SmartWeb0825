@@ -1,5 +1,7 @@
 package model;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +27,24 @@ public class EmpAddService implements EmpService {
 			modelAndView = new ModelAndView("/JDBC/selectList.emp", true);  // DB 수정 이후에는 redirect 할 것.
 		} else {
 			// 경고창 띄우기
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('사원 등록이 실패했습니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (out != null) {
+						out.close();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return modelAndView;
