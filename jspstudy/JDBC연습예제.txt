@@ -1,0 +1,18 @@
+QUIZ2
+
+1. jar 라이브러리 추가하기
+2. META-INF/context.xml 추가하기
+3. WebContent/sql 디렉터리 추가하기
+   ㄴquiz2.sql 파일 추가하고, 테이블 & 시퀀스 작업하기
+    테이블 : board(idx, title, writer, content, register)
+    시퀀스 : board_seq 시작번호 1000
+4. package 추가하기
+   common, controller, dao, dto, model
+5. common 패키지에 ModelAndView 추가하기
+6. dto 패키지에 BoardDTO 추가하기
+7. dao 패키지에 BoardDAO 추가하기
+8. controller 패키지에 BoardController 추가하기
+9. model 패키지에 BoardService 인터페이스 추가하기
+10. model 패키지에 각종 Service 구현체(클래스) 추가하기
+11. WebContent 디렉터리에 index.jsp 추가하기
+12. WebContent/views 디렉터리 추가하기
