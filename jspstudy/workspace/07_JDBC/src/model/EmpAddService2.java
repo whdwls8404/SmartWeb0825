@@ -31,7 +31,7 @@ public class EmpAddService2 implements EmpService {
 				out.println("location.href='/JDBC/selectList.emp';");
 				out.println("</script>");
 				out.close();
-			} else {
+			} else { 
 				out.println("<script>");
 				out.println("alert('등록 실패');");
 				out.println("history.back();");
