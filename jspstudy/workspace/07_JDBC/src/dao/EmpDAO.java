@@ -15,7 +15,7 @@ import dto.EmpDTO;
 
 public class EmpDAO {
 	
-	/* single */
+	/* singleton */
 	private static EmpDAO empDAO;
 	private EmpDAO() {
 		

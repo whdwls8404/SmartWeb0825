@@ -11,8 +11,8 @@ QUIZ2  :  gt_min@naver.com  (민경태.war)
 5. common 패키지에 ModelAndView 추가하기 (복사)
 6. dto 패키지에 BoardDTO 추가하기
 7. dao 패키지에 BoardDAO 추가하기(singleton, context.xml, close 복사 - 천천히 오타 없이)
-8. controller 패키지에 BoardController 추가하기
-9. model 패키지에 BoardService 인터페이스 추가하기
+8. model 패키지에 BoardService 인터페이스 추가하기
+9. controller 패키지에 BoardController 추가하기
 10. model 패키지에 각종 Service 구현체(클래스) 추가하기
 11. WebContent 디렉터리에 index.jsp 추가하기
 12. WebContent/views 디렉터리 추가하기
