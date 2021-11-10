@@ -22,7 +22,13 @@
 				<li>사원이름 : ${emp.name}</li>
 				<li>사원연봉 : ${emp.salary}</li>
 				<li>고용일자 : ${emp.hire}</li>
-			</ul>			
+			</ul>
+			<div>
+				<a href="/MYBATIS/deleteEmp.do?num=${emp.num}">삭제</a>
+			</div>
+			<div>
+				<a href="/MYBATIS/updateEmpForm.do?num=${emp.num}">수정</a>
+			</div>
 		</c:if>
 		<a href="/MYBATIS/selectEmpList.do">목록으로 이동</a>
 	</div>

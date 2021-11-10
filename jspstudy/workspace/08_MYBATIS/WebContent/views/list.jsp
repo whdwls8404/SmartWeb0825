@@ -44,6 +44,9 @@
 				</ul>
 			</c:forEach>
 		</c:if>
+		<div>
+			<a href="/MYBATIS/insertEmpForm.do">사원 등록하기</a>
+		</div>
 	</div>
 
 </body>

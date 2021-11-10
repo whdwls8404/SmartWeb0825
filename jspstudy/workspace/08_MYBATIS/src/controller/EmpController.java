@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import model.DeleteEmpService;
 import model.EmpService;
 import model.FindAllService;
 import model.FindOneService;
+import model.InsertEmpService;
+import model.UpdateEmpService;
+import model.UpdateFormService;
 
 
 @WebServlet("*.do")
@@ -30,6 +34,8 @@ public class EmpController extends HttpServlet {
 		String[] arr = requestURI.split("/");         /*  {"", "MYBATIS", "selectEmpList.do"}   */
 		
 		EmpService empService = null;
+		ModelAndView mav = null;
+		
 		switch (arr[arr.length - 1]) {
 		case "selectEmpList.do":
 			empService = new FindAllService();
@@ -37,9 +43,23 @@ public class EmpController extends HttpServlet {
 		case "selectEmp.do":
 			empService = new FindOneService();
 			break;
+		case "deleteEmp.do":
+			empService = new DeleteEmpService();
+			break;
+		case "updateEmpForm.do":
+			empService = new UpdateFormService();
+			break;
+		case "updateEmp.do":
+			empService = new UpdateEmpService();
+			break;
+		case "insertEmpForm.do":
+			mav = new ModelAndView("views/insert.jsp", false);
+			break;
+		case "insertEmp.do":
+			empService = new InsertEmpService();
+			break;
 		}
 		
-		ModelAndView mav = null;
 		if (empService != null) {
 			mav = empService.execute(request, response);
 		}

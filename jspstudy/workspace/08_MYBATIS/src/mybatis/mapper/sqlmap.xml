@@ -32,18 +32,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE num = #{num}
 	</select>
 
+	<!--
+		3. 사원 삭제
+			1) 파라미터 : Long num
+			2) 반환타입 : 0 또는 1, int
+			3) 주의!
+			   <insert>, <update>, <delete> 태그는 반환타입이 모두 int이다.
+			   마이바티스에서는 반환타입을 작성하지 않는다.
+			   어.차.피. int이므로
+	-->
+	<delete id="deleteEmp" parameterType="Long">
+		DELETE
+		  FROM emp
+		 WHERE num = #{num}
+	</delete>
 
+	<!--
+		4. 사원 수정
+			1) 파라미터 : EmpDto
+			2) 반환타입 : update는 반환타입 안 적음.
+	-->
+	<update id="updateEmp" parameterType="dto.EmpDto">
+		UPDATE emp
+		   SET name = #{name}
+		     , salary = #{salary}
+		 WHERE num = #{num}
+	</update>
 
-
-
-
-
-
-
-
-
-
-
-
+	<!--
+		5. 사원 삽입
+			1) 파라미터 : HashMap
+			2) 반환타입 : insert는 반환타입 안 적음.
+	-->
+	<insert id="insertEmp" parameterType="Map">
+		INSERT INTO
+		   emp (num, name, salary, hire)
+		VALUES (emp_seq.nextval, #{name}, TO_NUMBER(#{salary}), TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+	</insert>
 
 </mapper>
