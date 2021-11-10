@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- SQL문 작성하는 곳 == mapper -->
+
+<!-- namespace는 mapper의 전체 경로를 작성해 둔다. -->
+<mapper namespace="mybatis.mapper.sqlmap">
+
+	<!-- 모든 쿼리문에 세미콜론(;) 넣지 말 것!!! -->
+
+	<!--
+		1. 사원 목록 반환
+			1) 파라미터 : 없음
+			2) 반환타입 : 사원 (1명이든 여러 명이든 사원)
+	-->
+	<select id="selectEmpList" resultType="dto.EmpDto">
+		SELECT num, name, salary, hire
+		  FROM emp
+		 ORDER BY num DESC
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
