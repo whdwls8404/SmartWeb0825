@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.ModelAndView;
 import model.EmpService;
 import model.FindAllService;
+import model.FindOneService;
 
 
 @WebServlet("*.do")
@@ -33,6 +34,9 @@ public class EmpController extends HttpServlet {
 		case "selectEmpList.do":
 			empService = new FindAllService();
 			break;
+		case "selectEmp.do":
+			empService = new FindOneService();
+			break;
 		}
 		
 		ModelAndView mav = null;
@@ -50,7 +54,7 @@ public class EmpController extends HttpServlet {
 			response.sendRedirect(mav.getView());
 		} else {
 			request.getRequestDispatcher(mav.getView()).forward(request, response);
-		}	
+		}
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

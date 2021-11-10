@@ -68,7 +68,22 @@ public class EmpDao {
 		
 	}
 	
-	
+	// 2. 사원 정보 반환
+	public EmpDto selectEmpByNum(Long num) {
+		
+		// 1) SqlSession 객체 생성 : factory에서 뽑기
+		SqlSession ss = factory.openSession();  // select 처리는 openSession() : 인수 없음
+		
+		// 2) sqlmap.xml(매퍼)에서 <select> 태그 호출
+		EmpDto empDto = ss.selectOne("mybatis.mapper.sqlmap.selectEmpByNum", num);
+		
+		// 3) SqlSession 객체 반납
+		ss.close();
+		
+		// 4) 결과 반환
+		return empDto;
+		
+	}
 	
 	
 	

@@ -21,6 +21,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ORDER BY num DESC
 	</select>
 
+	<!--
+		2. 사원 정보 반환
+			1) 파라미터 : Long num
+			2) 반환타입 : 사원 (1명이든 여러 명이든 사원)
+	-->
+	<select id="selectEmpByNum" parameterType="Long" resultType="dto.EmpDto">
+		SELECT num, name, salary, hire
+		  FROM emp
+		 WHERE num = #{num}
+	</select>
+
 
 
 
