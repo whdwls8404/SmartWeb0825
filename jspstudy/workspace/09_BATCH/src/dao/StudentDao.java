@@ -57,10 +57,30 @@ public class StudentDao {
 		return result;
 	}
 	
+	// 5. 학생 삭제
+	public int deleteStudent(String sno) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.delete("dao.student.deleteStudent", sno);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
+	// 6. 학생 정보 조회
+	public Student selectStudentBySno(String sno) {
+		SqlSession ss = factory.openSession();
+		Student student = ss.selectOne("dao.student.selectStudentBySno", sno);
+		ss.close();
+		return student;
+	}
 	
-	
-	
-	
+	// 7. 학생 수정
+	public int updateStudent(Student student) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.student.updateStudent", student);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 }

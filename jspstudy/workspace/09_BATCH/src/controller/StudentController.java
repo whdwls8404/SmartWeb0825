@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import model.StudentDeleteService;
+import model.StudentDetailService;
 import model.StudentInsertService;
 import model.StudentListService;
 import model.StudentService;
+import model.StudentUpdateService;
 
 
 @WebServlet("*.do")
@@ -41,6 +44,15 @@ public class StudentController extends HttpServlet {
 			break;
 		case "insertStudent.do":
 			studentService = new StudentInsertService();
+			break;
+		case "deleteStudent.do":
+			studentService = new StudentDeleteService();
+			break;
+		case "studentDetail.do":
+			studentService = new StudentDetailService();
+			break;
+		case "updateStudent.do":
+			studentService = new StudentUpdateService();
 			break;
 		}
 		

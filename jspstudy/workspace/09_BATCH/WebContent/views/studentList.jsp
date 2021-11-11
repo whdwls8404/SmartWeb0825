@@ -51,11 +51,18 @@
 	</style>
 	<script>
 		$(document).ready(function(){
+			
+			$('.update_btn').on('click', function(){
+				let sno = $(this).prev().val();
+				location.href = '/BATCH/studentDetail.do?sno=' + sno;
+			});
+			
 			$('.delete_btn').on('click', function(){
 				if (confirm('삭제할까요?')) {
 					location.href = '/BATCH/deleteStudent.do?sno=' + $(this).data('sno');
 				}
 			});
+			
 		})
 	</script>
 </head>
@@ -97,8 +104,12 @@
 							<td><fmt:formatNumber value="${student.ave}" pattern="0.00" /></td>
 							<td>${student.grade}</td>
 							<td>
-								<input type="button" value="수정" id="update_btn">
-								<input type="button" value="삭제" data-sno="${student.sno}" class="delete_btn" id="delete_btn">
+								<!-- 수정 버튼의 이전 형제에 학번 저장해 둠. -->
+								<input type="hidden" value="${student.sno}">
+								<input type="button" value="수정" class="update_btn">
+								
+								<!-- 삭제 버튼의 data 속성에 학번 저장해 둠. -->
+								<input type="button" value="삭제" data-sno="${student.sno}" class="delete_btn">
 							</td>
 						</tr>
 					</c:forEach>

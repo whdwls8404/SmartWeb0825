@@ -30,11 +30,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{sno}, #{name}, #{kor}, #{eng}, #{mat}, #{ave}, #{grade})
 	</insert>
 	
+	<!-- 5. 학생 삭제 -->
+	<delete id="deleteStudent" parameterType="String">
+		DELETE
+		  FROM student
+		 WHERE sno = #{sno}
+	</delete>
 	
+	<!-- 6. 학생 정보 조회 -->
+	<select id="selectStudentBySno" parameterType="String" resultType="dto.Student">
+		SELECT sno, name, kor, eng, mat, ave, grade
+		  FROM student
+		 WHERE sno = #{sno}
+	</select>
 	
-	
-	
-	
+	<!-- 7. 학생 수정 -->
+	<update id="updateStudent" parameterType="dto.Student">
+		UPDATE student
+		   SET name = #{name}, kor = #{kor}, eng = #{eng}, mat = #{mat}, ave = #{ave}, grade = #{grade}
+		 WHERE sno = #{sno}
+	</update>
 	
 	
 	
