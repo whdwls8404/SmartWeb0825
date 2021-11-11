@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="dao.student">
+
+	<!-- 1. 학생 목록 -->
+	<select id="selectAllStudent" resultType="dto.Student">
+		SELECT sno, name, kor, eng, mat, ave, grade
+		  FROM student
+		 ORDER BY sno ASC
+	</select>
+	
+	<!-- 2. 전체 학생 수 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM student
+	</select>
+	
+	<!-- 3. 전체 학생 평균 -->
+	<select id="getAverage" resultType="double">
+		SELECT AVG(ave)
+		  FROM student
+	</select>
+	
+	<!-- 4. 학생 등록 -->
+	<insert id="insertStudent" parameterType="dto.Student">
+		INSERT INTO student
+		VALUES (#{sno}, #{name}, #{kor}, #{eng}, #{mat}, #{ave}, #{grade})
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>
