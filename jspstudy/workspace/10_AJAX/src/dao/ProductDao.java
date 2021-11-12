@@ -39,6 +39,39 @@ public class ProductDao {
 		return product == null;
 	}
 	
+	// 3. 제품 등록
+	public int insert(Product product) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.insert("dao.product.insert", product);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
+	
+	// 4. 마지막 등록 제품명
+	public Product prevInsertName() {
+		SqlSession ss = factory.openSession();
+		Product product = ss.selectOne("dao.product.prevInsertName");
+		ss.close();
+		return product;
+	}
+	
+	public String prevInsertName2() {
+		SqlSession ss = factory.openSession();
+		Product product = ss.selectOne("dao.product.prevInsertName");
+		ss.close();
+		return product.getName();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

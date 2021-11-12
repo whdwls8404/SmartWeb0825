@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import model.InsertService;
 import model.NameCheckService;
+import model.PrevInsertNameService;
 import model.ProductService;
 import model.SelectListService;
 
@@ -40,6 +42,12 @@ public class ProductController extends HttpServlet {
 			break;
 		case "nameCheck.do":
 			service = new NameCheckService();
+			break;
+		case "insert.do":
+			service = new InsertService();
+			break;
+		case "prevInsertName.do":
+			service = new PrevInsertNameService();
 			break;
 		}
 		

@@ -19,6 +19,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE name = #{name}
 	</select>
 	
+	<!-- 3. 제품 등록 -->
+	<insert id="insert" parameterType="dto.Product">
+		INSERT INTO product
+		VALUES (product_seq.nextval, #{name}, #{price}, SYSDATE)
+	</insert>
+	
+	<!-- 4. 마지막 등록 제품명 -->
+	<!--
+		SELECT name
+		  FROM product
+		 WHERE pno = (SELECT MAX(pno) FROM product)
+	-->
+	<select id="prevInsertName" resultType="dto.Product">
+		SELECT a.name
+		  FROM (SELECT name
+		          FROM product
+		         ORDER BY made DESC) a
+		 WHERE ROWNUM = 1
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

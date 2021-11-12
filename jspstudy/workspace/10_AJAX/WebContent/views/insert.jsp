@@ -37,6 +37,44 @@
 				});
 			});
 			
+			// 제품 등록
+			$('#insert_btn').on('click', function(){
+				$.ajax({
+					url: '/AJAX/insert.do',
+					type: 'post',
+					// data: 'name=' + $('#name').val() + '&price=' + $('#price').val(),
+					data: $('#f').serialize(),  // 폼의 모든 요소를 파라미터로 넘김
+					dataType: 'json',
+					success: function(resData) {
+						if (resData.result > 0) {
+							alert('제품 등록 성공.');
+							$('#name').val('');
+							$('#price').val('');
+						} else {
+							alert('제품 등록 실패.');
+						}
+					},
+					error: function() {
+						alert('제품 등록 실패.');
+					}
+				});
+			});
+			
+			// 마지막 등록 제품명 확인
+			$('#name_btn').on('click', function(){
+				$.ajax({
+					url: '/AJAX/prevInsertName.do',
+					type: 'get',
+					dataType: 'json',
+					success: function(resData) {
+						alert(resData.name);
+					},
+					error: function() {
+						alert('확인 실패');
+					}
+				});
+			});
+			
 		})
 	</script>
 </head>
@@ -44,13 +82,14 @@
 
 	<div>
 		<h1>제품 등록 화면</h1>
-		<form id="f" action="/AJAX/insert.do" method="post">
+		<form id="f">
 			<label for="name">제품명</label>
 			<input type="text" name="name" id="name">
+			<input type="button" id="name_btn" value="마지막 등록 제품명 확인">
 			<label for="price">제품가격</label>
 			<input type="text" name="price" id="price">
 			<br>
-			<button>등록하기</button>
+			<input type="button" id="insert_btn" value="제품등록">
 		</form>
 	</div>
 
