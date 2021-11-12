@@ -31,7 +31,13 @@ public class ProductDao {
 		return list;
 	}
 	
-	
+	// 2. 제품명 중복 체크
+	public boolean nameCheck(String name) {
+		SqlSession ss = factory.openSession();
+		Product product = ss.selectOne("dao.product.nameCheck", name);
+		ss.close();
+		return product == null;
+	}
 	
 	
 	

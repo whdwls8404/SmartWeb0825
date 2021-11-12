@@ -9,3 +9,10 @@ CREATE TABLE product
 
 DROP SEQUENCE product_seq;
 CREATE SEQUENCE product_seq NOCACHE;
+
+INSERT INTO product VALUES (product_seq.nextval, '맛동산', 2500, SYSDATE);
+COMMIT
+
+
+
+

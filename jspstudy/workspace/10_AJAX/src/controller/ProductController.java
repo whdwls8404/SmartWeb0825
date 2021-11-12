@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import model.NameCheckService;
 import model.ProductService;
 import model.SelectListService;
 
@@ -33,6 +34,12 @@ public class ProductController extends HttpServlet {
 		switch (command) {
 		case "selectList.do":
 			service = new SelectListService();
+			break;
+		case "insertForm.do":
+			mav = new ModelAndView("views/insert.jsp", false);
+			break;
+		case "nameCheck.do":
+			service = new NameCheckService();
 			break;
 		}
 		

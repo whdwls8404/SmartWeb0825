@@ -11,6 +11,8 @@
 </head>
 <body>
 
+	<a href="/AJAX/insertForm.do">제품 등록하러 가기</a>
+
 	${list}
 
 </body>

@@ -11,5 +11,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM product
 		 ORDER BY pno
 	</select>
+	
+	<!-- 2. 제품명 중복 체크 -->
+	<select id="nameCheck" resultType="dto.Product">
+		SELECT pno
+		  FROM product
+		 WHERE name = #{name}
+	</select>
+	
+	
+	
+	
+	
+	
 
 </mapper>
