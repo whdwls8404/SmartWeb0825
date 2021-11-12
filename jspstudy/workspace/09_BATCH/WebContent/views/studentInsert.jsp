@@ -51,30 +51,29 @@
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
-			
-			fnSnoCheck();
-			
-			$('#kor').on('keyup blur', fnKorCheck);
-			$('#eng').on('keyup blur', fnEngCheck);
-			$('#mat').on('keyup blur', fnMatCheck);
-			
 			$('#f').on('submit', function(event){
-				if (snoPass == false) {
-					alert('학번은 5자리 숫자입니다.');
+				let regSno = /^[0-9]{5}$/;
+				if ( regSno.test($('#sno').val()) == false ) {
+					alert('학번은 5자리 정수입니다.');
 					$('#sno').focus();
 					event.preventDefault();
 					return false;
-				} else if (korPass == false) {
+				} else if ( $('#name').val() == '' ) {
+					alert('이름은 필수입니다.');
+					$('#name').focus();
+					event.preventDefault();
+					return false;
+				} else if ( $('#kor').val() == '' || isNaN($('#kor').val()) || $('#kor').val() < 0 || $('#kor').val() > 100 ) {
 					alert('국어 점수는 0~100 사이 정수입니다.');
 					$('#kor').focus();
 					event.preventDefault();
 					return false;
-				} else if (engPass == false) {
+				} else if ( $('#eng').val() == '' || isNaN($('#eng').val()) || $('#eng').val() < 0 || $('#eng').val() > 100 ) {
 					alert('영어 점수는 0~100 사이 정수입니다.');
 					$('#eng').focus();
 					event.preventDefault();
 					return false;
-				} else if (matPass == false) {
+				} else if ( $('#mat').val() == '' || isNaN($('#mat').val()) || $('#mat').val() < 0 || $('#mat').val() > 100 ) {
 					alert('수학 점수는 0~100 사이 정수입니다.');
 					$('#mat').focus();
 					event.preventDefault();
@@ -82,50 +81,8 @@
 				}
 				return true;
 			});
-			
 		});
 		
-		// 전역 변수 영역
-		let snoPass = false;
-		let korPass = false;
-		let engPass = false;
-		let matPass = false;
-		
-		// 학번 체크 함수
-		function fnSnoCheck(){
-			let regSno = /^[0-9]{5}$/;
-			$('#sno').on('keyup blur', function(){
-				if ( regSno.test($(this).val()) ) {
-					snoPass = true;
-				} else {
-					snoPass = false;
-				}
-			});
-		}
-		// 국어 점수 체크 함수
-		function fnKorCheck() {
-			if ( isNaN($('#kor').val()) || $('#kor').val() < 0 || $('#kor').val() > 100 ) {
-				korPass = false;
-			} else {
-				korPass = true;
-			}
-		}
-		// 영어 점수 체크 함수
-		function fnEngCheck() {
-			if ( isNaN($('#eng').val()) || $('#eng').val() < 0 || $('#eng').val() > 100 ) {
-				engPass = false;
-			} else {
-				engPass = true;
-			}
-		}
-		// 수학 점수 체크 함수
-		function fnMatCheck() {
-			if ( isNaN($('#mat').val()) || $('#mat').val() < 0 || $('#mat').val() > 100 ) {
-				matPass = false;
-			} else {
-				matPass = true;
-			}
-		}
 	</script>
 </head>
 <body>

@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 3. 전체 학생 평균 -->
 	<select id="getAverage" resultType="double">
-		SELECT AVG(ave)
+		SELECT NVL(AVG(ave), 0)
 		  FROM student
 	</select>
 	
