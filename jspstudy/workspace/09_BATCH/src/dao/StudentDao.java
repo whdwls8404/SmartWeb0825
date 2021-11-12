@@ -83,4 +83,12 @@ public class StudentDao {
 		return result;
 	}
 	
+	// 8. Top3 목록 반환
+	public List<Student> selectTop3List() {
+		SqlSession ss = factory.openSession();
+		List<Student> top3List = ss.selectList("dao.student.selectTop3List");
+		ss.close();
+		return top3List;
+	}
+	
 }
