@@ -1,4 +1,4 @@
-package matis.config;
+package mybatis.config;
 
 import java.io.InputStream;
 
