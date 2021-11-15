@@ -23,30 +23,6 @@
 			fnDeleteProduct();
 		});
 		
-		function fnDeleteProduct() {
-			$('body').on('click', '.delete_btn', function(){
-				let delete_pno = $(this).data('pno');
-				if (confirm('제품번호 ' + delete_pno + ' 제품을 삭제할까요?')) {
-					$.ajax({
-						url: '/AJAX/delete.do',
-						type: 'get',
-						data: 'pno=' + delete_pno,  // 서버로 보내는 데이터, 파라미터 pno로 보냄
-						success: function(resData) {
-							if (resData.result > 0) {
-								alert('삭제 완료.');
-								fnSelectProductList();
-							} else {
-								alert('삭제 실패1');  // 삭제할 회원번호가 없어서
-							}
-						},
-						error: function() {
-							alert('삭제 실패2');  // 코드 수정 필요
-						}
-					});
-				}
-			});
-		}
-		
 		function fnSelectProductList() {
 			$.ajax({
 				url: '/AJAX/selectList.do',
@@ -139,15 +115,30 @@
 			});
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		function fnDeleteProduct() {
+			$('body').on('click', '.delete_btn', function(){
+				let delete_pno = $(this).data('pno');
+				if (confirm('제품번호 ' + delete_pno + ' 제품을 삭제할까요?')) {
+					$.ajax({
+						url: '/AJAX/delete.do',
+						type: 'get',
+						data: 'pno=' + delete_pno,  // 서버로 보내는 데이터, 파라미터 pno로 보냄
+						success: function(resData) {
+							if (resData.result > 0) {
+								alert('삭제 완료.');
+								fnSelectProductList();
+							} else {
+								alert('삭제 실패1');  // 삭제할 회원번호가 없어서
+							}
+						},
+						error: function() {
+							alert('삭제 실패2');  // 코드 수정 필요
+						}
+					});
+				}
+			});
+		}
+
 	</script>
 </head>
 <body>
