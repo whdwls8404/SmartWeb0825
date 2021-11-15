@@ -39,16 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE ROWNUM = 1
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- 5. 제품 삭제 -->
+	<delete id="delete" parameterType="Long">
+		DELETE
+		  FROM product
+		 WHERE pno = #{pno}
+	</delete>
 
 </mapper>

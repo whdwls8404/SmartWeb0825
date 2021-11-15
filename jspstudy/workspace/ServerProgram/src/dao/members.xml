@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="dao.members">
+
+	<select id="selectAllMember" resultType="dto.MemberDTO">
+		SELECT no, id, name, grade, point
+		  FROM members
+	</select>
+
+	<select id="selectMember" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+		SELECT no, id, name, grade, point
+		  FROM members
+		 WHERE id = #{id}
+		   AND name = #{name}
+	</select>
+
+	<insert id="insertMember" parameterType="dto.MemberDTO">
+		INSERT INTO members
+		VALUES (member_seq.nextval, #{id}, #{name}, 'bronze', 1000)
+	</insert>
+	
+	<delete id="deleteMember" parameterType="Long">
+		DELETE
+		  FROM members
+		 WHERE no = #{no}
+	</delete>
+	
+	<update id="updateMember" parameterType="dto.MemberDTO">
+		UPDATE members
+		   SET name = #{name}, grade = #{grade}, point = #{point}
+		 WHERE no = #{no}
+	</update>
+	
+	<select id="selectTop" resultType="dto.MemberDTO">
+		SELECT no, id, name, grade, point
+		  FROM members
+		 WHERE point = (SELECT MAX(point)
+		                  FROM members)
+	</select>
+
+</mapper>

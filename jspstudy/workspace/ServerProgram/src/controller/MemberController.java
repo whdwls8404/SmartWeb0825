@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,18 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
-import model.DeleteService;
-import model.InsertService;
-import model.NameCheckService;
-import model.PrevInsertNameService;
-import model.ProductService;
-import model.SelectListService;
+import model.JoinService;
+import model.LeaveService;
+import model.ListService;
+import model.LoginService;
+import model.LogoutService;
+import model.MemberService;
+import model.UpdateService;
 
 @WebServlet("*.do")
-
-public class ProductController extends HttpServlet {
+public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ProductController() {
+    public MemberController() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,30 +32,34 @@ public class ProductController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length() + 1);
 		
-		ProductService service = null;
+		MemberService service = null;
 		ModelAndView mav = null;
 		
 		switch (command) {
-		case "selectListForm.do":
-			mav = new ModelAndView("views/selectList.jsp", false);
+		case "list.do":
+			service = new ListService();
 			break;
-		case "selectList.do":
-			service = new SelectListService();
+		case "loginPage.do":
+			request.getSession().invalidate();
+			mav = new ModelAndView("views/login.jsp", true);
 			break;
-		case "insertForm.do":
-			mav = new ModelAndView("views/insert.jsp", false);
+		case "login.do":
+			service = new LoginService();
 			break;
-		case "nameCheck.do":
-			service = new NameCheckService();
+		case "logout.do":
+			service = new LogoutService();
 			break;
-		case "insert.do":
-			service = new InsertService();
+		case "joinPage.do":
+			mav = new ModelAndView("views/join.jsp", true);
 			break;
-		case "prevInsertName.do":
-			service = new PrevInsertNameService();
+		case "join.do":
+			service = new JoinService();
+			break;
+		case "update.do":
+			service = new UpdateService();
 			break;
 		case "delete.do":
-			service = new DeleteService();
+			service = new LeaveService();
 			break;
 		}
 		
@@ -66,16 +71,13 @@ public class ProductController extends HttpServlet {
 			}
 		}
 		
-		if (mav == null) {
-			return;
+		if (mav != null) {
+			if (mav.isRedirect()) {
+				response.sendRedirect(mav.getView());
+			} else {
+				request.getRequestDispatcher(mav.getView()).forward(request, response);
+			}
 		}
-		
-		if (mav.isRedirect()) {
-			response.sendRedirect(mav.getView());
-		} else {
-			request.getRequestDispatcher(mav.getView()).forward(request, response);
-		}
-		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
