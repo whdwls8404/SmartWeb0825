@@ -160,7 +160,7 @@ Untracked files:  ## 추적 안하는 파일들이 있다.
 nothing added to commit but untracked files present (use "git add" to track)
 
 ITSC@DESKTOP-JEQ51QB MINGW64 /d/SmartWeb/gitstudy/local1 (main)
-$ git add hello.java  ## hello.java 파일을 추적하라.
+$ git add hello.java  ## hello.java 파일을 추적하라. ($ git add .  ## 변경된 모든 파일을 추적하라.)
 warning: LF will be replaced by CRLF in hello.java.  ## 그냥 warning 무시
 The file will have its original line endings in your working directory
 
@@ -209,6 +209,11 @@ $ git commit  ## 커밋한다. (저장한다. vim 편집기가 열림.)
 
 ITSC@DESKTOP-JEQ51QB MINGW64 /d/SmartWeb/gitstudy/local1 (main)
 $ git commit -m '[01:koreaitlecture] create hello.java'  ## 커밋하면서 메시지 달기.
+
+## git add + git commit
+## 최초 1회는 add와 commit를 각각 처리해야 한다.
+## 2회차부터 아래와 같이 add와 commit을 함께 처리할 수 있다.
+## $ git commit -am '커밋메시지'
 
 ## 여기까지 로컬저장소 작업
 ## 이제 github.com으로 가서 원격저장소 만들기
