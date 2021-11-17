@@ -265,3 +265,8 @@ Merge made by the 'recursive' strategy.
 ITSC@DESKTOP-JEQ51QB MINGW64 /d/SmartWeb/gitstudy/local1 (main)
 $ ls
 README.md  hello.java  ## 원격저장소의 README.md 파일을 내려 받았다.
+
+## 로컬저장소의 내용이 수정되면 아래와 같이 작업한다.
+$ git add .
+$ git commit -m '커밋메시지'
+$ git push origin main

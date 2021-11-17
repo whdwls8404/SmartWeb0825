@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- Oracle 11g Express Edition -->
+	<Resource 
+		name="jdbc/oracle11g" 
+		type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="scott"
+		password="1111"
+		maxTotal="8"
+		maxIdle="2"
+		maxWaitMillis="5000" />
+	<!-- 
+		Resource 태그 주요 속성
+		1. name : Resource 등록 이름. 이름은 각자 지정. java에서 name으로 호출(JNDI)
+		2. type : DBCP을 관리하는 클래스
+		3. driverClassName : Oracle JDBC
+		4. url : Oracle DB 서버 경로
+		5. username : DB 계정 이름
+		6. password : DB 계정 비밀번호
+		7. maxTotal : 최대 Connection 수
+		8. maxIdle : 사용하지 않는 최대 Connection 수
+		9. maxWaitMillis : 최대 대기 시간(밀리초), 음수 값을 주면 제한 없음
+	-->
+</Context>
