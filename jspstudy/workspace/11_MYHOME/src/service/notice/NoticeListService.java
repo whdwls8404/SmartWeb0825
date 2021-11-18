@@ -23,6 +23,11 @@ public class NoticeListService implements NoticeService {
 			session.removeAttribute("notice");
 		}
 		
+		// 상세 보기할 때 session에 올려 둔 open을 제거
+		if (session.getAttribute("open") != null) {
+			session.removeAttribute("open");
+		}
+		
 		List<Notice> list = NoticeDao.getInstance().selectNoticeList();
 		
 		request.setAttribute("list", list);

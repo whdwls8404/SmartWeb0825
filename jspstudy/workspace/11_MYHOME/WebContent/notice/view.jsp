@@ -14,7 +14,7 @@
 
 	<div>
 
-		게시글 번호 : ${sessionScope.notice.nNo}<br>
+		게시글 번호 : ${notice.nNo}<br>
 		작성자 : ${notice.writer}<br>
 		조회수 : ${notice.hit}<br>
 		IP : ${notice.ip}<br>
@@ -23,6 +23,19 @@
 		제목 : ${notice.title}<br>
 		내용<br>
 		<pre>${notice.content}</pre>
+		
+		<br>
+		<input type="button" value="수정" onclick="location.href='updateForm.notice'">
+		<input type="button" value="삭제" onclick="fnNoticeDelete()">
+		<input type="button" value="목록" onclick="location.href='list.notice'">
+		
+		<script>
+			function fnNoticeDelete() {
+				if (confirm('게시글을 삭제할까요?')) {
+					location.href = 'delete.notice?nNo=${notice.nNo}';
+				}
+			}
+		</script>
 		
 		<hr>
 		
@@ -53,7 +66,3 @@
 
 </body>
 </html>
-
-
-
-

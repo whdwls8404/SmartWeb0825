@@ -12,14 +12,18 @@
 </head>
 <body>
 
-	<header>
-		<h1>WEB PAGE TITLE</h1>
-		<nav>
-			<ul>
-				<li><a href="list.notice">공지사항</a></li>
-			</ul>
-		</nav>
-	</header>
+	<div>
+		<form action="insert.notice" method="post">
+			<label for="writer">작성자</label>
+			<input type="text" name="writer" id="writer"><br>
+			<label for="title">제목</label>
+			<input type="text" name="title" id="title"><br>
+			<textarea rows="5" cols="30" name="content" placeholder="내용"></textarea><br><br>
+			<button>작성완료</button>
+			<input type="reset" value="다시작성">
+			<input type="button" value="목록이동" onclick="location.href='list.notice'">
+		</form>
+	</div>
 
 </body>
 </html>

@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import service.notice.NoticeUpdateService;
 import service.notice.NoticeListService;
 import service.notice.NoticeService;
+import service.notice.NoticeDeleteService;
+import service.notice.NoticeInsertService;
 import service.notice.NoticeViewService;
 
 
@@ -47,6 +50,21 @@ public class NoticeController extends HttpServlet {
 			break;
 		case "view.notice":
 			service = new NoticeViewService();
+			break;
+		case "insertForm.notice":
+			mav = new ModelAndView("notice/insert.jsp", false);
+			break;
+		case "insert.notice":
+			service = new NoticeInsertService();
+			break;
+		case "updateForm.notice":
+			mav = new ModelAndView("notice/update.jsp", false);
+			break;
+		case "update.notice":
+			service = new NoticeUpdateService();
+			break;
+		case "delete.notice":
+			service = new NoticeDeleteService();
 			break;
 		}
 		
