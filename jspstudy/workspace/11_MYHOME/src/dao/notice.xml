@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="dao.notice">
+
+	<select id="selectNoticeList" resultType="dto.Notice">
+		SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
+		  FROM NOTICE
+	</select>
+	
+	<select id="selectNoticeView" parameterType="Long" resultType="dto.Notice">
+		SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
+		  FROM NOTICE
+		 WHERE NNO = #{nNo}
+	</select>
+	
+	<update id="updateNoticeHit" parameterType="Long">
+		UPDATE NOTICE
+		   SET HIT = HIT + 1
+		 WHERE NNO = #{nNo}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>
