@@ -19,7 +19,38 @@
 				<li><a href="list.notice">공지사항</a></li>
 			</ul>
 		</nav>
+		<c:if test="${loginUser != null}">
+			<div>
+				<h3>${loginUser.name}님 반갑습니다.<input type="button" value="로그아웃" onclick="location.href='logout.member'"></h3>
+			</div>
+		</c:if>
 	</header>
+	
+	<section>
+		
+		<c:if test="${loginUser == null}">
+			<div>
+				<form action="login.member" method="post">
+					<input type="text" name="id" placeholder="아이디"><br>
+					<input type="password" name="pw" placeholder="비밀번호"><br><br>
+					<button>로그인</button>
+					<a href="joinForm.member">회원가입</a>
+				</form>
+			</div>		
+		</c:if>		
+
+		
+		
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </body>
 </html>

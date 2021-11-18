@@ -14,7 +14,9 @@
 <body>
 
 	<div>
-		<a href="insertForm.notice">공지사항 작성하기</a>
+		<c:if test="${loginUser.id == 'admin'}">
+			<a href="insertForm.notice">공지사항 작성하기</a>		
+		</c:if>
 	</div>
 
 	<table border="1">

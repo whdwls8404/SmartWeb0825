@@ -25,9 +25,16 @@
 		<pre>${notice.content}</pre>
 		
 		<br>
-		<input type="button" value="수정" onclick="location.href='updateForm.notice'">
-		<input type="button" value="삭제" onclick="fnNoticeDelete()">
+
+		<!--
+			목록 : 누구나 
+			수정, 삭제 : 작성자만
+		-->
 		<input type="button" value="목록" onclick="location.href='list.notice'">
+		<c:if test="${notice.writer == loginUser.id}">
+			<input type="button" value="수정" onclick="location.href='updateForm.notice'">
+			<input type="button" value="삭제" onclick="fnNoticeDelete()">		
+		</c:if>
 		
 		<script>
 			function fnNoticeDelete() {
@@ -39,13 +46,20 @@
 		
 		<hr>
 		
+		<!--
+			작성자 : 로그인 유저 아이디
+			댓글달기 : 로그인 유저만 오픈
+		-->
 		<form action="insert.reply" method="post">
 			<label for="writer">작성자</label>
-			<input name="writer" id="writer"><br>
+			<input name="writer" id="writer" value="${loginUser.id}" readonly><br>
 			<textarea rows="5" cols="30" name="content"></textarea><br>
 			<input type="hidden" name="nNo" value="${notice.nNo}">
-			<button>댓글달기</button>
+			<c:if test="${loginUser != null}">
+				<button>댓글달기</button>			
+			</c:if>
 		</form>
+		
 		<hr>
 		
 		<div>
