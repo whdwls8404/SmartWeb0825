@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.BoardDeleteService;
+import service.BoardInsertService;
 import service.BoardListService;
 import service.BoardService;
 
@@ -31,6 +33,12 @@ public class BoardController extends HttpServlet {
 		switch (command) {
 		case "selectBoardList.do":
 			service = new BoardListService();
+			break;
+		case "insertBoard.do":
+			service = new BoardInsertService();
+			break;
+		case "deleteBoard.do":
+			service = new BoardDeleteService();
 			break;
 		}
 		

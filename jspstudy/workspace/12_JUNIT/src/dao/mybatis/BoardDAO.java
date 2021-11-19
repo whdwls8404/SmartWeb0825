@@ -25,6 +25,20 @@ public class BoardDAO {
 		ss.close();
 		return list;
 	}
+	public int insertBoard(Board board) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.insert("dao.mybatis.board.insertBoard", board);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
+	public int deleteBoard(String bNo) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.delete("dao.mybatis.board.deleteBoard", bNo);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 	
 	

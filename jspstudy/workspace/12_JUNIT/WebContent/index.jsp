@@ -42,6 +42,8 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			fnSelectBoardList();
+			fnInsertBoard();
+			fnDeleteBoard();
 		});
 		function fnSelectBoardList(){
 			$.ajax({
@@ -49,14 +51,73 @@
 				type: 'get',
 				// data: 보내는 파라미터
 				dataType: 'json',
-				success: function(arr) {
-					
+				success: function(boards) {
+					// 기존 목록 지우기
+					$('#board_list').empty();
+					// $.each(배열, function(인덱스, 요소){});
+					$.each(boards, function(i, board){
+						$('<tr>')
+						.append($('<td>').text(board.bNo))
+						.append($('<td>').text(board.writer))
+						.append($('<td>').text(board.content))
+						.append($('<td>').text(board.bDate))
+						.append($('<td>').html('<input type="hidden" name="bNo" value="' + board.bNo + '"><input type="button" value="삭제" class="delete_btn">'))
+						.appendTo('#board_list');
+					});
 				},
 				error: function() {
 					alert('실패');
 				}
 			});
+		}  // end fnSelectBoardList()
+		function fnInsertBoard(){
+			$('#insert_btn').on('click', function(){
+				if ($('#bNo').val().length != 5) {
+					alert('게시글번호는 5자리입니다.');
+					return;
+				}
+				// jQuery.ajax({});
+				$.ajax({
+					url: 'insertBoard.do',
+					type: 'post',
+					data: $('#f').serialize(),  // 폼의 모든 요소를 파라미터로 보냄.
+					dataType: 'json',
+					success: function(obj) {
+						alert(obj.result);
+						fnSelectBoardList();
+					},
+					error: function(xhr){  // 응답 텍스트는 xhr 객체에 responseText 프로퍼티로 전달됨.
+						if (xhr.status == 1111) {  // response.setStatus(1111); 코드로 보낸 값을 받음.
+							alert(xhr.responseText);							
+						}
+					}
+				});
+			});
+		}  // end fnInsertBoard()
+		function fnDeleteBoard(){
+			$('body').on('click', '.delete_btn', function(){
+				if (confirm('삭제할까요?')){
+					$.ajax({
+						url: 'deleteBoard.do',
+						type: 'get',
+						data: 'bNo=' + $(this).prev().val(),
+						dataType: 'json',
+						success: function(obj) {
+							if (obj.result) {
+								alert('삭제 성공');
+								fnSelectBoardList();
+							} else {
+								alert('삭제 실패');
+							}
+						},
+						error: function() {
+							alert('실패');
+						}
+					});
+				}
+			});
 		}
+		
 	</script>
 </head>
 <body>

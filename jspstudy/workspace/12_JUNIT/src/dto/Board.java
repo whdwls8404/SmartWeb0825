@@ -33,5 +33,9 @@ public class Board {
 	public void setbDate(Date bDate) {
 		this.bDate = bDate;
 	}
+	@Override
+	public String toString() {
+		return "Board [bNo=" + bNo + ", writer=" + writer + ", content=" + content + ", bDate=" + bDate + "]";
+	}
 	
 }
