@@ -20,7 +20,7 @@ public class BoardListService implements BoardService {
 		
 		// 목록 가져 옴.
 		List<Board> list = BoardDAO.getInstance().selectBoardList();
-		System.out.println(list.toString());
+
 		// JSON 데이터로 변환함.
 		// 1. JSONObject : Board
 		// 2. JSONArray  : List<Board>

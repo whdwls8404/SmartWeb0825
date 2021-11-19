@@ -21,12 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM BOARD
 		 WHERE BNO = #{bNo}
 	</delete>
+	
+	<select id="selectBoardBybNo" parameterType="String" resultType="dto.Board">
+		SELECT BNO, WRITER, CONTENT, BDATE
+		  FROM BOARD
+		 WHERE BNO = #{bNo}
+	</select>
 
 </mapper>
-
-
-
-
-
-
-

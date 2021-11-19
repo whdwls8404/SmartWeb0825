@@ -39,12 +39,11 @@ public class BoardDAO {
 		ss.close();
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	public Board selectBoardBybNo(String bNo) {
+		SqlSession ss = factory.openSession();
+		Board board = ss.selectOne("dao.mybatis.board.selectBoardBybNo", bNo);
+		ss.close();
+		return board;
+	}
+
 }
