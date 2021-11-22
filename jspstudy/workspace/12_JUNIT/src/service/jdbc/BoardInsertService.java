@@ -2,6 +2,8 @@ package service.jdbc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +48,35 @@ public class BoardInsertService implements BoardService {
 		
 		// catch 블록의 response는 ajax의 error로 응답을 보냄.
 			
+		// 예외코드 정리
+		// 2001 : 동일한 게시글번호 재등록, 필수 칼럼 누락
+		// 2002 : 잘못된 데이터 전달(DB오류)
+		// 2003 : 알 수 없는 예외
+			
+		} catch (SQLIntegrityConstraintViolationException e) {
+			
+			// 텍스트의 타입 : text/plain
+			response.setContentType("text/plain; charset=UTF-8");
+			
+			// 에러 메시지 전달
+			PrintWriter out = response.getWriter();
+			out.println("동일한 게시글번호가 있거나 필수 정보가 누락되었습니다.");
+			
+			// 에러 코드 전달
+			response.setStatus(2001);  // 에러 코드 2001 발생
+			
+		} catch (SQLException e) {
+			
+			// 텍스트의 타입 : text/plain
+			response.setContentType("text/plain; charset=UTF-8");
+			
+			// 에러 메시지 전달
+			PrintWriter out = response.getWriter();
+			out.println("잘못된 데이터가 전달되었습니다.");
+			
+			// 에러 코드 전달
+			response.setStatus(2002);  // 에러 코드 2002 발생
+			
 		} catch (Exception e) {
 			
 			// 텍스트의 타입 : text/plain
@@ -53,10 +84,10 @@ public class BoardInsertService implements BoardService {
 			
 			// 에러 메시지 전달
 			PrintWriter out = response.getWriter();
-			out.println("DB오류발생");
+			out.println("알 수 없는 예외가 발생했습니다.");
 			
 			// 에러 코드 전달
-			response.setStatus(1111);  // 에러 코드 1111 발생 (1111은 맘대로 정했음.)
+			response.setStatus(2003);  // 에러 코드 2003 발생
 			
 		}
 		

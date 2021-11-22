@@ -86,7 +86,7 @@
 						fnSelectBoardList();
 					},
 					error: function(xhr){  // 응답 텍스트는 xhr 객체에 responseText 프로퍼티로 전달됨.
-						if (xhr.status == 1111) {  // response.setStatus(1111); 코드로 보낸 값을 받음.
+						if (xhr.status == 2001 || xhr.status == 2002 || xhr.status == 2003) {
 							alert(xhr.responseText);							
 						}
 					}
