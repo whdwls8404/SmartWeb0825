@@ -1,9 +1,11 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import dto.Member;
+import dto.Free;
 import mybatis.config.DBService;
 
 public class FreeDao {
@@ -26,6 +28,57 @@ public class FreeDao {
 		return instance;
 	}
 	
-	
+	public List<Free> selectFreeList() {
+		SqlSession ss = factory.openSession();
+		List<Free> list = ss.selectList("dao.free.selectFreeList");
+		ss.close();
+		return list;
+	}
+	public int selectTotalCount() {
+		SqlSession ss = factory.openSession();
+		int totalCount = ss.selectOne("dao.free.selectTotalCount");
+		ss.close();
+		return totalCount;
+	}
+	public int insertFree(Free free) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.insert("dao.free.insertFree", free);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
+	public Free selectFreeByfNo(Long fNo) {
+		SqlSession ss = factory.openSession();
+		Free free = ss.selectOne("dao.free.selectFreeByfNo", fNo);
+		ss.close();
+		return free;
+	}
+	public int updateHit(Long fNo) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.free.updateHit", fNo);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
+	public int updateFree(Free free) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.free.updateFree", free);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

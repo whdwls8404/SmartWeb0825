@@ -5,6 +5,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dao.free">
 
+	<select id="selectFreeList" resultType="dto.Free">
+		SELECT FNO, WRITER, CONTENT, IP, HIT, CREATED, LASTMODIFIED, STATE, DEPTH, GROUPNO, GROUPORD
+		  FROM FREE
+	</select>
 	
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM FREE
+	</select>
 
+	<insert id="insertFree" parameterType="dto.Free">
+		INSERT INTO
+		  FREE
+		VALUES (
+			FREE_SEQ.NEXTVAL,
+			#{writer},
+			#{content},
+			#{ip},
+			0,       <!-- hit -->
+			SYSDATE, <!-- created --> 
+			SYSDATE, <!-- lastModified -->
+			0,       <!-- state -->
+			0,       <!-- depth -->
+			FREE_SEQ.CURRVAL,
+			0        <!-- groupOrd -->
+		)
+	</insert>
+	
+	<select id="selectFreeByfNo" parameterType="Long" resultType="dto.Free">
+		SELECT FNO, WRITER, CONTENT, IP, HIT, CREATED, LASTMODIFIED, STATE, DEPTH, GROUPNO, GROUPORD
+		  FROM FREE
+		 WHERE FNO = #{fNo}
+	</select>
+	
+	<update id="updateHit" parameterType="Long">
+		UPDATE FREE
+		   SET HIT = HIT + 1
+		 WHERE FNO = #{fNo}
+	</update>
+
+	<update id="updateFree" parameterType="dto.Free">
+		UPDATE FREE
+		   SET CONTENT = #{content}, LASTMODIFIED = SYSDATE
+		 WHERE FNO = #{fNo}
+	</update>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

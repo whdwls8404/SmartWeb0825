@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import service.free.FreeInsertService;
+import service.free.FreeListService;
 import service.free.FreeService;
+import service.free.FreeUpdateService;
+import service.free.FreeViewService;
 
 
 @WebServlet("*.free")
@@ -32,7 +36,24 @@ public class FreeController extends HttpServlet {
 		ModelAndView mav = null;
 		
 		switch (command) {
-		
+		case "list.free":
+			service = new FreeListService();
+			break;
+		case "insertForm.free":
+			mav = new ModelAndView("free/insert.jsp", false);
+			break;
+		case "insert.free":
+			service = new FreeInsertService();
+			break;
+		case "view.free":
+			service = new FreeViewService();
+			break;
+		case "updateForm.free":
+			mav = new ModelAndView("free/update.jsp", false);
+			break;
+		case "update.free":
+			service = new FreeUpdateService();
+			break;
 		}
 		
 		if (service != null) {

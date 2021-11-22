@@ -17,6 +17,7 @@
 		<nav>
 			<ul>
 				<li><a href="list.notice">공지사항</a></li>
+				<li><a href="list.free">자유게시판</a></li>
 			</ul>
 		</nav>
 		<c:if test="${loginUser != null}">
