@@ -8,11 +8,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	<script>
-		if (confirm('jdbc 확인으로 이동')) {
-			location.href='index_jdbc.jsp';
-		}
-	</script>
 	<style>
 		* {
 			padding: 0;
@@ -52,9 +47,8 @@
 		});
 		function fnSelectBoardList(){
 			$.ajax({
-				url: 'selectBoardList.do',
+				url: 'selectBoardList.jdbc',
 				type: 'get',
-				// data: 보내는 파라미터
 				dataType: 'json',
 				success: function(boards) {
 					// 기존 목록 지우기
@@ -83,7 +77,7 @@
 				}
 				// jQuery.ajax({});
 				$.ajax({
-					url: 'insertBoard.do',
+					url: 'insertBoard.jdbc',
 					type: 'post',
 					data: $('#f').serialize(),  // 폼의 모든 요소를 파라미터로 보냄.
 					dataType: 'json',
@@ -103,7 +97,7 @@
 			$('body').on('click', '.delete_btn', function(){
 				if (confirm('삭제할까요?')){
 					$.ajax({
-						url: 'deleteBoard.do',
+						url: 'deleteBoard.jdbc',
 						type: 'get',
 						data: 'bNo=' + $(this).prev().val(),
 						dataType: 'json',

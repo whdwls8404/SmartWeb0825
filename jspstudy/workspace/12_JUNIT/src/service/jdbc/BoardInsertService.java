@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.exceptions.PersistenceException;
 import org.json.JSONObject;
 
 import dao.jdbc.BoardDAO;
@@ -47,7 +46,7 @@ public class BoardInsertService implements BoardService {
 		
 		// catch 블록의 response는 ajax의 error로 응답을 보냄.
 			
-		} catch (PersistenceException e) {  // Mybatis에서 DB오류나면 발생
+		} catch (Exception e) {
 			
 			// 텍스트의 타입 : text/plain
 			response.setContentType("text/plain; charset=UTF-8");
