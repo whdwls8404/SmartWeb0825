@@ -23,9 +23,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{pw}, #{name}, #{email}, SYSDATE)
 	</insert>
 
+	<delete id="deleteMember" parameterType="Long">
+		DELETE
+		  FROM MEMBER
+		 WHERE MNO = #{mNo}
+	</delete>
 
-
-
-
+	<delete id="deleteMemberLog" parameterType="String">
+		DELETE
+		  FROM MEMBER_LOG
+		 WHERE ID = #{id}
+	</delete>
 
 </mapper>

@@ -68,11 +68,5 @@ public class NoticeDao {
 		ss.close();
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

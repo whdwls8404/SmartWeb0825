@@ -9,19 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
-import service.member.MemberIdCheckService;
-import service.member.MemberJoinService;
-import service.member.MemberLeaveService;
-import service.member.MemberLoginService;
-import service.member.MemberLogoutService;
-import service.member.MemberService;
+import service.free.FreeService;
 
 
-@WebServlet("*.member")
+@WebServlet("*.free")
 
-public class MemberController extends HttpServlet {
+public class FreeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public MemberController() {
+    public FreeController() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,28 +28,11 @@ public class MemberController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length() + 1);
 		
-		MemberService service = null;
+		FreeService service = null;
 		ModelAndView mav = null;
 		
 		switch (command) {
-		case "login.member":
-			service = new MemberLoginService();
-			break;
-		case "logout.member":
-			service = new MemberLogoutService();
-			break;
-		case "joinForm.member":
-			mav = new ModelAndView("member/join.jsp", false);
-			break;
-		case "join.member":
-			service = new MemberJoinService();
-			break;
-		case "idCheck.member":
-			service = new MemberIdCheckService();
-			break;
-		case "leave.member":
-			service = new MemberLeaveService();
-			break;
+		
 		}
 		
 		if (service != null) {

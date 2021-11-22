@@ -21,7 +21,11 @@
 		</nav>
 		<c:if test="${loginUser != null}">
 			<div>
-				<h3>${loginUser.name}님 반갑습니다.<input type="button" value="로그아웃" onclick="location.href='logout.member'"></h3>
+				<h3>
+					${loginUser.name}님 반갑습니다.
+					<input type="button" value="로그아웃" onclick="location.href='logout.member'">
+					<input type="button" value="회원탈퇴" onclick="location.href='leave.member'">
+				</h3>
 			</div>
 		</c:if>
 	</header>
