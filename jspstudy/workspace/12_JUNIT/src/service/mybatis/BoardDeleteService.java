@@ -1,4 +1,4 @@
-package service;
+package service.mybatis;
 
 import java.io.IOException;
 import java.io.PrintWriter;

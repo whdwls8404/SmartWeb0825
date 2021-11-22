@@ -1,4 +1,4 @@
-package service;
+package service.jdbc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.json.JSONObject;
 
-import dao.mybatis.BoardDAO;
+import dao.jdbc.BoardDAO;
 import dto.Board;
 
 public class BoardInsertService implements BoardService {

@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.BoardDeleteService;
-import service.BoardInsertService;
-import service.BoardListService;
-import service.BoardService;
+import service.mybatis.BoardDeleteService;
+import service.mybatis.BoardInsertService;
+import service.mybatis.BoardListService;
+import service.mybatis.BoardService;
 
 @WebServlet("*.do")
 
