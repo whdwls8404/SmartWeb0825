@@ -30,7 +30,7 @@
 	
 	
 	<!-- 목록 -->
-	전체 게시글 : ${totalCount}개<br>
+	전체 게시글 : ${totalRecord}개<br>
 	<table border="1">
 		<thead>
 			<tr>
@@ -90,8 +90,50 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="5">
-					페이징 처리할 곳
+				<td colspan="6">
+					
+					<!-- 1페이지로 이동 : 1페이지는 링크가 필요 없음. -->
+					<c:if test="${p.page == 1}">
+						◀◀&nbsp;&nbsp;
+					</c:if>
+					<c:if test="${p.page != 1}">
+						<a href="list.free?page=1">◀◀</a>&nbsp;&nbsp;
+					</c:if>
+					
+					<!-- 이전 블록으로 이동 : 1블록은 링크가 필요 없음. -->
+					<c:if test="${p.page <= p.pagePerBlock}">
+						◀&nbsp;&nbsp;
+					</c:if>
+					<c:if test="${p.page > p.pagePerBlock}">
+						<a href="list.free?page=${p.beginPage - 1}">◀</a>&nbsp;&nbsp;
+					</c:if>
+					
+					<!-- 페이지 번호 : 현재 페이지는 링크가 필요 없음. -->
+					<c:forEach var="i" begin="${p.beginPage}" end="${p.endPage}">
+						<c:if test="${p.page == i}">
+							${i}&nbsp;&nbsp;
+						</c:if>
+						<c:if test="${p.page != i}">
+							<a href="list.free?page=${i}">${i}</a>&nbsp;&nbsp;
+						</c:if>
+					</c:forEach>
+					
+					<!-- 다음 블록으로 이동 : 마지막 블록은 링크가 필요 없음. -->
+					<c:if test="${p.endPage == p.totalPage}">
+						▶&nbsp;&nbsp;
+					</c:if>
+					<c:if test="${p.endPage != p.totalPage}">
+						<a href="list.free?page=${p.endPage + 1}">▶</a>&nbsp;&nbsp;
+					</c:if>
+					
+					<!-- 마지막 페이지로 이동 : 마지막 페이지는 링크가 필요 없음. -->
+					<c:if test="${p.page == p.totalPage}">
+						▶▶&nbsp;&nbsp;
+					</c:if>
+					<c:if test="${p.page != p.totalPage}">
+						<a href="list.free?page=${p.totalPage}">▶▶</a>&nbsp;&nbsp;
+					</c:if>
+	
 				</td>
 			</tr>
 		</tfoot>

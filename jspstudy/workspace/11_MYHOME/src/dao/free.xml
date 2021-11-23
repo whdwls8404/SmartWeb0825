@@ -5,9 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dao.free">
 
-	<select id="selectFreeList" resultType="dto.Free">
-		SELECT FNO, WRITER, CONTENT, IP, HIT, CREATED, LASTMODIFIED, STATE, DEPTH, GROUPNO, GROUPORD
-		  FROM FREE
+	<select id="selectFreeList" parameterType="Map" resultType="dto.Free">
+		SELECT B.RN, B.FNO, B.WRITER, B.CONTENT, B.IP, B.HIT, B.CREATED, B.LASTMODIFIED, B.STATE, B.DEPTH, B.GROUPNO, B.GROUPORD
+		  FROM (SELECT ROWNUM AS RN, A.FNO, A.WRITER, A.CONTENT, A.IP, A.HIT, A.CREATED, A.LASTMODIFIED, A.STATE, A.DEPTH, A.GROUPNO, A.GROUPORD
+		          FROM (SELECT FNO, WRITER, CONTENT, IP, HIT, CREATED, LASTMODIFIED, STATE, DEPTH, GROUPNO, GROUPORD
+		                  FROM FREE
+		                 ORDER BY FNO DESC) A ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
 	<select id="selectTotalCount" resultType="int">

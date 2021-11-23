@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,9 +29,9 @@ public class FreeDao {
 		return instance;
 	}
 	
-	public List<Free> selectFreeList() {
+	public List<Free> selectFreeList(Map<String, Integer> map) {
 		SqlSession ss = factory.openSession();
-		List<Free> list = ss.selectList("dao.free.selectFreeList");
+		List<Free> list = ss.selectList("dao.free.selectFreeList", map);
 		ss.close();
 		return list;
 	}
