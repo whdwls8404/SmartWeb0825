@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css" integrity="sha512-4wfcoXlib1Aq0mUtsLLM74SZtmB73VHTafZAvxIp/Wk9u1PpIsrfmTvK0+yKetghCL8SHlZbMyEcV8Z21v42UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -38,30 +39,52 @@
 				<td>내용</td>
 				<td>조회수</td>
 				<td>최종수정일</td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:if test="${empty list}">
 				<tr>
-					<td colspan="5">없다.</td>
+					<td colspan="6">없다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${not empty list}">
 				<c:forEach items="${list}" var="free">
-					<tr>
-						<td>${free.fNo}</td>
-						<td>${free.writer}</td>
-						<td>
-							<c:if test="${free.content.length() < 20}">
-								<a href="view.free?fNo=${free.fNo}">${free.content}</a>
-							</c:if>
-							<c:if test="${free.content.length() >= 20}">
-								<a href="view.free?fNo=${free.fNo}">${free.content.substring(0, 20)}</a>								
-							</c:if>
-						</td>
-						<td>${free.hit}</td>
-						<td>${free.lastModified}</td>
-					</tr>
+					<c:if test="${free.state == 0}">
+						<tr>
+							<td>${free.fNo}</td>
+							<td>${free.writer}</td>
+							<td>
+								<c:if test="${free.content.length() < 20}">
+									<a href="view.free?fNo=${free.fNo}">${free.content}</a>
+								</c:if>
+								<c:if test="${free.content.length() >= 20}">
+									<a href="view.free?fNo=${free.fNo}">${free.content.substring(0, 20)}</a>								
+								</c:if>
+							</td>
+							<td>${free.hit}</td>
+							<td>${free.lastModified}</td>
+							<td>
+								<c:if test="${loginUser.id == free.writer}">								
+									<a id="delete_link" href="delete.free?fNo=${free.fNo}"><i class="far fa-times-circle"></i></a>
+									<script type="text/javascript">
+										$('#delete_link').on('click', function(event){
+											if (confirm('삭제할까요?') == false) {
+												event.preventDefault();
+												return false;
+											}
+											return true;
+										});
+									</script>
+								</c:if>
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${free.state == -1}">
+						<tr>
+							<td colspan="6">삭제된 게시글입니다.</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</c:if>
 		</tbody>

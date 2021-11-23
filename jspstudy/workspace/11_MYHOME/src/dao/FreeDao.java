@@ -67,6 +67,13 @@ public class FreeDao {
 		ss.close();
 		return result;
 	}
+	public int deleteFree(Long fNo) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.free.deleteFree", fNo);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 }
 

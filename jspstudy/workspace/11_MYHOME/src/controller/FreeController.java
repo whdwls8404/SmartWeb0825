@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import service.free.FreeDeleteService;
 import service.free.FreeInsertService;
 import service.free.FreeListService;
 import service.free.FreeService;
@@ -53,6 +54,9 @@ public class FreeController extends HttpServlet {
 			break;
 		case "update.free":
 			service = new FreeUpdateService();
+			break;
+		case "delete.free":
+			service = new FreeDeleteService();
 			break;
 		}
 		

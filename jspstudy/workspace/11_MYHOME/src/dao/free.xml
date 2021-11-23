@@ -51,6 +51,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE FNO = #{fNo}
 	</update>
 	
+	<update id="deleteFree" parameterType="Long">
+		UPDATE FREE
+		   SET STATE = -1
+		 WHERE FNO = #{fNo}
+	</update>
+	
 </mapper>
 
 
