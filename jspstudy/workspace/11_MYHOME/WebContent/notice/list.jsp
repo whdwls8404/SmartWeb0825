@@ -14,7 +14,7 @@
 <body>
 
 	<!-- 검색란 -->
-	<form action="">
+	<form action="find.notice">
 		<!-- option의 value를 DB 칼럼명으로 직접 사용함. -->
 		<select name="column">
 			<option value="WRITER">작성자</option>
@@ -24,7 +24,7 @@
 		</select>
 		<input type="text" name="query">
 		<button>검색</button>
-		<input type="button" value="전체보기" onclick="location.href=''">
+		<input type="button" value="전체보기" onclick="location.href='list.notice'">
 	</form>
 
 	<div>

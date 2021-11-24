@@ -12,6 +12,7 @@ import service.notice.NoticeUpdateService;
 import service.notice.NoticeListService;
 import service.notice.NoticeService;
 import service.notice.NoticeDeleteService;
+import service.notice.NoticeFindService;
 import service.notice.NoticeInsertService;
 import service.notice.NoticeViewService;
 
@@ -65,6 +66,9 @@ public class NoticeController extends HttpServlet {
 			break;
 		case "delete.notice":
 			service = new NoticeDeleteService();
+			break;
+		case "find.notice":
+			service = new NoticeFindService();
 			break;
 		}
 		

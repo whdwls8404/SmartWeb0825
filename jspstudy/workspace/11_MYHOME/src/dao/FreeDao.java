@@ -89,18 +89,27 @@ public class FreeDao {
 		ss.close();
 		return result;
 	}
+	public List<Free> findFree(Map<String, String> map) {
+		SqlSession ss = factory.openSession();
+		List<Free> list = ss.selectList("dao.free.findFree", map);
+		ss.close();
+		return list;
+	}
+	public int selectFindCount(Map<String, String> map) {
+		SqlSession ss = factory.openSession();
+		int count = ss.selectOne("dao.free.selectFindCount", map);
+		ss.close();
+		return count;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

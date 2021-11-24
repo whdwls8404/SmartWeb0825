@@ -86,6 +86,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND GROUPORD > #{groupOrd}  <!-- 원글의 groupOrd 보다 큰 댓글인가? -->
 	</update>
 	
+	<select id="findFree" parameterType="Map" resultType="dto.Free">
+		SELECT B.RN, B.FNO, B.WRITER, B.CONTENT, B.IP, B.HIT, B.CREATED, B.LASTMODIFIED, B.STATE, B.DEPTH, B.GROUPNO, B.GROUPORD
+		  FROM (SELECT ROWNUM AS RN, A.FNO, A.WRITER, A.CONTENT, A.IP, A.HIT, A.CREATED, A.LASTMODIFIED, A.STATE, A.DEPTH, A.GROUPNO, A.GROUPORD
+		          FROM (SELECT FNO, WRITER, CONTENT, IP, HIT, CREATED, LASTMODIFIED, STATE, DEPTH, GROUPNO, GROUPORD
+		                  FROM FREE
+		                 WHERE STATE = 0
+		                   AND <if test="column != 'ALL'">${column} LIKE #{query}</if>
+		                       <if test="column == 'ALL'">(WRITER LIKE #{query} OR CONTENT LIKE #{query})</if>
+		                 ORDER BY GROUPNO DESC, GROUPORD ASC) A ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="selectFindCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*)
+		  FROM FREE
+		 WHERE STATE = 0
+		   AND <if test="column != 'ALL'">${column} LIKE #{query}</if>
+		       <if test="column == 'ALL'">(WRITER LIKE #{query} OR CONTENT LIKE #{query})</if>
+	</select>
+	
 </mapper>
 
 

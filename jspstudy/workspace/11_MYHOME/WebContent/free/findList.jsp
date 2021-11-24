@@ -158,7 +158,7 @@
 						◀◀&nbsp;&nbsp;
 					</c:if>
 					<c:if test="${p.page != 1}">
-						<a href="list.free?page=1">◀◀</a>&nbsp;&nbsp;
+						<a href="find.free?column=${column}&query=${query}&page=1">◀◀</a>&nbsp;&nbsp;
 					</c:if>
 					
 					<!-- 이전 블록으로 이동 : 1블록은 링크가 필요 없음. -->
@@ -166,7 +166,7 @@
 						◀&nbsp;&nbsp;
 					</c:if>
 					<c:if test="${p.page > p.pagePerBlock}">
-						<a href="list.free?page=${p.beginPage - 1}">◀</a>&nbsp;&nbsp;
+						<a href="find.free?column=${column}&query=${query}&page=${p.beginPage - 1}">◀</a>&nbsp;&nbsp;
 					</c:if>
 					
 					<!-- 페이지 번호 : 현재 페이지는 링크가 필요 없음. -->
@@ -175,7 +175,7 @@
 							${i}&nbsp;&nbsp;
 						</c:if>
 						<c:if test="${p.page != i}">
-							<a href="list.free?page=${i}">${i}</a>&nbsp;&nbsp;
+							<a href="find.free?column=${column}&query=${query}&page=${i}">${i}</a>&nbsp;&nbsp;
 						</c:if>
 					</c:forEach>
 					
@@ -184,7 +184,7 @@
 						▶&nbsp;&nbsp;
 					</c:if>
 					<c:if test="${p.endPage != p.totalPage}">
-						<a href="list.free?page=${p.endPage + 1}">▶</a>&nbsp;&nbsp;
+						<a href="find.free?column=${column}&query=${query}&page=${p.endPage + 1}">▶</a>&nbsp;&nbsp;
 					</c:if>
 					
 					<!-- 마지막 페이지로 이동 : 마지막 페이지는 링크가 필요 없음. -->
@@ -192,7 +192,7 @@
 						▶▶&nbsp;&nbsp;
 					</c:if>
 					<c:if test="${p.page != p.totalPage}">
-						<a href="list.free?page=${p.totalPage}">▶▶</a>&nbsp;&nbsp;
+						<a href="find.free?column=${column}&query=${query}&page=${p.totalPage}">▶▶</a>&nbsp;&nbsp;
 					</c:if>
 	
 				</td>

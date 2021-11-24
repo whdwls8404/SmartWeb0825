@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -67,6 +68,12 @@ public class NoticeDao {
 		if (result > 0) ss.commit();
 		ss.close();
 		return result;
+	}
+	public List<Notice> findNotice(Map<String, String> map) {
+		SqlSession ss = factory.openSession();
+		List<Notice> list = ss.selectList("dao.notice.findNotice", map);
+		ss.close();
+		return list;
 	}
 
 }
