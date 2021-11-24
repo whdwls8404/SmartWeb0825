@@ -13,6 +13,20 @@
 </head>
 <body>
 
+	<!-- 검색란 -->
+	<form action="">
+		<!-- option의 value를 DB 칼럼명으로 직접 사용함. -->
+		<select name="column">
+			<option value="WRITER">작성자</option>
+			<option value="TITLE">제목</option>
+			<option value="CONTENT">내용</option>
+			<option value="ALL">작성자+제목+내용</option>
+		</select>
+		<input type="text" name="query">
+		<button>검색</button>
+		<input type="button" value="전체보기" onclick="location.href=''">
+	</form>
+
 	<div>
 		<c:if test="${loginUser.id == 'admin'}">
 			<a href="insertForm.notice">공지사항 작성하기</a>		

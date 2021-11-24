@@ -34,21 +34,20 @@ public class ReplyInsertService implements FreeService {
 		reply.setContent(content);
 		reply.setIp(ip);
 		
+		// 원글 만들기
+		Free free = new Free();
+		free.setGroupNo(groupNo);
+		free.setGroupOrd(groupOrd);
+		
+		// 같은 groupNo + 이미 달린 댓글 중에서 원글의 groupOrd보다 큰 값을 가지는 댓글의 groupOrd + 1
+		FreeDao.getInstance().updatePreviousReplyGroupOrd(free);
+		
 		int result = FreeDao.getInstance().insertReply(reply);
 		
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
-			
-			// 원글 만들기
-			Free free = new Free();
-			free.setGroupNo(groupNo);
-			free.setGroupOrd(groupOrd);
-			
-			// 같은 groupNo + 이미 달린 댓글 중에서 원글의 groupOrd보다 큰 값을 가지는 댓글의 groupOrd + 1
-			FreeDao.getInstance().updatePreviousReplyGroupOrd(free);
-			
 			out.println("<script>");
-			out.println("alert('댓글 삽입 성공.')");
+			//out.println("alert('댓글 삽입 성공.')");
 			out.println("location.href='list.free'");
 			out.println("</script>");
 			out.close();

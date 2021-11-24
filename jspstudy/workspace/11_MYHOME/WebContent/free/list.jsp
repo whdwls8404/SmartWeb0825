@@ -50,7 +50,16 @@
 	</div>
 	
 	<!-- 검색란 -->
-	
+	<form action="">
+		<!-- option의 value를 DB 칼럼명으로 직접 사용함. -->
+		<select name="column">
+			<option value="WRITER">작성자</option>
+			<option value="CONTENT">내용</option>
+			<option value="ALL">작성자+내용</option>
+		</select>
+		<button>검색</button>
+		<input type="button" value="전체보기" onclick="location.href=''">
+	</form>
 	
 	<!-- 목록 -->
 	전체 게시글 : ${totalRecord}개<br>
@@ -78,23 +87,25 @@
 							<td>${free.fNo}</td>
 							<td>${free.writer}</td>
 							<td>
+							
 								<!-- depth만큼 들여쓰기 -->
-								<c:forEach begin="1" end="${free.depth}">
-									&nbsp;&nbsp;
-								</c:forEach>
-								<!-- 댓글(depth 1 이상) [re] -->
-								<c:if test="${free.depth >= 1}">
-									[re]&nbsp;
-								</c:if>
+								<c:forEach begin="1" end="${free.depth}">&nbsp;</c:forEach>
+								
+								<!-- 댓글(depth 1 이상) ㄴ -->
+								<c:if test="${free.depth >= 1}">ㄴ</c:if>
+								
 								<!-- 20자 이내는 그대로 표시 -->
 								<c:if test="${free.content.length() < 20}">
 									<a href="view.free?fNo=${free.fNo}">${free.content}</a>&nbsp;&nbsp;&nbsp;
 								</c:if>
+								
 								<!-- 20자 넘어가면 20자만 표시 -->
 								<c:if test="${free.content.length() >= 20}">
 									<a href="view.free?fNo=${free.fNo}">${free.content.substring(0, 20)}</a>&nbsp;&nbsp;&nbsp;
 								</c:if>
+								
 								<a class="reply_link">댓글달기</a>
+								
 							</td>
 							<td>${free.hit}</td>
 							<td>${free.lastModified}</td>
