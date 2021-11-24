@@ -14,7 +14,7 @@ public class Free {
 	private int state;
 	private int depth;
 	private Long groupNo;
-	private int groupOrd;
+	private Long groupOrd;
 	
 	public Long getfNo() {
 		return fNo;
@@ -76,10 +76,10 @@ public class Free {
 	public void setGroupNo(Long groupNo) {
 		this.groupNo = groupNo;
 	}
-	public int getGroupOrd() {
+	public Long getGroupOrd() {
 		return groupOrd;
 	}
-	public void setGroupOrd(int groupOrd) {
+	public void setGroupOrd(Long groupOrd) {
 		this.groupOrd = groupOrd;
 	}
 	@Override

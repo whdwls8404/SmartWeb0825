@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM (SELECT ROWNUM AS RN, A.FNO, A.WRITER, A.CONTENT, A.IP, A.HIT, A.CREATED, A.LASTMODIFIED, A.STATE, A.DEPTH, A.GROUPNO, A.GROUPORD
 		          FROM (SELECT FNO, WRITER, CONTENT, IP, HIT, CREATED, LASTMODIFIED, STATE, DEPTH, GROUPNO, GROUPORD
 		                  FROM FREE
-		                 ORDER BY FNO DESC) A ) B
+		                 ORDER BY GROUPNO DESC, GROUPORD ASC) A ) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
@@ -59,6 +59,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE FREE
 		   SET STATE = -1
 		 WHERE FNO = #{fNo}
+	</update>
+	
+	<insert id="insertReply" parameterType="dto.Free">
+		INSERT INTO
+		  FREE
+		VALUES (
+			FREE_SEQ.NEXTVAL,
+			#{writer},
+			#{content},
+			#{ip},
+			0,          <!-- hit -->
+			SYSDATE,    <!-- created --> 
+			SYSDATE,    <!-- lastModified -->
+			0,          <!-- state -->
+			#{depth},   <!-- depth -->
+			#{groupNo}, <!-- groupNo -->
+			#{groupOrd} <!-- groupOrd -->
+		)
+	</insert>
+	
+	<update id="updatePreviousReplyGroupOrd" parameterType="dto.Free">
+		UPDATE FREE
+		   SET GROUPORD = GROUPORD + 1
+		 WHERE GROUPNO = #{groupNo}    <!-- 같은 groupNo인가? -->
+		   AND GROUPORD > #{groupOrd}  <!-- 원글의 groupOrd 보다 큰 댓글인가? -->
 	</update>
 	
 </mapper>

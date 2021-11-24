@@ -75,6 +75,20 @@ public class FreeDao {
 		ss.close();
 		return result;
 	}
+	public int insertReply(Free reply) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.insert("dao.free.insertReply", reply);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
+	public int updatePreviousReplyGroupOrd(Free free) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.free.updatePreviousReplyGroupOrd", free);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 }
 

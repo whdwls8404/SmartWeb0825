@@ -10,6 +10,29 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css" integrity="sha512-4wfcoXlib1Aq0mUtsLLM74SZtmB73VHTafZAvxIp/Wk9u1PpIsrfmTvK0+yKetghCL8SHlZbMyEcV8Z21v42UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		.reply_link {
+			font-size: 8px;
+			color: crimson;
+		}
+		.reply_link:hover {
+			cursor: pointer;
+		}
+		.reply_form {
+			display: none;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('.reply_link').on('click', function(){
+				$(this).parent().parent().next().toggleClass('reply_form');
+			});
+		});
+	</script>
 </head>
 <body>
 
@@ -56,10 +79,20 @@
 							<td>${free.writer}</td>
 							<td>
 								<c:if test="${free.content.length() < 20}">
-									<a href="view.free?fNo=${free.fNo}">${free.content}</a>
+									<!-- depth만큼 들여쓰기 -->
+									<c:forEach begin="1" end="${free.depth}">
+										&nbsp;&nbsp;
+									</c:forEach>
+									<!-- 댓글(depth 1 이상) [re] -->
+									<c:if test="${free.depth >= 1}">
+										[re]&nbsp;
+									</c:if>
+									<a href="view.free?fNo=${free.fNo}">${free.content}</a>&nbsp;&nbsp;&nbsp;
+									<a class="reply_link">댓글달기</a>
 								</c:if>
 								<c:if test="${free.content.length() >= 20}">
-									<a href="view.free?fNo=${free.fNo}">${free.content.substring(0, 20)}</a>								
+									<a href="view.free?fNo=${free.fNo}">${free.content.substring(0, 20)}</a>&nbsp;&nbsp;&nbsp;
+									<a class="reply_link">댓글달기</a>
 								</c:if>
 							</td>
 							<td>${free.hit}</td>
@@ -77,6 +110,19 @@
 										});
 									</script>
 								</c:if>
+							</td>
+						</tr>
+						<tr class="reply_form">
+							<td colspan="6">
+								<form action="insertReply.free" method="post">
+									<!-- 원글의 DEPTH, GROUPNO, GROUPORD를 넘겨줌. -->
+									<input type="hidden" name="depth" value="${free.depth}">
+									<input type="hidden" name="groupNo" value="${free.groupNo}">
+									<input type="hidden" name="groupOrd" value="${free.groupOrd}">
+									<input type="text" name="writer" value="${loginUser.id}" readonly>
+									<input type="text" name="content" placeholder="내용">
+									<button>댓글달기</button>
+								</form>
 							</td>
 						</tr>
 					</c:if>

@@ -15,6 +15,7 @@ import service.free.FreeListService;
 import service.free.FreeService;
 import service.free.FreeUpdateService;
 import service.free.FreeViewService;
+import service.free.ReplyInsertService;
 
 
 @WebServlet("*.free")
@@ -57,6 +58,9 @@ public class FreeController extends HttpServlet {
 			break;
 		case "delete.free":
 			service = new FreeDeleteService();
+			break;
+		case "insertReply.free":
+			service = new ReplyInsertService();
 			break;
 		}
 		

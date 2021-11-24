@@ -94,8 +94,8 @@ CREATE TABLE FREE
 	/* 최초작성일 */  CREATED		DATE,
 	/* 최종수정일 */  LASTMODIFIED	DATE,
 	/* 삭제여부 */	  STATE			NUMBER,  /* 정상: 0, 삭제: -1 */
-	/* 게시글/댓글 */ DEPTH			NUMBER,  /* 게시글: 0, 댓글: 1 이상 */
-	/* 동일그룹 */	  GROUPNO		NUMBER,  /* 게시글: 글번호(FNO), 댓글: 게시글의 글번호(FNO) */
+	/* 게시글/댓글 */ DEPTH			NUMBER,  /* 게시글: 0, 댓글: 1 이상(원글의 DEPTH + 1) */
+	/* 동일그룹 */	  GROUPNO		NUMBER,  /* 게시글: 글번호(FNO), 댓글: 원글의 글번호(FNO) */
 	/* 그룹내순서 */  GROUPORD		NUMBER   /* 동일그룹내 표시순서를 의미 */
 );
 
