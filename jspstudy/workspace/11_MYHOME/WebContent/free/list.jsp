@@ -78,22 +78,23 @@
 							<td>${free.fNo}</td>
 							<td>${free.writer}</td>
 							<td>
-								<c:if test="${free.content.length() < 20}">
-									<!-- depth만큼 들여쓰기 -->
-									<c:forEach begin="1" end="${free.depth}">
-										&nbsp;&nbsp;
-									</c:forEach>
-									<!-- 댓글(depth 1 이상) [re] -->
-									<c:if test="${free.depth >= 1}">
-										[re]&nbsp;
-									</c:if>
-									<a href="view.free?fNo=${free.fNo}">${free.content}</a>&nbsp;&nbsp;&nbsp;
-									<a class="reply_link">댓글달기</a>
+								<!-- depth만큼 들여쓰기 -->
+								<c:forEach begin="1" end="${free.depth}">
+									&nbsp;&nbsp;
+								</c:forEach>
+								<!-- 댓글(depth 1 이상) [re] -->
+								<c:if test="${free.depth >= 1}">
+									[re]&nbsp;
 								</c:if>
+								<!-- 20자 이내는 그대로 표시 -->
+								<c:if test="${free.content.length() < 20}">
+									<a href="view.free?fNo=${free.fNo}">${free.content}</a>&nbsp;&nbsp;&nbsp;
+								</c:if>
+								<!-- 20자 넘어가면 20자만 표시 -->
 								<c:if test="${free.content.length() >= 20}">
 									<a href="view.free?fNo=${free.fNo}">${free.content.substring(0, 20)}</a>&nbsp;&nbsp;&nbsp;
-									<a class="reply_link">댓글달기</a>
 								</c:if>
+								<a class="reply_link">댓글달기</a>
 							</td>
 							<td>${free.hit}</td>
 							<td>${free.lastModified}</td>
