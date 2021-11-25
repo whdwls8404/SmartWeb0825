@@ -44,7 +44,7 @@ public class NoticeListService implements NoticeService {
 		p.setPageEntity(totalRecord, page);
 		
 		// 페이징4. String으로 < 1 2 3 4 5 > 만들기
-		String pageEntity = p.getPageEntity();
+		String pageEntity = p.getPageEntity("list.notice");
 
 		// beginRecord ~ endRecord 목록 가져오기
 		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -57,6 +57,7 @@ public class NoticeListService implements NoticeService {
 		request.setAttribute("totalRecord", totalRecord);
 		request.setAttribute("pageEntity", pageEntity);
 		request.setAttribute("list", list);
+		request.setAttribute("startNum", totalRecord - (page - 1) * p.getRecordPerPage());  // 각 페이지의 게시글 시작 번호
 		
 		return new ModelAndView("notice/list.jsp", false);
 		

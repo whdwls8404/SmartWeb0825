@@ -49,18 +49,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!--
-		${column} : 작은 따옴표(') 안 붙음.
+		${column} : $는 작은 따옴표(') 안 붙음.
 		            숫자 또는 칼럼용으로 사용.
-		#{query}  : 작은 따옴표(')가 붙음.
+		#{query}  : #은 작은 따옴표(')가 붙음.
 		            문자용으로 사용.
 		            단, 숫자용으로 사용할 수 있음.
 	-->
 	
 	<select id="findNotice" parameterType="Map" resultType="dto.Notice">
-		SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
+		SELECT B.NNO, B.WRITER, B.TITLE, B.CONTENT, B.HIT, B.IP, B.NDATE, B.NLASTMODIFIED
+		  FROM (SELECT ROWNUM AS RN, A.NNO, A.WRITER, A.TITLE, A.CONTENT, A.HIT, A.IP, A.NDATE, A.NLASTMODIFIED
+		          FROM (SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
+		                  FROM NOTICE
+		                 WHERE <if test="column != 'ALL'">${column} LIKE #{query}</if>
+		                       <if test="column == 'ALL'">(WRITER LIKE #{query} OR TITLE LIKE #{query} OR CONTENT LIKE #{query})</if>
+		                 ORDER BY NNO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="selectFindCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*)
 		  FROM NOTICE
 		 WHERE <if test="column != 'ALL'">${column} LIKE #{query}</if>
-		       <if test="column == 'ALL'">WRITER LIKE #{query} OR TITLE LIKE #{query} OR CONTENT LIKE #{query}</if>
+		       <if test="column == 'ALL'">(WRITER LIKE #{query} OR TITLE LIKE #{query} OR CONTENT LIKE #{query})</if>
 	</select>
 	
 </mapper>
+
+
+
+
+

@@ -52,41 +52,55 @@ public class Page {
 		
 	}
 	
-	public String getPageEntity() {
+	public String getPageEntity(String path) {
 		
 		StringBuilder sb = new StringBuilder();
+		
+		// path에 ?가 포함되어 있으면 path에 파라미터가 포함되어 있다는 의미임.
+		// 예
+		// path = find.notice?column=WRITER&query=admin
+		
+		// 위와 같은 경우 page 파라미터는 "&page=" 로 path에 추가해야 함.
+		// path = find.notice?column=WRITER&query=admin&page=
 		
 		// 1페이지로 이동 : 1페이지는 링크가 필요 없음.
 		if (page == 1) {
 			sb.append("◀◀&nbsp;");
 		} else {
-			sb.append("<a href=\"list.notice?page=1\">◀◀</a>&nbsp;");
+			if (path.contains("?")) {
+				sb.append("<a href=\"" + path + "&page=1\">◀◀</a>&nbsp;");
+			} else {
+				sb.append("<a href=\"" + path + "?page=1\">◀◀</a>&nbsp;");
+			}
 		}
+		
+		String concat = path.contains("?") ? "&" : "?";
+		
 		// 이전 블록으로 이동 : 1블록은 링크가 필요 없음.
 		if (page <= pagePerBlock) {
 			sb.append("◀&nbsp;");
 		} else {
-			sb.append("<a href=\"list.notice?page=" + (beginPage - 1) + "\">◀</a>&nbsp;");
+			sb.append("<a href=\"" + path + concat + "page=" + (beginPage - 1) + "\">◀</a>&nbsp;");
 		}
 		// 페이지 번호 : 현재 페이지는 링크가 필요 없음.
 		for (int i = beginPage; i <= endPage; i++) {
 			if (page == i) {
 				sb.append(i + "&nbsp;");
 			} else {
-				sb.append("<a href=\"list.notice?page=" + i + "\">" + i + "</a>&nbsp;");
+				sb.append("<a href=\"" + path + concat + "page=" + i + "\">" + i + "</a>&nbsp;");
 			}
 		}
 		// 다음 블록으로 이동 : 마지막 블록은 링크가 필요 없음.
 		if (endPage == totalPage) {
 			sb.append("▶&nbsp;");
 		} else {
-			sb.append("<a href=\"list.notice?page=" + (endPage + 1) + "\">▶</a>&nbsp;");
+			sb.append("<a href=\"" + path + concat + "page=" + (endPage + 1) + "\">▶</a>&nbsp;");
 		}
 		// 마지막 페이지로 이동 : 마지막 페이지는 링크가 필요 없음.
 		if (page == totalPage) {
 			sb.append("▶▶");
 		} else {
-			sb.append("<a href=\"list.notice?page=" + totalPage + "\">▶▶</a>");
+			sb.append("<a href=\"" + path + concat + "page=" + totalPage + "\">▶▶</a>");
 		}
 		
 		return sb.toString();

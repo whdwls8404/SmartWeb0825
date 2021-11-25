@@ -81,5 +81,11 @@ public class NoticeDao {
 		ss.close();
 		return list;
 	}
+	public int selectFindCount(Map<String, String> map) {
+		SqlSession ss = factory.openSession();
+		int findCount = ss.selectOne("dao.notice.selectFindCount", map);
+		ss.close();
+		return findCount;
+	}
 
 }

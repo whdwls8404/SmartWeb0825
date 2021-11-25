@@ -51,9 +51,9 @@
 				</tr>
 			</c:if>
 			<c:if test="${not empty list}">
-				<c:forEach items="${list}" var="notice">
+				<c:forEach varStatus="s" items="${list}" var="notice">
 					<tr>
-						<td>${notice.nNo}</td>
+						<td>${startNum - s.index}</td>  <!-- 순서대로 표시되는 순번(게시글 번호와 상관 없음) -->
 						<td><a href="view.notice?nNo=${notice.nNo}">${notice.title}</a></td>
 						<td>${notice.writer}</td>
 						<td>${notice.hit}</td>
