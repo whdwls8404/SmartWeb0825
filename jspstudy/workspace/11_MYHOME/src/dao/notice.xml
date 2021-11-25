@@ -5,9 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dao.notice">
 
-	<select id="selectNoticeList" resultType="dto.Notice">
-		SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
-		  FROM NOTICE
+	<select id="selectNoticeList" parameterType="Map" resultType="dto.Notice">
+		SELECT B.NNO, B.WRITER, B.TITLE, B.CONTENT, B.HIT, B.IP, B.NDATE, B.NLASTMODIFIED
+		  FROM (SELECT ROWNUM AS RN, A.NNO, A.WRITER, A.TITLE, A.CONTENT, A.HIT, A.IP, A.NDATE, A.NLASTMODIFIED
+		          FROM (SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
+		                  FROM NOTICE
+		                 ORDER BY NNO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
 	<select id="selectTotalCount" resultType="int">

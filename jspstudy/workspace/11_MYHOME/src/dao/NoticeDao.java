@@ -29,9 +29,9 @@ public class NoticeDao {
 		return instance;
 	}
 	
-	public List<Notice> selectNoticeList() {
+	public List<Notice> selectNoticeList(Map<String, Integer> map) {
 		SqlSession ss = factory.openSession();
-		List<Notice> list = ss.selectList("dao.notice.selectNoticeList");
+		List<Notice> list = ss.selectList("dao.notice.selectNoticeList", map);
 		ss.close();
 		return list;
 	}

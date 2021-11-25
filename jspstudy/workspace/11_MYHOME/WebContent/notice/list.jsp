@@ -34,6 +34,7 @@
 	</div>
 
 	<table border="1">
+		<caption>공지수: ${totalRecord}</caption>
 		<thead>
 			<tr>
 				<td>순번</td>
@@ -61,6 +62,11 @@
 				</c:forEach>
 			</c:if>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5">${pageEntity}</td>
+			</tr>
+		</tfoot>
 	</table>
 
 </body>

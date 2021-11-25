@@ -1,6 +1,8 @@
 package service.notice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,10 +45,13 @@ public class NoticeListService implements NoticeService {
 		
 		// 페이징4. String으로 < 1 2 3 4 5 > 만들기
 		String pageEntity = p.getPageEntity();
+
+		// beginRecord ~ endRecord 목록 가져오기
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("beginRecord", p.getBeginRecord());
+		map.put("endRecord", p.getEndRecord());
 		
-		
-		
-		List<Notice> list = NoticeDao.getInstance().selectNoticeList();
+		List<Notice> list = NoticeDao.getInstance().selectNoticeList(map);
 		
 		// list.jsp로 보낼 데이터
 		request.setAttribute("totalRecord", totalRecord);
