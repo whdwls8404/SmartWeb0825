@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import service.board.BoardInsertService;
 import service.board.BoardListService;
 import service.board.BoardService;
+import service.board.BoardViewService;
 
 @WebServlet("*.board")
 
@@ -36,6 +38,12 @@ public class BoardController extends HttpServlet {
 			break;
 		case "insertForm.board":
 			mav = new ModelAndView("board/insert.jsp", false);
+			break;
+		case "insert.board":
+			service = new BoardInsertService();
+			break;
+		case "view.board":
+			service = new BoardViewService();
 			break;
 		}
 		

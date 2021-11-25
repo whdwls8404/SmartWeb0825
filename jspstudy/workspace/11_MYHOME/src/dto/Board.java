@@ -12,6 +12,7 @@ public class Board {
 	private String saveName;
 	private Date created;
 	private Date lastModified;
+	
 	public Long getbNo() {
 		return bNo;
 	}

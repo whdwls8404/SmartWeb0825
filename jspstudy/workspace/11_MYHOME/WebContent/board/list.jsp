@@ -17,6 +17,34 @@
 			<a href="insertForm.board">새 이미지 게시글 작성하기</a>
 		</c:if>
 	</div>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<td>순번</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>작성일</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="4">없음</td>
+				</tr>
+			</c:if>
+			<c:if test="${not empty list}">
+				<c:forEach items="${list}" var="board">
+					<tr>
+						<td>${board.bNo}</td>
+						<td><a href="view.board?bNo=${board.bNo}">${board.title}</a></td>
+						<td>${board.writer}</td>
+						<td>${board.created}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
+	</table>
 
 </body>
 </html>

@@ -53,6 +53,8 @@
 					alert('이미지 첨부 필수');
 					return;
 				}
+				$('#f').attr('action', 'insert.board');
+				$('#f').submit();
 			});
 		}
 		
