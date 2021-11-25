@@ -10,6 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM NOTICE
 	</select>
 	
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM NOTICE
+	</select>
+	
 	<select id="selectNoticeView" parameterType="Long" resultType="dto.Notice">
 		SELECT NNO, WRITER, TITLE, CONTENT, HIT, IP, NDATE, NLASTMODIFIED
 		  FROM NOTICE

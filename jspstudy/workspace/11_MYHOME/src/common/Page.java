@@ -29,6 +29,69 @@ public class Page {
 	private int beginPage;            // 각 블록에 표시하는 시작 페이지 번호(page, pagePerBlock로 계산)
 	private int endPage;              // 각 블록에 표시하는 종료 페이지 번호(beginPage, pagePerBlock, totalPage로 계산) 
 	
+	public void setPageEntity(int totalRecord, int page) {
+		
+		this.totalRecord = totalRecord;
+		this.page = page;
+		
+		// totalPage
+		totalPage = totalRecord / recordPerPage;
+		if (totalRecord % recordPerPage != 0) {
+			totalPage++;
+		}
+		
+		// beginRecord, endRecord
+		beginRecord = (page - 1) * recordPerPage + 1;
+		endRecord = beginRecord + recordPerPage - 1;
+		endRecord = (totalRecord < endRecord) ? totalRecord : endRecord;
+		
+		// beginPage, endPage
+		beginPage = ((page - 1) / pagePerBlock) * pagePerBlock + 1;
+		endPage = beginPage + pagePerBlock - 1;
+		endPage = (totalPage < endPage) ? totalPage : endPage;
+		
+	}
+	
+	public String getPageEntity() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		// 1페이지로 이동 : 1페이지는 링크가 필요 없음.
+		if (page == 1) {
+			sb.append("◀◀&nbsp;");
+		} else {
+			sb.append("<a href=\"list.notice?page=1\">◀◀</a>&nbsp;");
+		}
+		// 이전 블록으로 이동 : 1블록은 링크가 필요 없음.
+		if (page <= pagePerBlock) {
+			sb.append("◀&nbsp;");
+		} else {
+			sb.append("<a href=\"list.notice?page=" + (beginPage - 1) + "\">◀</a>&nbsp;");
+		}
+		// 페이지 번호 : 현재 페이지는 링크가 필요 없음.
+		for (int i = beginPage; i <= endPage; i++) {
+			if (page == i) {
+				sb.append(i + "&nbsp;");
+			} else {
+				sb.append("<a href=\"list.notice?page=" + i + "\">" + i + "</a>&nbsp;");
+			}
+		}
+		// 다음 블록으로 이동 : 마지막 블록은 링크가 필요 없음.
+		if (endPage == totalPage) {
+			sb.append("▶&nbsp;");
+		} else {
+			sb.append("<a href=\"list.notice?page=" + (endPage + 1) + "\">▶</a>&nbsp;");
+		}
+		// 마지막 페이지로 이동 : 마지막 페이지는 링크가 필요 없음.
+		if (page == totalPage) {
+			sb.append("▶▶");
+		} else {
+			sb.append("<a href=\"list.notice?page=" + totalPage + "\">▶▶</a>");
+		}
+		
+		return sb.toString();
+		
+	}
 	
 	public int getTotalRecord() {
 		return totalRecord;

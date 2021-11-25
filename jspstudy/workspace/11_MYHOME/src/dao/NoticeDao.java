@@ -35,6 +35,12 @@ public class NoticeDao {
 		ss.close();
 		return list;
 	}
+	public int selectTotalCount() {
+		SqlSession ss = factory.openSession();
+		int totalCount = ss.selectOne("dao.notice.selectTotalCount");
+		ss.close();
+		return totalCount;
+	}
 	public Notice selectNoticeView(Long nNo) {
 		SqlSession ss = factory.openSession();
 		Notice notice = ss.selectOne("dao.notice.selectNoticeView", nNo);

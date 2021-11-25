@@ -189,10 +189,10 @@
 					
 					<!-- 마지막 페이지로 이동 : 마지막 페이지는 링크가 필요 없음. -->
 					<c:if test="${p.page == p.totalPage}">
-						▶▶&nbsp;&nbsp;
+						▶▶
 					</c:if>
 					<c:if test="${p.page != p.totalPage}">
-						<a href="list.free?page=${p.totalPage}">▶▶</a>&nbsp;&nbsp;
+						<a href="list.free?page=${p.totalPage}">▶▶</a>
 					</c:if>
 	
 				</td>
