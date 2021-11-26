@@ -23,13 +23,47 @@
 				$('#f').attr('action', 'updateForm.board');
 				$('#f').submit();
 			});
+			// 댓글삽입
+			$('#insert_btn').on('click', function(){
+				if ( $('#content').val() == '' ) {
+					alert('댓글 내용 필수.');
+					$('#content').focus();
+					return;
+				}
+				$.ajax({
+					url: 'insert.comments',
+					type: 'post',
+					data: $('#comments_form').serialize(),
+					dataType: 'json',
+					success: function(obj) {  // obj : {"result": 0} 또는 {"result": 1}
+						// TODO. 목록 갱신
+						alert(obj.result);
+					},
+					error: function(xhr) {
+						alert(xhr.responseText);
+					}
+				});
+			});
 		});
 	</script>
+	<style>
+		#comments_list > ul {
+			width: 700px;
+			margin-top: 10px;
+			padding: 0px;
+			list-style-type: none;
+			display: flex;
+		}
+		#comments_list > ul > li:nth-of-type(1) { width: 100px; }
+		#comments_list > ul > li:nth-of-type(2) { width: 400px; }
+		#comments_list > ul > li:nth-of-type(3) { width: 100px; }
+		#comments_list > ul > li:nth-of-type(4) { width: 100px; }
+	</style>
 </head>
 <body>
 
 	<div>
-		<input type="button" value="목록으로이동" onclick="location.href='${referer}'">
+		<input type="button" value="목록으로이동" onclick="location.href='list.board'">
 		<c:if test="${loginUser.id == board.writer}">  <!-- 작성자만 볼 수 있다. -->
 			<form id="f" method="post">
 				<input type="hidden" name="bNo" value="${board.bNo}">
@@ -45,7 +79,6 @@
 	</div>
 
 	<div>
-
 		<table>
 			<tbody>
 				<tr>
@@ -71,8 +104,49 @@
 				</tr>
 			</tbody>
 		</table>
-		
+	</div>
+	
+	<hr>
+	
+	<!-- 댓글 입력란 -->
+	<div>
+		<form id="comments_form">
+			<table>
+				<tbody>
+					<tr>
+						<td rowspan="2">
+							<textarea rows="3" cols="80" name="content" id="content"></textarea>
+							<input type="hidden" name="writer" value="${board.writer}">
+							<input type="hidden" name="bNo" value="${board.bNo}">					</td>
+						<td>
+							${board.writer}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<c:if test="${loginUser != null}">  <!-- 로그인해야 보임. -->
+								<input type="button" value="댓글달기" id="insert_btn">
+							</c:if>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	
+	<!-- 댓글목록 -->
+	<div id="comments_list">
+		<ul>
+			<li>작성자</li>
+			<li>내용</li>
+			<li>작성일자</li>
+			<li>삭제</li>
+		</ul>
 	</div>
 
 </body>
 </html>
+
+
+
+

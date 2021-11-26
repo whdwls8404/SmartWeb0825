@@ -2,7 +2,7 @@ package dto;
 
 import java.sql.Date;
 
-public class Comment {
+public class Comments {
 
 	private Long cNo;
 	private String writer;
