@@ -9,8 +9,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			// 삭제
+			$('#delete_btn').on('click', function(){
+				if (confirm('게시글에 달린 모든 댓글도 함께 삭제됨. 삭제할까요?')) {
+					$('#f').attr('action', 'delete.board');
+					$('#f').submit();
+				}
+			});
+			// 수정하러가기
+			$('#update_btn').on('click', function(){
+				$('#f').attr('action', 'updateForm.board');
+				$('#f').submit();
+			});
+		});
+	</script>
 </head>
 <body>
+
+	<div>
+		<input type="button" value="목록으로이동" onclick="location.href='${referer}'">
+		<c:if test="${loginUser.id == board.writer}">  <!-- 작성자만 볼 수 있다. -->
+			<form id="f" method="post">
+				<input type="hidden" name="bNo" value="${board.bNo}">
+				<input type="hidden" name="path" value="storage/${year}/${month}/${day}">
+				<input type="hidden" name="saveName" value="${board.saveName}">
+				<input type="hidden" name="title" value="${board.title}">
+				<input type="hidden" name="content" value="${board.content}">
+				<input type="hidden" name="writer" value="${board.writer}">
+				<input type="button" value="수정하러가기" id="update_btn">
+				<input type="button" value="삭제하기" id="delete_btn">
+			</form>
+		</c:if> 
+	</div>
 
 	<div>
 

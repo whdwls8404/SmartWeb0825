@@ -29,7 +29,7 @@
 			목록 : 누구나 
 			수정, 삭제 : 작성자만
 		-->
-		<input type="button" value="목록" onclick="location.href='list.free'">
+		<input type="button" value="목록" onclick="location.href='${referer}'">
 		<c:if test="${free.writer == loginUser.id}">
 			<form id="f" method="post">
 				<!-- 수정할 게시글 정보를 넘기기 -->

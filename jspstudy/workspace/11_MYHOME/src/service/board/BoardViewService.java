@@ -25,6 +25,7 @@ public class BoardViewService implements BoardService {
 		
 		if (board != null) {
 			// view.jsp로 보낼 데이터 저장하기
+			request.setAttribute("referer", request.getHeader("referer"));  // 게시글의 목록 주소
 			request.setAttribute("board", board);
 			request.setAttribute("year", new SimpleDateFormat("yyyy").format(board.getLastModified()));
 			request.setAttribute("month", new SimpleDateFormat("MM").format(board.getLastModified()));

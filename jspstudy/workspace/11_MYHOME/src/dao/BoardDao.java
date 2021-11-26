@@ -42,7 +42,13 @@ public class BoardDao {
 		ss.close();
 		return board;
 	}
-	
+	public int deleteBoard(Long bNo) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.delete("dao.board.deleteBoard", bNo);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 	
 	

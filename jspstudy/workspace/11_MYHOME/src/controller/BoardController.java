@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ModelAndView;
+import service.board.BoardDeleteService;
 import service.board.BoardInsertService;
 import service.board.BoardListService;
 import service.board.BoardService;
@@ -44,6 +45,12 @@ public class BoardController extends HttpServlet {
 			break;
 		case "view.board":
 			service = new BoardViewService();
+			break;
+		case "delete.board":
+			service = new BoardDeleteService();
+			break;
+		case "updateForm.board":
+			mav = new ModelAndView("board/update.jsp", false);
 			break;
 		}
 		
