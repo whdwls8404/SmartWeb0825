@@ -27,6 +27,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM BOARD
 		 WHERE BNO = #{bNo}
 	</delete>
+	
+	<update id="updateBoard" parameterType="dto.Board">
+		UPDATE BOARD
+		   SET TITLE = #{title}
+		     , CONTENT = #{content}
+		     , LASTMODIFIED = SYSDATE
+		     <if test="fileName != null">, FILENAME = #{fileName}</if>
+		     <if test="saveName != null">, SAVENAME = #{saveName}</if>
+		 WHERE BNO = #{bNo}
+	</update>
 
 </mapper>
 

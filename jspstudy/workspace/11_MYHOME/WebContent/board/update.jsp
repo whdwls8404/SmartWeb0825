@@ -19,7 +19,7 @@
 		
 		$(document).ready(function(){
 			fnFileCheck();
-			fnInsertBoard();
+			fnUpdateBoard();
 		});
 		
 		function fnFileCheck(){
@@ -43,17 +43,15 @@
 				}
 			});
 		}
-		function fnInsertBoard() {
-			$('#insert_btn').on('click', function(){
-				if ($('#title').val() == '') {
-					alert('제목 필수');
-					$('#title').focus();
-					return;
-				} else if ($('#fileName').val() == '') {
-					alert('이미지 첨부 필수');
+		function fnUpdateBoard() {
+			$('#update_btn').on('click', function(){
+				if ( $('#title').val() == '${param.title}' &&
+					 $('#content').val() == '${param.content}' &&
+					 $('#fileName').val() == '' ) {
+					alert('변경할 내용이 없음.');
 					return;
 				}
-				$('#f').attr('action', 'insert.board');
+				$('#f').attr('action', 'update.board');
 				$('#f').submit();
 			});
 		}
@@ -64,12 +62,6 @@
 
 	<div>
 		
-		<!-- 파일 첨부 폼 -->
-		<!--
-			1. method="post"
-			2. enctype="multipart/form-data"
-		-->
-		
 		<form id="f" method="post" enctype="multipart/form-data">
 			
 			<label for="writer">작성자</label>
@@ -78,19 +70,27 @@
 			<label for="title">제목</label>
 			<input type="text" id="title" name="title" value="${param.title}">
 			
-			<label for="fileName">첨부 이미지</label>
-			<input type="file" id="fileName" name="fileName" value="${param.saveName}">
-			
 			<label for="content">내용</label>
 			<textarea id="content" name="content">${param.content}</textarea>
+
+			<div>
+				<img width="300px" src="${param.path}/${param.saveName}">
+			</div>
+
+			<label for="fileName">새로 첨부하기</label>
+			<input type="file" id="fileName" name="fileName">  <!-- 새로운 첨부파일 -->
 			
 			<input type="hidden" name="bNo" value="${param.bNo}">
-			<input type="hidden" name="path" value="${param.path}">
+			
+			<!-- <input type="hidden" name="path" value="${param.path}"> -->
+			<% session.setAttribute("path", request.getParameter("path")); %>
+			
+			<input type="hidden" name="saveName" value="${param.saveName}">  <!-- 기존의 첨부파일 -->
 			
 			<br><br>
 			
 			<div class="btn_area">
-				<input type="button" value="입력완료" id="insert_btn">
+				<input type="button" value="수정하기" id="update_btn">
 				<input type="reset" value="입력초기화">
 				<input type="button" value="목록" onclick="location.href='list.board'">
 			</div>

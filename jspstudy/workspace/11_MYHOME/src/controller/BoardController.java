@@ -12,6 +12,7 @@ import service.board.BoardDeleteService;
 import service.board.BoardInsertService;
 import service.board.BoardListService;
 import service.board.BoardService;
+import service.board.BoardUpdateService;
 import service.board.BoardViewService;
 
 @WebServlet("*.board")
@@ -51,6 +52,9 @@ public class BoardController extends HttpServlet {
 			break;
 		case "updateForm.board":
 			mav = new ModelAndView("board/update.jsp", false);
+			break;
+		case "update.board":
+			service = new BoardUpdateService();
 			break;
 		}
 		

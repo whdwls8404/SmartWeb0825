@@ -49,7 +49,13 @@ public class BoardDao {
 		ss.close();
 		return result;
 	}
-	
+	public int updateBoard(Board board) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.board.updateBoard", board);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 	
 	
