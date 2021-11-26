@@ -116,10 +116,10 @@
 					<tr>
 						<td rowspan="2">
 							<textarea rows="3" cols="80" name="content" id="content"></textarea>
-							<input type="hidden" name="writer" value="${board.writer}">
+							<input type="hidden" name="writer" value="${loginUser.id}">
 							<input type="hidden" name="bNo" value="${board.bNo}">					</td>
 						<td>
-							${board.writer}
+							${loginUser.id}(${loginUser.name})
 						</td>
 					</tr>
 					<tr>
