@@ -36,5 +36,12 @@ public class CommentsDao {
 		ss.close();
 		return list;
 	}
+	public int deleteComments(Long cNo) {
+		SqlSession ss = factory.openSession(false);
+		int result = ss.update("dao.comments.deleteComments", cNo);
+		if (result > 0) ss.commit();
+		ss.close();
+		return result;
+	}
 	
 }

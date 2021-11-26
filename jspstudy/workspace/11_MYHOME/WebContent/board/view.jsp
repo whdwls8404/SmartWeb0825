@@ -45,6 +45,8 @@
 			});
 			// 목록보기
 			fnCommentsList();
+			// 댓글삭제
+			fnDeleteComments();
 		});
 		function fnCommentsList() {
 			 $.ajax({
@@ -55,18 +57,54 @@
 				success: function(comments) {  // comments : [{}, {}, {}, ...]
 					$('#comments_list').empty();
 					$.each(comments, function(i, comment){
-						$('<ul>')
-						.append( $('<li>').text(comment.writer) )
-						.append( $('<li>').text(comment.content) )
-						.append( $('<li>').text(comment.created) )
-						.append( $('<li>').text('삭제') )
-						.appendTo('#comments_list');
+						if (comment.state == 0) {  // 정상 댓글이면
+							if ('${loginUser.id}' == comment.writer) {
+								$('<ul>')
+								.append( $('<li>').text(comment.writer) )
+								.append( $('<li>').text(comment.content) )
+								.append( $('<li>').text(comment.created) )
+								.append( $('<li>').html('<a class="delete_comments_link" data-cno="' + comment.cNo + '">삭제</a>') )
+								.appendTo('#comments_list');
+							} else {
+								$('<ul>')
+								.append( $('<li>').text(comment.writer) )
+								.append( $('<li>').text(comment.content) )
+								.append( $('<li>').text(comment.created) )
+								.append( $('<li>').html('') )
+								.appendTo('#comments_list');
+							}
+						} else if (comment.state == -1) {  // 삭제된 댓글이면
+							$('<ul>')
+							.append( $('<li>').text('') )
+							.append( $('<li>').text('삭제된 댓글입니다.') )
+							.append( $('<li>').text('') )
+							.append( $('<li>').html('') )
+							.appendTo('#comments_list');
+						}
 					});
 				},
 				error: function(xhr) {
 					alert(xhr.responseText);
 				}
 			 });
+		}
+		function fnDeleteComments() {
+			$('body').on('click', '.delete_comments_link', function(event){
+				if (confirm('댓글을 삭제할까요?')) {
+					// console.log($(this).data('cno'));
+					$.ajax({
+						url: 'delete.comments',
+						type: 'get',
+						data: 'cNo=' + $(this).data('cno'),
+						success: function(){
+							fnCommentsList();
+						},
+						error: function(xhr){
+							alert(xhr.responseText);
+						}
+					});
+				}
+			});
 		}
 	</script>
 	<style>
@@ -140,7 +178,8 @@
 						<td rowspan="2">
 							<textarea rows="3" cols="80" name="content" id="content"></textarea>
 							<input type="hidden" name="writer" value="${loginUser.id}">
-							<input type="hidden" name="bNo" value="${board.bNo}">					</td>
+							<input type="hidden" name="bNo" value="${board.bNo}">
+						</td>
 						<td>
 							${loginUser.id}(${loginUser.name})
 						</td>
@@ -169,7 +208,3 @@
 
 </body>
 </html>
-
-
-
-

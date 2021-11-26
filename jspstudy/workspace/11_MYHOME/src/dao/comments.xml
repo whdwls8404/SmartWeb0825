@@ -15,5 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM COMMENTS
 		 WHERE BNO = #{bNo}
 	</select>
+	
+	<update id="deleteComments" parameterType="Long" >
+		UPDATE COMMENTS
+		   SET STATE = -1
+		 WHERE CNO = #{cNo}
+	</update>
 
 </mapper>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.comments.CommentsDeleteService;
 import service.comments.CommentsInsertService;
 import service.comments.CommentsListService;
 import service.comments.CommentsService;
@@ -36,6 +37,9 @@ public class CommentsController extends HttpServlet {
 			break;
 		case "list.comments":
 			service = new CommentsListService();
+			break;
+		case "delete.comments":
+			service = new CommentsDeleteService();
 			break;
 		}
 		
