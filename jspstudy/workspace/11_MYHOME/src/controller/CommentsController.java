@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.comments.CommentsInsertService;
+import service.comments.CommentsListService;
 import service.comments.CommentsService;
 
 @WebServlet("*.comments")
@@ -32,6 +33,9 @@ public class CommentsController extends HttpServlet {
 		switch (command) {
 		case "insert.comments":
 			service = new CommentsInsertService();
+			break;
+		case "list.comments":
+			service = new CommentsListService();
 			break;
 		}
 		

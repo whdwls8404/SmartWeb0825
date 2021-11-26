@@ -36,15 +36,38 @@
 					data: $('#comments_form').serialize(),
 					dataType: 'json',
 					success: function(obj) {  // obj : {"result": 0} 또는 {"result": 1}
-						// TODO. 목록 갱신
-						alert(obj.result);
+						fnCommentsList();
 					},
 					error: function(xhr) {
 						alert(xhr.responseText);
 					}
 				});
 			});
+			// 목록보기
+			fnCommentsList();
 		});
+		function fnCommentsList() {
+			 $.ajax({
+				url: 'list.comments',
+				type: 'get',
+				data: 'bNo=${board.bNo}',
+				dataType: 'json',
+				success: function(comments) {  // comments : [{}, {}, {}, ...]
+					$('#comments_list').empty();
+					$.each(comments, function(i, comment){
+						$('<ul>')
+						.append( $('<li>').text(comment.writer) )
+						.append( $('<li>').text(comment.content) )
+						.append( $('<li>').text(comment.created) )
+						.append( $('<li>').text('삭제') )
+						.appendTo('#comments_list');
+					});
+				},
+				error: function(xhr) {
+					alert(xhr.responseText);
+				}
+			 });
+		}
 	</script>
 	<style>
 		#comments_list > ul {

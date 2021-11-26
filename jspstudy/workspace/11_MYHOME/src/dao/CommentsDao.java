@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -28,8 +30,11 @@ public class CommentsDao {
 		ss.close();
 		return result;
 	}
-	
-	
-	
+	public List<Comments> selectCommentsList(Long bNo) {
+		SqlSession ss = factory.openSession();
+		List<Comments> list = ss.selectList("dao.comments.selectCommentsList", bNo);
+		ss.close();
+		return list;
+	}
 	
 }
