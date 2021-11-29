@@ -18,6 +18,7 @@
 			fnInsertComments(); // 댓글 삽입
 			fnCommentsList();   // 댓글 목록보기
 			fnDeleteComments(); // 댓글 삭제
+			fnChangePage();     // 전역 변수 page 설정하기
 		});
 		
 		// 함수
@@ -66,76 +67,118 @@
 			 $.ajax({
 				url: 'list.comments',
 				type: 'get',
-				data: 'bNo=${board.bNo}',
+				data: 'bNo=${board.bNo}&page=' + page,
 				dataType: 'json',
 				success: function(result) {  // result = {"commentsCount": 2, "comments": [{}, {}], "pageEntity": {"totalRecord": 2, ...}
-					// 댓글 목록 출력하기
-					if (result.commentsCount == 0) {
-						$('<ul>')
-						.append( $('<li>').text() )
-						.append( $('<li>').text('첫 댓글의 주인공이 되어 보세요.') )
-						.append( $('<li>').text() )
-						.append( $('<li>').text() )
-						.appendTo('#comments_list');
-					} else {
-						fnPrintCommentsList(result.comments);						
-					}
-					// 페이징 출력하기
-					let p = result.pageEntity;
-					$('#pageEntity').empty();
-					// 1페이지로 이동 : 1페이지는 링크가 필요 없음.
-					if (page == 1) {
-						// class="disable_link" : CSS 용도
-						$('<div class="disable_link">◀◀&nbsp;</div>').appendTo('#pageEntity');
-					} else {
-						// class="enable_link"  : CSS 용도
-						// class="first_page"   : 전역변수 page를 1로 수정
-						$('<div class="enable_link first_page" data-page="1">◀◀&nbsp;</div>').appendTo('#pageEntity');
-					}
-					// 이전 블록으로 이동 : 1블록은 링크가 필요 없음.
-					if (page <= p.pagePerBlock) {
-						// class="disable_link" : CSS 용도
-						$('<div class="disable_link">◀&nbsp;</div>').appendTo('#pageEntity');
-					} else {
-						// class="enable_link"  : CSS 용도
-						// class="prev_block"   : 전역변수 page를 (beginPage - 1)로 수정
-						$('<div class="enable_link prev_block" data-page="'+(p.beginPage - 1)+'">◀&nbsp;</div>').appendTo('#pageEntity');
-					}
-					
+					fnPrintCommentsList(result);      // 댓글 목록 출력하기
+					fnPageEntity(result.pageEntity);  // 페이징 출력하기
 				},
 				error: function(xhr) {
 					alert(xhr.responseText);
 				}
 			 });
 		}
-			 
-		function fnPrintCommentsList(comments) {
+
+		function fnPrintCommentsList(result) {
 			$('#comments_list').empty();
-			$.each(comments, function(i, comment){
-				if (comment.state == 0) {  // 정상 댓글이면
-					if ('${loginUser.id}' == comment.writer) {
+			if (result.commentsCount == 0) {
+				$('<ul>')
+				.append( $('<li>').text() )
+				.append( $('<li>').text('첫 댓글의 주인공이 되어 보세요.') )
+				.append( $('<li>').text() )
+				.append( $('<li>').text() )
+				.appendTo('#comments_list');
+			} else {
+				$.each(result.comments, function(i, comment){
+					if (comment.state == 0) {  // 정상 댓글이면
+						if ('${loginUser.id}' == comment.writer) {
+							$('<ul>')
+							.append( $('<li>').text(comment.writer) )
+							.append( $('<li>').text(comment.content) )
+							.append( $('<li>').text(comment.created) )
+							.append( $('<li>').html('<a class="delete_comments_link" data-cno="' + comment.cNo + '">삭제</a>') )
+							.appendTo('#comments_list');
+						} else {
+							$('<ul>')
+							.append( $('<li>').text(comment.writer) )
+							.append( $('<li>').text(comment.content) )
+							.append( $('<li>').text(comment.created) )
+							.append( $('<li>').html('') )
+							.appendTo('#comments_list');
+						}
+					} else if (comment.state == -1) {  // 삭제된 댓글이면
 						$('<ul>')
-						.append( $('<li>').text(comment.writer) )
-						.append( $('<li>').text(comment.content) )
-						.append( $('<li>').text(comment.created) )
-						.append( $('<li>').html('<a class="delete_comments_link" data-cno="' + comment.cNo + '">삭제</a>') )
-						.appendTo('#comments_list');
-					} else {
-						$('<ul>')
-						.append( $('<li>').text(comment.writer) )
-						.append( $('<li>').text(comment.content) )
-						.append( $('<li>').text(comment.created) )
+						.append( $('<li>').text('') )
+						.append( $('<li>').text('삭제된 댓글입니다.') )
+						.append( $('<li>').text('') )
 						.append( $('<li>').html('') )
 						.appendTo('#comments_list');
 					}
-				} else if (comment.state == -1) {  // 삭제된 댓글이면
-					$('<ul>')
-					.append( $('<li>').text('') )
-					.append( $('<li>').text('삭제된 댓글입니다.') )
-					.append( $('<li>').text('') )
-					.append( $('<li>').html('') )
-					.appendTo('#comments_list');
+				});
+			}
+		}
+		
+		function fnPageEntity(p) {
+			$('#pageEntity').empty();
+			// 1페이지로 이동 : 1페이지는 링크가 필요 없음.
+			if (page == 1) {
+				// class="disable_link" : CSS 용도
+				$('<div class="disable_link">◀◀</div>').appendTo('#pageEntity');
+			} else {
+				// class="enable_link"  : CSS 용도
+				// class="first_page"   : 전역변수 page를 1로 수정
+				// class="change_page"  : click 이벤트로 연결
+				$('<div class="enable_link first_page change_page" data-page="1">◀◀</div>').appendTo('#pageEntity');
+			}
+			// 이전 블록으로 이동 : 1블록은 링크가 필요 없음.
+			if (page <= p.pagePerBlock) {
+				// class="disable_link" : CSS 용도
+				$('<div class="disable_link">◀</div>').appendTo('#pageEntity');
+			} else {
+				// class="enable_link"  : CSS 용도
+				// class="prev_block"   : 전역변수 page를 (beginPage - 1)로 수정
+				// class="change_page"  : click 이벤트로 연결
+				$('<div class="enable_link prev_block change_page" data-page="'+(p.beginPage - 1)+'">◀</div>').appendTo('#pageEntity');
+			}
+			// 페이지 번호 : 현재 페이지는 링크가 필요 없음.
+			for (let i = p.beginPage; i <= p.endPage; i++) {
+				if (i == p.page) {
+					// class="disable_link" : CSS 용도
+					// class="now_page"     : CSS 용도
+					$('<div class="disable_link now_page">'+i+'</div>').appendTo('#pageEntity');
+				} else {
+					// class="enable_link"  : CSS 용도
+					// class="other_page"   : 전역변수 page를 i로 수정
+					// class="change_page"  : click 이벤트로 연결
+					$('<div class="enable_link other_page change_page" data-page="'+i+'">'+i+'</div>').appendTo('#pageEntity');
 				}
+			}
+			// 다음 블록으로 이동 : 마지막 블록은 링크가 필요 없음.
+			if (p.endPage == p.totalPage) {
+				// class="disable_link" : CSS 용도
+				$('<div class="disable_link">▶</div>').appendTo('#pageEntity');
+			} else {
+				// class="enable_link"  : CSS 용도
+				// class="next_block"   : 전역변수 page를 (endPage + 1)로 수정
+				// class="change_page"  : click 이벤트로 연결
+				$('<div class="enable_link next_block change_page" data-page="'+(p.endPage + 1)+'">▶</div>').appendTo('#pageEntity');
+			}
+			// 마지막 페이지로 이동 : 마지막 페이지는 링크가 필요 없음.
+			if (p.page == p.totalPage) {
+				// class="disable_link" : CSS 용도
+				$('<div class="disable_link">▶▶</div>').appendTo('#pageEntity');
+			} else {
+				// class="enable_link"  : CSS 용도
+				// class="last_page"    : 전역변수 page를 totalPage로 수정
+				// class="change_page"  : click 이벤트로 연결
+				$('<div class="enable_link last_page change_page" data-page="'+p.totalPage+'">▶▶</div>').appendTo('#pageEntity');
+			}
+		}
+		
+		function fnChangePage() {
+			$('body').on('click', '.change_page', function() {
+				page = $(this).data('page');  // 전역 변수 page 수정
+				fnCommentsList();  // 바뀐 page의 목록 다시 가져오기
 			});
 		}
 		
@@ -275,8 +318,8 @@
 			<li>작성일자</li>
 			<li>삭제</li>
 		</ul>
-		<div id="pageEntity"></div>		
 	</div>
+	<div id="pageEntity"></div>
 
 </body>
 </html>
