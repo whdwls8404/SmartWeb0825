@@ -10,20 +10,34 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script>
+
+		// 페이지 로드
 		$(document).ready(function(){
-			// 삭제
+			fnDeleteBoard();    // 게시글 삭제
+			fnUpdateForm();     // 게시글 수정하러가기
+			fnInsertComments(); // 댓글 삽입
+			fnCommentsList();   // 댓글 목록보기
+			fnDeleteComments(); // 댓글 삭제
+		});
+		
+		// 함수
+		function fnDeleteBoard() {
 			$('#delete_btn').on('click', function(){
-				if (confirm('게시글에 달린 모든 댓글도 함께 삭제됨. 삭제할까요?')) {
+				if (confirm('게시글에 달린 모든 댓글도 함께 삭제됩니다. 삭제할까요?')) {
 					$('#f').attr('action', 'delete.board');
 					$('#f').submit();
 				}
 			});
-			// 수정하러가기
+		}
+		
+		function fnUpdateForm() {
 			$('#update_btn').on('click', function(){
 				$('#f').attr('action', 'updateForm.board');
 				$('#f').submit();
 			});
-			// 댓글삽입
+		}
+		
+		function fnInsertComments() {
 			$('#insert_btn').on('click', function(){
 				if ( $('#content').val() == '' ) {
 					alert('댓글 내용 필수.');
@@ -43,55 +57,91 @@
 					}
 				});
 			});
-			// 목록보기
-			fnCommentsList();
-			// 댓글삭제
-			fnDeleteComments();
-		});
+		}
+		
+		// 전역 변수 : 현재 페이지 번호
+		var page = 1;
+		
 		function fnCommentsList() {
 			 $.ajax({
 				url: 'list.comments',
 				type: 'get',
 				data: 'bNo=${board.bNo}',
 				dataType: 'json',
-				success: function(comments) {  // comments : [{}, {}, {}, ...]
-					$('#comments_list').empty();
-					$.each(comments, function(i, comment){
-						if (comment.state == 0) {  // 정상 댓글이면
-							if ('${loginUser.id}' == comment.writer) {
-								$('<ul>')
-								.append( $('<li>').text(comment.writer) )
-								.append( $('<li>').text(comment.content) )
-								.append( $('<li>').text(comment.created) )
-								.append( $('<li>').html('<a class="delete_comments_link" data-cno="' + comment.cNo + '">삭제</a>') )
-								.appendTo('#comments_list');
-							} else {
-								$('<ul>')
-								.append( $('<li>').text(comment.writer) )
-								.append( $('<li>').text(comment.content) )
-								.append( $('<li>').text(comment.created) )
-								.append( $('<li>').html('') )
-								.appendTo('#comments_list');
-							}
-						} else if (comment.state == -1) {  // 삭제된 댓글이면
-							$('<ul>')
-							.append( $('<li>').text('') )
-							.append( $('<li>').text('삭제된 댓글입니다.') )
-							.append( $('<li>').text('') )
-							.append( $('<li>').html('') )
-							.appendTo('#comments_list');
-						}
-					});
+				success: function(result) {  // result = {"commentsCount": 2, "comments": [{}, {}], "pageEntity": {"totalRecord": 2, ...}
+					// 댓글 목록 출력하기
+					if (result.commentsCount == 0) {
+						$('<ul>')
+						.append( $('<li>').text() )
+						.append( $('<li>').text('첫 댓글의 주인공이 되어 보세요.') )
+						.append( $('<li>').text() )
+						.append( $('<li>').text() )
+						.appendTo('#comments_list');
+					} else {
+						fnPrintCommentsList(result.comments);						
+					}
+					// 페이징 출력하기
+					let p = result.pageEntity;
+					$('#pageEntity').empty();
+					// 1페이지로 이동 : 1페이지는 링크가 필요 없음.
+					if (page == 1) {
+						// class="disable_link" : CSS 용도
+						$('<div class="disable_link">◀◀&nbsp;</div>').appendTo('#pageEntity');
+					} else {
+						// class="enable_link"  : CSS 용도
+						// class="first_page"   : 전역변수 page를 1로 수정
+						$('<div class="enable_link first_page" data-page="1">◀◀&nbsp;</div>').appendTo('#pageEntity');
+					}
+					// 이전 블록으로 이동 : 1블록은 링크가 필요 없음.
+					if (page <= p.pagePerBlock) {
+						// class="disable_link" : CSS 용도
+						$('<div class="disable_link">◀&nbsp;</div>').appendTo('#pageEntity');
+					} else {
+						// class="enable_link"  : CSS 용도
+						// class="prev_block"   : 전역변수 page를 (beginPage - 1)로 수정
+						$('<div class="enable_link prev_block" data-page="'+(p.beginPage - 1)+'">◀&nbsp;</div>').appendTo('#pageEntity');
+					}
+					
 				},
 				error: function(xhr) {
 					alert(xhr.responseText);
 				}
 			 });
 		}
+			 
+		function fnPrintCommentsList(comments) {
+			$('#comments_list').empty();
+			$.each(comments, function(i, comment){
+				if (comment.state == 0) {  // 정상 댓글이면
+					if ('${loginUser.id}' == comment.writer) {
+						$('<ul>')
+						.append( $('<li>').text(comment.writer) )
+						.append( $('<li>').text(comment.content) )
+						.append( $('<li>').text(comment.created) )
+						.append( $('<li>').html('<a class="delete_comments_link" data-cno="' + comment.cNo + '">삭제</a>') )
+						.appendTo('#comments_list');
+					} else {
+						$('<ul>')
+						.append( $('<li>').text(comment.writer) )
+						.append( $('<li>').text(comment.content) )
+						.append( $('<li>').text(comment.created) )
+						.append( $('<li>').html('') )
+						.appendTo('#comments_list');
+					}
+				} else if (comment.state == -1) {  // 삭제된 댓글이면
+					$('<ul>')
+					.append( $('<li>').text('') )
+					.append( $('<li>').text('삭제된 댓글입니다.') )
+					.append( $('<li>').text('') )
+					.append( $('<li>').html('') )
+					.appendTo('#comments_list');
+				}
+			});
+		}
+		
 		function fnDeleteComments() {
 			$('body').on('click', '.delete_comments_link', function(event){
 				if (confirm('댓글을 삭제할까요?')) {
-					// console.log($(this).data('cno'));
 					$.ajax({
 						url: 'delete.comments',
 						type: 'get',
@@ -106,6 +156,7 @@
 				}
 			});
 		}
+		
 	</script>
 	<style>
 		#comments_list > ul {
@@ -119,6 +170,26 @@
 		#comments_list > ul > li:nth-of-type(2) { width: 400px; }
 		#comments_list > ul > li:nth-of-type(3) { width: 100px; }
 		#comments_list > ul > li:nth-of-type(4) { width: 100px; }
+		#pageEntity {
+			display: flex;
+			justify-content: center; 
+			width: 100%;
+		}
+		#pageEntity > div {
+			width: 20px;
+			height: 20px;
+			text-align: center;
+		}
+		.disable_link {
+			color: silver;
+		}
+		.enable_link {
+			cursor: pointer;
+		}
+		.enable_link:hover, .now_page {
+			border: 1px solid silver;
+			color: limegreen;
+		}
 	</style>
 </head>
 <body>
@@ -204,7 +275,14 @@
 			<li>작성일자</li>
 			<li>삭제</li>
 		</ul>
+		<div id="pageEntity"></div>		
 	</div>
 
 </body>
 </html>
+
+
+
+
+
+

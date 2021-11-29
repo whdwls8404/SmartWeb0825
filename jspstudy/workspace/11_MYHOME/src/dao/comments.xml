@@ -10,10 +10,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (COMMENTS_SEQ.NEXTVAL, #{writer}, #{content}, #{bNo}, 0, SYSDATE)
 	</insert>
 	
-	<select id="selectCommentsList" parameterType="Long" resultType="dto.Comments">
-		SELECT CNO, WRITER, CONTENT, BNO, STATE, CREATED
+	<select id="selectTotalCount" parameterType="Long" resultType="int">
+		SELECT COUNT(*)
 		  FROM COMMENTS
 		 WHERE BNO = #{bNo}
+	</select>
+	
+	<select id="selectCommentsList" parameterType="Map" resultType="dto.Comments">
+		SELECT B.CNO, B.WRITER, B.CONTENT, B.BNO, B.STATE, B.CREATED
+		  FROM (SELECT ROWNUM AS RN, A.CNO, A.WRITER, A.CONTENT, A.BNO, A.STATE, A.CREATED
+		          FROM (SELECT CNO, WRITER, CONTENT, BNO, STATE, CREATED
+		                  FROM COMMENTS
+		                 WHERE BNO = #{bNo}
+		                 ORDER BY CNO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
 	<update id="deleteComments" parameterType="Long" >

@@ -10,10 +10,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (BOARD_SEQ.NEXTVAL, #{writer}, #{title}, #{content}, #{fileName}, #{saveName}, SYSDATE, SYSDATE)
 	</insert>
 	
-	<select id="selectBoardList" resultType="dto.Board">
-		SELECT BNO, WRITER, TITLE, CONTENT, FILENAME, SAVENAME, CREATED, LASTMODIFIED
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*)
 		  FROM BOARD
-		 ORDER BY BNO DESC
+	</select>
+	
+	<select id="selectBoardList" parameterType="Map" resultType="dto.Board">
+		SELECT B.BNO, B.WRITER, B.TITLE, B.CONTENT, B.FILENAME, B.SAVENAME, B.CREATED, B.LASTMODIFIED
+		  FROM (SELECT ROWNUM AS RN, A.BNO, A.WRITER, A.TITLE, A.CONTENT, A.FILENAME, A.SAVENAME, A.CREATED, A.LASTMODIFIED
+		          FROM (SELECT BNO, WRITER, TITLE, CONTENT, FILENAME, SAVENAME, CREATED, LASTMODIFIED
+		                  FROM BOARD
+		                 ORDER BY BNO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
 	<select id="selectBoardView" parameterType="Long" resultType="dto.Board">

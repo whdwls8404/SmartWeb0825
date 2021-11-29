@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -30,9 +31,15 @@ public class CommentsDao {
 		ss.close();
 		return result;
 	}
-	public List<Comments> selectCommentsList(Long bNo) {
+	public int selectTotalCount(Long bNo) {
 		SqlSession ss = factory.openSession();
-		List<Comments> list = ss.selectList("dao.comments.selectCommentsList", bNo);
+		int totalCount = ss.selectOne("dao.comments.selectTotalCount", bNo);
+		ss.close();
+		return totalCount;
+	}
+	public List<Comments> selectCommentsList(Map<String, Long> map) {
+		SqlSession ss = factory.openSession();
+		List<Comments> list = ss.selectList("dao.comments.selectCommentsList", map);
 		ss.close();
 		return list;
 	}

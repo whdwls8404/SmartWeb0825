@@ -34,9 +34,9 @@
 				</tr>
 			</c:if>
 			<c:if test="${not empty list}">
-				<c:forEach items="${list}" var="board">
+				<c:forEach varStatus="vs" items="${list}" var="board">
 					<tr>
-						<td>${board.bNo}</td>
+						<td>${startNum - vs.index}</td>
 						<td><a href="view.board?bNo=${board.bNo}">${board.title}</a></td>
 						<td>${board.writer}</td>
 						<td>${board.created}</td>
@@ -44,6 +44,11 @@
 				</c:forEach>
 			</c:if>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4">${pageEntity}</td>
+			</tr>
+		</tfoot>
 	</table>
 
 </body>
