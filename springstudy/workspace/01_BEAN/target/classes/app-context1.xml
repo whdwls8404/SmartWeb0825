@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--
+		spring bean configuration file
+		: 안녕 난 bean을 만드는 XML이야
+	-->
+	
+	<!--
+		1. 디폴트 생성자 + setter
+		   : setter injection 방식	
+	-->	
+	<!--
+		1) 디폴트 생성자
+		<bean id="객체명" class="클래스명"></bean>
+		<bean id="객체명" class="클래스명" />
+		2) setter
+		<property name="필드명">
+		    <value>값</value>
+		</property>
+		<property name="필드명">
+			<ref bean="객체명" />
+		</property>
+	-->
+	
+	<!--
+		지금부터 아래 Bean을 생성한다.
+		Calculator calculator1 = new Calculator(); 
+	-->
+	<bean id="calculator1" class="com.koreait.ex01.bean01.Calculator"></bean>
+	
+	<!--
+		지금부터 아래 Bean을 생성한다.
+		EngineerCalculator eCalculator1 = new EngineerCalculator();
+		eCalculator.setA(7);
+		eCalculator.setB(2);
+		eCalculator.setCalculator(calculator1);
+	-->
+	<bean id="eCalculator1" class="com.koreait.ex01.bean01.EngineerCalculator">
+		<property name="a">
+			<value>7</value>
+		</property>
+		<property name="b">
+			<value>3</value>
+		</property>
+		<property name="calculator">
+			<ref bean="calculator1" />
+		</property>
+	</bean>
+
+	<!--
+		다음 Bean을 생성해 본다.
+		Calculator calculator2 = new Calculator();
+		EngineerCalculator eCalculator2 = new EngineerCalculator();
+		eCalculator2.setA(12);
+		eCalculator2.setB(7);
+		eCalculator2.setCalculator(calculator2);
+	-->
+	<bean class="com.koreait.ex01.bean01.Calculator" id="calculator2" />
+	<bean class="com.koreait.ex01.bean01.EngineerCalculator" id="eCalculator2">
+		<property name="calculator" ref="calculator2" />
+		<property name="a" value="12" />
+		<property name="b" value="7" />
+	</bean>
+
+	
+	<!--
+		2. 필드 값을 받아오는 생성자
+		   : constructor injection 방식
+	-->
+	<!--
+		<bean class="클래스명" id="객체명">
+			<constructor-arg>
+				<value>1번째인수</value>
+			</constructor-arg>
+			<constructor-arg>
+				<value>2번째인수</value>
+			</constructor-arg>
+			<constructor-arg>
+				<ref bean="3번째인수(객체명)" />
+			</constructor-arg>
+		</bean>
+	-->
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>
