@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.koreait.ex01.quiz02.Calculator" id="calculator" />
+	
+	<bean class="com.koreait.ex01.quiz02.BMICalculator" id="bmiCalculator">
+		<constructor-arg value="20" />
+		<constructor-arg value="25" />
+		<constructor-arg value="30" />
+		<constructor-arg ref="calculator" />
+	</bean>
+	
+	<bean class="com.koreait.ex01.quiz02.Member" id="member">
+		<property name="name" value="홍길동" />
+		<property name="height" value="177.5" />
+		<property name="weight" value="70.5" />
+		<property name="bmiCalculator" ref="bmiCalculator" />
+		<property name="course">
+			<set>
+				<value>헬스</value>
+				<value>필라테스</value>
+			</set>
+		</property>
+	</bean>
+
+</beans>

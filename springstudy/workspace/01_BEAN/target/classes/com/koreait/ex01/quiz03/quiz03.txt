@@ -1,0 +1,11 @@
+OracleConnector.java
+    private String driverClassName;
+    private String url;
+    private String username;
+    private String password;
+    public Connection getConnection() { }
+
+실행)
+scott 계정에 접속되었습니다.
+
+[Project] - [Build Path] - [Add External JARs] - "ojdbc6.jar" 추가

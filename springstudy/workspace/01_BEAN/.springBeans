@@ -11,6 +11,8 @@
 		<config>src/main/resources/app-context2.xml</config>
 		<config>src/main/resources/app-context3.xml</config>
 		<config>src/main/resources/quiz01.xml</config>
+		<config>src/main/resources/quiz02.xml</config>
+		<config>src/main/resources/quiz03.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
