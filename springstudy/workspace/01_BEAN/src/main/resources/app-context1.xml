@@ -65,7 +65,6 @@
 		<property name="b" value="7" />
 	</bean>
 
-	
 	<!--
 		2. 필드 값을 받아오는 생성자
 		   : constructor injection 방식
@@ -83,16 +82,28 @@
 			</constructor-arg>
 		</bean>
 	-->
+	<!--
+		Calculator calculator3 = new Calculator();
+		EngineerCalculator eCalculator3 = new EngineerCalculator(25, 12, calculator3);
+	-->
+	<bean class="com.koreait.ex01.bean01.Calculator" id="calculator3" />
+	<bean class="com.koreait.ex01.bean01.EngineerCalculator" id="eCalculator3">
+		<constructor-arg>
+			<value>25</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>12</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="calculator3" />
+		</constructor-arg>
+	</bean>
 
-
-
-
-
-
-
-
-
-
-
+	<bean class="com.koreait.ex01.bean01.Calculator" id="calculator4" />
+	<bean class="com.koreait.ex01.bean01.EngineerCalculator" id="eCalculator4">
+		<constructor-arg value="100" />
+		<constructor-arg value="25" />
+		<constructor-arg ref="calculator4" />
+	</bean>
 
 </beans>
