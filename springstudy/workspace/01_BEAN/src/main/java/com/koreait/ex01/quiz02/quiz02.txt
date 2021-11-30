@@ -1,0 +1,27 @@
+Calculator.java
+    public double add(double a, double b) { return a + b; }
+    public double sub(double a, double b) { return a - b; }
+    public double mul(double a, double b) { return a * b; }
+    public double div(double a, double b) { return a / b; }
+
+BMICalculator.java
+    private double lowBase;       //       low    < 20  (작성 안 함)
+    private double normalBase;    // 20 <= normal < 25
+    private double overBase;      // 25 <= over   < 30
+    private double obesityBase;   // 30 <= obesity
+    private Calculator calculator;
+
+Member.java
+    private String name;
+    private double height;        // 키
+    private double weight;        // 몸무게
+    private BMICalculator bmiCalculator;
+    private Set<String> course;   // 과목
+
+
+실행)
+name : 홍길동
+height : 177.5cm
+weight : 70.5kg
+bmi : 22.3 (정상)
+course : {"헬스", "필라테스"}

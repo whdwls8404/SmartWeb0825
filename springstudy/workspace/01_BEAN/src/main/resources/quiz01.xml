@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.koreait.ex01.quiz01.Exam" id="exam">
+		<property name="scores">
+			<list>
+				<value>50</value>
+				<value>60</value>
+				<value>70</value>
+				<value>80</value>
+				<value>90</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.koreait.ex01.quiz01.Student" id="student">
+		<property name="name" value="홍길동" />
+		<property name="age" value="19" />
+		<property name="exam" ref="exam" />
+		<property name="home">
+			<map>
+				<entry key="address" value="seoul" />
+				<entry key="tel" value="010-1111-1111" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

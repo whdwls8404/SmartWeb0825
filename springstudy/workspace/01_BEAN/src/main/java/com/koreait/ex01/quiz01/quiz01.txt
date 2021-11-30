@@ -1,0 +1,19 @@
+Exam.java
+    private List<Integer> scores;  // 5개의 점수
+    private double average;        // 평균
+    private char grade;            // A ~ F
+
+Student.java
+    private String name;
+    private int age;
+    private Exam exam;
+    private Map<String, String> home;  // address, tel
+
+실행)
+name : 홍길동
+age : 19
+scores : [50, 60, 70, 80, 90]
+average : 70.0
+grade : C
+home's address : seoul
+home's tel : 010-1111-1111

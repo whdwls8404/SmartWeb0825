@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- List -->
+	<!-- 1. List -->
 	<bean class="com.koreait.ex01.bean03.ListBean" id="listBean">
 		<property name="list">
 			<list>
@@ -11,6 +11,30 @@
 				<value>떡볶이</value>
 				<value>순대</value>
 			</list>
+		</property>
+	</bean>
+	
+	<!-- 2. Set -->
+	<bean class="com.koreait.ex01.bean03.SetBean" id="setBean">
+		<property name="set">
+			<set>
+				<value>JAVA</value>
+				<value>JAVA</value>
+				<value>JSP</value>
+				<value>JSP</value>
+				<value>SPRING</value>
+				<value>SPRING</value>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- 3. Map -->
+	<bean class="com.koreait.ex01.bean03.MapBean" id="mapBean">
+		<property name="map">
+			<map>
+				<entry key="beginRecord" value="1" />
+				<entry key="endRecord" value="10" />
+			</map>
 		</property>
 	</bean>
 

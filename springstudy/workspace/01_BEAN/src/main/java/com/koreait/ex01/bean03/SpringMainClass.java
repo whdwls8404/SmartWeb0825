@@ -11,6 +11,12 @@ public class SpringMainClass {
 		
 		ListBean listBean = ctx.getBean("listBean", ListBean.class);
 		listBean.listInfo();
+		
+		SetBean setBean = ctx.getBean("setBean", SetBean.class);
+		setBean.setInfo();
+		
+		MapBean mapBean = ctx.getBean("mapBean", MapBean.class);
+		mapBean.mapInfo();
 
 		ctx.close();
 			
