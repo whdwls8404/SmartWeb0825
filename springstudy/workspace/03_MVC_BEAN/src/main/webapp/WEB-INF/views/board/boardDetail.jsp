@@ -8,8 +8,8 @@
 </head>
 <body>
 
-	<h1>회원아이디 : ${member2.id}</h1>
-	<h1>비밀번호 : ${member2.pw}</h1>
+	<h1>제목 : ${board.title}</h1>
+	<h1>내용 : ${board.content}</h1>
 
 </body>
 </html>
