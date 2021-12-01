@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--
+		servlet-context.xml
+		안녕 난 DispatherServlet이야
+		<bean> 등록도 할 수 있어
+	-->
+	
+	<!--
+		DispatherServlet
+		
+		1. User <-> DispatherServlet <-> Controller
+		2. web 자원(image, css, js) - static 자원의 관리
+		3. ViewResolver 동작
+	-->
+
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />  <!-- web 자원은 resources 디렉터리에 보관 -->
+	<resources mapping="/assets/**" location="/assets/" />  <!-- 추가도 할 수 있다 -->
+
+
+	<!--
+		Controller에서 View로 이동할 대 참고하는 속성들
+		1. prefix : 반환하는 View 앞에 추가
+		2. suffix : 반환하는 View 뒤에 추가
+	-->
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	
+	<!--
+		모든 구성요소들은 com.koreait.ex02 패키지 소속이다
+		1. common 패키지     : com.koreait.ex02.common
+		2. controller 패키지 : com.koreait.ex02.controller
+		3. dao 패키지        : com.koreait.ex02.dao (repository)
+		4. dto 패키지        : com.koreait.ex02.dto (domain)
+		5. service 패키지    : com.koreait.ex02.service
+	-->
+	<context:component-scan base-package="com.koreait.ex02" />
+	
+</beans:beans>

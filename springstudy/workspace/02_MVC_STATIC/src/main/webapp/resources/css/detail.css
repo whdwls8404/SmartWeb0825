@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.picture1 {
+	width: 640px;
+	height: 480px;
+	background-image: url('/ex02/resources/images/cat.jpg');
+	background-size: 640px 480px;
+}
+.picture2 {
+	width: 640px;
+	height: 480px;
+	background-image: url('/ex02/assets/images/dog.jpg');
+	background-size: 640px 480px;
+}
