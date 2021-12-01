@@ -1,0 +1,1 @@
+app-context4.xml에서 BeanConfig.java 부르기

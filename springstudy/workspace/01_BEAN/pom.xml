@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 	
-	<!-- 날 수정한 뒤에는 [Maven] - [Update Project] 해 주세요 -->
+	<!-- 날 수정한 뒤에는 [Maven] - [Update Project] 해 주세요. -->
 	
 	<!-- properties 태그에서 각종 version을 세팅함. -->
 	<properties>

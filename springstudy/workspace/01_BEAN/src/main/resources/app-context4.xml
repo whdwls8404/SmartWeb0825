@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean class="com.koreait.ex01.java.bean03.Publisher" id="publisher2">
+		<property name="name" value="부산출판사" />
+		<property name="tel" value="051-222-3333" />	
+	</bean>
+
+	<bean class="com.koreait.ex01.java.bean03.Book" id="book2">
+		<property name="title" value="스프링마스터" />
+		<property name="author" value="최박사" />
+		<property name="publisher" ref="publisher2" />
+	</bean>
+
+	<!--
+		BeanConfig.java에서 생성한 Bean 가져오기
+		
+		1. Namespace 탭에서 context 옵션을 체크한다.
+		2. <context:anntation-config /> 태그를 추가한다.
+		3. BeanConfig.java를 <bean> 태그로 등록한다.
+	-->
+	
+	<context:annotation-config />
+	<bean class="com.koreait.ex01.java.bean03.BeanConfig" />
+
+</beans>
