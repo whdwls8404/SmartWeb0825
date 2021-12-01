@@ -7,7 +7,7 @@
 	<name>03_MVC_BEAN</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-
+	
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.1.4.RELEASE</org.springframework-version>
@@ -15,9 +15,9 @@
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 		<junit-version>4.12</junit-version>
 	</properties>
-
-	<dependencies>
 	
+	<dependencies>
+
 		<!-- BeanConfig.java -->
 		<!-- https://mvnrepository.com/artifact/cglib/cglib -->
 		<dependency>
@@ -25,7 +25,7 @@
 		    <artifactId>cglib</artifactId>
 		    <version>2.2.2</version>
 		</dependency>
-	
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
