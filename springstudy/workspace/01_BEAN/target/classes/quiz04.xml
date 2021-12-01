@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.koreait.ex01.java.quiz02.Gun" id="gun1">
+		<property name="model" value="K2" />
+		<property name="bullet" value="15" />
+	</bean>
+	
+	<bean class="com.koreait.ex01.java.quiz02.Soldier" id="soldier1">
+		<property name="name" value="김상사" />
+		<property name="gun" ref="gun1" />
+		<property name="army">
+			<map>
+				<entry key="name" value="백골" />
+				<entry key="address" value="강원도 철원군" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

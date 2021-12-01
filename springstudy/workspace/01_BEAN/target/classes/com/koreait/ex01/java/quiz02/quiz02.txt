@@ -1,0 +1,19 @@
+Gun.java
+    private String model;
+    private int bullet;
+
+Soldier.java
+    private String name;
+    private Gun gun;
+    private Map<String, String> army;
+
+quiz04.xml에 bean 만들고,
+BeanConfig.java에 bean 만들고,
+BeanConfig.java에서 quiz04.xml의 bean 가져오기
+
+실행)
+name : 김상사
+model : K2
+bullet : 15
+army's name : 백골
+army's address : 강원도 철원군
