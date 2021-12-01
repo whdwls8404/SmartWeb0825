@@ -1,0 +1,1 @@
+BeanConfig.java에서 app-context5.xml 부르기

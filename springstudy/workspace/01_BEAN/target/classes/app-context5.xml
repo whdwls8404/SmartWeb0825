@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 여기에서 생성한 Bean을 BeanConfig.java에서 불러 냅니다 -->
+
+	<bean class="com.koreait.ex01.java.bean04.Publisher" id="publisher2">
+		<property name="name" value="부산출판사" />
+		<property name="tel" value="051-222-3333" />	
+	</bean>
+
+	<bean class="com.koreait.ex01.java.bean04.Book" id="book2">
+		<property name="title" value="스프링마스터" />
+		<property name="author" value="최박사" />
+		<property name="publisher" ref="publisher2" />
+	</bean>
+
+</beans>
