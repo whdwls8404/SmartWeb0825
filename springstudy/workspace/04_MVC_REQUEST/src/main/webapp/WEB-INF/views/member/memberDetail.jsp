@@ -8,9 +8,9 @@
 </head>
 <body>
 
-	<h1>회원번호 : </h1>
-	<h1>회원아이디 : </h1>
-	<h1>회원이름 : </h1>
+	<h1>회원번호 : ${member.idx}</h1>
+	<h1>회원아이디 : ${member.id}</h1>
+	<h1>회원이름 : ${member.name}</h1>
 
 	<a href="/ex04">index로 돌아가기</a>  <!-- @GetMapping("/") 매핑과 연결됨. -->
 	<br>
@@ -18,3 +18,11 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
