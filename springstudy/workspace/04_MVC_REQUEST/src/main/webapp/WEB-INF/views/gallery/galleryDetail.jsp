@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>회원아이디 : ${member.id}</h1>
-	<h1>비밀번호 : ${member.pw}</h1>
-
+	<h1>페이지 : ${page}</h1>
+	<a href="/ex04">index로 돌아가기</a>
 </body>
 </html>

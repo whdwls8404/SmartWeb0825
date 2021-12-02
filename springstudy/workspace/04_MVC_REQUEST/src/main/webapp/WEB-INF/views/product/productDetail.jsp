@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>회원아이디 : ${member.id}</h1>
-	<h1>비밀번호 : ${member.pw}</h1>
-
+	<h1>모델명: ${product.modelName}</h1>
+	<h1>가격: ${product.price}</h1>
+	<a href="/ex04">index로 돌아가기</a>
 </body>
 </html>

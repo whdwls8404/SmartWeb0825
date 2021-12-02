@@ -3,6 +3,7 @@ package com.koreait.ex04.controler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.koreait.ex04.domain.Board;
@@ -42,11 +43,26 @@ public class BoardController {
 	}
 	
 	
+	/*  아래 보기 중 사용할 수 없는 파라미터 처리 방식은?
+			1. HttpServletRequest
+			2. @RequestParam
+			3. Board board
+			정답 : 3 (Board 클래스에 setter가 없다.)
+	 */
 	
 	
-	
-	
-	
-	
+	//  <a href="board/v3.do?no=10&title=공지&content=내용">
+	@GetMapping("v3.do")
+	public ModelAndView v3(@RequestParam(value="no") Long no,
+			@RequestParam(value="title") String title,
+			@RequestParam(value="content") String content) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/boardDetail");
+		mav.addObject("board", new Board.BoardBuilder(no, title, content)
+									.build());
+		return mav;
+		
+	}
 	
 }
