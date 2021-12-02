@@ -39,7 +39,7 @@ public class MemberController {
 	public String b(Model model) {
 		
 		// Model
-		// 안녕 난 request를 사용하는 클래스야 보안이 더 좋지
+		// 안녕 난 request를 사용하는 인터페이스야 보안이 더 좋지
 		// addAttribute()를 사용하면 실제로는 request.setAttribute() 처럼 동작하지
 		
 		// member2을 만들어서 memberDetail.jsp로 보내기
