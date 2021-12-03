@@ -4,5 +4,24 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!--
+		@Autowired는 class로 bean을 인식하기 때문에
+		member3와 member4를 다르게 인식하지 못함.
 		
+		member3와 member4의 구분을 위해서 <qualifier> 태그를 추가함.
+	-->
+
+	<bean class="com.koreait.ex03.domain.Member" id="member3">
+		<qualifier value="member3" />
+		<property name="id" value="admin" />
+		<property name="pw" value="1111" />
+	</bean>
+	
+	<bean class="com.koreait.ex03.domain.Member" id="member4">
+		<qualifier value="member4" />
+		<constructor-arg value="webmaster" />
+		<constructor-arg value="2222" />
+	</bean>
+
 </beans>

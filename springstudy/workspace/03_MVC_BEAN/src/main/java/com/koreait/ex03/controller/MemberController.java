@@ -2,6 +2,8 @@ package com.koreait.ex03.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -35,7 +37,7 @@ public class MemberController {
 	}
 	
 	// @RequestMapping(value="memberView.do", method=RequestMethod.GET)
-	@GetMapping("memberView.do")
+	@GetMapping("memberView1.do")
 	public String b(Model model) {
 		
 		// Model
@@ -44,10 +46,20 @@ public class MemberController {
 		
 		// member2을 만들어서 memberDetail.jsp로 보내기
 		Member member2 = ctx.getBean("member2", Member.class);
-		model.addAttribute("member2", member2);
+		model.addAttribute("member", member2);
 		
 		return "member/memberDetail";
 		
+	}
+	
+	@Autowired
+	@Qualifier(value="member3")  // <qualifier value="member3" />
+	private Member member3;
+
+	@GetMapping("memberView2.do")
+	public String c(Model model) {
+		model.addAttribute("member", member3);
+		return "member/memberDetail";
 	}
 	
 }
