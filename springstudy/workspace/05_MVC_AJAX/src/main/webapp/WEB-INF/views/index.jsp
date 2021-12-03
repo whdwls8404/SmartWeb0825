@@ -184,6 +184,10 @@
 		});
 		
 	</script>
+	
+	<hr>
+	
+	<a href="openPapago.do">파파고</a>
 
 </body>
 </html>

@@ -65,4 +65,9 @@ public class MemberController {
 		return map;
 	}
 	
+	@GetMapping("openPapago.do")
+	public String openPapago() {
+		return "papago";
+	}
+	
 }
