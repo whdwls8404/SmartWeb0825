@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<a href="/board/insertBoardForm.do">새 글 작성</a>
+	<a href="/ex06/board/insertBoardForm.do">새 글 작성</a>
 
 	<hr>
 
@@ -33,7 +33,7 @@
 				<c:forEach var="board" items="${list}">
 					<tr>
 						<td>${board.no}</td>
-						<td>${board.title}</td>
+						<td><a href="/ex06/board/selectBoardByNo.do?no=${board.no}">${board.title}</a></td>
 						<td>${board.writer}</td>
 						<td>${board.created}</td>
 					</tr>

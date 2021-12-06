@@ -67,9 +67,47 @@ public class BoardRepository {
 		return list;
 	}
 	
+	public int insertBoard(Board board) {
+		int result = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "INSERT INTO BOARD VALUES (BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), TO_CHAR(SYSDATE, 'YYYY-MM-DD'))";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getWriter());
+			ps.setString(2, board.getTitle());
+			ps.setString(3, board.getContent());
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return result;
+	}
 	
-	
-	
+	public Board selectBoardByNo(Long no) {
+		Board board = null;
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT NO, WRITER, TITLE, CONTENT, CREATED, LASTMODIFIED FROM BOARD WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				board = new Board(rs.getLong(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4), 
+						rs.getString(5),
+						rs.getString(6));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return board;
+	}
 	
 	
 	
