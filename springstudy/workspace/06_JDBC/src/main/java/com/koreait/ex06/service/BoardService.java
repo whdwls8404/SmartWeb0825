@@ -11,10 +11,6 @@ public interface BoardService {
 	public List<Board> selectBoardList();
 	public void insertBoard(HttpServletRequest request, HttpServletResponse response);
 	public Board selectBoardByNo(Long no);
+	public void updateBoard(Board board, HttpServletResponse response);
+	public void deleteBoard(Long no, HttpServletResponse response);
 }
-
-
-
-
-
-

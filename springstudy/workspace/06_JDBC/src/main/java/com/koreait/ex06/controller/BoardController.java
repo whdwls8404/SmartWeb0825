@@ -1,5 +1,6 @@
 package com.koreait.ex06.controller;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +37,7 @@ public class BoardController {
 		logger.info("selectBoardList() 호출");  // console에 정보가 찍힘
 		List<Board> list = service.selectBoardList();
 		logger.info(list.toString());  // board 목록을 console에 찍어봄
-		model.addAttribute("list", list);  // board/list.jsp로 list로 저장함
+		model.addAttribute("list", list);  // 내부적으로 request.setAttribute("list", list)임
 		return "board/list";  // board/list.jsp로 forward함(model에 저장한 list가 전달됨)
 	}
 	
@@ -55,13 +57,22 @@ public class BoardController {
 		return "board/detail";
 	}
 	
+	@GetMapping(value="updateBoardForm.do")
+	public String updateBoardForm(@ModelAttribute(value="board") Board board) {
+		// detail.jsp에서 보낸 파라미터 3개는 Board board가 받고,
+		// model에 "board" 속성으로 저장함 : model.addAttribute("board", board")
+		return "board/update";
+	}
 	
+	@PostMapping(value="updateBoard.do")
+	public void updateBoard(Board board, HttpServletResponse response) {
+		service.updateBoard(board, response);
+	}
 	
-	
+	@GetMapping(value="deleteBoard.do")
+	public void deleteBoard(@RequestParam(value="no", required=false, defaultValue="0") Long no,
+						HttpServletResponse response) {
+		service.deleteBoard(no, response);
+	}
 	
 }
-
-
-
-
-

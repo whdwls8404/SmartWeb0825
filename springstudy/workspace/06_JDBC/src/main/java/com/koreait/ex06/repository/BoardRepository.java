@@ -109,12 +109,38 @@ public class BoardRepository {
 		return board;
 	}
 	
+	public int updateBoard(Board board) {
+		int result = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, LASTMODIFIED = TO_CHAR(SYSDATE, 'YYYY-MM-DD') WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getTitle());
+			ps.setString(2, board.getContent());
+			ps.setLong(3, board.getNo());
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return result;
+	}
 	
-	
-	
-	
-	
-	
-	
+	public int deleteBoard(Long no) {
+		int result = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "DELETE FROM BOARD WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return result;
+	}
 	
 }

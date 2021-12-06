@@ -58,19 +58,53 @@ public class BoardServiceImpl implements BoardService {
 		return repository.selectBoardByNo(no);
 	}
 	
+	@Override
+	public void updateBoard(Board board, HttpServletResponse response) {
+		int result = repository.updateBoard(board);
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			if (result > 0) {
+				out.println("<script>");
+				out.println("alert('게시글 수정 성공')");
+				out.println("location.href='/ex06/board/selectBoardByNo.do?no=" + board.getNo() + "'");  // redirect 처리
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('게시글 수정 실패')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public void deleteBoard(Long no, HttpServletResponse response) {
+		int result = repository.deleteBoard(no);
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			if (result > 0) {
+				out.println("<script>");
+				out.println("alert('게시글 삭제 성공')");
+				out.println("location.href='/ex06/board/selectBoardList.do'");  // redirect 처리
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('게시글 삭제 실패')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
-
-
-
-
-

@@ -16,5 +16,26 @@
 		<li>최초등록일 : ${board.created}</li>
 		<li>최종수정일 : ${board.lastModified}</li>
 	</ul>
+	<form>
+		<input type="hidden" name="no" value="${board.no}">
+		<input type="hidden" name="title" value="${board.title}">
+		<input type="hidden" name="content" value="${board.content}">
+		<input type="button" value="수정" onclick="fnUpdateBoardForm(this.form)">
+		<input type="button" value="삭제" onclick="fnDeleteBoard(this.form)">
+		<input type="button" value="목록" onclick="fnSelectBoardList()">
+	</form>
+	<script>
+		function fnUpdateBoardForm(f) {
+			f.action = '/ex06/board/updateBoardForm.do';
+			f.submit();
+		}
+		function fnDeleteBoard(f) {
+			f.action = '/ex06/board/deleteBoard.do';
+			f.submit();
+		}
+		function fnSelectBoardList() {
+			location.href='/ex06/board/selectBoardList.do';
+		}
+	</script>
 </body>
 </html>
