@@ -15,9 +15,15 @@ import com.koreait.ex06.domain.Board;
 
 public class BoardRepository {
 
+	
 	private DataSource dataSource;
-	private static BoardRepository instance;
-	private BoardRepository() {
+	private Connection con;
+	private PreparedStatement ps;
+	private ResultSet rs;
+	private String sql;
+	
+	
+	public BoardRepository() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/oracle");
@@ -25,17 +31,7 @@ public class BoardRepository {
 			e.printStackTrace();
 		}
 	}
-	public static BoardRepository getInstance() {
-		if (instance == null) {
-			instance = new BoardRepository();
-		}
-		return instance;
-	}
 	
-	private Connection con;
-	private PreparedStatement ps;
-	private ResultSet rs;
-	private String sql;
 	
 	public void close(Connection con, PreparedStatement ps, ResultSet rs) {
 		try {
