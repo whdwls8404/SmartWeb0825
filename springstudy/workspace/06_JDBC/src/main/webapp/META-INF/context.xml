@@ -10,6 +10,7 @@
 		url="jdbc:oracle:thin:@localhost:1521:xe"
 		username="scott"
 		password="1111"
+		maxTotal="8"
 		/>
 
 </Context>
