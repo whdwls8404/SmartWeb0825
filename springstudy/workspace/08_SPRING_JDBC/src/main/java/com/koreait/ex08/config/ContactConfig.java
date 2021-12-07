@@ -5,6 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.koreait.ex08.repository.ContactRepository;
+import com.koreait.ex08.service.ContactService;
+import com.koreait.ex08.service.ContactServiceImpl;
+
 @Configuration
 public class ContactConfig {
 
@@ -23,6 +27,16 @@ public class ContactConfig {
 		JdbcTemplate template = new JdbcTemplate();
 		template.setDataSource(dataSource());
 		return template;
+	}
+	
+	@Bean
+	public ContactRepository repository() {
+		return new ContactRepository();
+	}
+	
+	@Bean
+	public ContactService service() {
+		return new ContactServiceImpl();
 	}
 	
 }
