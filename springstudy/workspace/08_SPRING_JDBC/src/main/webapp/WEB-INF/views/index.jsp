@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<a href="/ex08/contact/selectContactList">연락처 목록</a>
+	<a href="/ex08/contact/findAllContact">연락처 목록</a>
 
 </body>
 </html>

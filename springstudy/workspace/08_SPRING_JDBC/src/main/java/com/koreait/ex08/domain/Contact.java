@@ -1,7 +1,5 @@
 package com.koreait.ex08.domain;
 
-import java.sql.Date;
-
 public class Contact {
 
 	// field
@@ -9,9 +7,9 @@ public class Contact {
 	private String name;
 	private String tel;
 	private String address;
-	private Date birthday;
+	private String birthday;
 	
-	// getter
+	// getter/setter
 	public int getNo() {
 		return no;
 	}
@@ -24,8 +22,23 @@ public class Contact {
 	public String getAddress() {
 		return address;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	
 	// constructor
@@ -36,7 +49,10 @@ public class Contact {
 		this.address = builder.address;
 		this.birthday = builder.birthday;
 	}
-	
+	public Contact() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// ContactBuilder 클래스
 	public static class ContactBuilder {
 		
@@ -45,7 +61,7 @@ public class Contact {
 		private String name;
 		private String tel;
 		private String address;
-		private Date birthday;
+		private String birthday;
 		
 		// constructor
 		public ContactBuilder() {
@@ -70,7 +86,7 @@ public class Contact {
 			this.address = address;
 			return this;
 		}
-		public ContactBuilder setBirthday(Date birthday) {
+		public ContactBuilder setBirthday(String birthday) {
 			this.birthday = birthday;
 			return this;
 		}

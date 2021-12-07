@@ -17,11 +17,25 @@ public class ContactServiceImpl implements ContactService {
 	public List<Contact> findAllContact() {
 		return repository.selectContactList();
 	}
+	
+	@Override
+	public void addContact(Contact contact) {
+		repository.insertContact(contact);
+	}
 
+	@Override
+	public Contact findContact(Contact contact) {
+		return repository.selectContactByNo(contact);
+	}
+	
+	@Override
+	public void updateContact(Contact contact) {
+		repository.updateContact(contact);
+	}
+	
+	@Override
+	public void deleteContact(Contact contact) {
+		repository.deleteContact(contact);
+	}
+	
 }
-
-
-
-
-
-
