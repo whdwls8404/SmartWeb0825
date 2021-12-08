@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+	namespace는 mapper 패키지 아래 notice.xml을 참고해서 작성함.
+-->
+
+<mapper namespace="mapper.notice">
+
+	<select id="selectNoticeList" resultType="com.koreait.ex10.domain.Notice">
+		SELECT NO, TITLE, CONTENT, CREATED, LASTMODIFIED
+		  FROM NOTICE
+		 ORDER BY NO DESC
+	</select>
+	
+	<select id="selectNoticeByNo" parameterType="Long" resultType="com.koreait.ex10.domain.Notice">
+		SELECT NO, TITLE, CONTENT, CREATED, LASTMODIFIED
+		  FROM NOTICE
+		 WHERE NO = #{no}
+	</select>
+
+	<insert id="insertNotice" parameterType="com.koreait.ex10.domain.Notice">
+		INSERT INTO NOTICE
+		VALUES (NOTICE_SEQ.NEXTVAL, #{title}, #{content}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<update id="updateNotice" parameterType="com.koreait.ex10.domain.Notice">
+		UPDATE NOTICE
+		   SET TITLE = #{title}, CONTENT = #{content}, LASTMODIFIED = SYSDATE
+		 WHERE NO = #{no}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="Long">
+		DELETE
+		  FROM NOTICE
+		 WHERE NO = #{no}
+	</delete>
+
+</mapper>
