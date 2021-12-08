@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 
 import com.koreait.ex09.dto.Contact;
 
-public class ContactRepository {
+public class ContactDAO {
 
 	// Spring jdbc 이용을 위해서 JdbcTemplate 클래스 사용
 	// JdbcTemplate 내부에서 Connection, PreparedStatement, ResultSet 사용
