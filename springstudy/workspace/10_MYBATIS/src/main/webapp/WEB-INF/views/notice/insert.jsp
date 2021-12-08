@@ -9,5 +9,13 @@
 </head>
 <body>
 
+	<h1>공지사항 작성 화면</h1>
+	<form method="post" action="/ex10/notice/insertNotice">
+		<input type="text" name="title" placeholder="제목"><br>
+		<textarea rows="2" cols="25" name="content" placeholder="내용"></textarea><br><br>
+		<button>작성완료</button>
+		<input type="button" value="목록" onclick="location.href='/ex10/notice/selectNoticeList'">
+	</form>
+
 </body>
 </html>

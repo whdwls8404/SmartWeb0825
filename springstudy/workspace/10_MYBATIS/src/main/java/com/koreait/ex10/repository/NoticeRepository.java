@@ -21,27 +21,15 @@ public class NoticeRepository {
 	}
 	
 	public int insertNotice(Notice notice) {
-		int result = sqlSession.insert("mapper.notice.insertNotice", notice);
-		if (result > 0) {
-			sqlSession.commit();
-		}
-		return result;
+		return sqlSession.insert("mapper.notice.insertNotice", notice);
 	}
 	
 	public int updateNotice(Notice notice) {
-		int result = sqlSession.update("mapper.notice.updateNotice", notice);
-		if (result > 0) {
-			sqlSession.commit();
-		}
-		return result;
+		return sqlSession.update("mapper.notice.updateNotice", notice);
 	}
 	
 	public int deleteNotice(Long no) {
-		int result = sqlSession.delete("mapper.notice.deleteNotice", no);
-		if (result > 0) {
-			sqlSession.commit();
-		}
-		return result;
+		return sqlSession.delete("mapper.notice.deleteNotice", no);
 	}
 	
 }
