@@ -5,26 +5,28 @@ import java.sql.Date;
 public class Gallery {
 
 	private Long no;
-	private String writer, title, content, ip, origin, saved;
+	private String writer, title, content, ip, path, origin, saved;
 	private Date created, lastModified;
 	
 	public Gallery() {
 		
 	}
-	public Gallery(Long no, String writer, String title, String content, String ip, String origin, String saved,
-			Date created, Date lastModified) {
+
+	public Gallery(Long no, String writer, String title, String content, String ip, String path, String origin,
+			String saved, Date created, Date lastModified) {
 		super();
 		this.no = no;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
 		this.ip = ip;
+		this.path = path;
 		this.origin = origin;
 		this.saved = saved;
 		this.created = created;
 		this.lastModified = lastModified;
 	}
-	
+
 	public Long getNo() {
 		return no;
 	}
@@ -54,6 +56,12 @@ public class Gallery {
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 	public String getOrigin() {
 		return origin;

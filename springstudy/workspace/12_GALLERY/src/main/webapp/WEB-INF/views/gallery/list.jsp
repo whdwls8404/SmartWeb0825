@@ -38,8 +38,8 @@
 				<c:forEach var="gallery" items="${list}">
 					<tr>
 						<td>${gallery.no}</td>
-						<td></td>
-						<td>${gallery.title}</td>
+						<td><img alt="${gallery.origin}" src="/ex12/${gallery.path}/s_${gallery.saved}"></td>
+						<td><a href="/ex12/gallery/selectGalleryByNo?no=${gallery.no}">${gallery.title}</a></td>
 						<td>${gallery.writer}</td>
 						<td>${gallery.created}</td>
 						<td><i class="fas fa-paperclip"></i></td>
