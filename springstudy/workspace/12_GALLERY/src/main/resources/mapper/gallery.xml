@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.ex12.repository.GalleryRepository">
+
+	<select id="selectGalleryList" resultType="com.koreait.ex12.domain.Gallery">
+		SELECT NO, WRITER, TITLE, CONTENT, IP, ORIGIN, SAVED, CREATED, LASTMODIFIED
+		  FROM GALLERY
+		 ORDER BY NO DESC
+	</select>
+	
+	<select id="selectGalleryByNo" parameterType="Long" resultType="com.koreait.ex12.domain.Gallery">
+		SELECT NO, WRITER, TITLE, CONTENT, IP, ORIGIN, SAVED, CREATED, LASTMODIFIED
+		  FROM GALLERY
+		 WHERE NO = #{no}
+	</select>
+	
+	<insert id="insertGallery" parameterType="com.koreait.ex12.domain.Gallery">
+		INSERT INTO GALLERY
+		VALUES (GALLERY_SEQ.NEXTVAL, #{writer}, #{title}, #{content}, #{ip}, #{origin}, #{saved}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<update id="updateGallery" parameterType="com.koreait.ex12.domain.Gallery">
+	
+	</update>
+	
+	<delete id="deleteGallery" parameterType="Long">
+		DELETE
+		  FROM GALLERY
+		 WHERE NO = #{no}
+	</delete>
+	
+</mapper>
