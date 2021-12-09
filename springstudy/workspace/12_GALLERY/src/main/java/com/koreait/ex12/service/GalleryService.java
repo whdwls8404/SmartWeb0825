@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.koreait.ex12.domain.Gallery;
 
 public interface GalleryService {
@@ -12,7 +14,7 @@ public interface GalleryService {
 	// abstract method
 	public List<Gallery> selectGalleryList();
 	public Gallery selectGalleryByNo(Long no);
-	public int insertGallery(Gallery gallery);
+	public void insertGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 	public int updateGallery(Gallery gallery);
 	public int deleteGallery(Long no);
 	
