@@ -23,7 +23,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updateGallery" parameterType="com.koreait.ex12.domain.Gallery">
-	
+		UPDATE GALLERY
+		   SET TITLE = #{title}
+		     , CONTENT = #{content}
+		     , ORIGIN = #{origin}
+		     , SAVED = #{saved}
+		     , LASTMODIFIED = SYSDATE
+		 WHERE NO = #{no}
 	</update>
 	
 	<delete id="deleteGallery" parameterType="Long">

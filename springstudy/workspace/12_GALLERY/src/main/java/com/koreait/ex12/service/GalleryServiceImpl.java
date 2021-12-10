@@ -134,7 +134,64 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public void updateGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		
+		// DB로 보낼 Gallery gallery
+		Gallery gallery = new Gallery();
+		gallery.setNo(Long.parseLong(multipartRequest.getParameter("no")));
+		gallery.setTitle(multipartRequest.getParameter("title"));
+		gallery.setContent(multipartRequest.getParameter("content"));
 		
+		try {
+		
+			// 기존의 첨부파일 정보
+			String path = multipartRequest.getParameter("path");
+			String realPath = multipartRequest.getServletContext().getRealPath(path);
+			String origin = multipartRequest.getParameter("origin");
+			String saved = multipartRequest.getParameter("saved");
+			
+			// 변경할 첨부파일
+			MultipartFile newFile = multipartRequest.getFile("newFile");
+			
+			// 변경할 첨부가 있으면
+			if ( newFile != null && newFile.isEmpty() == false ) {
+				
+				// * 기존의 첨부파일/썸네일 지우기
+				File file = new File(realPath, saved);
+				if (file != null && file.exists()) {
+					file.delete();
+				}
+				File thumb = new File(realPath, "s_" + saved);
+				if (thumb != null && thumb.exists()) {
+					thumb.delete();
+				}
+				
+				// * 새로운 첨부파일/썸네일 저장하기
+				String newOrigin = newFile.getOriginalFilename();
+				String extName = newOrigin.substring(newOrigin.lastIndexOf("."));
+				String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+				String newSaved = uuid + extName;
+				File uploadFile = new File(realPath, newSaved);
+				newFile.transferTo(uploadFile);
+				Thumbnails.of(uploadFile)
+				.size(150, 150)
+				.toFile(new File(realPath, "s_" + newSaved));
+				
+				gallery.setOrigin(newOrigin);
+				gallery.setSaved(newSaved);
+			}
+			// 변경할 첨부가 없으면 기존의 첨부파일 정보로 수정
+			else {
+				gallery.setOrigin(origin);
+				gallery.setSaved(saved);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		GalleryRepository repository = sqlSession.getMapper(GalleryRepository.class);
+		int result = repository.updateGallery(gallery);
+		message(result, response, "갤러리 정보가 수정되었습니다.", "수정 실패", "/ex12/gallery/selectGalleryByNo?no=" + multipartRequest.getParameter("no"));
+	
 	}
 
 	@Override
