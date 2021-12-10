@@ -36,6 +36,7 @@
 	
 	<form id="f" method="post" enctype="multipart/form-data">
 		
+		<input type="hidden" name="created" value="${gallery.created}">
 		<input type="hidden" name="path" value="${gallery.path}">
 		<input type="hidden" name="saved" value="${gallery.saved}">
 		<input type="hidden" name="origin" value="${gallery.origin}">

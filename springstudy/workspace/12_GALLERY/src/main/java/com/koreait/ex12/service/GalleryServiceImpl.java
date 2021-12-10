@@ -165,6 +165,20 @@ public class GalleryServiceImpl implements GalleryService {
 				}
 				
 				// * 새로운 첨부파일/썸네일 저장하기
+				// 기존 첨부가 없는 경우 path가 없어서 새로 생성해야 함
+				
+				// 기존 첨부가 없는 경우 작성일을 기준으로 경로를 생성
+				if (path.isEmpty()) {
+					String created = multipartRequest.getParameter("created");
+					String sep = Matcher.quoteReplacement(File.separator);
+					path = "resources" + sep + "upload"  + sep + created.replaceAll("-", sep);
+					realPath = multipartRequest.getServletContext().getRealPath(path);
+					File dir = new File(realPath);
+					if (dir.exists() == false) {
+						dir.mkdirs();
+					}
+				}
+				
 				String newOrigin = newFile.getOriginalFilename();
 				String extName = newOrigin.substring(newOrigin.lastIndexOf("."));
 				String uuid = UUID.randomUUID().toString().replaceAll("-", "");
@@ -175,11 +189,13 @@ public class GalleryServiceImpl implements GalleryService {
 				.size(150, 150)
 				.toFile(new File(realPath, "s_" + newSaved));
 				
+				gallery.setPath(path);
 				gallery.setOrigin(newOrigin);
 				gallery.setSaved(newSaved);
 			}
 			// 변경할 첨부가 없으면 기존의 첨부파일 정보로 수정
 			else {
+				gallery.setPath(path);
 				gallery.setOrigin(origin);
 				gallery.setSaved(saved);
 			}
