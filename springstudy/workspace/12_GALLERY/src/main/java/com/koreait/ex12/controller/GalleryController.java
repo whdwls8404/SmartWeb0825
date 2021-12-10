@@ -1,5 +1,7 @@
 package com.koreait.ex12.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.koreait.ex12.domain.Gallery;
 import com.koreait.ex12.service.GalleryService;
 
 @Controller
@@ -59,6 +63,12 @@ public class GalleryController {
 	@PostMapping(value="deleteGallery")
 	public void deleteGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		service.deleteGallery(multipartRequest, response);
+	}
+	
+	@GetMapping(value="selectFileList", produces="application/json")
+	@ResponseBody
+	public List<Gallery> selectFileList() {
+		return service.selectGalleryList();
 	}
 	
 }

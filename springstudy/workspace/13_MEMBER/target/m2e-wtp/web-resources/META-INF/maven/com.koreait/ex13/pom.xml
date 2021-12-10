@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.koreait</groupId>
-	<artifactId>ex12</artifactId>
-	<name>12_GALLERY</name>
+	<artifactId>ex13</artifactId>
+	<name>13_MEMBER</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	
+
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.1.4.RELEASE</org.springframework-version>
@@ -25,48 +25,38 @@
 	</repositories>
 	
 	<dependencies>
-	<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
-<dependency>
-    <groupId>org.quartz-scheduler</groupId>
-    <artifactId>quartz</artifactId>
-    <version>2.3.0</version>
-</dependency>
-			<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	
+		<!-- 암호화/복호화 -->
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.11</version>
+		</dependency>
+	
+		<!-- 메일 전송 2개 : mail, spring-context-support -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- JSON - 자바객체/Map/List 변환 -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.8</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
-<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20180813</version>
-</dependency>
-		
-		<!-- fileupload 2개 -->
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.6</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
-		</dependency>
-		
-		<!-- 썸네일 -->
-		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
-		<dependency>
-		    <groupId>net.coobird</groupId>
-		    <artifactId>thumbnailator</artifactId>
-		    <version>0.4.8</version>
-		</dependency>
-		
+
 		<!-- ojdbc6.jar -->
 		<dependency>
 			<groupId>com.oracle</groupId>
