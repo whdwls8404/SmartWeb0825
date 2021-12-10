@@ -1,6 +1,10 @@
 package com.koreait.ex12.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -8,10 +12,12 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -135,6 +141,53 @@ public class GalleryServiceImpl implements GalleryService {
 	public int deleteGallery(Long no) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public void download(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 다운로드 할 파일 정보
+		String path = request.getParameter("path");
+		String realPath = request.getServletContext().getRealPath(path);
+		String saved = request.getParameter("saved");
+		
+		// 사용자들이 다운로드 할 때 생성될 파일 이름
+		String origin = request.getParameter("origin");
+		
+		// 다운로드 할 File
+		File file = new File(realPath, saved);
+		
+		// 다운로드란?
+		// 다운로드 할 File을 읽어서       - InputStream
+		// 사용자에게 그대로 응답하는 것   - OutputStream
+		
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		
+		try {
+			
+			// 다운로드를 처리할 수 있는 response로 만들기
+			response.setHeader("Content-Type", "application/x-msdownload");
+			response.setHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(origin, "UTF-8").replaceAll("\\+", " "));
+			response.setHeader("Content-Length", file.length() + "");
+			
+			bis = new BufferedInputStream(new FileInputStream(file));
+			bos = new BufferedOutputStream(response.getOutputStream());
+			
+			// 스프링의 파일 복사
+			FileCopyUtils.copy(bis, bos);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (bos != null) bos.close();
+				if (bis != null) bis.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }

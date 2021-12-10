@@ -1,5 +1,6 @@
 package com.koreait.ex12.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,10 @@ public class GalleryController {
 		return "gallery/detail";
 	}
 	
-	
+	@PostMapping(value="download")
+	public void download(HttpServletRequest request, HttpServletResponse response) {
+		service.download(request, response);
+	}
 	
 	
 	
