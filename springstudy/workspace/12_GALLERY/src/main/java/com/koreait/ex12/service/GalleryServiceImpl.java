@@ -132,15 +132,33 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public int updateGallery(Gallery gallery) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		
+		
 	}
 
 	@Override
-	public int deleteGallery(Long no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		
+		// 첨부 삭제
+		String path = multipartRequest.getParameter("path");
+		String realPath = multipartRequest.getServletContext().getRealPath(path);
+		String saved = multipartRequest.getParameter("saved");
+		File file = new File(realPath, saved);
+		if (file != null && file.exists()) {
+			file.delete();
+		}
+		File thumbnail = new File(realPath, "s_" + saved);
+		if (thumbnail != null && thumbnail.exists()) {
+			thumbnail.delete();
+		}
+		
+		// DB 삭제
+		Long no = Long.parseLong(multipartRequest.getParameter("no"));
+		GalleryRepository repository = sqlSession.getMapper(GalleryRepository.class);
+		int result = repository.deleteGallery(no);
+		message(result, response, "갤러리가 삭제되었습니다.", "삭제 실패.", "/ex12/gallery/selectGalleryList");
+		
 	}
 	
 	@Override

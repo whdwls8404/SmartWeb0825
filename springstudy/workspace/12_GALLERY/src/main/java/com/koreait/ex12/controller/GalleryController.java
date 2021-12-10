@@ -36,8 +36,7 @@ public class GalleryController {
 	}
 	
 	@PostMapping(value="insertGallery")
-	public void insertGallery(MultipartHttpServletRequest multipartRequest,
-			HttpServletResponse response) {
+	public void insertGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		service.insertGallery(multipartRequest, response);
 	}
 	
@@ -52,19 +51,14 @@ public class GalleryController {
 		service.download(request, response);
 	}
 	
+	@PostMapping(value="updateGallery")
+	public void updateGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		service.updateGallery(multipartRequest, response);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@PostMapping(value="deleteGallery")
+	public void deleteGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		service.deleteGallery(multipartRequest, response);
+	}
 	
 }
-
-
-
-
-

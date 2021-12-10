@@ -16,8 +16,8 @@ public interface GalleryService {
 	public List<Gallery> selectGalleryList();
 	public Gallery selectGalleryByNo(Long no);
 	public void insertGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
-	public int updateGallery(Gallery gallery);
-	public int deleteGallery(Long no);
+	public void updateGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
+	public void deleteGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 	public void download(HttpServletRequest request, HttpServletResponse response);
 	
 	// default method
