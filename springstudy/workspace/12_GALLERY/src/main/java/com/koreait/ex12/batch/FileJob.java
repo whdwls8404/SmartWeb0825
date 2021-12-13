@@ -37,16 +37,17 @@ public class FileJob implements Job {
 			while ( (line = br.readLine()) != null ) {
 				sb.append(line);
 			}
-			JSONArray arr = new JSONArray(sb.toString());
+			
+			JSONObject obj = new JSONObject(sb.toString());
+			String realPath = (String) obj.get("realPath");			
+			List<String> serverFiles = new ArrayList<>();  // 서버에 저장되어 있는 첨부파일들
+			fileCollector(realPath, serverFiles);
+			
+			JSONArray arr = obj.getJSONArray("arr");
 			List<Object> list = arr.toList();
+			List<String> dbFiles = new ArrayList<>();  // DB에 저장되어 있는 첨부파일들
 			
 			
-			File dir = new File();
-			File[] files = dir.listFiles();
-			
-			for (File f : files) {
-				System.out.println(f.getAbsolutePath());
-			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,5 +55,20 @@ public class FileJob implements Job {
 		
 		
 	}
-
+	
+	private void fileCollector(String realPath, List<String> list) {
+		
+		File dir = new File(realPath);
+		File[] files = dir.listFiles();
+		
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isFile()) {
+				list.add(files[i].getPath());
+			} else if (files[i].isDirectory()) {
+				fileCollector(files[i].getPath(), list);
+			}
+		}
+		
+	}
+	
 }

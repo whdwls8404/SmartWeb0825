@@ -7,7 +7,9 @@ import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -281,4 +283,13 @@ public class GalleryServiceImpl implements GalleryService {
 		
 	}
 
+	@Override
+	public Map<String, Object> selectFileList(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("realPath", request.getServletContext().getRealPath("resources/upload"));
+		GalleryRepository repository = sqlSession.getMapper(GalleryRepository.class);
+		map.put("arr", repository.selectGalleryList());
+		return map;
+	}
+	
 }

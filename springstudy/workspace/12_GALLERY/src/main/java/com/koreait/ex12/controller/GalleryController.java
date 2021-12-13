@@ -1,6 +1,7 @@
 package com.koreait.ex12.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,8 +68,8 @@ public class GalleryController {
 	
 	@GetMapping(value="selectFileList", produces="application/json")
 	@ResponseBody
-	public List<Gallery> selectFileList() {
-		return service.selectGalleryList();
+	public Map<String, Object> selectFileList(HttpServletRequest request) {
+		return service.selectFileList(request);
 	}
 	
 }
