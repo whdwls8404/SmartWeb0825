@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.ex13.domain.Member;
 import com.koreait.ex13.service.MemberService;
 
 @Controller
@@ -47,6 +48,11 @@ public class MemberController {
 		return service.sendAuthCode(email);
 	}
 
+	@PostMapping(value="join")
+	public String join(Member member) {
+		service.join(member);
+		return "redirect:/";  // index.jsp로 redirect
+	}
 	
 	
 	

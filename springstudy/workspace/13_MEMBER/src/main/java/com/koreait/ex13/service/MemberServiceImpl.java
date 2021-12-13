@@ -11,6 +11,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import com.koreait.ex13.domain.Member;
 import com.koreait.ex13.repository.MemberRepository;
 import com.koreait.ex13.util.SecurityUtils;
 
@@ -66,6 +67,14 @@ public class MemberServiceImpl implements MemberService {
 		map.put("authCode", authCode);
 		return map;
 		
+	}
+	
+	@Override
+	public void join(Member member) {
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		member.setPw(SecurityUtils.sha256(member.getPw()));
+		member.setName(SecurityUtils.xxs(member.getName()));
+		repository.joinMember(member);
 	}
 	
 }

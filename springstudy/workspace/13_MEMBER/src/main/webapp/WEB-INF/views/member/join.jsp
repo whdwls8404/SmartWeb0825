@@ -14,6 +14,7 @@
 		fnPw2Check();
 		fnEmailCheck();
 		fnSendAuthCode();
+		fnJoin();
 	});
 	
 	// 아이디 중복체크 변수와 함수
@@ -124,8 +125,7 @@
 				dataType: 'json',
 				success: function(map) {
 					alert('인증코드가 발송되었습니다.');
-					alert(map.authCode);
-					// fnVerifyAuthCode(map.authCode);
+					fnVerifyAuthCode(map.authCode);
 				},
 				error: function() {
 					alert('인증코드 전송 실패');
@@ -133,6 +133,42 @@
 			});
 		});
 	}  // end fnSendAuthCode
+	
+	// 인증코드 검증 변수와 함수
+	let authCodePass = false;
+	function fnVerifyAuthCode(authCode) {
+		$('#verify_btn').click(function(){
+			if ( $('#authCode').val() == authCode ) {
+				alert('인증되었습니다.');
+				authCodePass = true;
+			} else {
+				alert('인증에 실패했습니다.');
+				authCodePass = false;
+			}
+		});
+	}  // end fnVerifyAuthCode
+	
+	// 회원가입 함수
+	function fnJoin() {
+		$('#f').submit(function(event){
+			if ( idPass == false ) {
+				alert('아이디를 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			else if ( pwPass == false || pwPass2 == false ) {
+				alert('비밀번호를 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			else if ( authCodePass == false ) {
+				alert('이메일 인증을 받아야 합니다.');
+				event.preventDefault();
+				return false;
+			}
+			return true;
+		});
+	}  // end fnJoin
 	
 </script>
 <style>
