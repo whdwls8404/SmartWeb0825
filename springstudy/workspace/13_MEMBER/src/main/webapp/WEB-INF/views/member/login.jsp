@@ -35,7 +35,7 @@
 		비밀번호<br>
 		<input type="password" name="pw" id="pw"><br><br>
 		<button>로그인</button>
-	</form>
+	</form><br>
 	
 	<div>
 		<a href="/ex13/member/findIdPage">아이디</a>/

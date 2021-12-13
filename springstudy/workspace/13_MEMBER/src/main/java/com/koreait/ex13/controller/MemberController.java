@@ -3,6 +3,7 @@ package com.koreait.ex13.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,24 @@ public class MemberController {
 	public String login(HttpServletRequest request) {
 		service.login(request);
 		return "redirect:/";
+	}
+	
+	@GetMapping(value="logout")
+	public String logout(HttpSession session) {
+		if (session.getAttribute("loginUser") != null) {
+			session.invalidate();
+		}
+		return "redirect:/";
+	}
+	
+	@GetMapping(value="findIdPage")
+	public String findIdPage() {
+		return "member/findId";
+	}
+	
+	@GetMapping(value="findPwPage")
+	public String findPwPage() {
+		return "member/findPw";
 	}
 	
 	
