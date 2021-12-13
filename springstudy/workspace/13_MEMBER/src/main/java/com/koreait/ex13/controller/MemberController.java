@@ -2,6 +2,8 @@ package com.koreait.ex13.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +56,11 @@ public class MemberController {
 		return "redirect:/";  // index.jsp로 redirect
 	}
 	
-	
+	@PostMapping(value="login")
+	public String login(HttpServletRequest request) {
+		service.login(request);
+		return "redirect:/";
+	}
 	
 	
 	

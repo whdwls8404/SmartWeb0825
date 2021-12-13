@@ -12,11 +12,19 @@
 
 	<h1>홈페이지 메인화면</h1>
 	
-	<a href="/ex13/member/loginPage">로그인</a>
-	&nbsp;&nbsp;&nbsp;
-	<a href="/ex13/member/joinPage">회원가입</a>
+	<c:if test="${loginUser == null}">	
+		<a href="/ex13/member/loginPage">로그인</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="/ex13/member/joinPage">회원가입</a>
+	</c:if>
 	
-	<hr>	
+	<c:if test="${loginUser != null}">
+		${loginUser.name} 님 반갑습니다.&nbsp;&nbsp;
+		<a href="/ex13/member/logout">로그아웃</a>&nbsp;&nbsp;
+		<a href="/ex13/member/myPage">마이페이지</a>
+	</c:if>
+	
+	<hr>
 
 </body>
 </html>

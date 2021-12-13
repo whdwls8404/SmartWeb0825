@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,18 @@ public class MemberServiceImpl implements MemberService {
 		member.setPw(SecurityUtils.sha256(member.getPw()));
 		member.setName(SecurityUtils.xxs(member.getName()));
 		repository.joinMember(member);
+	}
+	
+	@Override
+	public void login(HttpServletRequest request) {
+		Member member = new Member();
+		member.setId(request.getParameter("id"));
+		member.setPw(SecurityUtils.sha256(request.getParameter("pw")));
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		Member loginUser = repository.login(member);
+		if (loginUser != null) {
+			request.getSession().setAttribute("loginUser", loginUser);
+		}
 	}
 	
 }
