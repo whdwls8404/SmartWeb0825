@@ -2,7 +2,9 @@ package com.koreait.ex12.service;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -15,8 +17,10 @@ public interface GalleryService {
 	public List<Gallery> selectGalleryList();
 	public Gallery selectGalleryByNo(Long no);
 	public void insertGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
-	public int updateGallery(Gallery gallery);
-	public int deleteGallery(Long no);
+	public void updateGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
+	public void deleteGallery(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
+	public void download(HttpServletRequest request, HttpServletResponse response);
+	public Map<String, Object> selectFileList(HttpServletRequest request);
 	
 	// default method
 	public default void message(int result, HttpServletResponse response, 
