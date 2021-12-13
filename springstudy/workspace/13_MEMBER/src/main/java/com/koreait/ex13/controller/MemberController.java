@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,10 +40,10 @@ public class MemberController {
 		return service.idCheck(id);
 	}
 	
-	@PostMapping(value="emailCheck", produces="application/json; charset=UTF-8")
+	@PostMapping(value={"emailCheck", "findId"}, produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public Map<String, Object> emailCheck(@RequestParam("email") String email) {
-		return service.emailCheck(email);
+	public Map<String, Object> findMemberByEmail(@RequestParam("email") String email) {
+		return service.findMemberByEmail(email);
 	}
 	
 	@PostMapping(value="sendAuthCode", produces="application/json; charset=UTF-8")
@@ -80,6 +81,20 @@ public class MemberController {
 	public String findPwPage() {
 		return "member/findPw";
 	}
+	
+	@GetMapping(value="updatePwPage")
+	public String updatePwPage(@ModelAttribute("email") String email) {
+		return "member/updatePw";
+	}
+	
+	@PostMapping(value="updatePw")
+	public String updatePw(Member member) {
+		service.updatePw(member);
+		return "redirect:loginPage";
+	}
+	
+	
+	
 	
 	
 	

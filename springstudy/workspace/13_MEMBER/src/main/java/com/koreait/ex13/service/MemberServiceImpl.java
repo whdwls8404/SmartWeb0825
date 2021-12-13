@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Map<String, Object> emailCheck(String email) {
+	public Map<String, Object> findMemberByEmail(String email) {
 		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", repository.selectMemberByEmail(email));
@@ -89,6 +89,21 @@ public class MemberServiceImpl implements MemberService {
 			request.getSession().setAttribute("loginUser", loginUser);
 		}
 	}
+	
+	@Override
+	public void updatePw(Member member) {
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		member.setPw(SecurityUtils.sha256(member.getPw()));
+		repository.updatePw(member);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 

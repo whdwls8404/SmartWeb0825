@@ -38,7 +38,7 @@
 	</form><br>
 	
 	<div>
-		<a href="/ex13/member/findIdPage">아이디</a>/
+		<a href="/ex13/member/findIdPage">아이디</a> /
 		<a href="/ex13/member/findPwPage">비밀번호</a> 찾기
 	</div>
 
