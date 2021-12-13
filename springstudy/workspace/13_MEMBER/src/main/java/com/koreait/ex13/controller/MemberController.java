@@ -35,7 +35,18 @@ public class MemberController {
 		return service.idCheck(id);
 	}
 	
+	@PostMapping(value="emailCheck", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> emailCheck(@RequestParam("email") String email) {
+		return service.emailCheck(email);
+	}
 	
+	@PostMapping(value="sendAuthCode", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> sendAuthCode(@RequestParam("email") String email) {
+		return service.sendAuthCode(email);
+	}
+
 	
 	
 	
