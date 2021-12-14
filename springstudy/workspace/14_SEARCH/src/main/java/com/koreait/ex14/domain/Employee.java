@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class Employees {
+public class Employee {
 
 	private int employeeId;
 	private String firstName;
