@@ -1,5 +1,7 @@
 package com.koreait.ex14.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,8 @@ public class EmployeeController {
 	private EmployeeService service;
 	
 	@GetMapping(value="findAll")
-	public String findAll(Model model) {
-		model.addAttribute("list", service.findAllEmployee());
+	public String findAll(HttpServletRequest request, Model model) {
+		model.addAttribute("list", service.findAllEmployee(request));
 		return "employee/list";
 	}
 	
