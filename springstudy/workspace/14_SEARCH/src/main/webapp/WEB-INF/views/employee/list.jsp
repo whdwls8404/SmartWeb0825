@@ -36,9 +36,9 @@
 					<td>${employee.lastName}</td>
 					<td>${employee.hireDate}</td>
 					<td>${employee.salary}</td>
-					<td>${employee.departmentId}</td>
-					<td>DEPARTMENT_NAME</td>
-					<td>LOCATION_ID</td>
+					<td>${employee.department.departmentId}</td>
+					<td>${employee.department.departmentName}</td>
+					<td>${employee.department.locationId}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -29,4 +29,6 @@ public class Employee {
 	private int managerId;
 	private int departmentId;
 	
+	private Department department;
+	
 }
