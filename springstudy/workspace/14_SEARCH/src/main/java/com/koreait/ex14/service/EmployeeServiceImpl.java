@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 
 import com.koreait.ex14.domain.Employee;
 import com.koreait.ex14.repository.EmployeeRepository;
@@ -20,9 +21,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Employee> findAllEmployee(HttpServletRequest request) {
+	public void findAllEmployee(Model model) {
 		
 		EmployeeRepository repository = sqlSession.getMapper(EmployeeRepository.class);
+		
+		// Model에 저장된 request 꺼내기
+		Map<String, Object> m = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) m.get("request");
 		
 		// 전체 레코드 갯수
 		int totalRecord = repository.selectTotalRecord();
@@ -43,7 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// beginRecord ~ endRecord 목록 가져오기
 		List<Employee> list = repository.selectEmployeeList(map);
 		
-		return list;
+		// View(employee/list.jsp)로 보낼 데이터
+		model.addAttribute("list", list);
+		model.addAttribute("startNum", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
+		model.addAttribute("paging", pageUtils.getPageEntity("findAll"));  // 목록을 출력하는 매핑값 전달
 		
 	}
 

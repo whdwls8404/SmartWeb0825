@@ -28,9 +28,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="employee" items="${list}">
+			<c:forEach var="employee" items="${list}" varStatus="vs">
 				<tr>
-					<td>NO</td>
+					<td>${startNum - vs.index}</td>
 					<td>${employee.employeeId}</td>
 					<td>${employee.firstName}</td>
 					<td>${employee.lastName}</td>
@@ -42,6 +42,11 @@
 				</tr>
 			</c:forEach>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="9">${paging}</td>
+			</tr>
+		</tfoot>
 	</table>
 	
 </body>

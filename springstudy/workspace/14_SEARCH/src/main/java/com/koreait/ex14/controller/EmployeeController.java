@@ -19,7 +19,8 @@ public class EmployeeController {
 	
 	@GetMapping(value="findAll")
 	public String findAll(HttpServletRequest request, Model model) {
-		model.addAttribute("list", service.findAllEmployee(request));
+		model.addAttribute("request", request);
+		service.findAllEmployee(model);
 		return "employee/list";
 	}
 	
