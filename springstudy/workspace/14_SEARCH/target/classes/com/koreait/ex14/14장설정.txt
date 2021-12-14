@@ -1,0 +1,23 @@
+mybatis 옵션
+
+1. mapUnderscoreToCamelCase
+2. 테이블의 필드명에 포함된 밑줄(_)을 자바의 camelCase 방식으로 변경해 줌
+3. 방법
+   1) src/main/resources/mybatis
+                           ㄴmybatis-config.xml
+    <configuration>
+       <settings>
+          <setting name="mapUnderscoreToCamelCase" value="true"/>
+       </settings>
+    </configuration>
+   2) com.koreait.ex14.config.MyBatisConfig.java
+   @Bean
+   public SqlSessionFactory sqlSessionFactory() throws Exception {
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(hikariDataSource());
+		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/*.xml"));
+		sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis/mybatis-config.xml"));
+		return sqlSessionFactoryBean.getObject();
+	}
+
+롬복 설치 - 이미지 참고
