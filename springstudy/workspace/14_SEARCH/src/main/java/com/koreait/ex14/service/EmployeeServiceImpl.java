@@ -96,6 +96,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		case "EMPLOYEE_ID":
 			model.addAttribute("paging", pageUtils.getPageEntity("findEmployee?column=EMPLOYEE_ID&query=" + request.getParameter("query")));  // 목록을 출력하는 매핑값 전달
 			break;
+		case "FIRST_NAME":
+			model.addAttribute("paging", pageUtils.getPageEntity("findEmployee?column=FIRST_NAME&query=" + request.getParameter("query")));  // 목록을 출력하는 매핑값 전달
+			break;
 		}
 		
 	}

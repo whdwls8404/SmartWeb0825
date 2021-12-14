@@ -45,7 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		  FROM EMPLOYEES
 		 WHERE 1 = 1
-		 <if test="column == 'EMPLOYEE_ID'">AND ${column} = #{query}</if>
+		 <if test="column == 'EMPLOYEE_ID'">AND ${column} = TRIM(#{query})</if>
+		 <if test="column == 'FIRST_NAME'">AND UPPER(${column}) LIKE '%' || UPPER(TRIM(#{query})) || '%'</if>
 	</select>
 	
 	<select id="selectFindList" parameterType="Map" resultMap="EmployeeMap">
@@ -54,7 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		          FROM (SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.LAST_NAME, E.EMAIL, E.PHONE_NUMBER, E.HIRE_DATE, E.JOB_ID, E.SALARY, E.COMMISSION_PCT, E.MANAGER_ID, D.DEPARTMENT_ID, D.DEPARTMENT_NAME, D.LOCATION_ID
 		                  FROM DEPARTMENTS D, EMPLOYEES E
 		                 WHERE D.DEPARTMENT_ID(+) = E.DEPARTMENT_ID
-		                 <if test="column == 'EMPLOYEE_ID'">AND ${column} = #{query}</if>
+		                 <if test="column == 'EMPLOYEE_ID'">AND ${column} = TRIM(#{query})</if>
+		 				 <if test="column == 'FIRST_NAME'">AND UPPER(${column}) LIKE '%' || UPPER(TRIM(#{query})) || '%'</if>
 		                 ORDER BY E.EMPLOYEE_ID) A) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>

@@ -27,7 +27,7 @@ public class Employee {
 	private int salary;
 	private double commissionPct;
 	private int managerId;
-	private int departmentId;
+	// private int departmentId;
 	
 	private Department department;
 	

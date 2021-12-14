@@ -67,6 +67,11 @@
 				$('#query').focus();
 				return;
 			}
+			else if ($('#column').val() == 'FIRST_NAME' && $('#query').val() == '') {
+				alert('검색할 사원이름을 입력하세요.');
+				$('#query').focus();
+				return;
+			}
 			$('#f').attr('action', '/ex14/search/findEmployee');
 			$('#f').submit();
 		});
