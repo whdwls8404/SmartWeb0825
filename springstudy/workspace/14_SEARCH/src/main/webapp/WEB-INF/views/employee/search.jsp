@@ -19,18 +19,16 @@
 
 	// 검색 화면 세팅 함수
 	function fnAreaSetting(){
-		$('#non_salary_area').css('display', 'none');
-		$('#salary_area').css('display', 'none');
+		$('#equal_area, #range_area').css('display', 'none');
 		$('#column').change(function(){
 			if ($(this).val() == '') {
-				$('#non_salary_area').css('display', 'none');
-				$('#salary_area').css('display', 'none');
-			} else if ($(this).val() == 'SALARY') {
-				$('#salary_area').css('display', 'inline');
-				$('#non_salary_area').css('display', 'none');
+				$('#equal_area, #range_area').css('display', 'none');
+			} else if ($(this).val() == 'HIRE_DATE' || $(this).val() == 'SALARY') {
+				$('#range_area').css('display', 'inline');
+				$('#equal_area').css('display', 'none');
 			} else {
-				$('#non_salary_area').css('display', 'inline');
-				$('#salary_area').css('display', 'none');
+				$('#equal_area').css('display', 'inline');
+				$('#range_area').css('display', 'none');
 			}
 		});
 	}  // end fnAreaSetting
@@ -38,12 +36,8 @@
 	// 화면 초기화 함수
 	function fnInit(){
 		$('#init_btn').click(function(){
-			$('#column').val('');
-			$('#query').val('');
-			$('#min').val('');
-			$('#max').val('');
-			$('#non_salary_area').css('display', 'none');
-			$('#salary_area').css('display', 'none');
+			$('#column, #query, #begin, #end').val('');
+			$('#equal_area, #range_area').css('display', 'none');
 		});
 	}  // end fnInit
 
@@ -56,14 +50,15 @@
 	
 	// 검색 함수
 	function fnFind(){
+		let regEmployeeId = /^[0-9]{1,3}$/;
 		$('#search_btn').click(function(){
 			if ($('#column').val() == '') {
 				alert('검색 카테고리를 선택하세요.');
 				$('#column').focus();
 				return;
 			}
-			else if ($('#column').val() == 'EMPLOYEE_ID' && $('#query').val() == '') {
-				alert('검색할 사원번호를 입력하세요.');
+			else if ($('#column').val() == 'EMPLOYEE_ID' && regEmployeeId.test($('#query').val()) == false) {
+				alert('검색할 올바른 사원번호를 입력하세요.');
 				$('#query').focus();
 				return;
 			}
@@ -72,7 +67,33 @@
 				$('#query').focus();
 				return;
 			}
-			location.href='/ex14/search/findEmployee?column=' + $('#column').val() + '&query=' + $('#query').val();
+			else if ($('#column').val() == 'HIRE_DATE' && $('#begin').val() == '') {
+				alert('검색할 시작날짜를 입력하세요.');
+				$('#begin').focus();
+				return;
+			}
+			else if ($('#column').val() == 'HIRE_DATE' && $('#end').val() == '') {
+				alert('검색할 종료날짜를 입력하세요.');
+				$('#end').focus();
+				return;
+			}
+			else if ($('#column').val() == 'SALARY' && ($('#begin').val() == '' || isNaN($('#begin').val()))) {
+				alert('검색할 올바른 최소연봉을 입력하세요.');
+				$('#begin').focus();
+				return;
+			}
+			else if ($('#column').val() == 'SALARY' && ($('#end').val() == '' || isNaN($('#end').val()))) {
+				alert('검색할 올바른 최대연봉을 입력하세요.');
+				$('#end').focus();
+				return;
+			}
+			
+			if ($('#column').val() == 'EMPLOYEE_ID' || $('#column').val() == 'FIRST_NAME') {
+				location.href='/ex14/search/findEmployee?column=' + $('#column').val() + '&query=' + $('#query').val();				
+			}
+			else if ($('#column').val() == 'HIRE_DATE' || $('#column').val() == 'SALARY') {
+				location.href='/ex14/search/findEmployee?column=' + $('#column').val() + '&begin=' + $('#begin').val() + '&end=' + $('#end').val();
+			}
 		});
 	}  // end fnFind
 	
@@ -90,13 +111,13 @@
 			<option value="HIRE_DATE">HIRE_DATE</option>
 			<option value="SALARY">SALARY</option>
 		</select>
-		<span id="non_salary_area">
+		<span id="equal_area">
 			<input type="text" name="query" id="query">
 		</span>
-		<span id="salary_area">
-			<input type="number" name="min" id="min" placeholder="최소연봉">
+		<span id="range_area">
+			<input type="text" name="begin" id="begin" placeholder="begin">
 			~
-			<input type="number" name="max" id="max" placeholder="최대연봉">
+			<input type="text" name="end" id="end" placeholder="end">
 		</span>
 		<br><br>
 		<input type="button" value="검색" id="search_btn">
