@@ -5,19 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.ex14.repository.EmployeeRepository">
 
-	<select id="selectTotalRecord" resultType="int">
+	<select id="selectTotalRecordCount" resultType="int">
 		SELECT COUNT(*)
 		  FROM EMPLOYEES
 	</select>
 
 	<!-- 조인처리 -->
-	<resultMap type="com.koreait.ex14.domain.Department" id="DepartmentMap">
+	<resultMap type="Department" id="DepartmentMap">
 		<result column="DEPARTMENT_ID" property="departmentId" />
 		<result column="DEPARTMENT_NAME" property="departmentName" />
 		<result column="MANAGER_ID" property="managerId" />
 		<result column="LOCATION_ID" property="locationId" />
 	</resultMap>
-	<resultMap type="com.koreait.ex14.domain.Employee" id="EmployeeMap">
+	<resultMap type="Employee" id="EmployeeMap">
 		<result column="EMPLOYEE_ID" property="employeeId" />
 		<result column="FIRST_NAME" property="firstName" />
 		<result column="LAST_NAME" property="lastName" />
@@ -40,5 +40,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                 ORDER BY E.EMPLOYEE_ID) A) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
+
+	<select id="selectFindRecordCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*)
+		  FROM EMPLOYEES
+		 WHERE 1 = 1
+		 <if test="column == 'EMPLOYEE_ID'">AND ${column} = #{query}</if>
+	</select>
+	
+	<select id="selectFindList" parameterType="Map" resultMap="EmployeeMap">
+		SELECT B.EMPLOYEE_ID, B.FIRST_NAME, B.LAST_NAME, B.EMAIL, B.PHONE_NUMBER, B.HIRE_DATE, B.JOB_ID, B.SALARY, B.COMMISSION_PCT, B.MANAGER_ID, B.DEPARTMENT_ID, B.DEPARTMENT_NAME, B.LOCATION_ID
+		  FROM (SELECT ROWNUM AS RN, A.EMPLOYEE_ID, A.FIRST_NAME, A.LAST_NAME, A.EMAIL, A.PHONE_NUMBER, A.HIRE_DATE, A.JOB_ID, A.SALARY, A.COMMISSION_PCT, A.MANAGER_ID, A.DEPARTMENT_ID, A.DEPARTMENT_NAME, A.LOCATION_ID
+		          FROM (SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.LAST_NAME, E.EMAIL, E.PHONE_NUMBER, E.HIRE_DATE, E.JOB_ID, E.SALARY, E.COMMISSION_PCT, E.MANAGER_ID, D.DEPARTMENT_ID, D.DEPARTMENT_NAME, D.LOCATION_ID
+		                  FROM DEPARTMENTS D, EMPLOYEES E
+		                 WHERE D.DEPARTMENT_ID(+) = E.DEPARTMENT_ID
+		                 <if test="column == 'EMPLOYEE_ID'">AND ${column} = #{query}</if>
+		                 ORDER BY E.EMPLOYEE_ID) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+
+
+
+
+
+
+
+
+
 
 </mapper>
