@@ -20,7 +20,7 @@ public class MyBatisConfig {
 		HikariConfig hikariConfig = new HikariConfig();
 		hikariConfig.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		hikariConfig.setUsername("scott");
+		hikariConfig.setUsername("HR");
 		hikariConfig.setPassword("1111");
 		return hikariConfig;
 	}
