@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Map<String, Object> emailCheck(String email) {
+	public Map<String, Object> findMemberByEmail(String email) {
 		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", repository.selectMemberByEmail(email));
@@ -77,9 +79,49 @@ public class MemberServiceImpl implements MemberService {
 		repository.joinMember(member);
 	}
 	
+	@Override
+	public void login(HttpServletRequest request) {
+		Member member = new Member();
+		member.setId(request.getParameter("id"));
+		member.setPw(SecurityUtils.sha256(request.getParameter("pw")));
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		Member loginUser = repository.login(member);
+		if (loginUser != null) {
+			request.getSession().setAttribute("loginUser", loginUser);
+		}
+	}
+	
+	@Override
+	public void updatePw(Member member) {
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		member.setPw(SecurityUtils.sha256(member.getPw()));
+		repository.updatePw(member);
+	}
+	
+	@Override
+	public void updateMember(Member member, HttpSession session) {
+		member.setName(SecurityUtils.xxs(member.getName()));
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		repository.updateMember(member);
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		loginUser.setName(member.getName());
+		loginUser.setEmail(member.getEmail());
+	}
+	
+	@Override
+	public Map<String, Object> presentPwCheck(HttpServletRequest request) {
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		Member member = repository.selectMemberById(request.getParameter("id"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", SecurityUtils.sha256(request.getParameter("pw0")).equals(member.getPw()));
+		return map;
+	}
+	
+	@Override
+	public void leave(Long no, HttpSession session) {
+		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
+		int result = repository.leaveMember(no);
+		if (result > 0)	session.invalidate();
+	}
+	
 }
-
-
-
-
-

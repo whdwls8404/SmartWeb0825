@@ -2,9 +2,13 @@ package com.koreait.ex13.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,10 +40,10 @@ public class MemberController {
 		return service.idCheck(id);
 	}
 	
-	@PostMapping(value="emailCheck", produces="application/json; charset=UTF-8")
+	@PostMapping(value={"emailCheck", "findId"}, produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public Map<String, Object> emailCheck(@RequestParam("email") String email) {
-		return service.emailCheck(email);
+	public Map<String, Object> findMemberByEmail(@RequestParam("email") String email) {
+		return service.findMemberByEmail(email);
 	}
 	
 	@PostMapping(value="sendAuthCode", produces="application/json; charset=UTF-8")
@@ -54,9 +58,62 @@ public class MemberController {
 		return "redirect:/";  // index.jsp로 redirect
 	}
 	
+	@PostMapping(value="login")
+	public String login(HttpServletRequest request) {
+		service.login(request);
+		return "redirect:/";
+	}
 	
+	@GetMapping(value="logout")
+	public String logout(HttpSession session) {
+		if (session.getAttribute("loginUser") != null) {
+			session.invalidate();
+		}
+		return "redirect:/";
+	}
 	
+	@GetMapping(value="findIdPage")
+	public String findIdPage() {
+		return "member/findId";
+	}
 	
+	@GetMapping(value="findPwPage")
+	public String findPwPage() {
+		return "member/findPw";
+	}
 	
+	@GetMapping(value="updatePwPage")
+	public String updatePwPage(@ModelAttribute("id") String id) {
+		return "member/updatePw";
+	}
+	
+	@PostMapping(value="updatePw")
+	public String updatePw(Member member) {
+		service.updatePw(member);
+		return "redirect:/";
+	}
+	
+	@GetMapping(value="myPage")
+	public String myPage() {
+		return "member/myPage";
+	}
+	
+	@PostMapping(value="updateMember")
+	public String updateMember(Member member, HttpSession session) {
+		service.updateMember(member, session);
+		return "redirect:/";
+	}
+	
+	@PostMapping(value="presentPwCheck", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> presentPwCheck(HttpServletRequest request) {
+		return service.presentPwCheck(request);
+	}
+	
+	@PostMapping(value="leave")
+	public String leave(@RequestParam("no") Long no, HttpSession session) {
+		service.leave(no, session);
+		return "redirect:/";
+	}
 	
 }
