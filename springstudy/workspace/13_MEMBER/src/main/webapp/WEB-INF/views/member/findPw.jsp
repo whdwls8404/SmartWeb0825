@@ -40,7 +40,8 @@
 		$('#verify_btn').click(function(){
 			if ( $('#authCode').val() == authCode ) {
 				alert('인증되었습니다. 비밀번호 변경 페이지로 이동합니다.');
-				location.href = '/ex13/member/updatePwPage?email=' + $('#email').val();
+				$('#f').attr('action', '/ex13/member/updatePwPage');
+				$('#f').submit();
 			} else {
 				alert('인증에 실패했습니다.');
 			}
@@ -52,11 +53,18 @@
 
 	<h1>비밀번호 찾기 화면</h1>
 	
-	가입 당시 이메일<br>
-	<input type="text" name="email" id="email">
-	<input type="button" value="인증번호받기" id="authCode_btn"><br>
-	<input type="text" name="authCode" id="authCode">
-	<input type="button" value="인증하기" id="verify_btn"><br><br>
+	<form id="f" method="post">
+	
+		아이디<br>
+		<input type="text" name="id" id="id"><br><br>
+		
+		가입 당시 이메일<br>
+		<input type="text" name="email" id="email">
+		<input type="button" value="인증번호받기" id="authCode_btn"><br>
+		<input type="text" name="authCode" id="authCode">
+		<input type="button" value="인증하기" id="verify_btn"><br><br>
+	
+	</form>
 	
 	<div>
 		<a href="/ex13/member/loginPage">로그인하러가기</a>

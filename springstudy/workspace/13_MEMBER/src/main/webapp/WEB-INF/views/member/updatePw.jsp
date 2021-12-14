@@ -71,7 +71,7 @@
 	
 	<form id="f" method="post" action="/ex13/member/updatePw">
 		
-		<input type="hidden" name="email" value="${email}">
+		<input type="hidden" name="id" value="${id}">
 		
 		비밀번호<br>
 		<input type="password" name="pw" id="pw">

@@ -83,20 +83,37 @@ public class MemberController {
 	}
 	
 	@GetMapping(value="updatePwPage")
-	public String updatePwPage(@ModelAttribute("email") String email) {
+	public String updatePwPage(@ModelAttribute("id") String id) {
 		return "member/updatePw";
 	}
 	
 	@PostMapping(value="updatePw")
 	public String updatePw(Member member) {
 		service.updatePw(member);
-		return "redirect:loginPage";
+		return "redirect:/";
 	}
 	
+	@GetMapping(value="myPage")
+	public String myPage() {
+		return "member/myPage";
+	}
 	
+	@PostMapping(value="updateMember")
+	public String updateMember(Member member, HttpSession session) {
+		service.updateMember(member, session);
+		return "redirect:/";
+	}
 	
+	@PostMapping(value="presentPwCheck", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Map<String, Object> presentPwCheck(HttpServletRequest request) {
+		return service.presentPwCheck(request);
+	}
 	
-	
-	
+	@PostMapping(value="leave")
+	public String leave(@RequestParam("no") Long no, HttpSession session) {
+		service.leave(no, session);
+		return "redirect:/";
+	}
 	
 }

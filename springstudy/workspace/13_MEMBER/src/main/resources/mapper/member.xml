@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updatePw" parameterType="com.koreait.ex13.domain.Member">
 		UPDATE MEMBER
 		   SET PW = #{pw}
-		 WHERE EMAIL = #{email}
+		 WHERE ID = #{id}
 	</update>
 	
 	<update id="updateMember" parameterType="com.koreait.ex13.domain.Member">
