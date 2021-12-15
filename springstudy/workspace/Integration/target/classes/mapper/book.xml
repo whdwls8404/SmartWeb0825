@@ -9,5 +9,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO BOOK
 		VALUES (BOOK_SEQ.NEXTVAL, #{title}, #{preview}, #{author}, #{price})
 	</insert>
-
+	
+	<select id="findAllBook" resultType="com.koreait.integration.domain.Book">
+		SELECT NO, TITLE, PREVIEW, AUTHOR, PRICE
+		  FROM BOOK
+	</select>
+	
+	<select id="findBook" parameterType="Map" resultType="com.koreait.integration.domain.Book">
+		SELECT NO, TITLE, PREVIEW, AUTHOR, PRICE
+		  FROM BOOK
+		 WHERE ${column} LIKE #{query}
+	</select>
+	
 </mapper>
