@@ -113,7 +113,13 @@
 				dataType: 'text',
 				success: function(obj) {
 					let result = JSON.parse(obj);
-					console.log(result);
+					if (result.status == 200) {
+						$.each(result.list, function(i, item){
+							$('<option>')
+							.val(item[$('#column').find('option[value="'+ $('#column').val() +'"]').data('column-name')])
+							.appendTo('#auto_complete');
+						});
+					}
 				},
 				error: function(xhr) {
 					
@@ -131,10 +137,10 @@
 	<form id="f" method="get">
 		<select name="column" id="column">
 			<option value="">:::선택:::</option>
-			<option value="EMPLOYEE_ID">EMPLOYEE_ID</option>
-			<option value="FIRST_NAME">FIRST_NAME</option>
-			<option value="HIRE_DATE">HIRE_DATE</option>
-			<option value="SALARY">SALARY</option>
+			<option value="EMPLOYEE_ID" data-column-name="employeeId">EMPLOYEE_ID</option>
+			<option value="FIRST_NAME" data-column-name="firstName">FIRST_NAME</option>
+			<option value="HIRE_DATE" data-column-name="hireDate">HIRE_DATE</option>
+			<option value="SALARY" data-column-name="salary">SALARY</option>
 		</select>
 		<span id="equal_area">
 			<input list="auto_complete" type="text" name="query" id="query">
