@@ -65,4 +65,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 
+	<select id="autoComplete" parameterType="Map" resultType="Employee">
+		SELECT DISTINCT ${column}
+		  FROM EMPLOYEES
+		 WHERE ${column} LIKE #{query} || '%'
+	</select>
+
 </mapper>

@@ -1,12 +1,15 @@
 package com.koreait.ex14.service;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -110,5 +113,34 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		
 	}
-
+	
+	@Override
+	public void autoComplete(Map<String, Object> map, HttpServletResponse response) {
+		
+		EmployeeRepository repository = sqlSession.getMapper(EmployeeRepository.class);
+		List<Employee> list = repository.autoComplete(map);
+		
+		// ajax 결과로 반환할 HashMap을 만들고, response로 응답해 줌.
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (list.size() == 0) {
+			result.put("status", 500);
+			result.put("list", null);
+		} else {
+			result.put("status", 200);
+			result.put("list", list);
+		}
+		
+		// response 응답
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			JSONObject obj = new JSONObject(result);
+			out.println(obj.toString());
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

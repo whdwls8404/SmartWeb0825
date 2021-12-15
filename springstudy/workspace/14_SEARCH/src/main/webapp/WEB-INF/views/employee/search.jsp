@@ -15,6 +15,7 @@
 		fnInit();
 		fnFindAll();
 		fnFind();
+		fnAutoComplete();
 	});
 
 	// 검색 화면 세팅 함수
@@ -97,6 +98,30 @@
 		});
 	}  // end fnFind
 	
+	// 자동 완성 함수
+	function fnAutoComplete(){
+		$('#query').keyup(function(){
+			$('#auto_complete').empty();  // 자동 완성 목록의 초기화
+			$.ajax({
+				url: '/ex14/search/autoComplete',
+				type: 'post',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					column: $('#column').val(),
+					query: $('#query').val()
+				}),
+				dataType: 'text',
+				success: function(obj) {
+					let result = JSON.parse(obj);
+					console.log(result);
+				},
+				error: function(xhr) {
+					
+				}
+			});
+		});
+	}  // end fnAutoComplete
+	
 </script>
 </head>
 <body>
@@ -112,7 +137,8 @@
 			<option value="SALARY">SALARY</option>
 		</select>
 		<span id="equal_area">
-			<input type="text" name="query" id="query">
+			<input list="auto_complete" type="text" name="query" id="query">
+			<datalist id="auto_complete"></datalist>
 		</span>
 		<span id="range_area">
 			<input type="text" name="begin" id="begin" placeholder="begin">

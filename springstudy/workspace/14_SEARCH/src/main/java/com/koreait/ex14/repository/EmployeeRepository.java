@@ -13,4 +13,5 @@ public interface EmployeeRepository {
 	public List<Employee> selectEmployeeList(Map<String, Object> map);
 	public int selectFindRecordCount(Map<String, Object> map);
 	public List<Employee> selectFindList(Map<String, Object> map);
+	public List<Employee> autoComplete(Map<String, Object> map);
 }
