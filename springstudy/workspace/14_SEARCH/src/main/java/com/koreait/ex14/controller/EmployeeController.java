@@ -19,21 +19,21 @@ public class EmployeeController {
 	
 	@GetMapping(value="searchPage")
 	public String searchPage() {
-		return "employee/list";
+		return "employee/search";
 	}
 	
 	@GetMapping(value="findAll")
 	public String findAll(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		service.findAllEmployee(model);
-		return "employee/list";
+		return "employee/search";
 	}
 	
 	@GetMapping(value="findEmployee")
 	public String findEmployee(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		service.findEmployee(model);
-		return "employee/list";
+		return "employee/search";
 	}
 	
 	

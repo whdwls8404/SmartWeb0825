@@ -125,5 +125,8 @@
 		<input type="button" value="전체사원조회" id="find_all_btn">
 	</form>
 	
+	<br><hr><br>
+	<%@ include file="list.jsp" %>
+	
 </body>
 </html>

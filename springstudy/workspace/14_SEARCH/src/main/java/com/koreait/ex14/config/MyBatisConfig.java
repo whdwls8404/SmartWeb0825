@@ -1,7 +1,5 @@
 package com.koreait.ex14.config;
 
-import java.util.Properties;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;

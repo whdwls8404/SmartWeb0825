@@ -10,9 +10,6 @@
 </head>
 <body>
 
-	<%@ include file="search.jsp" %>
-	<br><hr><br>
-	
 	<table border="1">
 		<thead>
 			<tr>
