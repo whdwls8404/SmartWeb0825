@@ -47,6 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE 1 = 1
 		 <if test="column == 'EMPLOYEE_ID'">AND ${column} = TRIM(#{query})</if>
 		 <if test="column == 'FIRST_NAME'">AND UPPER(${column}) LIKE '%' || UPPER(TRIM(#{query})) || '%'</if>
+		 <if test="column == 'HIRE_DATE'">AND ${column} BETWEEN TO_DATE(#{begin}, 'YYYY-MM-DD') AND TO_DATE(#{end}, 'YYYY-MM-DD')</if>
+		 <if test="column == 'SALARY'">AND ${column} BETWEEN #{begin} AND #{end}</if>
 	</select>
 	
 	<select id="selectFindList" parameterType="Map" resultMap="EmployeeMap">
@@ -57,6 +59,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                 WHERE D.DEPARTMENT_ID(+) = E.DEPARTMENT_ID
 		                 <if test="column == 'EMPLOYEE_ID'">AND ${column} = TRIM(#{query})</if>
 		 				 <if test="column == 'FIRST_NAME'">AND UPPER(${column}) LIKE '%' || UPPER(TRIM(#{query})) || '%'</if>
+		 				 <if test="column == 'HIRE_DATE'">AND ${column} BETWEEN TO_DATE(#{begin}, 'YYYY-MM-DD') AND TO_DATE(#{end}, 'YYYY-MM-DD')</if>
+		 				 <if test="column == 'SALARY'">AND ${column} BETWEEN #{begin} AND #{end}</if>
 		                 ORDER BY E.EMPLOYEE_ID) A) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
