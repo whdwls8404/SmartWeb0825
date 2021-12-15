@@ -80,15 +80,10 @@
 	// Book 검색 함수
 	function fnFindBook(){
 		$('#search_btn').click(function(){
-			let obj = JSON.stringify({
-				column: $('#column').val(),
-				query: '%' + $('#query').val() + '%'
-			});
 			$.ajax({
 				url: '/integration/book/findBook',
-				type: 'post',
-				contentType: 'application/json',
-				data: obj,
+				type: 'get',
+				data: 'column=' + $('#column').val() + '&query=' + $('#query').val(),
 				dataType: 'json',
 				success: function(map){
 					$('#book_list').empty();

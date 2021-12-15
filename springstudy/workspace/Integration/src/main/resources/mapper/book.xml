@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findBook" parameterType="Map" resultType="com.koreait.integration.domain.Book">
 		SELECT NO, TITLE, PREVIEW, AUTHOR, PRICE
 		  FROM BOOK
-		 WHERE ${column} LIKE #{query}
+		 WHERE ${column} LIKE '%' || #{query} || '%'
 	</select>
 	
 </mapper>
