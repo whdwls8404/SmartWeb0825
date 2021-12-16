@@ -1,23 +1,53 @@
-mybatis 옵션
+14장설정
 
 1. mapUnderscoreToCamelCase
-2. 테이블의 필드명에 포함된 밑줄(_)을 자바의 camelCase 방식으로 변경해 줌
-3. 방법
-   1) src/main/resources/mybatis
-                           ㄴmybatis-config.xml
-    <configuration>
-       <settings>
-          <setting name="mapUnderscoreToCamelCase" value="true"/>
-       </settings>
-    </configuration>
-   2) com.koreait.ex14.config.MyBatisConfig.java
-   @Bean
-   public SqlSessionFactory sqlSessionFactory() throws Exception {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(hikariDataSource());
-		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/*.xml"));
-		sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis/mybatis-config.xml"));
-		return sqlSessionFactoryBean.getObject();
-	}
+    1) 테이블의 필드명에 포함된 밑줄(_)을 자바의 camelCase 방식으로 변경해 줌
+    2) 방법
+        (1) src/main/resources/mybatis/config/mybatis-config.xml
+            <configuration>
+               <settings>
+                  <setting name="mapUnderscoreToCamelCase" value="true"/>
+               </settings>
+            </configuration>
+        (2) com.koreait.ex14.config.MyBatisConfig.java
+            @Bean
+            public SqlSessionFactory sqlSessionFactory() throws Exception {
+                SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+                sqlSessionFactoryBean.setDataSource(hikariDataSource());
+                sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/*.xml"));
+                sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis/config/mybatis-config.xml"));
+                return sqlSessionFactoryBean.getObject();
+            }
 
-롬복 설치 - 이미지 참고
+2. typeAliases
+    1) 긴 경로를 별명으로 줄여서 사용
+    2) 방법
+        (1) src/main/resources/mybatis/config/mybatis-config.xml
+            <typeAliases>
+               <typeAliase type="com.koreait.ex14.domain.Department" alias="Department" />
+               <typeAliase type="com.koreait.ex14.domain.Employee" alias="Employee" />
+            </typeAliases>
+        (2) src/main/resources/mybatis/mapper/employee.xml
+            <select id="autoComplete" parameterType="Map" resultType="Employee">
+                SELECT DISTINCT ${column}
+                  FROM EMPLOYEES
+                 WHERE ${column} LIKE #{query} || '%'
+            </select>
+
+3. 롬복 설치 - 이미지 참고
+
+4. DB설정 숨겨서 git에 올리기
+    1) DB설정을 별도 properties 파일로 저장하기
+        src/main/resources/mybatis/properties/db.properties
+        hikariConfig.driverClassName=oracle.jdbc.driver.OracleDriver
+        hikariConfig.jdbcUrl=jdbc:oracle:thin:@localhost:1521:xe
+        hikariConfig.username=HR
+        hikariConfig.password=1111
+    2) MyBatisConfig.java에서 properties 파일 내용 읽기
+        @Value("${hikariConfig.driverClassName}") private String driverClassName;
+        @Value("${hikariConfig.jdbcUrl}") private String jdbcUrl;
+        @Value("${hikariConfig.username}") private String username;
+        @Value("${hikariConfig.password}") private String password;
+    3) .gitignore 파일에 properties 파일 추가하기
+        # properties
+        db.properties
