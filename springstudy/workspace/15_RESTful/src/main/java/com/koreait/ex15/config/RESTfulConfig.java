@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import com.koreait.ex15.service.MemberService;
+import com.koreait.ex15.service.MemberServiceImpl;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource("classpath:mybatis/properties/db.properties")
-public class MyBatisConfig {
+public class RESTfulConfig {
 	
 	@Value("${hikariConfig.driverClassName}") private String driverClassName;
 	@Value("${hikariConfig.jdbcUrl}") private String jdbcUrl;
@@ -48,6 +50,11 @@ public class MyBatisConfig {
 	@Bean
 	public SqlSessionTemplate sqlSession() throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory());
+	}
+	
+	@Bean
+	public MemberService service() throws Exception {
+		return new MemberServiceImpl(sqlSession());
 	}
 	
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>게시글 작성 화면</h1>
-	<form action="/ex06/board/insertBoard.do" method="post">
+	<form action="/ex06/board/insertBoard" method="post">
 		<input type="text" name="writer" placeholder="작성자"><br>
 		<input type="text" name="title" placeholder="제목"><br>
 		<input type="text" name="content" placeholder="내용"><br>

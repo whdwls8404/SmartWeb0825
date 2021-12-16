@@ -60,8 +60,12 @@
 				data: member,
 				dataType: 'json',
 				success: function(map){
-					alert('회원번호 ' + map.memberNo + '인 회원이 등록되었습니다.');
-					fnFindAllMember();
+					if (map.result > 0) {
+						alert('회원번호 ' + map.memberNo + '인 회원이 등록되었습니다.');
+						fnFindAllMember();						
+					} else {
+						alert('회원이 등록되지 않았습니다.');
+					}
 				},
 				error: function(xhr){
 					if (xhr.status == 500) {

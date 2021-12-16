@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  FROM DUAL
 		</selectKey>
 		INSERT INTO MEMBER
-		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{name}, #{gender}, #{address})
+		VALUES (#{memberNo}, #{id}, #{name}, #{gender}, #{address})
 	</insert>
 	
 	<update id="updateMember" parameterType="Member">

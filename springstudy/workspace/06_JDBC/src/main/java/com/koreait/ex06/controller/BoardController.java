@@ -32,7 +32,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
-	@GetMapping(value="selectBoardList.do")
+	@GetMapping(value="selectBoardList")
 	public String selectBoardList(Model model) {  // model : jsp로 값을 넘김
 		logger.info("selectBoardList() 호출");  // console에 정보가 찍힘
 		List<Board> list = service.selectBoardList();
@@ -41,35 +41,35 @@ public class BoardController {
 		return "board/list";  // board/list.jsp로 forward함(model에 저장한 list가 전달됨)
 	}
 	
-	@GetMapping(value="insertBoardForm.do")
+	@GetMapping(value="insertBoardForm")
 	public String insertBoardForm() {
 		return "board/insert";
 	}
 	
-	@PostMapping(value="insertBoard.do")
+	@PostMapping(value="insertBoard")
 	public void insertBoard(HttpServletRequest request, HttpServletResponse response) {
 		service.insertBoard(request, response);
 	}
 	
-	@GetMapping(value="selectBoardByNo.do")
+	@GetMapping(value="selectBoardByNo")
 	public String selectBoardByNo(@RequestParam(value="no") Long no, Model model) {
 		model.addAttribute("board", service.selectBoardByNo(no));
 		return "board/detail";
 	}
 	
-	@GetMapping(value="updateBoardForm.do")
+	@GetMapping(value="updateBoardForm")
 	public String updateBoardForm(@ModelAttribute(value="board") Board board) {
 		// detail.jsp에서 보낸 파라미터 3개는 Board board가 받고,
 		// model에 "board" 속성으로 저장함 : model.addAttribute("board", board")
 		return "board/update";
 	}
 	
-	@PostMapping(value="updateBoard.do")
+	@PostMapping(value="updateBoard")
 	public void updateBoard(Board board, HttpServletResponse response) {
 		service.updateBoard(board, response);
 	}
 	
-	@GetMapping(value="deleteBoard.do")
+	@GetMapping(value="deleteBoard")
 	public void deleteBoard(@RequestParam(value="no", required=false, defaultValue="0") Long no,
 						HttpServletResponse response) {
 		service.deleteBoard(no, response);
