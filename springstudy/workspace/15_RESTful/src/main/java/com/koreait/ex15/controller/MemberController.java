@@ -1,10 +1,12 @@
 package com.koreait.ex15.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koreait.ex15.domain.Member;
@@ -19,6 +21,7 @@ import lombok.AllArgsConstructor;
 // 3. URL + Method
 //    1) 목록 : members      + GET
 //    2) 개별 : members/1    + GET
+//    3) 삽입 : members      + POST
 
 
 @RestController
@@ -27,9 +30,24 @@ public class MemberController {
 
 	private MemberService service;
 	
+	// 회원 목록
 	@GetMapping(value="api/members", produces="application/json; charset=UTF-8")
 	public Map<String, Object> findAllMember() {
 		return service.findAllMember();
 	}
+	
+	// 회원 등록
+	@PostMapping(value="api/members", produces="application/json; charset=UTF-8")
+	public Map<String, Object> addMember(@RequestBody Member member, HttpServletResponse response) {
+		//try {
+			return service.addMember(member);
+		//} catch (Exception e) {
+		//	System.out.println(e.getClass().getName());
+		//}
+		//return null;  // 동작할 일 없음.
+	}
+	
+	
+	
 	
 }

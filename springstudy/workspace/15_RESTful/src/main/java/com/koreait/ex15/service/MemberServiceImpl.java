@@ -36,21 +36,24 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int addMember(Member member) {
+	public Map<String, Object> addMember(Member member) {
 		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
-		return repository.insertMember(member);
+		int memberNo = repository.insertMember(member);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		return map;
 	}
 
 	@Override
-	public int modifyMember(Member member) {
+	public Map<String, Object> modifyMember(Member member) {
 		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
-		return repository.updateMember(member);
+		return null;  // repository.updateMember(member);
 	}
 
 	@Override
-	public int removeMember(Long memberNo) {
+	public Map<String, Object> removeMember(Long memberNo) {
 		MemberRepository repository = sqlSession.getMapper(MemberRepository.class);
-		return repository.deleteMember(memberNo);
+		return null;  //repository.deleteMember(memberNo);
 	}
 
 }

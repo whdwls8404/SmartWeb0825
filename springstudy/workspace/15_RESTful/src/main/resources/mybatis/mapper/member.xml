@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertMember" parameterType="Member">
+		<selectKey keyProperty="memberNo" order="BEFORE" resultType="Long">
+			SELECT MEMBER_SEQ.NEXTVAL
+			  FROM DUAL
+		</selectKey>
 		INSERT INTO MEMBER
 		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{name}, #{gender}, #{address})
 	</insert>

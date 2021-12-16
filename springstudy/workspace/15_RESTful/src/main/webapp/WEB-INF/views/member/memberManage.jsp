@@ -11,6 +11,7 @@
 	// 페이지 로드
 	$(document).ready(function(){
 		fnFindAllMember();
+		fnAddMember();
 	});
 	
 	// 전체 회원 목록 함수
@@ -26,7 +27,15 @@
 					.append( $('<td colspan="5">').text('등록된 회원이 없습니다.') )
 					.appendTo( '#member_list' );
 				} else {
-					
+					$.each(map.list, function(i, member){
+						$('<tr>')
+						.append($('<td>').text(member.id))
+						.append($('<td>').text(member.name))
+						.append($('<td>').text(member.gender))
+						.append($('<td>').text(member.address))
+						.append($('<td>').html( $('<input type="hidden" name="memberNo" id="memberNo" value="'+member.memberNo+'"><input type="button" value="조회" class="view_btn">')))
+						.appendTo('#member_list');
+					});
 				}
 			},
 			error: function(){
@@ -35,6 +44,34 @@
 		});
 	}  // end fnFindAllMember
 
+	// 회원 등록 함수
+	function fnAddMember() {
+		$('#insert_btn').click(function(){
+			let member = JSON.stringify({
+				id: $('#id').val(),
+				name: $('#name').val(),
+				gender: $('input:radio[name="gender"]:checked').val(),
+				address: $('#address').val()
+			});
+			$.ajax({
+				url: '/ex15/api/members',
+				type: 'post',
+				contentType: 'application/json',
+				data: member,
+				dataType: 'json',
+				success: function(map){
+					alert('회원번호 ' + map.memberNo + '인 회원이 등록되었습니다.');
+					fnFindAllMember();
+				},
+				error: function(){
+					
+				}
+			});
+		});
+	}  // end fnAddMember
+	
+	
+	
 </script>
 </head>
 <body>
@@ -61,8 +98,8 @@
 			<tr>
 				<td>아이디</td>
 				<td>이름</td>
-				<td>주소</td>
 				<td>성별</td>
+				<td>주소</td>
 				<td></td>
 			</tr>
 		</thead>
