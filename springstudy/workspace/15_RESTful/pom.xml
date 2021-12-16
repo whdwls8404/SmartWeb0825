@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.koreait</groupId>
-	<artifactId>ex12</artifactId>
-	<name>12_GALLERY</name>
+	<artifactId>ex15</artifactId>
+	<name>15_RESTful</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	
+
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.1.4.RELEASE</org.springframework-version>
@@ -26,13 +26,6 @@
 	
 	<dependencies>
 	
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.8</version>
-		</dependency>
-		
 		<!-- fileupload 2개 -->
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
@@ -47,7 +40,7 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.4</version>
 		</dependency>
-		
+	
 		<!-- 썸네일 -->
 		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
 		<dependency>
@@ -55,7 +48,29 @@
 		    <artifactId>thumbnailator</artifactId>
 		    <version>0.4.8</version>
 		</dependency>
-		
+	
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180813</version>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.4</version>
+		    <scope>provided</scope>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
+
 		<!-- ojdbc6.jar -->
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -201,7 +216,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
