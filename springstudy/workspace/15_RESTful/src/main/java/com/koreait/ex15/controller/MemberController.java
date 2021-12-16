@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,12 +41,26 @@ public class MemberController {
 	// 회원 등록
 	@PostMapping(value="api/members", produces="application/json; charset=UTF-8")
 	public Map<String, Object> addMember(@RequestBody Member member, HttpServletResponse response) {
-		//try {
+		try {
 			return service.addMember(member);
-		//} catch (Exception e) {
-		//	System.out.println(e.getClass().getName());
-		//}
-		//return null;  // 동작할 일 없음.
+		} catch (DuplicateKeyException e) {
+			try {
+				response.setContentType("text/html; charset=UTF-8");
+				response.setStatus(500);
+				response.getWriter().println("이미 사용 중인 아이디입니다.");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} catch (DataIntegrityViolationException e) {
+			try {
+				response.setContentType("text/html; charset=UTF-8");
+				response.setStatus(501);
+				response.getWriter().println("필수 정보가 누락되었습니다.");
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return null;  // 동작할 일 없음.
 	}
 	
 	

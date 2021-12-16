@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   SET NAME = #{name}, GENDER = #{gender}, ADDRESS = #{address}
 		 WHERE MEMBER_NO = #{memberNo}
 	</update>
-	
+
 	<delete id="deleteMember" parameterType="Long">
 		DELETE
 		  FROM MEMBER

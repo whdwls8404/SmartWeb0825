@@ -63,8 +63,12 @@
 					alert('회원번호 ' + map.memberNo + '인 회원이 등록되었습니다.');
 					fnFindAllMember();
 				},
-				error: function(){
-					
+				error: function(xhr){
+					if (xhr.status == 500) {
+						alert(xhr.responseText);
+					} else if (xhr.status == 501) {
+						alert(xhr.responseText);
+					}
 				}
 			});
 		});
