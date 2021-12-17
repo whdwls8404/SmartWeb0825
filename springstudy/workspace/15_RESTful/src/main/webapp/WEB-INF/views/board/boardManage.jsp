@@ -46,7 +46,10 @@
 			}
 			// ajax의 파일업로드는 form 객체 사용
 			var formData = new FormData();
-			formData.append('origin', $('#origin')[0].files[0]);  // 첨부를 FormData에 넣기
+			formData.append('writer', $('#writer').val());
+			formData.append('title', $('#title').val());
+			formData.append('content', $('#content').val());
+			formData.append('origin', $('#origin')[0].files);  // 첨부를 FormData에 넣기
 			$.ajax({
 				url: '/ex15/api/boards',
 				type: 'post',
