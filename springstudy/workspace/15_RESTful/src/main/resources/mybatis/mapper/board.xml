@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertBoard" parameterType="Board">
 		<selectKey keyProperty="boardNo" order="BEFORE" resultType="Long">
 			SELECT BOARD_SEQ.NEXTVAL
-			  FROM BOARD
+			  FROM DUAL
 		</selectKey>
 		INSERT INTO BOARD
 		VALUES (#{boardNo}, #{title}, #{content}, #{writer}, #{ip}, SYSDATE, SYSDATE)
