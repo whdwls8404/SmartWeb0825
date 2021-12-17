@@ -72,9 +72,11 @@
 		$('#paging').empty();
 		// 1페이지로 이동
 		if (page == 1) {
-			$('<div class="disable_link">&lt;&lt;</div>').appendTo('#paging');
+			//$('<div class="disable_link">&lt;&lt;</div>').appendTo('#paging');
+			$('<div>').addClass('disable_link').html('&lt;&lt;').appendTo('#paging');
 		} else {
-			$('<div class="enable_link" data-page="1">&lt;&lt;</div>').appendTo('#paging');
+			//$('<div class="enable_link" data-page="1">&lt;&lt;</div>').appendTo('#paging');
+			$('<div>').addClass('enable_link').html('&lt;&lt;').attr('data-page', 1).appendTo('#paging');
 		}
 		// 이전 블록으로 이동
 		if (page <= p.pagePerBlock) {
