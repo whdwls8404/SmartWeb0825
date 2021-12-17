@@ -36,20 +36,20 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor  // 생성자를 만들면 field에 @Autowired 처리된다.
 public class MemberController {
 
-	private MemberService service;
+	private MemberService memberService;
 	
 	// 회원 목록
 	@GetMapping(value="api/members/page/{page}", produces="application/json; charset=UTF-8")
 	public Map<String, Object> findAllMember(@PathVariable(value="page", required=false) Optional<String> opt) {
 		String page = opt.orElse("1");
-		return service.findAllMember(Integer.parseInt(page));
+		return memberService.findAllMember(Integer.parseInt(page));
 	}
 	
 	// 회원 등록
 	@PostMapping(value="api/members", produces="application/json; charset=UTF-8")
 	public Map<String, Object> addMember(@RequestBody Member member, HttpServletResponse response) {
 		try {
-			return service.addMember(member);
+			return memberService.addMember(member);
 		} catch (DuplicateKeyException e) {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
@@ -73,19 +73,19 @@ public class MemberController {
 	// 회원 조회
 	@GetMapping(value="api/members/{memberNo}", produces="application/json; charset=UTF-8")
 	public Map<String, Object> findMember(@PathVariable(value="memberNo") Long memberNo) {  // 경로에 변수가 있다. @PathVariable
-		return service.findMember(memberNo);
+		return memberService.findMember(memberNo);
 	}
 	
 	// 회원 정보 수정
 	@PutMapping(value="api/members", produces="application/json; charset=UTF-8")
 	public Map<String, Object> modifyMember(@RequestBody Member member) {
-		return service.modifyMember(member);
+		return memberService.modifyMember(member);
 	}
 	
 	// 회원 삭제
 	@DeleteMapping(value="api/members/{memberNo}", produces="application/json; charset=UTF-8")
 	public Map<String, Object> removeMember(@PathVariable(value="memberNo") Long memberNo) {
-		return service.removeMember(memberNo);
+		return memberService.removeMember(memberNo);
 	}
 	
 }

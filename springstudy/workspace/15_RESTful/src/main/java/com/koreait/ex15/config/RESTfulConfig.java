@@ -10,8 +10,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.koreait.ex15.service.BoardAttachService;
-import com.koreait.ex15.service.BoardAttachServiceImpl;
 import com.koreait.ex15.service.BoardService;
 import com.koreait.ex15.service.BoardServiceImpl;
 import com.koreait.ex15.service.MemberService;
@@ -58,19 +56,14 @@ public class RESTfulConfig {
 	}
 	
 	@Bean
-	public MemberService service() throws Exception {
+	public MemberService memberService() throws Exception {
 		return new MemberServiceImpl(sqlSession());
 	}
 	
 	@Bean
-	public BoardService service2() throws Exception {
+	public BoardService boardService() throws Exception {
 		return new BoardServiceImpl(sqlSession());
 	}
-	
-	//@Bean
-	//public BoardAttachService service3() throws Exception {
-	//	return new BoardAttachServiceImpl(sqlSession());
-	//}
 	
 	// 파일 첨부 시 등록해 둬야 할 Bean
 	@Bean
