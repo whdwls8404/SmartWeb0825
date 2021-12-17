@@ -12,6 +12,7 @@
 	$(document).ready(function(){
 		fnFindAllMember();
 		fnAddMember();
+		fnFindMember();
 	});
 	
 	// 전체 회원 목록 함수
@@ -33,7 +34,7 @@
 						.append($('<td>').text(member.name))
 						.append($('<td>').text(member.gender))
 						.append($('<td>').text(member.address))
-						.append($('<td>').html( $('<input type="hidden" name="memberNo" id="memberNo" value="'+member.memberNo+'"><input type="button" value="조회" class="view_btn">')))
+						.append($('<td>').html( $('<input type="hidden" name="memberNo" value="'+member.memberNo+'"><input type="button" value="조회" class="view_btn">')))
 						.appendTo('#member_list');
 					});
 				}
@@ -78,7 +79,24 @@
 		});
 	}  // end fnAddMember
 	
-	
+	// 회원 조회 함수
+	function fnFindMember(){
+		$('body').on('click', '.view_btn', function(){
+			$('#id').attr('readonly', true);
+			$.ajax({
+				url: '/ex15/api/members/' + $(this).prev().val(),
+				type: 'get',
+				dataType: 'json',
+				success: function(){
+					
+				},
+				error: function(){
+					
+				}
+			});
+			
+		});
+	}
 	
 </script>
 </head>

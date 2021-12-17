@@ -36,11 +36,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String, Object> addMember(Member member) {
-		int result = repository.insertMember(member);
+	public Map<String, Object> addMember(Member member) {  // 받아온 member에는 memberNo 없음.
+		int result = repository.insertMember(member);  // DB로 member를 보내면 selectKey 태그로 member에 memberNo가 저장됨.
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("result", result);
-		map.put("memberNo", member.getMemberNo());
+		map.put("result", result);  // 성공 유무 판단용 0 또는 1
+		map.put("memberNo", member.getMemberNo());  // DB를 다녀온 뒤에는 member에 memberNo가 있음.
 		return map;
 	}
 
