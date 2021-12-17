@@ -1,13 +1,17 @@
 package com.koreait.ex15.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +28,8 @@ import lombok.AllArgsConstructor;
 //    1) 목록 : members      + GET
 //    2) 개별 : members/1    + GET
 //    3) 삽입 : members      + POST
+//    4) 수정 : members      + PUT  (수정할 정보는 body에 포함시켜서 처리됨)
+//    5) 삭제 : members/1    + DELETE
 
 
 @RestController
@@ -33,9 +39,10 @@ public class MemberController {
 	private MemberService service;
 	
 	// 회원 목록
-	@GetMapping(value="api/members", produces="application/json; charset=UTF-8")
-	public Map<String, Object> findAllMember() {
-		return service.findAllMember();
+	@GetMapping(value="api/members/page/{page}", produces="application/json; charset=UTF-8")
+	public Map<String, Object> findAllMember(@PathVariable(value="page", required=false) Optional<String> opt) {
+		String page = opt.orElse("1");
+		return service.findAllMember(Integer.parseInt(page));
 	}
 	
 	// 회원 등록
@@ -63,7 +70,22 @@ public class MemberController {
 		return null;  // 동작할 일 없음.
 	}
 	
+	// 회원 조회
+	@GetMapping(value="api/members/{memberNo}", produces="application/json; charset=UTF-8")
+	public Map<String, Object> findMember(@PathVariable(value="memberNo") Long memberNo) {  // 경로에 변수가 있다. @PathVariable
+		return service.findMember(memberNo);
+	}
 	
+	// 회원 정보 수정
+	@PutMapping(value="api/members", produces="application/json; charset=UTF-8")
+	public Map<String, Object> modifyMember(@RequestBody Member member) {
+		return service.modifyMember(member);
+	}
 	
+	// 회원 삭제
+	@DeleteMapping(value="api/members/{memberNo}", produces="application/json; charset=UTF-8")
+	public Map<String, Object> removeMember(@PathVariable(value="memberNo") Long memberNo) {
+		return service.removeMember(memberNo);
+	}
 	
 }

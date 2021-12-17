@@ -10,20 +10,40 @@
 
 	// 페이지 로드
 	$(document).ready(function(){
+		fnInit();
 		fnFindAllMember();
 		fnAddMember();
 		fnFindMember();
+		fnModifyMember();
+		fnRemoveMember();
 	});
 	
-	// 전체 회원 목록 함수
+	// 입력 폼 초기화 함수
+	function fnInit(){
+		$('#memberNo').val('');
+		$('#id').val('').prop('readonly', false);
+		$('#name').val('');
+		$('input:radio[name="gender"]').prop('checked', false);
+		$('#address').val('');
+	}
+	
+	// 전체 회원 목록 함수 + page 전역 변수
+	var page = 1;
 	function fnFindAllMember() {
 		$.ajax({
-			url: '/ex15/api/members',
+			url: '/ex15/api/members/page/' + page,
 			type: 'get',
 			dataType: 'json',
 			success: function(map){
+				
+				// 목록 초기화
 				$('#member_list').empty();
-				if (map.length == 0) {
+				
+				// 페이지 처리 모든 정보를 변수 p에 저장
+				var p = map.pageUtils;
+				
+				// 목록 만들기
+				if (p.totalRecord == 0) {
 					$('<tr>')
 					.append( $('<td colspan="5">').text('등록된 회원이 없습니다.') )
 					.appendTo( '#member_list' );
@@ -38,8 +58,20 @@
 						.appendTo('#member_list');
 					});
 				}
-			},
-			error: function(){
+				
+				// 페이징 만들기
+				$('#paging').empty();
+				
+				// 1페이지로 이동
+				
+				// 이전 블록으로 이동
+				
+				// 페이지 번호
+				
+				// 다음 블록으로 이동
+				
+				// 마지막 페이지로 이동
+				
 				
 			}
 		});
@@ -63,7 +95,8 @@
 				success: function(map){
 					if (map.result > 0) {
 						alert('회원번호 ' + map.memberNo + '인 회원이 등록되었습니다.');
-						fnFindAllMember();						
+						fnFindAllMember();
+						fnInit();
 					} else {
 						alert('회원이 등록되지 않았습니다.');
 					}
@@ -82,21 +115,74 @@
 	// 회원 조회 함수
 	function fnFindMember(){
 		$('body').on('click', '.view_btn', function(){
-			$('#id').attr('readonly', true);
 			$.ajax({
 				url: '/ex15/api/members/' + $(this).prev().val(),
 				type: 'get',
 				dataType: 'json',
-				success: function(){
-					
-				},
-				error: function(){
-					
+				success: function(map){
+					if (map.member != null) {
+						$('#memberNo').val(map.member.memberNo);
+						$('#id').val(map.member.id).prop('readonly', true);
+						$('#name').val(map.member.name);
+						$('#address').val(map.member.address);
+						$('input:radio[name="gender"][value="'+map.member.gender+'"]').prop('checked', true);
+					} else {
+						alert($(this).prev().val() + '번 회원 정보가 없습니다.');
+					}
 				}
 			});
 			
 		});
-	}
+	}  // end fnFindMember
+	
+	// 회원 정보 수정 함수
+	function fnModifyMember(){
+		$('#update_btn').click(function(){
+			let member = JSON.stringify({
+				memberNo: $('#memberNo').val(),
+				name: $('#name').val(),
+				gender: $('input:radio[name="gender"]:checked').val(),
+				address: $('#address').val()
+			});
+			$.ajax({
+				url: '/ex15/api/members',
+				type: 'put',
+				contentType: 'application/json',
+				data: member,
+				dataType: 'json',
+				success: function(map){
+					if (map.result > 0) {
+						alert('회원 정보가 수정되었습니다.');
+						fnFindAllMember();
+					} else {
+						alert('회원 정보가 수정되지 않았습니다.');
+					}
+				}
+			});
+		});
+	}  // end fnModifyMember
+	
+	// 회원 삭제 함수
+	function fnRemoveMember(){
+		$('#delete_btn').click(function(){
+			if (confirm('삭제할까요?')){
+				$.ajax({
+					url: '/ex15/api/members/' + $('#memberNo').val(),
+					type: 'delete',
+					dataType: 'json',
+					success: function(map){
+						if (map.result > 0) {
+							alert('회원이 삭제되었습니다.');
+							fnFindAllMember();
+							fnInit();
+						} else {
+							alert('회원이 삭제되지 않았습니다.');
+						}
+					}
+				});
+			}
+		});
+	}  // end fnRemoveMember
 	
 </script>
 </head>
@@ -105,13 +191,14 @@
 	<h1>회원 관리</h1>
 	
 	<div>
+		<input type="hidden" name="memberNo" id="memberNo">
 		아이디 <input type="text" name="id" id="id"><br>
 		이름   <input type="text" name="name" id="name"><br>
 		주소   <input type="text" name="address" id="address"><br>
 		성별
 		<input type="radio" name="gender" value="남" id="male"><label for="male">남</label>
 		<input type="radio" name="gender" value="여" id="female"><label for="female">여</label><br>
-		<input type="button" value="초기화" id="init_btn"> 
+		<input type="button" value="초기화" onclick="fnInit()"> 
 		<input type="button" value="등록" id="insert_btn"> 
 		<input type="button" value="수정" id="update_btn"> 
 		<input type="button" value="삭제" id="delete_btn"> 

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.koreait.ex15.domain.Member;
 import com.koreait.ex15.repository.MemberRepository;
+import com.koreait.ex15.util.PageUtils;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -18,21 +19,29 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Map<String, Object> findAllMember() {
-		List<Member> list = repository.selectMemberList();
+	public Map<String, Object> findAllMember(Integer page) {
+		
+		int totalRecord = repository.selectMemberCount();
+		PageUtils pageUtils = new PageUtils();
+		pageUtils.setPageEntity(totalRecord, page);
+		
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("beginRecord", pageUtils.getBeginRecord());
+		m.put("endRecord", pageUtils.getEndRecord());
+		List<Member> list = repository.selectMemberList(m);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("length", list.size());
-		if (list.size() == 0) {
-			map.put("list", null);
-		} else {
-			map.put("list", list);
-		}
+		map.put("pageUtils", pageUtils);
+		map.put("list", list);
 		return map;
 	}
 
 	@Override
-	public Member findMember(Long memberNo) {
-		return repository.selectMemberByNo(memberNo);
+	public Map<String, Object> findMember(Long memberNo) {
+		Member member = repository.selectMemberByNo(memberNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member", member);
+		return map;
 	}
 
 	@Override
@@ -46,12 +55,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Map<String, Object> modifyMember(Member member) {
-		return null;  // repository.updateMember(member);
+		int result = repository.updateMember(member);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", result);
+		return map;
 	}
 
 	@Override
 	public Map<String, Object> removeMember(Long memberNo) {
-		return null;  //repository.deleteMember(memberNo);
+		int result = repository.deleteMember(memberNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", result);
+		return map;
 	}
 
 }
