@@ -26,20 +26,23 @@
 	// 첨부파일 점검 함수 (확장자 + 크기)
 	function fnFileCheck(){
 		$('#files').change(function(){
-
+			// 첨부 규칙(확장자, 크기)
 			let regFile = /(.*)\.(jpg|jpeg|png|gif)$/;
 			let maxSize = 1024 * 1024 * 10;  // 최대 크기 10MB
-			
+			// 모든 첨부
 			let files = $(this)[0].files;
+			// 각 첨부 순회
 			for (let i = 0; i < files.length; i++) {
+				// 확장자 체크
 				if (regFile.test(files[i].name) == false){
 					alert('이미지만 첨부할 수 있습니다.');
-					$(this).val('');
+					$(this).val('');  // 하나라도 잘못된 첨부가 있으면 첨부 전체 초기화
 					return;
 				}
+				// 크기 체크
 				if (files[i].size > maxSize) {  // files[i].size : 첨부된 파일 크기
 					alert('10MB 이하의 파일만 업로드가 가능합니다.');
-					$(this).val('');
+					$(this).val('');  // 하나라도 잘못된 첨부가 있으면 첨부 전체 초기화
 					return;
 				}
 			}
