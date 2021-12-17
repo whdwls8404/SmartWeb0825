@@ -16,4 +16,9 @@ public class CommonController {
 		return "member/memberManage";  // jsp로 이동
 	}
 	
+	@GetMapping(value="board/manage")
+	public String boardManage() {
+		return "board/boardManage";  // jsp로 이동
+	}
+	
 }

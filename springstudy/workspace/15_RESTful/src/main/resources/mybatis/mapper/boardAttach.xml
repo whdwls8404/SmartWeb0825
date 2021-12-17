@@ -5,6 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.ex15.repository.BoardAttachRepository">
 
-	
+	<insert id="insertBoardAttach" parameterType="BoardAttach">
+		INSERT INTO BOARD_ATTACH
+		VALUES (#{uuid}, #{path}, #{origin}, #{fileType}, #{boardNo})
+	</insert>
 
 </mapper>

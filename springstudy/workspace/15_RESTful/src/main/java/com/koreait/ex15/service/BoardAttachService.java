@@ -1,5 +1,7 @@
 package com.koreait.ex15.service;
 
-public interface BoardAttachService {
+import com.koreait.ex15.domain.BoardAttach;
 
+public interface BoardAttachService {
+	public int addBoardAttach(BoardAttach boardAttach);
 }

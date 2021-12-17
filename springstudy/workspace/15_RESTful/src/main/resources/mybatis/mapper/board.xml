@@ -5,6 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.ex15.repository.BoardRepository">
 
-	
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey keyProperty="boardNo" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL
+			  FROM BOARD
+		</selectKey>
+		INSERT INTO BOARD
+		VALUE (#{boardNo}, #{title}, #{content}, #{writer}, #{ip}, SYSDATE, SYSDATE)
+	</insert>
 
 </mapper>
