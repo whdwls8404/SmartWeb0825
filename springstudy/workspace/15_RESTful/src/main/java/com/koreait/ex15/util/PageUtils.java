@@ -52,6 +52,12 @@ public class PageUtils {
 		
 	}
 	
+	/*
+ 	getPageEntity() 메소드는 <a> 태그로 구성된다.
+ 	<a> 태그는 페이지 이동을 의미하므로,
+ 	페이지 이동이 없는 ajax로 처리하는 경우에는 사용할 수 없다.
+	*/
+	
 	public String getPageEntity(String path) {
 		
 		StringBuilder sb = new StringBuilder();

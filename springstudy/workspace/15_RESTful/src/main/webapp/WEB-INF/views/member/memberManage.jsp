@@ -16,6 +16,7 @@
 		fnFindMember();
 		fnModifyMember();
 		fnRemoveMember();
+		fnChangePage();
 	});
 	
 	// 입력 폼 초기화 함수
@@ -35,47 +36,81 @@
 			type: 'get',
 			dataType: 'json',
 			success: function(map){
-				
-				// 목록 초기화
-				$('#member_list').empty();
-				
-				// 페이지 처리 모든 정보를 변수 p에 저장
-				var p = map.pageUtils;
-				
-				// 목록 만들기
-				if (p.totalRecord == 0) {
-					$('<tr>')
-					.append( $('<td colspan="5">').text('등록된 회원이 없습니다.') )
-					.appendTo( '#member_list' );
-				} else {
-					$.each(map.list, function(i, member){
-						$('<tr>')
-						.append($('<td>').text(member.id))
-						.append($('<td>').text(member.name))
-						.append($('<td>').text(member.gender))
-						.append($('<td>').text(member.address))
-						.append($('<td>').html( $('<input type="hidden" name="memberNo" value="'+member.memberNo+'"><input type="button" value="조회" class="view_btn">')))
-						.appendTo('#member_list');
-					});
-				}
-				
-				// 페이징 만들기
-				$('#paging').empty();
-				
-				// 1페이지로 이동
-				
-				// 이전 블록으로 이동
-				
-				// 페이지 번호
-				
-				// 다음 블록으로 이동
-				
-				// 마지막 페이지로 이동
-				
-				
+				fnPrintMemberList(map);
+				fnPrintPaging(map.pageUtils);
 			}
 		});
 	}  // end fnFindAllMember
+	
+	// 회원 목록 출력만 하는 함수
+	function fnPrintMemberList(map){
+		// 목록 초기화
+		$('#member_list').empty();
+		// 페이지 처리 모든 정보를 변수 p에 저장
+		var p = map.pageUtils;
+		// 목록 만들기
+		if (p.totalRecord == 0) {
+			$('<tr>')
+			.append( $('<td colspan="5">').text('등록된 회원이 없습니다.') )
+			.appendTo( '#member_list' );
+		} else {
+			$.each(map.list, function(i, member){
+				$('<tr>')
+				.append($('<td>').text(member.id))
+				.append($('<td>').text(member.name))
+				.append($('<td>').text(member.gender))
+				.append($('<td>').text(member.address))
+				.append($('<td>').html( $('<input type="hidden" name="memberNo" value="'+member.memberNo+'"><input type="button" value="조회" class="view_btn">')))
+				.appendTo('#member_list');
+			});
+		}
+	}  // end fnPrintMemberList
+	
+	// 페이징 출력 함수
+	function fnPrintPaging(p) {
+		// 페이징 영역 초기화
+		$('#paging').empty();
+		// 1페이지로 이동
+		if (page == 1) {
+			$('<div class="disable_link">&lt;&lt;</div>').appendTo('#paging');
+		} else {
+			$('<div class="enable_link" data-page="1">&lt;&lt;</div>').appendTo('#paging');
+		}
+		// 이전 블록으로 이동
+		if (page <= p.pagePerBlock) {
+			$('<div class="disable_link">&lt;</div>').appendTo('#paging');
+		} else {
+			$('<div class="enable_link" data-page="'+(p.beginPage-1)+'">&lt;</div>').appendTo('#paging');
+		}
+		// 페이지 번호
+		for (let i = p.beginPage; i <= p.endPage; i++) {
+			if (i == page) {
+				$('<div class="disable_link now_page">'+i+'</div>').appendTo('#paging');
+			} else {
+				$('<div class="enable_link" data-page="'+i+'">'+i+'</div>').appendTo('#paging');
+			}
+		}
+		// 다음 블록으로 이동
+		if (p.endPage == p.totalPage) {
+			$('<div class="disable_link">&gt;</div>').appendTo('#paging');
+		} else {
+			$('<div class="enable_link" data-page="'+(p.endPage+1)+'">&gt;</div>').appendTo('#paging');
+		}
+		// 마지막 페이지로 이동
+		if (page == p.totalPage) {
+			$('<div class="disable_link">&gt;&gt;</div>').appendTo('#paging');
+		} else {
+			$('<div class="enable_link" data-page="'+p.totalPage+'">&gt;&gt;</div>').appendTo('#paging');
+		}
+	}  // end fnPrintPaging
+	
+	// 페이징 링크 처리 함수(전역변수 page값을 바꾸고, fnFindAllMember() 호출)
+	function fnChangePage(){
+		$('body').on('click', '.enable_link', function(){
+			page = $(this).data('page');
+			fnFindAllMember();
+		});
+	}  // end fnChangePage
 
 	// 회원 등록 함수
 	function fnAddMember() {
@@ -185,6 +220,26 @@
 	}  // end fnRemoveMember
 	
 </script>
+<style>
+	#paging {
+		display: flex;
+		justify-content: center;
+	}
+	#paging > div {
+		width: 20px;
+		height: 20px;
+		text-align: center;
+	}
+	.disable_link {
+		color: lightgray;
+	}
+	.enable_link {
+		cursor: pointer;
+	}
+	.now_page {
+		color: red;
+	}
+</style>
 </head>
 <body>
 
@@ -219,7 +274,7 @@
 		<tbody id="member_list"></tbody>
 		<tfoot>
 			<tr>
-				<td colspan="5" id="paging"></td>
+				<td colspan="5"><div id="paging"></div></td>
 			</tr>
 		</tfoot>
 	</table>
