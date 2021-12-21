@@ -26,15 +26,15 @@
 	</form>
 	<script>
 		function fnUpdateBoardForm(f) {
-			f.action = '/ex06/board/updateBoardForm.do';
+			f.action = '/ex06/board/updateBoardForm';
 			f.submit();
 		}
 		function fnDeleteBoard(f) {
-			f.action = '/ex06/board/deleteBoard.do';
+			f.action = '/ex06/board/deleteBoard';
 			f.submit();
 		}
 		function fnSelectBoardList() {
-			location.href='/ex06/board/selectBoardList.do';
+			location.href='/ex06/board/selectBoardList';
 		}
 	</script>
 </body>

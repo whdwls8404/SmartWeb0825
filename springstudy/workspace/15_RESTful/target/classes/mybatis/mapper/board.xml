@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.ex15.repository.BoardRepository">
+
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey keyProperty="boardNo" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL
+			  FROM DUAL
+		</selectKey>
+		INSERT INTO BOARD
+		VALUES (#{boardNo}, #{title}, #{content}, #{writer}, #{ip}, SYSDATE, SYSDATE)
+	</insert>
+
+	<insert id="insertBoardAttach" parameterType="BoardAttach">
+		INSERT INTO BOARD_ATTACH
+		VALUES (#{uuid}, #{path}, #{origin}, #{fileType}, #{boardNo})
+	</insert>
+
+</mapper>
