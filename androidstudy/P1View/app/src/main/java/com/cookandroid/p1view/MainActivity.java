@@ -47,20 +47,18 @@ public class MainActivity extends AppCompatActivity {
                // trim() : 앞 뒤 공백 제거 (선택 사항)
                String id = editId.getText().toString().trim();
 
-               if (id.isEmpty()) {
-                   Toast.makeText(MainActivity.this, "아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
+               String emailId = editEmail.getText().toString().trim();
+               String domain = spinDomain.getSelectedItem().toString();
+               String email = emailId + "@" + domain;
+
+               if (id.isEmpty() || emailId.isEmpty()) {
+                   Toast.makeText(MainActivity.this, "아이디와 이메일 아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
                } else {
-                   Toast.makeText(MainActivity.this, "아이디 : " + id, Toast.LENGTH_SHORT).show();
+                   Toast.makeText(MainActivity.this, "아이디 : " + id + ", 이메일 : " + email, Toast.LENGTH_SHORT).show();
                }
 
            }
        });
-
-
-
-
-
-
 
     }
 
