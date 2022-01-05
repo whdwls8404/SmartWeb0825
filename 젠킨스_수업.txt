@@ -72,7 +72,12 @@
 
  github
 
-  new Repository : JenkinsProject
+  - new Repository : JenkinsProject
+  - Personal access token
+    [계정] - Settings - Developer settings - Person access tokens
+    -- Note => 본인github아이디 (다른 이름이어도 상관 없음)
+    -- Expiration => No expiration (유효기간 제한 없음)
+    -- Select scopes => repo(기본), admin:repo_hook(github에 push하면 자동 빌드를 원하는 경우에 선택)
 
 -------------------------------------------
 
