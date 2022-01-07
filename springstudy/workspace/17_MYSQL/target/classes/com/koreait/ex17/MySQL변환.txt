@@ -1,0 +1,27 @@
+MySQL 최신 버전 8.0.27 설치
+
+
+ 1. resources/sql/퀴리문 변경
+
+    오라클     MySQL
+    --------------------------------------------------------------
+    NUMBER     BIGINT(8바이트), INT(4바이트), SMALLINT(2바이트) 등
+    VARCHAR2   VARCHAR
+    DATE       DATETIME
+    시퀀스     없음 (대신 기본키에 AUTO_INCREMENT 옵션 추가하면 됨)
+
+ 1. mybatis/properties/db.properties 내용 변경
+
+    MySQL의 경우 관리자 계정이 root이고, 비밀번호는 1111로 설정한 상태임.
+    오라클과 달리 사용자를 추가하지 않고, 스키마를 추가한 뒤 해당 스키마에 테이블을 추가하는데,
+    이 때 스키마를 오라클의 사용자라고 봐도 무방함.
+    스키마명을 SPRING이라고 지정한 상태임.
+
+ 2. pom.xml
+
+    오라클 관련 태그 빠지고 MySQL 디펜던시 포함
+
+ 3. domain
+
+    오라클의 Date는 MySQL의 Datetime 타입으로 변경하고,
+    

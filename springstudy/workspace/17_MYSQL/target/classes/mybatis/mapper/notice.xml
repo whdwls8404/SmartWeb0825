@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.ex17.repository.NoticeRepository">
+
+	<select id="selectTotalCount" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM NOTICE
+	</select>
+
+	<select id="selectTotalList" parameterType="Map" resultType="com.koreait.ex17.domain.Notice">
+		SELECT NO, TITLE, CONTENT, CREATED, LASTMODIFIED
+		  FROM NOTICE
+		 ORDER BY NO DESC
+		 LIMIT #{beginRecord}, #{recordPerPage}
+	</select>
+	
+	<select id="selectFindCount" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM NOTICE
+		 WHERE ${column} LIKE CONCAT('%', CONCAT(IFNULL(#{query}, ''), '%'))
+	</select>
+
+	<select id="selectFindList" parameterType="Map" resultType="com.koreait.ex17.domain.Notice">
+		SELECT NO, TITLE, CONTENT, CREATED, LASTMODIFIED
+		  FROM NOTICE
+		 WHERE ${column} LIKE CONCAT('%', CONCAT(IFNULL(#{query}, ''), '%'))
+		 ORDER BY NO DESC
+		 LIMIT #{beginRecord}, #{recordPerPage}
+	</select>
+
+	<select id="selectByNo" parameterType="Long" resultType="com.koreait.ex17.domain.Notice">
+		SELECT NO, TITLE, CONTENT, CREATED, LASTMODIFIED
+		  FROM NOTICE
+		 WHERE NO = #{no}
+	</select>
+
+	<insert id="insertNotice" parameterType="com.koreait.ex17.domain.Notice">
+		INSERT INTO NOTICE (
+			TITLE,
+			CONTENT,
+			CREATED,
+			LASTMODIFIED
+		) VALUES (
+			#{title},
+			#{content},
+			NOW(),
+			NOW()
+		)
+	</insert>
+	
+	<update id="updateNotice" parameterType="com.koreait.ex17.domain.Notice">
+		UPDATE NOTICE
+		   SET TITLE = #{title},
+		   	   CONTENT = #{content},
+		   	   LASTMODIFIED = NOW()
+		 WHERE NO = #{no}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="Long">
+		DELETE
+		  FROM NOTICE
+		 WHERE NO = #{no}
+	</delete>
+
+</mapper>
