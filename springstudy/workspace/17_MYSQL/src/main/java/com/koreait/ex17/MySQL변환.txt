@@ -1,0 +1,39 @@
+MySQL 최신 버전 8.0.27 설치
+
+
+1. resources/sql/퀴리문 변경
+
+    오라클     MySQL
+    --------------------------------------------------------------
+    NUMBER     BIGINT(8바이트), INT(4바이트), SMALLINT(2바이트) 등
+    VARCHAR2   VARCHAR
+    DATE       DATETIME
+    시퀀스     없음 (대신 기본키에 AUTO_INCREMENT 옵션 추가하면 됨)
+    SYSDATE    NOW()
+
+2. domain
+
+    MySQL의 DATETIME 타입은 java.util.Date와 호환됨.
+
+
+3. pom.xml
+
+    오라클 관련 태그 빠지고 MySQL 디펜던시 포함
+
+4. mybatis/properties/db.properties 내용 변경
+
+    MySQL의 경우 관리자 계정이 root이고, 비밀번호는 1111로 설정한 상태임.
+    오라클과 달리 사용자를 추가하지 않고, 스키마를 추가한 뒤 해당 스키마에 테이블을 추가하는데,
+    이 때 스키마를 오라클의 사용자라고 봐도 무방함.
+    스키마명을 SPRING이라고 지정한 상태임.
+
+5. PageUtils + mapper + serviceImpl
+
+   1) select
+   MySQL은 limit 문법 지원으로 어디서부터 몇 개를 가져오는 방식으로 변화함.
+   beginRecord는 필요하지만 endRecord는 필요하지 않고, 몇 개는 recordPerPage가 담당하게 됨.
+   limit으로 가져올 때 첫 행은 1이 아니라 0임.
+   참고. limit은 표준 SQL이 아니고, MySQL, PostgreSQL 전용임.
+
+   2) insert
+   MySQL은 시퀀스가 없기 때문에 기본키 칼럼은 제외하고 삽입해야 함.
