@@ -1,0 +1,15 @@
+git init
+git commit -m 'JenkinsProject'
+git config --global user.mane 'whdwls8404'
+git config --global user.emal 'dmsql8521@naver.com'
+git add .
+git commit -m 'JenkinsProject'
+git remote add origin 'https://github.com/whdwls8404/JenkinsProject.git'
+git pull origin main --allow-unrelated-histories
+Esc -> :wq 확인
+git push origin main
+
+-----------------------------------------------------
+./tomcat/bin/shutdown.sh : 셧다운
+./tomcat/bin/shartup.sh : 시작
+
